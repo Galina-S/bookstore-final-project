@@ -31,8 +31,8 @@ img {
 .info {
   margin: 1.7rem;
   padding: 1.5rem;
-  background-color: rgba(83, 83, 83, 0.871);
-  color:#ccc;
+  background-color: rgba(231, 228, 228, 0.871);
+  color:rgb(21, 21, 21);
 }
 
 .book {

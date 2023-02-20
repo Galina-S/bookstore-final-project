@@ -22,7 +22,7 @@ export const DisplayBook = (props) => {
             <p>{book.description}</p>
           </div>
           <div className="price">
-            <h4>Price: {book.price} $</h4>
+            <h4>Price: {book.price} Є</h4>
           </div>
         </div>
         <div className="rest-info">
