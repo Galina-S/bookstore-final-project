@@ -13,6 +13,7 @@ body {
 }
 .App {
   margin: 10px;
+  min-height: 100vh;
 }
 a {
   margin-left: 3rem;
@@ -57,4 +58,55 @@ img {
   flex-direction: column;
   justify-content: space-between;
   border-left: 1px solid #ccc;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(79deg, #5f00b8, #e60ec2 48%, #eb9635);
+}
+.auth-form-container, .login-form, .register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media screen and (min-width: 600px) {
+  .auth-form-container {
+    padding: 5rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 0.5rem;
+  } 
+}
+
+label {
+  text-align: left;
+  padding: 0.25rem 0;
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-login, .btn-register, .link-btn {
+  border: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: purple;
+}
+
+.link-btn {
+  background: none;
+  color: white;
+  text-decoration: underline;
+  
 }
