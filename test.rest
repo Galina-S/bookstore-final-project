@@ -1,0 +1,9 @@
+@url = http://localhost:3005
+
+### base route 
+{{url}}
+
+### delete a job
+DELETE {{url}}/books/
+
+### save an edited job
