@@ -1,0 +1,41 @@
+.info {
+  margin: 1.7rem;
+  padding: 1.5rem;
+  background-color: rgba(231, 228, 228, 0.871);
+  color:rgb(21, 21, 21);
+
+  img {
+    height: 170px;
+  }
+
+  .book {
+    display: flex;
+   
+  }
+  .content {
+    margin-left: 1.3rem;
+    width: 60%;
+  }
+  .description {
+    height: 100px;
+    overflow: scroll;
+    margin:  0.7rem 0;
+    padding: 0.7rem;
+    border: 1px solid rgb(21, 121, 21);
+  }
+  .rest-info {
+    margin-left: 1rem;
+    padding-left: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #ccc;
+  }
+  button {
+    padding: 0.7rem 1.4rem;
+    margin: 0.5rem 0;
+    margin-right: 2rem;
+  }
+  
+
+}
