@@ -1,0 +1,14 @@
+.navbar1 {
+   line-height: 4rem;
+   display: flex;
+   justify-content: space-between;
+
+}
+.navbar2 a {
+    font-size: 1rem;
+    color: black;
+    line-height: 2rem;
+}
+.navbar2 {
+    border-bottom: 1.5px solid rgb(186, 186, 186);
+}
