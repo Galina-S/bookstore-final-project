@@ -13,22 +13,23 @@ export const PageRegister = (props) => {
 	return (
 		<div className='container'>
 		<div className='auth-form-container'>
-			 <h2>Register</h2>
+			 <h2>Registrieren</h2>
+			 <br></br>
 		<form onSubmit={handleSubmit} className='register-form'>
 
-			<label htmlFor="name">Fullname:</label>
+			<label htmlFor="name">Username:</label>
 			<input value={name} onChange={(e)=> setEmail(e.target.value)} type="text" name="name" id="name" placeholder="Full Name"></input>
             
-			<label htmlFor="email">Email:</label>
+			<label htmlFor="email">E-Mail-Adresse</label>
             <input value = {email} onChange={(e)=> setEmail(e.target.value)} type="email" placeholder="user@gmail.com" id="email" name="email"/>
 
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Passwort</label>
             <input value = {pass} onChange={(e)=> setPass(e.target.value)} type="password" placeholder="******" id="password" name="password"/>
 
-            <button className='btn-register' type="submit">Register</button>
+            <button className='btn-register' type="submit">Kunderkonto anlegen</button>
         </form>
 
-        <button className='link-btn' onClick ={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
+        <button className='link-btn' onClick ={() => props.onFormSwitch('login')}>Bereits ein Konto? Hier anmelden.</button>
         </div>
 		</div>
 	)

@@ -67,7 +67,7 @@ img {
   color: white;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(79deg, #5f00b8, #e60ec2 48%, #eb9635);
+  background-image: linear-gradient(79deg, #e8c7fd, #e9b6e0 48%, #c3f8ff);
 }
 .auth-form-container, .login-form, .register-form {
   display: flex;
@@ -101,7 +101,7 @@ input {
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  color: purple;
+  color: rgb(73, 3, 73);
 }
 
 .link-btn {
