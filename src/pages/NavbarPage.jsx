@@ -29,8 +29,8 @@ export const NavbarPage = () => {
         </div>
 
         <div className="auth">
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/register">Register</NavLink>
+          <NavLink to="/login">Anmelden</NavLink>
+          <NavLink to="/register">Registrieren</NavLink>
         </div>
 
         {/* {currentForm ==='login' 
@@ -39,7 +39,7 @@ export const NavbarPage = () => {
       </nav>
 
       <nav className="navbar2">
-        <NavLink to="/books">Books</NavLink>
+        <NavLink to="/books">Bücher</NavLink>
       </nav>
 
       <Routes>
