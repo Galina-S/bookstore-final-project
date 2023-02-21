@@ -19,7 +19,6 @@ function App() {
 		accessGroups: [],
 	});
 
-
   const toggleForm = (formName) => {
     setCurrentForm(formName);
   }
@@ -28,10 +27,10 @@ function App() {
     <div className="App">
         <nav>
           <NavLink to="/welcome">Welcome</NavLink>
-          <NavLink to="/books">Books</NavLink>
+          <NavLink to="/books">Bücher</NavLink>
 
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/register">Register</NavLink>
+          <NavLink to="/login">Anmelden</NavLink>
+          <NavLink to="/register">Registrieren</NavLink>
           
           {/* {currentForm ==='login' 
               ? <PageLogin onFormSwitch = { toggleForm }/> 
@@ -47,13 +46,6 @@ function App() {
           <Route path="/login" element={<PageLogin setCurrentUser={setCurrentUser}/>} />
           <Route path="/register" element= {<PageRegister setCurrentUser={setCurrentUser}/>}/>
 
-          
-
-         
-          
-
-
-         
 {/* <Route path="/login" element={<PageLogin onFormSwitch = { toggleForm }/>}/>
 <Route path="/register" element={<PageRegister onFormSwitch = { toggleForm} />}/> */}
 
