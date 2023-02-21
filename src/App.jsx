@@ -1,7 +1,6 @@
+
 import './App.scss';
-
 import { NavbarPage } from './pages/NavbarPage';
-
 
 //const baseUrl = import.meta.env.VITE_BACKEND_URL;
 

@@ -18,15 +18,15 @@ export const PageRegister = (props) => {
 		<form onSubmit={handleSubmit} className='register-form'>
 
 			<label htmlFor="name">Username:</label>
-			<input value={name} onChange={(e)=> setEmail(e.target.value)} type="text" name="name" id="name" placeholder="Full Name"></input>
+			<input value={name} onChange={(e)=> setEmail(e.target.value)} type="text" name="name" id="name" ></input>
             
 			<label htmlFor="email">E-Mail-Adresse</label>
-            <input value = {email} onChange={(e)=> setEmail(e.target.value)} type="email" placeholder="user@gmail.com" id="email" name="email"/>
+            <input value = {email} onChange={(e)=> setEmail(e.target.value)} type="email" id="email" name="email"/>
 
             <label htmlFor="password">Passwort</label>
-            <input value = {pass} onChange={(e)=> setPass(e.target.value)} type="password" placeholder="******" id="password" name="password"/>
+            <input value = {pass} onChange={(e)=> setPass(e.target.value)} type="password" id="password" name="password"/>
 
-            <button className='btn-register' type="submit">Kunderkonto anlegen</button>
+            <button className='btn-register' type="submit">Kundenkonto anlegen</button>
         </form>
 
         <button className='link-btn' onClick ={() => props.onFormSwitch('login')}>Bereits ein Konto? Hier anmelden.</button>

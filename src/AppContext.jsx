@@ -3,6 +3,8 @@ import { useState } from "react";
 import instance from "./pages/axios";
 import axios from "axios";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -16,18 +18,6 @@ export const AppProvider = ({ children }) => {
     books.forEach((rawBook) => {
       const _book = {
         ...rawBook,
-        /**                editItem: {
-                    title: rawBook.title,
-                    author: rawBook.author,
-                    img: rawBook.img,
-                    price: rawBook.price,
-                    isbn: rawBook.ISBN,
-                    category: rawBook.category,
-                    publication: rawBook.publication,
-                    age: rawBook.age,
-                    pages: rawBook.pages,
-                }     
-*/
       };
       _books.push(_book);
     });
