@@ -2,6 +2,9 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 
+import { useContext } from 'react';
+import { AppContext } from './AppContext';
+
 import { PageBooks } from './pages/PageBooks';
 import { PageHome } from './pages/PageHome';
 
