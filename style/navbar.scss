@@ -1,7 +1,7 @@
 .header-content {
-   display: flex;
-   justify-content: space-between;
-   background-color: var(--color-main-blue);
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-main-blue);
 
   .logo {
     a {
@@ -9,36 +9,78 @@
       margin: 0 2rem;
       text-decoration: none;
       font-size: 1.5rem;
-      color:var( --color-main-light);
+      color: var(--color-main-light);
     }
   }
 
-  .header-customer{
-      display: flex;
-      align-items: flex-end;
-      margin-right: 0.5rem;
+  .header-customer {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 0.5rem;
 
+    button {
+      border: none;
+      align-items: center;
+    }
 
-      .account, .shopping-cart, .wish-list {
+    .dropdown-trigger,
+    .shopping-cart,
+    .wish-list {
       text-decoration: none;
-      color: var(--color-main-grey);
-      font-size: 0.8rem;
       display: flex;
       flex-direction: column;
-      padding-bottom: 0.3rem; 
+      color: var(--color-main-grey);
+      font-size: 0.8rem;
+      padding-bottom: 0.7rem;
       padding-left: 0.8rem;
-      
-      .account_icon, .shopping-cart-icon, .wish-list-icon {
-        font-size: 1.3rem;
-        padding-bottom: 0.3rem;
-      }
+      background-color: var(--color-main-blue);
     }
 
+    .account_icon,
+    .shopping-cart-icon,
+    .wish-list-icon {
+      font-size: 1.3rem;
+      padding-bottom: 0.3rem;
+
+    }
+
+    .dropdown {
+      position: relative;
+      cursor: pointer;
+
+
+      .auth {
+        position: absolute;
+        top: 110%;
+        right: -50%;
+        border-radius: 25px;
+      }
+      .auth.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: 500ms ease;
+      }
+
+      .auth.inactiv {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: 500ms ease;
+      }
+
+      @media screen and (min-width: 600px) {
+        .auth {
+          top: 110%;
+          left: -150%;
+          border-radius: 25px;
+          color: red;
+        }
+      } 
+    }
 
   }
-
 }
-
 
 .navbar {
   border-bottom: 1.5px solid rgb(186, 186, 186);
@@ -51,10 +93,11 @@
     line-height: 2rem;
     padding-right: 1.5rem;
     text-decoration: none;
-
   }
   a:hover {
     color: var(--color-main-blue);
-
   }
+
 }
+
+

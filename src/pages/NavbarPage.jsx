@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -24,11 +24,21 @@ export const NavbarPage = () => {
     name: "",
     accessGroups: [],
   });
-
   const toggleForm = (formName) => {
     setCurrentForm(formName);
   };
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  let dropdownRef = useRef()
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    }; 
+    document.addEventListener('mousedown', handler)
+  })
 
   return (
     <div>
@@ -38,10 +48,20 @@ export const NavbarPage = () => {
         </div>
 
         <div className="header-customer">
-            <NavLink to="/home" className="account">
-                <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                <span>Mein Konto</span>   
-            </NavLink>   
+            <div className="dropdown" ref = {dropdownRef}>
+              <div className="dropdown-trigger"  onClick={() => {setDropdownOpen(!dropdownOpen)}}>
+                  <FontAwesomeIcon className="account_icon" icon={faUser}/>
+                  <span>Mein Konto</span>
+              </div>  
+                  <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
+                    <div>
+                      <PageLogin/>
+                    </div>
+                    {/** <div className="register">
+                      <NavLink to="/register">Konto anlegen</NavLink>
+                    </div> */}
+                  </div>   
+            </div>
             <NavLink to="/home" className="wish-list">
                 <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
                 <span>Merkzettel</span>   
@@ -61,11 +81,6 @@ export const NavbarPage = () => {
           <NavLink to="/books">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-        </div>
-
-        <div className="auth">
-          <NavLink to="/login">Anmelden</NavLink>
-          <NavLink to="/register">Registrieren</NavLink>
         </div>
         {/* {currentForm ==='login' 
               ? <PageLogin onFormSwitch = { toggleForm }/> 
