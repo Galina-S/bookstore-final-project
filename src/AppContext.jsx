@@ -1,7 +1,6 @@
 import { createContext } from "react";
 import { useState } from "react";
-import instance from "./pages/axios";
-import axios from "axios";
+import instance from "../components/axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
