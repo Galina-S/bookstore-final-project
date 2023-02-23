@@ -205,10 +205,6 @@ useEffect(() => {
 
 //console.log(windowSize);
 
-
-  
-
-
   return (
     <AppContext.Provider
       value={{
@@ -234,8 +230,8 @@ useEffect(() => {
          setCurrentUser,
 
          dropdownOpen,
-         setDropdownOpen
-
+         setDropdownOpen,
+         navigate
       }}
     >
       {children}
