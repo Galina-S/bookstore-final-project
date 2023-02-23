@@ -24,14 +24,17 @@ export const AppProvider = ({ children }) => {
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    }; 
-    document.addEventListener('mousedown', handler)
-  })
+
+  ////What is the purpose of this block??
+  
+  // useEffect(() => {
+  //   let handler = (e) => {
+  //     if (!dropdownRef.current.contains(e.target)) {
+  //       setDropdownOpen(false);
+  //     }
+  //   }; 
+  //   document.addEventListener('mousedown', handler)
+  // })
 
 
  const navigate = useNavigate();
@@ -217,8 +220,6 @@ useEffect(() => {
         setFormData,
         handleChangeFormField,
         sendEditBook,
-        dropdownOpen,
-        setDropdownOpen,
         dropdownRef,
         loginForm,
         changeLoginFormField,

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -39,14 +39,8 @@ export const NavbarPage = () => {
                     <div>
                       <PageLogin/>                      
                     </div>
-                    <div className="register-copy">
 
 
-                    </div>
-
-                    {/** <div className="register">
-                      <NavLink to="/register">Konto anlegen</NavLink>
-                    </div> */}
                   </div>
             </div>
 
@@ -66,7 +60,7 @@ export const NavbarPage = () => {
           <NavLink to="/books">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-          <NavLink to="/register">Registrieren</NavLink>
+          {/* <NavLink to="/register">Registrieren</NavLink> */}
           {currentUser.username==="anonymousUser" ? 
           (  null
           )
