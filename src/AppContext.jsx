@@ -34,8 +34,6 @@ export const AppProvider = ({ children }) => {
   })
 
 
-
-
  const navigate = useNavigate();
   const loadBooks = async () => {
     const books = (await instance.get("/books")).data;
@@ -98,6 +96,7 @@ export const AppProvider = ({ children }) => {
 	};
 
   const submitLoginForm = async (onBadLogin) => {
+   
 		try {
 			const response = await axios.post(
 				`${backendUrl}/login`,
@@ -115,19 +114,12 @@ export const AppProvider = ({ children }) => {
       console.log(response.data)
 			const user = response.data;
 
-			// if (user.accessGroups.includes('loggedInUsers')) {
 			setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
+
+      setDropdownOpen(!dropdownOpen);
       navigate('/books');
               
-			//navigate('/');
-			// } else {
-			// 	loginForm.fields.password = '';
-			 	// loginForm.message = 'Bad login, try again.';
-			 	// setLoginForm(cloneDeep(loginForm));
-			 	// onBadLogin(); 
-        		// }
-     
 		} catch (e) {
 			console.log(`GENERAL ERROR: ${e.message}`);
       if (e.message==="Request failed with status code 401") {
@@ -239,7 +231,11 @@ useEffect(() => {
         currentUser,
         logUserOut,
          windowSize,
-         setCurrentUser
+         setCurrentUser,
+
+         dropdownOpen,
+         setDropdownOpen
+
       }}
     >
       {children}
