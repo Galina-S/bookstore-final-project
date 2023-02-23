@@ -1,21 +1,11 @@
 import { useEffect, useRef, useContext } from "react";
 import { AppContext } from "../AppContext";
-
-import { useContext } from "react";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
 import { PageHome } from '../pages/PageHome';
 import { PageRegister } from '../pages/PageRegister'
 import { PageLogin } from '../pages/PageLogin'
 import { PageLogout } from "./PageLogout";
-import { AppContext } from "../AppContext";
-import { NewBooksPage } from "./NewBooksPage";
-import { Bestsellers } from "./BestsellersPage";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from  '@fortawesome/free-regular-svg-icons';
-import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
-import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
 
