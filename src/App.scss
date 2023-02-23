@@ -1,6 +1,17 @@
 @import '../style/formPage.scss';
 @import '../style/navbar.scss';
 @import '../style/booksPage.scss';
+@import '../style/login-register.scss';
+
+
+:root {
+  --color-main-blue: #2F3754;
+  --color-main-blue-medium: #2f3754d8;
+  --color-main-blue-light: #9eacdd;
+  --color-main-green: #B9CC4C;
+  --color-main-light: #F2F4F8; 
+  --color-main-grey: #e6e0e0d8;
+}
 
 * {
   box-sizing: border-box;
@@ -18,8 +29,6 @@
     color: rgb(50, 50, 50);
   }
 }
-
-
 
 .container {
   display: flex;

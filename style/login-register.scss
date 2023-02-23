@@ -13,6 +13,7 @@
         flex-direction: column;
         text-align: center;
       }
+
       @media screen and (min-width: 600px) {
         .auth-form-container {
           padding: 1.3rem 1rem;
@@ -46,6 +47,12 @@
         background: none;
         color: white;
         text-decoration: underline;
+
         
       }
+      .register-link > p{
+        padding-top: 1rem ;
+      }
+
+
   }

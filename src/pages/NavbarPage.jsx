@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -15,20 +15,7 @@ import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 export const NavbarPage = () => {
-  const {currentUser} = useContext(AppContext)
-  const {windowSize} = useContext(AppContext)
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  let dropdownRef = useRef()
-
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    }; 
-    document.addEventListener('mousedown', handler)
-  })
+  const {currentUser, windowSize, dropdownOpen, setDropdownOpen, dropdownRef} = useContext(AppContext)
 
   return (
     <div>
@@ -58,12 +45,21 @@ export const NavbarPage = () => {
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
                   <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                  <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
+                  {currentUser ?
+                   <span className = {`${windowSize < 600 ? 'none': null}`}>{currentUser.username}</span> 
+                   :
+                   <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
+                   }
               </div>
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
                     <div>
-                      <PageLogin/>
+                      <PageLogin/>                      
                     </div>
+                    <div className="register-copy">
+
+
+                    </div>
+
                     {/** <div className="register">
                       <NavLink to="/register">Konto anlegen</NavLink>
                     </div> */}
