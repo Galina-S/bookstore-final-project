@@ -1,25 +1,21 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
 import { PageHome } from '../pages/PageHome';
 import { PageRegister } from '../pages/PageRegister'
 import { PageLogin } from '../pages/PageLogin'
+import { PageLogout } from "./PageLogout";
+import { AppContext } from "../AppContext";
 
 
 export const NavbarPage = () => {
-  const [currentForm, setCurrentForm] = useState("login");
-  const [currentUser, setCurrentUser] = useState({
-    email: "",
-    password: "",
-    name: "",
-    accessGroups: [],
-  });
+  // const [currentUser, setCurrentUser] = useState({
+  //   email: "",
+  //   password: "",
+  //   username: "",
+  // });
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
-
+ const {currentUser} = useContext(AppContext)
 
   return (
     <div>
@@ -29,8 +25,16 @@ export const NavbarPage = () => {
         </div>
 
         <div className="auth">
-          <NavLink to="/login">Anmelden</NavLink>
-          <NavLink to="/register">Registrieren</NavLink>
+        
+          
+
+        
+        
+          {currentUser.username==="anonymousUser" ? 
+          (  <NavLink to="/login">Anmelden</NavLink>
+          )
+          :( <NavLink to="/logout">Logout </NavLink>)}
+         <NavLink to="/register">Registrieren</NavLink>
         </div>
 
         {/* {currentForm ==='login' 
@@ -45,19 +49,13 @@ export const NavbarPage = () => {
       <Routes>
         <Route path="/books" element={<PageBooks />} />
         <Route path="/home" element={<PageHome />} />
-        <Route path="/" element={<Navigate to="/home" />} />
-
+        <Route path="/" element={<Navigate to="/home" />} />     
         <Route
-          path="/login"
-          element={<PageLogin setCurrentUser={setCurrentUser} />}
+          path="/register" element={<PageRegister />}
         />
-        <Route
-          path="/register"
-          element={<PageRegister setCurrentUser={setCurrentUser} />}
-        />
-
-        {/* <Route path="/login" element={<PageLogin onFormSwitch = { toggleForm }/>}/>
-<Route path="/register" element={<PageRegister onFormSwitch = { toggleForm} />}/> */}
+        <Route path="/login" element={<PageLogin />}
+          />      
+        <Route path="logout" element= {<PageLogout />} />
       </Routes>
     </div>
   );

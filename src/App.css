@@ -110,3 +110,49 @@ input {
   text-decoration: underline;
   
 }
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: rgb(4, 105, 131);
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: rgb(85, 167, 85);
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: rgb(233, 66, 66);
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+div.message {
+  color: rgb(255, 27, 27);
+}
