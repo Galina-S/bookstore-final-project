@@ -1,4 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
+import { AppContext } from '../AppContext';
 import { faInfoCircle, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -7,9 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-const REGISTER_URL = '/register';
-
 export const PageRegister = () => {
+    const { navigate, setDropdownOpen, dropdownOpen } = useContext(AppContext);
 	const userRef = useRef();
 	const errRef = useRef();
 
@@ -184,32 +184,10 @@ export const PageRegister = () => {
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
-
-
-						<button disabled={!validName || !validPwd || !validMatch ? true : false}>Registrieren</button>
+						<button className ="btn-register" disabled={!validName || !validPwd || !validMatch ? true : false}>Registrieren</button>
                     </form>
-                   
 
-			{/* <label htmlFor="email">E-Mail-Adresse</label>
-            <input type="email" id="email" name="email"/>
-
-            <label htmlFor="password">Passwort</label>
-            <input  type="password" id="password" name="password"/> */}
-
-
-
-{/* 
-            <button className='btn-register' type="submit">Kundenkonto anlegen</button> */}
-       			<p >
-                        Already registered?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign In</a>
-                        </span>
-                    </p>
-
-
-        {/* <button className='link-btn'>Bereits ein Konto? Hier anmelden.</button> */}
+             <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}>Hier anmelden.</button>
         </div>)}
 		</div>
 	)
