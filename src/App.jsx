@@ -1,5 +1,7 @@
 import './App.scss';
 //import './App.css';
+
+
 import { NavbarPage } from './pages/NavbarPage';
 import { useContext } from 'react';
 import { AppContext } from './AppContext';

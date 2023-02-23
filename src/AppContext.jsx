@@ -1,10 +1,14 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
+
 import instance from "./pages/axios";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {anonymousUser, blankLoginForm } from './pages/Interfaces'
 import { cloneDeep } from 'lodash-es';
+
+import instance from "../components/axios";
+
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -179,6 +183,35 @@ useEffect(() => {
 },[]);
 
 
+
+
+  //Tracking The Window Size
+ const getWindowSize = () =>{
+  const innerWidth = window.innerWidth;
+  return innerWidth
+ }
+
+
+ const [windowSize, setWindowSize] = useState(getWindowSize());
+
+ useEffect(()=> {
+  const handleWindowResize = () => {
+    setWindowSize(getWindowSize())
+  }
+
+  window.addEventListener('resize',handleWindowResize);
+
+  return () => {
+    window.removeEventListener('resize', handleWindowResize)
+  }
+ }, [])
+
+//console.log(windowSize);
+
+
+  
+
+
   return (
     <AppContext.Provider
       value={{
@@ -198,6 +231,9 @@ useEffect(() => {
         clearLoginForm,
         currentUser,
         logUserOut
+
+        windowSize
+
       }}
     >
       {children}

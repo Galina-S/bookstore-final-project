@@ -1,11 +1,14 @@
+
 import React, {useState, useRef, useContext, useEffect} from 'react';
 import { AppContext } from '../AppContext';
+
 
 
 export const PageLogin = () => {
 
 const { loginForm, changeLoginFormField, submitLoginForm, clearLoginForm  } = useContext(AppContext);
 const passwordRef = useRef()
+
 
 const onBadLogin = () => {
   if (passwordRef.current !== null) {

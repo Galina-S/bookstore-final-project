@@ -1,3 +1,4 @@
+
 .navbar1 {
    line-height: 4rem;
    display: flex;
@@ -12,10 +13,113 @@
   a:hover {
     cursor: pointer;
     color: rgb(14, 174, 14);
-  
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-main-blue);
+
+  .logo {
+    a {
+      line-height: 4rem;
+      margin: 0 2rem;
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: var(--color-main-light);
+    }
+  }
+
+  .header-customer {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 0.5rem;
+
+    button {
+      border: none;
+      align-items: center;
+    }
+
+    .dropdown-trigger,
+    .shopping-cart,
+    .wish-list {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      color: var(--color-main-light);
+      font-size: 0.8rem;
+      padding-bottom: 0.7rem;
+      padding-left: 0.8rem;
+      background-color: var(--color-main-blue);
+    }
+
+    .account_icon,
+    .shopping-cart-icon,
+    .wish-list-icon {
+      font-size: 1.3rem;
+      padding-bottom: 0.3rem;
+
+    }
+
+    @media screen and (max-width: 600px) {
+      .account_icon, .wish-list-icon, .shopping-cart-icon{
+        padding-bottom: 0.7rem;
+      }
+    }
+
+    .dropdown {
+      position: relative;
+      cursor: pointer;
+
+
+      .auth {
+        position: absolute;
+        top: 110%;
+        right: -50%;
+        border-radius: 25px;
+      }
+      .auth.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: 500ms ease;
+      }
+
+      .auth.inactiv {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: 500ms ease;
+      }
+
+    }
+
+  }
+  .none{
+    display: none;
+  }
+
+
+}
+
+.navbar {
+  border-bottom: 1.5px solid rgb(186, 186, 186);
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    font-size: 1rem;
+    color: var(--color-main-blue-medium);
+    line-height: 2rem;
+    padding-right: 1.5rem;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-main-blue);
+
   }
 
 }
+
 
 .navbar2 {
     border-bottom: 1.5px solid rgb(186, 186, 186);
@@ -26,3 +130,4 @@
       line-height: 2rem;
   }
 }
+
