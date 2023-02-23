@@ -15,10 +15,9 @@ import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 export const NavbarPage = () => {
-  const {currentUser} = useContext(AppContext)
+  const {currentUser, dropdownOpen, setDropdownOpen} = useContext(AppContext)
   const {windowSize} = useContext(AppContext)
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  //const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef()
 
   useEffect(() => {
