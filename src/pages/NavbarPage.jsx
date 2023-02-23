@@ -23,24 +23,6 @@ export const NavbarPage = () => {
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
         </div>
-
-
-          {/* <div className="header-customer">
-            <NavLink to="/home" className="account">
-                <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                <span>Mein Konto</span>   
-            </NavLink>   
-            <NavLink to="/home" className="wish-list">
-                <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
-                <span>Merkzettel</span>   
-            </NavLink>
-            <NavLink to="/home" className="shopping-cart">
-                <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
-                <span>Warenkorb</span>   
-            </NavLink>  
-        </div>      */}
-
-
         <div className="header-customer">
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
@@ -51,18 +33,12 @@ export const NavbarPage = () => {
                    <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
                    }
               </div>
+                   
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
-                    <div>
-                      <PageLogin/>                      
-                    </div>
-                    <div className="register-copy">
+                  {currentUser.username === "anonymousUser" && 
+                      <PageLogin/>  }
+                  <NavLink to="/logout" className="logout-btn" onClick={() => className="inactiv"}> Logout </NavLink>
 
-
-                    </div>
-
-                    {/** <div className="register">
-                      <NavLink to="/register">Konto anlegen</NavLink>
-                    </div> */}
                   </div>
             </div>
 
@@ -83,29 +59,9 @@ export const NavbarPage = () => {
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
 
-          {currentUser.username==="anonymousUser" ? 
-          (  <NavLink to="/login">Anmelden</NavLink>
-          )
-          :( <NavLink to="/logout">Logout </NavLink>)}
          <NavLink to="/register">Registrieren</NavLink>
 
         </div>
-
-        
-        {/* <div className="header-customer">
-            <div className="dropdown" ref = {dropdownRef}>
-              <div className="dropdown-trigger"  onClick={() => {setDropdownOpen(!dropdownOpen)}}>
-                  <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                  <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
-              </div>  
-                  <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
-                    <div>
-                      <PageLogin/>
-                    </div> 
-                  
-                  </div>   
-            </div> */}
-         
       </nav>
 
          <Routes>

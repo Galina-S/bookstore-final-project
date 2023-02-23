@@ -231,11 +231,7 @@ useEffect(() => {
         currentUser,
         logUserOut,
          windowSize,
-         setCurrentUser,
-
-         dropdownOpen,
-         setDropdownOpen
-
+         setCurrentUser
       }}
     >
       {children}
