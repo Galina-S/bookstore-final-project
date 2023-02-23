@@ -4,9 +4,7 @@ import instance from "../components/axios";
 import { useNavigate } from 'react-router-dom';
 import {anonymousUser, blankLoginForm } from './pages/Interfaces'
 import { cloneDeep } from 'lodash-es';
-
-import instance from "../components/axios";
-
+import axios from 'axios';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 

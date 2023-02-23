@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import { AppContext } from "../AppContext";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -36,7 +36,9 @@ export const NavbarPage = () => {
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
         </div>
-          <div className="header-customer">
+
+
+          {/* <div className="header-customer">
             <NavLink to="/home" className="account">
                 <FontAwesomeIcon className="account_icon" icon={faUser}/>
                 <span>Mein Konto</span>   
@@ -49,7 +51,34 @@ export const NavbarPage = () => {
                 <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
                 <span>Warenkorb</span>   
             </NavLink>  
-        </div>     
+        </div>      */}
+
+
+        <div className="header-customer">
+            <div className="dropdown" ref = {dropdownRef}>
+              <div className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
+                  <FontAwesomeIcon className="account_icon" icon={faUser}/>
+                  <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
+              </div>
+                  <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
+                    <div>
+                      <PageLogin/>
+                    </div>
+                    {/** <div className="register">
+                      <NavLink to="/register">Konto anlegen</NavLink>
+                    </div> */}
+                  </div>
+            </div>
+
+            <NavLink to="/wish-list" className="wish-list">
+                <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
+                <span className = {windowSize < 600 ? 'none': null}>Merkzettel</span>
+            </NavLink>
+            <div to="/home" className="shopping-cart">
+                <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
+                <span className = {windowSize < 600 ? 'none' : null} >Warenkorb</span>
+            </div>
+            </div>
         </nav>
 
       <nav className="navbar">
@@ -57,15 +86,17 @@ export const NavbarPage = () => {
           <NavLink to="/books">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-        </div>
 
-         {currentUser.username==="anonymousUser" ? 
+          {currentUser.username==="anonymousUser" ? 
           (  <NavLink to="/login">Anmelden</NavLink>
           )
           :( <NavLink to="/logout">Logout </NavLink>)}
          <NavLink to="/register">Registrieren</NavLink>
 
-        <div className="header-customer">
+        </div>
+
+        
+        {/* <div className="header-customer">
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger"  onClick={() => {setDropdownOpen(!dropdownOpen)}}>
                   <FontAwesomeIcon className="account_icon" icon={faUser}/>
@@ -74,32 +105,14 @@ export const NavbarPage = () => {
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
                     <div>
                       <PageLogin/>
-                    </div>
-                    {/** <div className="register">
-                      <NavLink to="/register">Konto anlegen</NavLink>
-                    </div> */}
+                    </div> 
+                  
                   </div>   
-            </div>
-            <div to="/home" className="wish-list">
-                <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
-                <span className = {windowSize < 600 ? 'none': null}>Merkzettel</span>   
-            </div>
-            <div to="/home" className="shopping-cart">
-                <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
-                <span className = {windowSize < 600 ? 'none' : null} >Warenkorb</span>   
-            </div>  
-        </div>
+            </div> */}
+         
       </nav>
 
-      <nav className="navbar">
-        <div className="navigation">
-          <NavLink to="/books">Bücher</NavLink>
-          <NavLink to="/new-books">Neuheiten</NavLink>
-          <NavLink to="/bestsellers">Bestseller</NavLink>
-        </div>
-      </nav>
-
-      <Routes>
+         <Routes>
         <Route path="/books" element={<PageBooks />} />
         <Route path="/home" element={<PageHome />} />
         <Route path="/" element={<Navigate to="/home" />} />     
