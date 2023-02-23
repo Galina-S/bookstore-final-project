@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import instance from "../components/axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -67,6 +67,31 @@ export const AppProvider = ({ children }) => {
   };
 
 
+
+  //Tracking The Window Size
+ const getWindowSize = () =>{
+  const innerWidth = window.innerWidth;
+  return innerWidth
+ }
+
+
+ const [windowSize, setWindowSize] = useState(getWindowSize());
+
+ useEffect(()=> {
+  const handleWindowResize = () => {
+    setWindowSize(getWindowSize())
+  }
+
+  window.addEventListener('resize',handleWindowResize);
+
+  return () => {
+    window.removeEventListener('resize', handleWindowResize)
+  }
+ }, [])
+
+//console.log(windowSize);
+
+
   
 
   return (
@@ -81,6 +106,7 @@ export const AppProvider = ({ children }) => {
         setFormData,
         handleChangeFormField,
         sendEditBook,
+        windowSize
       }}
     >
       {children}

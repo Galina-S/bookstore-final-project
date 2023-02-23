@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { AppContext } from "../AppContext";
+import { useContext } from "react";
 
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -17,6 +19,9 @@ import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 
 export const NavbarPage = () => {
+
+    const {windowSize} = useContext(AppContext);
+
   const [currentForm, setCurrentForm] = useState("login");
   const [currentUser, setCurrentUser] = useState({
     email: "",
@@ -51,7 +56,7 @@ export const NavbarPage = () => {
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger"  onClick={() => {setDropdownOpen(!dropdownOpen)}}>
                   <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                  <span>Mein Konto</span>
+                  <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
               </div>  
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
                     <div>
@@ -62,14 +67,14 @@ export const NavbarPage = () => {
                     </div> */}
                   </div>   
             </div>
-            <NavLink to="/home" className="wish-list">
+            <div to="/home" className="wish-list">
                 <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
-                <span>Merkzettel</span>   
-            </NavLink>
-            <NavLink to="/home" className="shopping-cart">
+                <span className = {windowSize < 600 ? 'none': null}>Merkzettel</span>   
+            </div>
+            <div to="/home" className="shopping-cart">
                 <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
-                <span>Warenkorb</span>   
-            </NavLink>  
+                <span className = {windowSize < 600 ? 'none' : null} >Warenkorb</span>   
+            </div>  
         </div>
 
         
