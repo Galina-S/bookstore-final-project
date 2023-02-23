@@ -16,7 +16,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from  '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
-
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
 
@@ -27,9 +26,8 @@ import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 export const NavbarPage = () => {
   const {currentUser} = useContext(AppContext)
-  const {windowSize} = useContext(AppContext);
+  const {windowSize} = useContext(AppContext)
 
-  
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef()
 
