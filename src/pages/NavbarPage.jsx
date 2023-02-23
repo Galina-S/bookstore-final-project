@@ -9,9 +9,6 @@ import { PageLogin } from '../pages/PageLogin'
 import { PageLogout } from "./PageLogout";
 import { AppContext } from "../AppContext";
 
-export const NavbarPage = () => {
- const {currentUser} = useContext(AppContext)
- 
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
 
@@ -20,23 +17,8 @@ import { faUser } from  '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
-
-
-
 export const NavbarPage = () => {
-
-    const {windowSize} = useContext(AppContext);
-
-  const [currentForm, setCurrentForm] = useState("login");
-  const [currentUser, setCurrentUser] = useState({
-    email: "",
-    password: "",
-    name: "",
-    accessGroups: [],
-  });
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
+ const {windowSize} = useContext(AppContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef()
