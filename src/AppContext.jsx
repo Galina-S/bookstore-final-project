@@ -198,10 +198,6 @@ useEffect(() => {
 
 //console.log(windowSize);
 
-
-  
-
-
   return (
     <AppContext.Provider
       value={{
@@ -223,7 +219,8 @@ useEffect(() => {
         logUserOut,
          windowSize,
          dropdownOpen,
-         setDropdownOpen
+         setDropdownOpen,
+         navigate
       }}
     >
       {children}

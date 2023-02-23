@@ -1,12 +1,12 @@
 
 import React, {useState, useRef, useContext, useEffect} from 'react';
 import { AppContext } from '../AppContext';
+import { Navigate, NavLink, useNavigate} from "react-router-dom";
 
 export const PageLogin = () => {
-
-const { loginForm, changeLoginFormField, submitLoginForm, clearLoginForm  } = useContext(AppContext);
+const { loginForm, changeLoginFormField, submitLoginForm, clearLoginForm, 
+  dropdownOpen, setDropdownOpen, navigate  } = useContext(AppContext);
 const passwordRef = useRef()
-
 
 const onBadLogin = () => {
   if (passwordRef.current !== null) {
@@ -63,7 +63,7 @@ useEffect(() => {
         </div>
       </form>
       <div>
-      <button type= "button" className='link-btn' onClick ={() => (null)}>Noch kein Konto? Hier Konto anlegen.</button>
+      <button type= "button" className='link-btn' onClick ={() => {setDropdownOpen(!dropdownOpen); navigate('/register')}}>Noch kein Konto? Hier Konto anlegen.</button>
       </div>
       </div>
       </div>

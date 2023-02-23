@@ -17,17 +17,17 @@ import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 export const NavbarPage = () => {
   const {currentUser, dropdownOpen, setDropdownOpen} = useContext(AppContext)
   const {windowSize} = useContext(AppContext)
-  //const [dropdownOpen, setDropdownOpen] = useState(false);
-  let dropdownRef = useRef()
+   let dropdownRef = useRef()
 
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    }; 
-    document.addEventListener('mousedown', handler)
-  })
+   //!!! with this code Console shows some errors
+  // useEffect(() => {
+  //   let handler = (e) => {
+  //     if (!dropdownRef.current.contains(e.target)) {
+  //       setDropdownOpen(false);
+  //     }
+  //   }; 
+  //   document.addEventListener('mousedown', handler)
+  // })
 
   return (
     <div>
@@ -35,24 +35,6 @@ export const NavbarPage = () => {
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
         </div>
-
-
-          {/* <div className="header-customer">
-            <NavLink to="/home" className="account">
-                <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                <span>Mein Konto</span>   
-            </NavLink>   
-            <NavLink to="/home" className="wish-list">
-                <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
-                <span>Merkzettel</span>   
-            </NavLink>
-            <NavLink to="/home" className="shopping-cart">
-                <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
-                <span>Warenkorb</span>   
-            </NavLink>  
-        </div>      */}
-
-
         <div className="header-customer">
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
@@ -85,45 +67,23 @@ export const NavbarPage = () => {
           <NavLink to="/books">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-
+          <NavLink to="/register">Registrieren</NavLink>
           {currentUser.username==="anonymousUser" ? 
-          (  <NavLink to="/login">Anmelden</NavLink>
+          (  null
           )
           :( <NavLink to="/logout">Logout </NavLink>)}
-         <NavLink to="/register">Registrieren</NavLink>
-
-        </div>
-
-        
-        {/* <div className="header-customer">
-            <div className="dropdown" ref = {dropdownRef}>
-              <div className="dropdown-trigger"  onClick={() => {setDropdownOpen(!dropdownOpen)}}>
-                  <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                  <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
-              </div>  
-                  <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
-                    <div>
-                      <PageLogin/>
-                    </div> 
-                  
-                  </div>   
-            </div> */}
-         
+       
+        </div>       
       </nav>
 
-         <Routes>
+      <Routes>
         <Route path="/books" element={<PageBooks />} />
         <Route path="/home" element={<PageHome />} />
         <Route path="/" element={<Navigate to="/home" />} />     
-        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/new-books" element={<NewBooksPage/>} />
         <Route path="/bestsellers" element={<Bestsellers />} />
-
-        <Route
-          path="/register" element={<PageRegister />}
-        />
-        <Route path="/login" element={<PageLogin />}
-          />      
+        <Route path="/register" element={<PageRegister />} />
+        <Route path="/login" element={<PageLogin />} />      
         <Route path="logout" element= {<PageLogout />} />
       </Routes>
     </div>
