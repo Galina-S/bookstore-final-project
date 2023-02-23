@@ -1,3 +1,19 @@
+
+.navbar1 {
+   line-height: 4rem;
+   display: flex;
+   justify-content: space-between;
+
+   a {
+    margin-left: 3rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: rgb(2, 128, 0);
+  }
+  a:hover {
+    cursor: pointer;
+    color: rgb(14, 174, 14);
+
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -99,8 +115,19 @@
   }
   a:hover {
     color: var(--color-main-blue);
+
   }
 
 }
 
+
+.navbar2 {
+    border-bottom: 1.5px solid rgb(186, 186, 186);
+
+    a {
+      font-size: 1rem;
+      color: black;
+      line-height: 2rem;
+  }
+}
 

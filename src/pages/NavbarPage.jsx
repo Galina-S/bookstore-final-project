@@ -1,12 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import { AppContext } from "../AppContext";
-import { useContext } from "react";
 
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
 import { PageHome } from '../pages/PageHome';
 import { PageRegister } from '../pages/PageRegister'
 import { PageLogin } from '../pages/PageLogin'
+import { PageLogout } from "./PageLogout";
+import { AppContext } from "../AppContext";
+
+export const NavbarPage = () => {
+ const {currentUser} = useContext(AppContext)
+ 
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
 
@@ -45,12 +50,22 @@ export const NavbarPage = () => {
     document.addEventListener('mousedown', handler)
   })
 
+
   return (
     <div>
       <nav className="header-content">
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
         </div>
+
+
+        <div className="auth">
+              
+         {currentUser.username==="anonymousUser" ? 
+          (  <NavLink to="/login">Anmelden</NavLink>
+          )
+          :( <NavLink to="/logout">Logout </NavLink>)}
+         <NavLink to="/register">Registrieren</NavLink>
 
         <div className="header-customer">
             <div className="dropdown" ref = {dropdownRef}>
@@ -96,24 +111,18 @@ export const NavbarPage = () => {
       <Routes>
         <Route path="/books" element={<PageBooks />} />
         <Route path="/home" element={<PageHome />} />
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/home" />} />     
+
         <Route path="/new-books" element={<NewBooksPage/>} />
         <Route path="/bestsellers" element={<Bestsellers />} />
 
-        
-
 
         <Route
-          path="/login"
-          element={<PageLogin setCurrentUser={setCurrentUser} />}
+          path="/register" element={<PageRegister />}
         />
-        <Route
-          path="/register"
-          element={<PageRegister setCurrentUser={setCurrentUser} />}
-        />
-
-        {/* <Route path="/login" element={<PageLogin onFormSwitch = { toggleForm }/>}/>
-<Route path="/register" element={<PageRegister onFormSwitch = { toggleForm} />}/> */}
+        <Route path="/login" element={<PageLogin />}
+          />      
+        <Route path="logout" element= {<PageLogout />} />
       </Routes>
     </div>
   );
