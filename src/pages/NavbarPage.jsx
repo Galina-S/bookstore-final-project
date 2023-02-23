@@ -35,12 +35,10 @@ export const NavbarPage = () => {
               </div>
                    
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
-                  {currentUser.username === "anonymousUser" && 
-                      <PageLogin/>  }
-                  <NavLink to="/logout" className="logout-btn" onClick={() => className="inactiv"}> Logout </NavLink>
-                    <div>
-                      <PageLogin/>                      
-                    </div>
+                  {currentUser.username === "anonymousUser" ?
+                      ( <PageLogin/> )
+                       :
+                      ( <NavLink to="/logout" className="logout-btn" onClick={() => className="inactiv"}> Logout </NavLink>)}
                   </div>
             </div>
 

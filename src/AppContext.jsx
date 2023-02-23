@@ -224,6 +224,8 @@ useEffect(() => {
         setFormData,
         handleChangeFormField,
         sendEditBook,
+        setDropdownOpen,
+        dropdownOpen,
         dropdownRef,
         loginForm,
         changeLoginFormField,
