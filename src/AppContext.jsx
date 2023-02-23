@@ -1,8 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-
-import instance from "./pages/axios";
-import axios from "axios";
+import instance from "../components/axios";
 import { useNavigate } from 'react-router-dom';
 import {anonymousUser, blankLoginForm } from './pages/Interfaces'
 import { cloneDeep } from 'lodash-es';
@@ -13,7 +11,6 @@ import instance from "../components/axios";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
-
 
 
 export const AppProvider = ({ children }) => {
@@ -230,9 +227,8 @@ useEffect(() => {
         submitLoginForm,
         clearLoginForm,
         currentUser,
-        logUserOut
-
-        windowSize
+        logUserOut,
+         windowSize
 
       }}
     >
