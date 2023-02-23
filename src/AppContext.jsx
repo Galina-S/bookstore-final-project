@@ -1,16 +1,28 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
 import instance from "../components/axios";
+import { useNavigate } from 'react-router-dom';
+import {anonymousUser, blankLoginForm } from './pages/Interfaces'
+import { cloneDeep } from 'lodash-es';
+import axios from 'axios';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
+
 
 export const AppProvider = ({ children }) => {
   const [rawBooks, setRawBooks] = useState([]);
   const [editingElementId, setEditingElementId] = useState(null);
   const [formData, setFormData] = useState([]);
 
+  const [loginForm, setLoginForm] = useState(cloneDeep(blankLoginForm));
+  const [currentUser, setCurrentUser] = useState(anonymousUser);
+  // const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
+  // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+ const navigate = useNavigate();
   const loadBooks = async () => {
     const books = (await instance.get("/books")).data;
     const _books = [];
@@ -66,6 +78,101 @@ export const AppProvider = ({ children }) => {
     setEditingElementId(null);
   };
 
+  const changeLoginFormField = (fieldIdCode, value) => {
+		loginForm.fields[fieldIdCode] = value;
+		setLoginForm({ ...loginForm });
+	};
+
+  const submitLoginForm = async (onBadLogin) => {
+   
+		try {
+			const response = await axios.post(
+				`${backendUrl}/login`,
+				{
+					username: loginForm.fields.username,
+					password: loginForm.fields.password,
+				},
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					withCredentials: true,
+				}
+			);
+      console.log(response.data)
+			const user = response.data;
+
+			setCurrentUser({ ...user });
+      setLoginForm({ ...blankLoginForm });
+
+      setDropdownOpen(!dropdownOpen);
+      navigate('/books');
+              
+		} catch (e) {
+			console.log(`GENERAL ERROR: ${e.message}`);
+      if (e.message==="Request failed with status code 401") {
+        loginForm.message = 'Bad login, try again.';
+			 	setLoginForm(cloneDeep(loginForm));
+			 	onBadLogin(); 
+      }
+		}
+	};
+
+  const logUserOut = () => {
+		setCurrentUser({ ...anonymousUser });
+		(async () => {
+			try {
+				await axios.get(`${backendUrl}/logout`, {
+					withCredentials: true,
+				});
+				getCurrentUser();
+			} catch (e) {
+				console.log('GENERAL ERROR');
+			}
+		})();
+	};
+
+const clearLoginForm = () => {
+  setLoginForm(cloneDeep(blankLoginForm));
+};
+
+const getCurrentUser = () => {
+  (async () => {
+    try {
+      const user = (
+        await axios.get(`${backendUrl}/get-current-user`, {
+          withCredentials: true,
+        })
+      ).data;
+      setCurrentUser({ ...user });
+    } catch (e) {
+      console.log('GENERAL ERROR');
+    }
+  })();
+};
+
+
+useEffect(() => {
+  getCurrentUser();
+}, []);
+
+useEffect(() => {
+  (async () => {
+    try {
+      const user = (
+        await axios.get(`${backendUrl}/get-current-user`, {
+          withCredentials: true,
+        })
+      ).data;
+      setCurrentUser({...user});
+      
+    } catch (e) {
+      console.log('General error')
+    } 
+})();
+},[]);
+
+
 
 
   //Tracking The Window Size
@@ -94,6 +201,7 @@ export const AppProvider = ({ children }) => {
 
   
 
+
   return (
     <AppContext.Provider
       value={{
@@ -106,7 +214,16 @@ export const AppProvider = ({ children }) => {
         setFormData,
         handleChangeFormField,
         sendEditBook,
-        windowSize
+
+        loginForm,
+        changeLoginFormField,
+        submitLoginForm,
+        clearLoginForm,
+        currentUser,
+        logUserOut,
+         windowSize,
+         dropdownOpen,
+         setDropdownOpen
       }}
     >
       {children}

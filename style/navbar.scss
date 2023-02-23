@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--color-main-blue);
-
   .logo {
     a {
       line-height: 4rem;
@@ -12,17 +11,14 @@
       color: var(--color-main-light);
     }
   }
-
   .header-customer {
     display: flex;
     align-items: flex-end;
     margin-right: 0.5rem;
-
     button {
       border: none;
       align-items: center;
     }
-
     .dropdown-trigger,
     .shopping-cart,
     .wish-list {
@@ -35,26 +31,20 @@
       padding-left: 0.8rem;
       background-color: var(--color-main-blue);
     }
-
     .account_icon,
     .shopping-cart-icon,
     .wish-list-icon {
       font-size: 1.3rem;
       padding-bottom: 0.3rem;
-
     }
-
     @media screen and (max-width: 600px) {
       .account_icon, .wish-list-icon, .shopping-cart-icon{
         padding-bottom: 0.7rem;
       }
     }
-
     .dropdown {
       position: relative;
       cursor: pointer;
-
-
       .auth {
         position: absolute;
         top: 110%;
@@ -68,29 +58,22 @@
         transform: translateY(0);
         transition: 500ms ease;
       }
-
       .auth.inactiv {
         opacity: 0;
         visibility: hidden;
         transform: translateY(-20px);
         transition: 500ms ease;
       }
-
     }
-
   }
   .none{
     display: none;
   }
-
-
 }
-
 .navbar {
   border-bottom: 1.5px solid rgb(186, 186, 186);
   display: flex;
   justify-content: space-between;
-
   a {
     font-size: 1rem;
     color: var(--color-main-blue-medium);
@@ -101,7 +84,4 @@
   a:hover {
     color: var(--color-main-blue);
   }
-
 }
-
-

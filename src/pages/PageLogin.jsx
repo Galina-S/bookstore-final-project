@@ -1,34 +1,71 @@
-import React, { useState } from 'react';
+
+import React, {useState, useRef, useContext, useEffect} from 'react';
+import { AppContext } from '../AppContext';
+
+export const PageLogin = () => {
+
+const { loginForm, changeLoginFormField, submitLoginForm, clearLoginForm  } = useContext(AppContext);
+const passwordRef = useRef()
 
 
+const onBadLogin = () => {
+  if (passwordRef.current !== null) {
+    passwordRef.current.focus();
+  }
+};
 
-export const PageLogin = (props) => {
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+const submitLoginFormWrapper = () => {
+  submitLoginForm(onBadLogin);
+};
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email);
-    }
+const handleKeyDown = (e) => {
+  if (e.key === 'Enter') {
+    submitLoginForm(onBadLogin);
+  }
+};
 
-    	return (
-        <div className='container'>
-            <div className='auth-form-container'>
-                <h2>Ich bin bereits Kunde</h2>
-                <br></br>
-                <form onSubmit={handleSubmit} className='login-form'>
-                    <label htmlFor="email">E-Mail-Adresse</label>
-                    <input value = {email} onChange={(e)=> setEmail(e.target.value)} type="email"  id="email" name="email"/>
+useEffect(() => {
+  clearLoginForm();	
+}, []);
 
-                    <label htmlFor="password">Passwort</label>
-                    <input value = {pass} onChange={(e)=> setPass(e.target.value)} type="password" id="password" name="password"/>
+    return (
+      <div className='container'>
+        
+      <div className='auth-form-container'>
+          <h2>Ich bin bereits Kunde</h2>
+          <br></br>
+          <form className='login-form'>
+              <label htmlFor="username">Username</label>
+              <input onChange={(e) =>
+                changeLoginFormField(
+                  'username',
+                  e.target.value
+                )
+              } 
+              value={loginForm.fields.username}
+              onKeyDown={(e) => handleKeyDown(e)}
+              autoFocus type="text" />
 
-                    <button className='btn-login' type="submit">Anmelden</button>
-                </form>
-
-                <button className='link-btn' onClick ={() => props.onFormSwitch('register')}>Noch kein Konto? Hier Konto anlegen.</button>
-            
-            </div>
+          <label htmlFor="password">Passwort</label>
+          <input ref={passwordRef}
+              onChange={(e) =>
+                changeLoginFormField(
+                  'password',
+                  e.target.value
+                )
+              }
+              value={loginForm.fields.password}
+              onKeyDown={(e) => handleKeyDown(e)}
+              type="password"/>
+        <div>
+        <div className="message">{loginForm.message}</div>  
+        <button className='btn-login' type="button" onClick={() => submitLoginFormWrapper()}> Anmelden</button>
         </div>
-	)
+      </form>
+      <div>
+      <button type= "button" className='link-btn' onClick ={() => (null)}>Noch kein Konto? Hier Konto anlegen.</button>
+      </div>
+      </div>
+      </div>
+)
 }
