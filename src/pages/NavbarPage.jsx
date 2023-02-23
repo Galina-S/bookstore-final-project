@@ -1,6 +1,7 @@
 import { useEffect, useRef, useContext } from "react";
 import { AppContext } from "../AppContext";
 
+import { useContext } from "react";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
 import { PageHome } from '../pages/PageHome';
@@ -8,10 +9,6 @@ import { PageRegister } from '../pages/PageRegister'
 import { PageLogin } from '../pages/PageLogin'
 import { PageLogout } from "./PageLogout";
 import { AppContext } from "../AppContext";
-
-export const NavbarPage = () => {
- const {currentUser} = useContext(AppContext)
- 
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
 
@@ -21,23 +18,11 @@ import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 
-
-
 export const NavbarPage = () => {
+  const {currentUser} = useContext(AppContext)
+  const {windowSize} = useContext(AppContext);
 
-    const {windowSize} = useContext(AppContext);
-
-  const [currentForm, setCurrentForm] = useState("login");
-  const [currentUser, setCurrentUser] = useState({
-    email: "",
-    password: "",
-    name: "",
-    accessGroups: [],
-  });
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
-
+  
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef()
 
@@ -50,17 +35,13 @@ export const NavbarPage = () => {
     document.addEventListener('mousedown', handler)
   })
 
-
   return (
     <div>
       <nav className="header-content">
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
         </div>
-
-
-        <div className="auth">
-              
+                  
          {currentUser.username==="anonymousUser" ? 
           (  <NavLink to="/login">Anmelden</NavLink>
           )
