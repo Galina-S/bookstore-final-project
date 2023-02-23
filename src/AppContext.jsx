@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import instance from "../components/axios";
 import { useNavigate } from 'react-router-dom';
 import {anonymousUser, blankLoginForm } from './pages/Interfaces'
@@ -20,7 +20,19 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(anonymousUser);
   // const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
   // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
+  
+  //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  let dropdownRef = useRef();
+  useEffect(() => {
+    let handler = (e) => {
+      if (!dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    }; 
+    document.addEventListener('mousedown', handler)
+  })
+
 
  const navigate = useNavigate();
   const loadBooks = async () => {
@@ -59,7 +71,7 @@ export const AppProvider = ({ children }) => {
     setFormData(book);
   };
 
-  const handleChangeFormField = (e, key) => {
+  const handleChangeFormField = (e) => {
     e.preventDefault();
     const value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
@@ -180,17 +192,12 @@ useEffect(() => {
   const innerWidth = window.innerWidth;
   return innerWidth
  }
-
-
  const [windowSize, setWindowSize] = useState(getWindowSize());
-
  useEffect(()=> {
   const handleWindowResize = () => {
     setWindowSize(getWindowSize())
   }
-
   window.addEventListener('resize',handleWindowResize);
-
   return () => {
     window.removeEventListener('resize', handleWindowResize)
   }
@@ -210,7 +217,9 @@ useEffect(() => {
         setFormData,
         handleChangeFormField,
         sendEditBook,
-
+        dropdownOpen,
+        setDropdownOpen,
+        dropdownRef,
         loginForm,
         changeLoginFormField,
         submitLoginForm,
@@ -218,6 +227,8 @@ useEffect(() => {
         currentUser,
         logUserOut,
          windowSize,
+         setCurrentUser,
+
          dropdownOpen,
          setDropdownOpen,
          navigate

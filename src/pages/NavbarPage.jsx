@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -19,16 +19,6 @@ export const NavbarPage = () => {
   const {windowSize} = useContext(AppContext)
    let dropdownRef = useRef()
 
-   //!!! with this code Console shows some errors
-  // useEffect(() => {
-  //   let handler = (e) => {
-  //     if (!dropdownRef.current.contains(e.target)) {
-  //       setDropdownOpen(false);
-  //     }
-  //   }; 
-  //   document.addEventListener('mousedown', handler)
-  // })
-
   return (
     <div>
       <nav className="header-content">
@@ -39,12 +29,21 @@ export const NavbarPage = () => {
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
                   <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                  <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
+                  {currentUser ?
+                   <span className = {`${windowSize < 600 ? 'none': null}`}>{currentUser.username}</span> 
+                   :
+                   <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
+                   }
               </div>
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
                     <div>
-                      <PageLogin/>
+                      <PageLogin/>                      
                     </div>
+                    <div className="register-copy">
+
+
+                    </div>
+
                     {/** <div className="register">
                       <NavLink to="/register">Konto anlegen</NavLink>
                     </div> */}

@@ -1,0 +1,15 @@
+
+.pageHome {
+    margin-top: 1rem;
+
+    .container1{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 400px);
+        background: url("../src/assets/books-1845614_1280\ \(1\).jpg") no-repeat center;
+        background-size: cover;
+
+    }
+
+}
+    
