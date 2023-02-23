@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
 import { NavLink, Routes, Route, Navigate} from "react-router-dom";
 import { PageBooks } from '../pages/PageBooks';
@@ -38,7 +38,9 @@ export const NavbarPage = () => {
                   {currentUser.username === "anonymousUser" && 
                       <PageLogin/>  }
                   <NavLink to="/logout" className="logout-btn" onClick={() => className="inactiv"}> Logout </NavLink>
-
+                    <div>
+                      <PageLogin/>                      
+                    </div>
                   </div>
             </div>
 
@@ -51,7 +53,7 @@ export const NavbarPage = () => {
                 <span className = {windowSize < 600 ? 'none' : null} >Warenkorb</span>
             </div>
             </div>
-        </nav>
+      </nav>
 
       <nav className="navbar">
         <div className="navigation">
@@ -61,7 +63,13 @@ export const NavbarPage = () => {
 
          <NavLink to="/register">Registrieren</NavLink>
 
-        </div>
+          {/* <NavLink to="/register">Registrieren</NavLink> */}
+          {/*currentUser.username==="anonymousUser" ? 
+          (  null
+          )
+          :( <NavLink to="/logout">Logout </NavLink>)*/}
+       
+        </div>       
       </nav>
 
          <Routes>

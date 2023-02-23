@@ -1,5 +1,5 @@
 export const Bestsellers = () => {
     return (
-        <h3>Welcom to Bestsellers Page</h3>
+        <h3>Welcome to Bestsellers Page</h3>
     )
 }
