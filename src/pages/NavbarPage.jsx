@@ -9,10 +9,12 @@ import { PageRegister } from '../pages/PageRegister'
 import { PageLogin } from '../pages/PageLogin'
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
+import { WishListPage } from "./WishListPage";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from  '@fortawesome/free-regular-svg-icons';
-import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
+import { faBagShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 
@@ -54,10 +56,10 @@ export const NavbarPage = () => {
 
         <div className="header-customer">
             <div className="dropdown" ref = {dropdownRef}>
-              <div className="dropdown-trigger"  onClick={() => {setDropdownOpen(!dropdownOpen)}}>
+              <button className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
                   <FontAwesomeIcon className="account_icon" icon={faUser}/>
                   <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
-              </div>  
+              </button>  
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
                     <div>
                       <PageLogin/>
@@ -67,18 +69,15 @@ export const NavbarPage = () => {
                     </div> */}
                   </div>   
             </div>
-            <div to="/home" className="wish-list">
+            <NavLink to="/wish-list" className="wish-list">
                 <FontAwesomeIcon className="wish-list-icon" icon={faHeart}/>
                 <span className = {windowSize < 600 ? 'none': null}>Merkzettel</span>   
-            </div>
+            </NavLink>
             <div to="/home" className="shopping-cart">
-                <FontAwesomeIcon className="shopping-cart-icon" icon={faCartShopping}/>
+                <FontAwesomeIcon className="shopping-cart-icon" icon={faBagShopping}/>
                 <span className = {windowSize < 600 ? 'none' : null} >Warenkorb</span>   
             </div>  
         </div>
-
-        
-
       </nav>
 
       <nav className="navbar">
@@ -99,8 +98,7 @@ export const NavbarPage = () => {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/new-books" element={<NewBooksPage/>} />
         <Route path="/bestsellers" element={<Bestsellers />} />
-
-        
+        <Route path="/wish-list" element={<WishListPage />} />
 
 
         <Route
