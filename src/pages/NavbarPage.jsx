@@ -8,6 +8,7 @@ import { PageLogin } from '../pages/PageLogin'
 import { PageLogout } from "./PageLogout";
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
+import { WishListPage } from "./WishListPage";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from  '@fortawesome/free-regular-svg-icons';
@@ -58,8 +59,7 @@ export const NavbarPage = () => {
           <NavLink to="/books">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-
-         <NavLink to="/register">Registrieren</NavLink>
+          <NavLink to="/register">Registrieren</NavLink>
 
           {/* <NavLink to="/register">Registrieren</NavLink> */}
           {/*currentUser.username==="anonymousUser" ? 
@@ -77,6 +77,8 @@ export const NavbarPage = () => {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/new-books" element={<NewBooksPage/>} />
         <Route path="/bestsellers" element={<Bestsellers />} />
+        <Route path="/wish-list" element={<WishListPage />} />
+
 
         <Route
           path="/register" element={<PageRegister />}
