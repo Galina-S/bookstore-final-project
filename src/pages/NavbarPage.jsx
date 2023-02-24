@@ -59,8 +59,6 @@ export const NavbarPage = () => {
           <NavLink to="/books">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-          <NavLink to="/register">Registrieren</NavLink>
-
           {/* <NavLink to="/register">Registrieren</NavLink> */}
           {/*currentUser.username==="anonymousUser" ? 
           (  null

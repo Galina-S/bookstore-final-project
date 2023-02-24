@@ -1,10 +1,5 @@
-
-import { PageRegister } from "../pages/PageRegister";
 import React, { useRef, useContext, useEffect} from 'react';
 import { AppContext } from '../AppContext';
-import { cloneDeep } from 'lodash-es';
-
-import { NavLink, Routes, Route } from "react-router-dom";
 //import { PageRegister } from "../pages/PageRegister";
 
 export const PageLogin = () => {
@@ -16,7 +11,6 @@ export const PageLogin = () => {
     dropdownOpen,
     setDropdownOpen,
     currentUser, navigate,
-    setLoginForm
   } = useContext(AppContext);
   const passwordRef = useRef();
 
@@ -25,6 +19,10 @@ export const PageLogin = () => {
       passwordRef.current.focus();
     }
   };
+
+  const submitLoginFormWrapper = () => {
+		submitLoginForm(onBadLogin);
+	};
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -65,8 +63,7 @@ export const PageLogin = () => {
             <button
               className="btn-login"
               type="button"
-              onClick={() => 
-              {submitLoginForm(onBadLogin); 
+              onClick={() => {submitLoginFormWrapper()
               currentUser ? setDropdownOpen(!dropdownOpen)
               : null; 
               
