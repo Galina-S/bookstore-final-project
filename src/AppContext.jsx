@@ -27,14 +27,14 @@ export const AppProvider = ({ children }) => {
 
   ////What is the purpose of this block??
   
-  // useEffect(() => {
-  //   let handler = (e) => {
-  //     if (!dropdownRef.current.contains(e.target)) {
-  //       setDropdownOpen(false);
-  //     }
-  //   }; 
-  //   document.addEventListener('mousedown', handler)
-  // })
+   useEffect(() => {
+     let handler = (e) => {
+       if (!dropdownRef.current.contains(e.target)) {
+         setDropdownOpen(false);
+       }
+     }; 
+     document.addEventListener('mousedown', handler)
+   })
 
 
  const navigate = useNavigate();
