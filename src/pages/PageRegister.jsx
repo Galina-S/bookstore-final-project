@@ -2,6 +2,9 @@ import React, {useState, useRef, useEffect, useContext} from 'react';
 import { AppContext } from '../AppContext';
 import { faInfoCircle, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink} from 'react-router-dom';
+
+
 
 //import axios from 'axios'
 
@@ -9,9 +12,11 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PageRegister = () => {
-    const { navigate, setDropdownOpen, dropdownOpen } = useContext(AppContext);
+    const { setDropdownOpen, dropdownOpen, submitLoginFormWrapper, navigate } = useContext(AppContext);
 	const userRef = useRef();
 	const errRef = useRef();
+
+   // const navigation = useNavigation();
 
 	const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
@@ -149,12 +154,7 @@ export const PageRegister = () => {
                             type="password"
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                            aria-invalid={validPwd ? "false" : "true"}
-                            aria-describedby="pwdnote"
-                            onFocus={() => setPwdFocus(true)}
-                            onBlur={() => setPwdFocus(false)}
+                            value={pwd}submitLoginFormWrapper
                         />
 
 			<p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
@@ -186,8 +186,9 @@ export const PageRegister = () => {
                         </p>
 						<button className ="btn-register" disabled={!validName || !validPwd || !validMatch ? true : false}>Registrieren</button>
                     </form>
+                    <p>Haben Sie bereits ein Kundenkonto?</p>
+                    <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}>Hier anmelden.</button>
 
-             <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}>Hier anmelden.</button>
         </div>)}
 		</div>
 	)

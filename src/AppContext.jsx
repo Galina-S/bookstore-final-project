@@ -234,7 +234,8 @@ useEffect(() => {
         currentUser,
         logUserOut,
          windowSize,
-         setCurrentUser
+         setCurrentUser,
+         navigate
       }}
     >
       {children}

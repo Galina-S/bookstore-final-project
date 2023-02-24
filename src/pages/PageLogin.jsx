@@ -14,7 +14,7 @@ export const PageLogin = () => {
     clearLoginForm,
     dropdownOpen,
     setDropdownOpen,
-    currentUser
+    currentUser, navigate
   } = useContext(AppContext);
   const passwordRef = useRef();
 
@@ -73,7 +73,13 @@ export const PageLogin = () => {
             </button>
             <div className="register-link">
               <p>Noch kein Konto? </p>
-              <NavLink
+              <button type= "button" className='link-btn' onClick ={() => {navigate('/register'); 
+              (dropdownOpen=="true")
+                ?
+                setDropdownOpen(!dropdownOpen) 
+              :setDropdownOpen(false) }
+              }>Hier anmelden.</button>
+              {/* <NavLink
                 to="/register"
                 className="link-btn"
                 onClick={() => {
@@ -82,7 +88,7 @@ export const PageLogin = () => {
               >
                 {" "}
                 Hier Konto anlegen.
-              </NavLink>
+              </NavLink> */}
             </div>
           </div>
         </form>
