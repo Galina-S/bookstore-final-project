@@ -35,7 +35,6 @@ export const AppProvider = ({ children }) => {
    })
 
 
-
  const navigate = useNavigate();
   const loadBooks = async () => {
     const books = (await instance.get("/books")).data;
@@ -235,7 +234,9 @@ useEffect(() => {
         logUserOut,
          windowSize,
          setCurrentUser,
-         navigate
+         navigate,
+         setLoginForm,
+
       }}
     >
       {children}
