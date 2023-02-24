@@ -24,14 +24,14 @@ export const AppProvider = ({ children }) => {
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    }; 
-    document.addEventListener('mousedown', handler)
-  })
+  // useEffect(() => {
+  //   let handler = (e) => {
+  //     if (!dropdownRef.current.contains(e.target)) {
+  //       setDropdownOpen(false);
+  //     }
+  //   }; 
+  //   document.addEventListener('mousedown', handler)
+  // })
 
 
  const navigate = useNavigate();
