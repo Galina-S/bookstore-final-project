@@ -8,6 +8,7 @@ import { PageLogin } from '../pages/PageLogin'
 import { PageLogout } from "./PageLogout";
 import { NewBooksPage } from "./NewBooksPage";
 import { Bestsellers } from "./BestsellersPage";
+import { WishListPage } from "./WishListPage";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from  '@fortawesome/free-regular-svg-icons';
@@ -15,9 +16,7 @@ import { faCartShopping } from  '@fortawesome/free-solid-svg-icons';
 import { faHeart } from  '@fortawesome/free-regular-svg-icons';
 
 export const NavbarPage = () => {
-  const {currentUser, dropdownOpen, setDropdownOpen} = useContext(AppContext)
-  const {windowSize} = useContext(AppContext)
-   let dropdownRef = useRef()
+  const {currentUser, windowSize, dropdownOpen, setDropdownOpen, dropdownRef} = useContext(AppContext)
 
   return (
     <div>
@@ -35,18 +34,12 @@ export const NavbarPage = () => {
                    <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
                    }
               </div>
+                   
                   <div className={`auth  ${dropdownOpen ? 'active' : 'inactiv'}` }>
-                    <div>
-                      <PageLogin/>                      
-                    </div>
-                    <div className="register-copy">
-
-
-                    </div>
-
-                    {/** <div className="register">
-                      <NavLink to="/register">Konto anlegen</NavLink>
-                    </div> */}
+                  {currentUser.username === "anonymousUser" ?
+                      ( <PageLogin/> )
+                       :
+                      ( <NavLink to="/logout" className="logout-btn" onClick={() => className="inactiv"}> Logout </NavLink>)}
                   </div>
             </div>
 
@@ -59,7 +52,7 @@ export const NavbarPage = () => {
                 <span className = {windowSize < 600 ? 'none' : null} >Warenkorb</span>
             </div>
             </div>
-        </nav>
+      </nav>
 
       <nav className="navbar">
         <div className="navigation">
@@ -67,22 +60,31 @@ export const NavbarPage = () => {
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
           <NavLink to="/register">Registrieren</NavLink>
-          {currentUser.username==="anonymousUser" ? 
+
+          {/* <NavLink to="/register">Registrieren</NavLink> */}
+          {/*currentUser.username==="anonymousUser" ? 
           (  null
           )
-          :( <NavLink to="/logout">Logout </NavLink>)}
+          :( <NavLink to="/logout">Logout </NavLink>)*/}
        
         </div>       
       </nav>
 
-      <Routes>
+         <Routes>
         <Route path="/books" element={<PageBooks />} />
         <Route path="/home" element={<PageHome />} />
         <Route path="/" element={<Navigate to="/home" />} />     
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/new-books" element={<NewBooksPage/>} />
         <Route path="/bestsellers" element={<Bestsellers />} />
-        <Route path="/register" element={<PageRegister />} />
-        <Route path="/login" element={<PageLogin />} />      
+        <Route path="/wish-list" element={<WishListPage />} />
+
+
+        <Route
+          path="/register" element={<PageRegister />}
+        />
+        <Route path="/login" element={<PageLogin />}
+          />      
         <Route path="logout" element= {<PageLogout />} />
       </Routes>
     </div>

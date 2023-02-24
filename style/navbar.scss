@@ -64,6 +64,15 @@
         transform: translateY(-20px);
         transition: 500ms ease;
       }
+      .logout-btn {
+        text-decoration: none;
+        color: var(--color-main-blue);
+        border: 2px solid var(--color-main-blue);
+        padding: 0.7rem 2rem;
+        background-color: var(--color-main-light);
+
+      }
+
     }
   }
   .none{
@@ -73,7 +82,7 @@
 .navbar {
   border-bottom: 1.5px solid rgb(186, 186, 186);
   display: flex;
-  justify-content: space-between;
+  
   a {
     font-size: 1rem;
     color: var(--color-main-blue-medium);
