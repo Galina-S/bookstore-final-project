@@ -24,9 +24,7 @@ export const AppProvider = ({ children }) => {
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
-
-  ////What is the purpose of this block??
-  
+ 
    useEffect(() => {
      let handler = (e) => {
        if (!dropdownRef.current.contains(e.target)) {
@@ -35,6 +33,7 @@ export const AppProvider = ({ children }) => {
      }; 
      document.addEventListener('mousedown', handler)
    })
+
 
 
  const navigate = useNavigate();
@@ -224,6 +223,7 @@ useEffect(() => {
         setFormData,
         handleChangeFormField,
         sendEditBook,
+
         setDropdownOpen,
         dropdownOpen,
         dropdownRef,
