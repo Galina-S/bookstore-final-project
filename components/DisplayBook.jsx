@@ -1,9 +1,15 @@
 import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
+import FavoriteIcon from '../components/FavoriteIcon';
+
 
 export const DisplayBook = (props) => {
   const { handleDeleteBook, onOpenEditForm } = useContext(AppContext);
   const { book } = props;
+
+ 
+
+
 
   return (
     <div className="info">
@@ -13,7 +19,8 @@ export const DisplayBook = (props) => {
         </div>
         <div className="content">
           <div className="title">
-            <h2>{book.title}</h2>
+            <h2>{book.title} </h2>
+            <FavoriteIcon book={book}/>  
           </div>
           <div className="author">
             <h5>{book.author}</h5>
@@ -41,6 +48,8 @@ export const DisplayBook = (props) => {
           <div className="pages">
             <p>Pages: {book.pages}</p>
           </div>
+
+          
         </div>
       </div>
 

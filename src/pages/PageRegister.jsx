@@ -193,3 +193,4 @@ export const PageRegister = () => {
 		</div>
 	)
 }
+

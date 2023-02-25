@@ -16,6 +16,11 @@
     margin-left: 1.3rem;
     width: 60%;
   }
+  .title {
+    display: flex;
+    gap:15px
+
+  }
   .description {
     height: 100px;
     overflow: scroll;
