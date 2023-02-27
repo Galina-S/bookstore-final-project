@@ -1,42 +1,40 @@
 import { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
 import instance from "../components/axios";
-import { useNavigate } from 'react-router-dom';
-import {anonymousUser, blankLoginForm } from './pages/Interfaces'
-import { cloneDeep } from 'lodash-es';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { anonymousUser, blankLoginForm } from "./pages/Interfaces";
+import { cloneDeep } from "lodash-es";
+import axios from "axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
 
-
 export const AppProvider = ({ children }) => {
   const [rawBooks, setRawBooks] = useState([]);
+  //Edit book data
   const [editingElementId, setEditingElementId] = useState(null);
   const [formData, setFormData] = useState([]);
-
+  //Log in
   const [loginForm, setLoginForm] = useState(cloneDeep(blankLoginForm));
   const [currentUser, setCurrentUser] = useState(anonymousUser);
   // const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
   // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
-  
+
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
- 
-   useEffect(() => {
-     let handler = (e) => {
-       if (!dropdownRef.current.contains(e.target)) {
-         setDropdownOpen(false);
-       }
-     }; 
-     document.addEventListener('mousedown', handler)
-   })
 
+  useEffect(() => {
+    let handler = (e) => {
+      if (!dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+  });
 
-
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const loadBooks = async () => {
     const books = (await instance.get("/books")).data;
     const _books = [];
@@ -61,6 +59,7 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  //Edit book
   const handleEditBook = (id, _book) => {
     setRawBooks(
       rawBooks.map((book) => (book._id === id ? { ...book, _book } : book))
@@ -92,123 +91,135 @@ export const AppProvider = ({ children }) => {
     setEditingElementId(null);
   };
 
+  //Create a new book
+  const handleAddBookForm = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
+  };
+
+  const sendNewBook = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await instance.post(`/books/`, formData);
+      if ((res.status = 200)) {
+        await loadBooks();
+      }
+    } catch (e) {
+      console.error(`ERROR: ${e}`);
+    }
+    setFormData([]);
+    window.location.href = "/books";
+  };
+
+  //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
-		loginForm.fields[fieldIdCode] = value;
-		setLoginForm({ ...loginForm });
-	};
+    loginForm.fields[fieldIdCode] = value;
+    setLoginForm({ ...loginForm });
+  };
 
   const submitLoginForm = async (onBadLogin) => {
-   
-		try {
-			const response = await axios.post(
-				`${backendUrl}/login`,
-				{
-					username: loginForm.fields.username,
-					password: loginForm.fields.password,
-				},
-				{
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					withCredentials: true,
-				}
-			);
-      console.log(response.data)
-			const user = response.data;
+    try {
+      const response = await axios.post(
+        `${backendUrl}/login`,
+        {
+          username: loginForm.fields.username,
+          password: loginForm.fields.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      const user = response.data;
 
-			setCurrentUser({ ...user });
+      setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
 
       setDropdownOpen(!dropdownOpen);
-      navigate('/books');
-              
-		} catch (e) {
-			console.log(`GENERAL ERROR: ${e.message}`);
-      if (e.message==="Request failed with status code 401") {
-        loginForm.message = 'Bad login, try again.';
-			 	setLoginForm(cloneDeep(loginForm));
-			 	onBadLogin(); 
+      navigate("/books");
+    } catch (e) {
+      console.log(`GENERAL ERROR: ${e.message}`);
+      if (e.message === "Request failed with status code 401") {
+        loginForm.message = "Bad login, try again.";
+        setLoginForm(cloneDeep(loginForm));
+        onBadLogin();
       }
-		}
-	};
+    }
+  };
 
   const logUserOut = () => {
-		setCurrentUser({ ...anonymousUser });
-		(async () => {
-			try {
-				await axios.get(`${backendUrl}/logout`, {
-					withCredentials: true,
-				});
-				getCurrentUser();
-			} catch (e) {
-				console.log('GENERAL ERROR');
-			}
-		})();
-	};
-
-const clearLoginForm = () => {
-  setLoginForm(cloneDeep(blankLoginForm));
-};
-
-const getCurrentUser = () => {
-  (async () => {
-    try {
-      const user = (
-        await axios.get(`${backendUrl}/get-current-user`, {
+    setCurrentUser({ ...anonymousUser });
+    (async () => {
+      try {
+        await axios.get(`${backendUrl}/logout`, {
           withCredentials: true,
-        })
-      ).data;
-      setCurrentUser({ ...user });
-    } catch (e) {
-      console.log('GENERAL ERROR');
-    }
-  })();
-};
+        });
+        getCurrentUser();
+      } catch (e) {
+        console.log("GENERAL ERROR");
+      }
+    })();
+  };
 
+  const clearLoginForm = () => {
+    setLoginForm(cloneDeep(blankLoginForm));
+  };
 
-useEffect(() => {
-  getCurrentUser();
-}, []);
+  const getCurrentUser = () => {
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${backendUrl}/get-current-user`, {
+            withCredentials: true,
+          })
+        ).data;
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("GENERAL ERROR");
+      }
+    })();
+  };
 
-useEffect(() => {
-  (async () => {
-    try {
-      const user = (
-        await axios.get(`${backendUrl}/get-current-user`, {
-          withCredentials: true,
-        })
-      ).data;
-      setCurrentUser({...user});
-      
-    } catch (e) {
-      console.log('General error')
-    } 
-})();
-},[]);
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
-
-
+  useEffect(() => {
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${backendUrl}/get-current-user`, {
+            withCredentials: true,
+          })
+        ).data;
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("General error");
+      }
+    })();
+  }, []);
 
   //Tracking The Window Size
- const getWindowSize = () =>{
-  const innerWidth = window.innerWidth;
-  return innerWidth
- }
- const [windowSize, setWindowSize] = useState(getWindowSize());
- useEffect(()=> {
-  const handleWindowResize = () => {
-    setWindowSize(getWindowSize())
-  }
-  window.addEventListener('resize',handleWindowResize);
-  return () => {
-    window.removeEventListener('resize', handleWindowResize)
-  }
- }, [])
+  const getWindowSize = () => {
+    const innerWidth = window.innerWidth;
+    return innerWidth;
+  };
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize(getWindowSize());
+    };
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
-//console.log(windowSize);
-
-
-
+  //console.log(windowSize);
 
   return (
     <AppContext.Provider
@@ -219,6 +230,7 @@ useEffect(() => {
         onOpenEditForm,
         editingElementId,
         loadBooks,
+        formData,
         setFormData,
         handleChangeFormField,
         sendEditBook,
@@ -232,14 +244,14 @@ useEffect(() => {
         clearLoginForm,
         currentUser,
         logUserOut,
-         windowSize,
-         setCurrentUser,
-         navigate,
-         
+        windowSize,
+        setCurrentUser,
+        navigate,
+        handleAddBookForm,
+        sendNewBook,
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
-    

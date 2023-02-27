@@ -1,0 +1,159 @@
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
+
+export const CreateBookPage = () => {
+  const { handleAddBookForm, sendNewBook, formData } = useContext(AppContext);
+
+  return (
+    <form className="editForm" onSubmit={(e) => sendNewBook(e)}>
+      <fieldset>
+        <legend>Edit Book</legend>
+
+        <div className="row">
+          <label>Title</label>
+          <div>
+            <input
+              name="title"
+              defaultValue={formData.title}
+              type="text"
+              onChange={(e) => {
+                handleAddBookForm(e, "title");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Author</label>
+          <div>
+            <input
+              defaultValue={formData.author}
+              name="author"
+              type="text"
+              onChange={(e) => {
+                handleAddBookForm(e, "author");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Book Image</label>
+          <div>
+            <input
+              name="img"
+              defaultValue={formData.img}
+              type="text"
+              onChange={(e) => {
+                handleAddBookForm(e, "img");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Price</label>
+          <div>
+            <input
+              name="price"
+              defaultValue={formData.price}
+              type="number"
+              onChange={(e) => {
+                handleAddBookForm(e, "price");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>ISBN</label>
+          <div>
+            <input
+              name="ISBN"
+              defaultValue={formData.ISBN}
+              type="number"
+              onChange={(e) => {
+                handleAddBookForm(e, "ISBN");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Publication Date</label>
+          <div>
+            <input
+              name="puplication"
+              defaultValue={formData.puplication}
+              type="date"
+              onChange={(e) => {
+                handleAddBookForm(e, "puplication");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Description</label>
+          <div>
+            <input
+              name="description"
+              defaultValue={formData.description}
+              type="text"
+              onChange={(e) => {
+                handleAddBookForm(e, "description");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Genre</label>
+          <div>
+            <input
+              name="category"
+              defaultValue={formData.category}
+              type="text"
+              onChange={(e) => {
+                handleAddBookForm(e, "category");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Age</label>
+          <div>
+            <input
+              name="age"
+              defaultValue={formData.age}
+              type="number"
+              onChange={(e) => {
+                handleAddBookForm(e, "age");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Pages</label>
+          <div>
+            <input
+              name="pages"
+              defaultValue={formData.pages}
+              type="number"
+              onChange={(e) => {
+                handleAddBookForm(e, "pages");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="buttonRow">
+          <button>Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </fieldset>
+    </form>
+  );
+};
