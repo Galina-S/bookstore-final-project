@@ -58,12 +58,16 @@ export const PageRegister = () => {
           });
         };
       
-      const handleSubmit = async (event) => {
-        event.preventDefault(); 
-        const { username, email, password, matchPassword} = formData;
+      // const handleSubmit = async (event) => {
+      //   event.preventDefault(); 
+      //   const { username, email, password, matchPassword} = formData;
 
-        const v1 = USER_REGEX.test(username);
-        const v2 = PWD_REGEX.test(password);
+	const handleSubmit = async (e) => { 
+        e.preventDefault();
+        const { username, email, password, matchPassword} = formData;
+        // if button enabled with JS hack
+        const v1 = USER_REGEX.test(formData.username);
+        const v2 = PWD_REGEX.test(formData.password);
         if (!v1 || !v2) {
             setErrMsg("Invalid Entry");
             return;
