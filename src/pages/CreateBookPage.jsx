@@ -7,12 +7,13 @@ export const CreateBookPage = () => {
   return (
     <form className="editForm" onSubmit={(e) => sendNewBook(e)}>
       <fieldset>
-        <legend>Edit Book</legend>
+        <legend>Neues Buch Hinzufügen</legend>
 
         <div className="row">
           <label>Title</label>
           <div>
             <input
+              required
               name="title"
               defaultValue={formData.title}
               type="text"
@@ -27,6 +28,7 @@ export const CreateBookPage = () => {
           <label>Author</label>
           <div>
             <input
+              required
               defaultValue={formData.author}
               name="author"
               type="text"
@@ -41,6 +43,7 @@ export const CreateBookPage = () => {
           <label>Book Image</label>
           <div>
             <input
+              required
               name="img"
               defaultValue={formData.img}
               type="text"
@@ -55,6 +58,7 @@ export const CreateBookPage = () => {
           <label>Price</label>
           <div>
             <input
+              required
               name="price"
               defaultValue={formData.price}
               type="number"
@@ -69,6 +73,7 @@ export const CreateBookPage = () => {
           <label>ISBN</label>
           <div>
             <input
+              required
               name="ISBN"
               defaultValue={formData.ISBN}
               type="number"
@@ -83,6 +88,7 @@ export const CreateBookPage = () => {
           <label>Publication Date</label>
           <div>
             <input
+              required
               name="puplication"
               defaultValue={formData.puplication}
               type="date"
@@ -97,6 +103,7 @@ export const CreateBookPage = () => {
           <label>Description</label>
           <div>
             <input
+              required
               name="description"
               defaultValue={formData.description}
               type="text"
@@ -111,6 +118,7 @@ export const CreateBookPage = () => {
           <label>Genre</label>
           <div>
             <input
+              required
               name="category"
               defaultValue={formData.category}
               type="text"
@@ -125,6 +133,7 @@ export const CreateBookPage = () => {
           <label>Age</label>
           <div>
             <input
+              required
               name="age"
               defaultValue={formData.age}
               type="number"
@@ -139,6 +148,7 @@ export const CreateBookPage = () => {
           <label>Pages</label>
           <div>
             <input
+              required
               name="pages"
               defaultValue={formData.pages}
               type="number"

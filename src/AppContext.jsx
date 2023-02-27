@@ -111,6 +111,10 @@ export const AppProvider = ({ children }) => {
     setFormData([]);
     window.location.href = "/books";
   };
+  //Clean form data
+  const cleanFormData = () => {
+    setFormData([]);
+  };
 
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
@@ -228,13 +232,14 @@ export const AppProvider = ({ children }) => {
         handleDeleteBook,
         handleEditBook,
         onOpenEditForm,
+        setEditingElementId,
         editingElementId,
         loadBooks,
         formData,
         setFormData,
         handleChangeFormField,
         sendEditBook,
-
+        cleanFormData,
         setDropdownOpen,
         dropdownOpen,
         dropdownRef,

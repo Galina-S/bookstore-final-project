@@ -26,6 +26,7 @@ export const NavbarPage = () => {
     dropdownOpen,
     setDropdownOpen,
     dropdownRef,
+    cleanFormData,
   } = useContext(AppContext);
 
   return (
@@ -70,12 +71,16 @@ export const NavbarPage = () => {
             </div>
           </div>
 
-          <NavLink to="/create-book" className="wish-list">
+          <NavLink
+            to="/create-book"
+            className="wish-list"
+            onClick={cleanFormData}
+          >
             <FontAwesomeIcon
               className="wish-list-icon"
               icon={faFileCirclePlus}
             />
-            <span className={windowSize < 600 ? "none" : null}>Neu Buch</span>
+            <span className={windowSize < 600 ? "none" : null}>Neues Buch</span>
           </NavLink>
 
           <NavLink to="/wish-list" className="wish-list">
