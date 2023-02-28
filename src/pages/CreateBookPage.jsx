@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AppContext } from "../AppContext";
 
 export const CreateBookPage = () => {
@@ -160,7 +161,10 @@ export const CreateBookPage = () => {
         </div>
 
         <div className="buttonRow">
-          <button>Cancel</button>
+          <Link to="/books">
+            <button>Cancel</button>
+          </Link>
+
           <button type="submit">Save</button>
         </div>
       </fieldset>
