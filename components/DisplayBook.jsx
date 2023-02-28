@@ -4,7 +4,7 @@ import FavoriteIcon from '../components/FavoriteIcon';
 
 
 export const DisplayBook = (props) => {
-  const { handleDeleteBook, onOpenEditForm } = useContext(AppContext);
+  const { handleDeleteBook, onOpenEditForm, placeholderImage} = useContext(AppContext);
   const { book } = props;
 
  
@@ -15,7 +15,8 @@ export const DisplayBook = (props) => {
     <div className="info">
       <div className="book" key={props.book._id}>
         <div className="book-cover">
-          <img src={book.img} alt="" />
+      
+          <img src={book.img || placeholderImage} alt="" />
         </div>
         <div className="content">
           <div className="title">

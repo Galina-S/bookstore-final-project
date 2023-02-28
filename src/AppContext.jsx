@@ -21,6 +21,8 @@ export const AppProvider = ({ children }) => {
   // const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
   // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
 
+  const placeholderImage = '../src/assets/keinBild.jpeg';
+
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
@@ -254,6 +256,7 @@ export const AppProvider = ({ children }) => {
         navigate,
         handleAddBookForm,
         sendNewBook,
+        placeholderImage
       }}
     >
       {children}

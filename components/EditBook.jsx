@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "../src/AppContext";
 
 export const EditBook = ({ book }) => {
-  const { handleChangeFormField, sendEditBook } = useContext(AppContext);
+  const { handleChangeFormField, sendEditBook, placeholderImage } = useContext(AppContext);
 
   return (
     <form className="editForm" onSubmit={(e) => sendEditBook(e)}>
@@ -42,7 +42,7 @@ export const EditBook = ({ book }) => {
           <div>
             <input
               name="img"
-              defaultValue={book.img}
+              defaultValue={book.img || placeholderImage}
               type="text"
               onChange={(e) => {
                 handleChangeFormField(e, "img");
