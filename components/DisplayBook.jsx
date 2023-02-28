@@ -61,11 +61,12 @@ export const DisplayBook = (props) => {
             {" "}
             Edit{" "}
           </button>
+
           <NavLink
             to={`/book/${book._id}`}
             onClick={() => openSingleBook(book)}
           >
-            Go to book page
+            <button>Go to book page</button>
           </NavLink>
         </div>
       </div>
