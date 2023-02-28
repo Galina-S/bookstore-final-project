@@ -162,10 +162,12 @@ export const CreateBookPage = () => {
 
         <div className="buttonRow">
           <Link to="/books">
-            <button>Cancel</button>
+            <button className="classicBtn">Cancel</button>
           </Link>
 
-          <button type="submit">Save</button>
+          <button type="submit" className="classicBtn">
+            Save
+          </button>
         </div>
       </fieldset>
     </form>
