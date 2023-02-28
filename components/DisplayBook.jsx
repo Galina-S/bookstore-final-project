@@ -1,15 +1,12 @@
 import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
-import FavoriteIcon from '../components/FavoriteIcon';
-
+import FavoriteIcon from "../components/FavoriteIcon";
+import { NavLink } from "react-router-dom";
 
 export const DisplayBook = (props) => {
-  const { handleDeleteBook, onOpenEditForm } = useContext(AppContext);
+  const { handleDeleteBook, onOpenEditForm, openSingleBook } =
+    useContext(AppContext);
   const { book } = props;
-
- 
-
-
 
   return (
     <div className="info">
@@ -20,7 +17,7 @@ export const DisplayBook = (props) => {
         <div className="content">
           <div className="title">
             <h2>{book.title} </h2>
-            <FavoriteIcon book={book}/>  
+            <FavoriteIcon book={book} />
           </div>
           <div className="author">
             <h5>{book.author}</h5>
@@ -48,8 +45,6 @@ export const DisplayBook = (props) => {
           <div className="pages">
             <p>Pages: {book.pages}</p>
           </div>
-
-          
         </div>
       </div>
 
@@ -66,6 +61,12 @@ export const DisplayBook = (props) => {
             {" "}
             Edit{" "}
           </button>
+          <NavLink
+            to={`/book/${book._id}`}
+            onClick={() => openSingleBook(book)}
+          >
+            Go to book page
+          </NavLink>
         </div>
       </div>
     </div>

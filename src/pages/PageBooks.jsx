@@ -40,6 +40,7 @@ export const PageBooks = () => {
       }
     };
   }, []);
+
   return (
     <div className="pageBooks">
       <div className="books">

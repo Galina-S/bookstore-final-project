@@ -1,40 +1,46 @@
-export const PageSingleBook = ({ book }) => {
+import { AppContext } from "../AppContext";
+import { useContext } from "react";
+import FavoriteIcon from "../../components/FavoriteIcon";
+
+export const PageSingleBook = () => {
+  const { openBook } = useContext(AppContext);
+
   return (
-    <div>
-      <div className="book" key={props.book._id}>
+    <div className="single-book">
+      <div className="book" key={openBook._id}>
         <div className="book-cover">
-          <img src={book.img} alt="" />
+          <img src={openBook.img} alt="" />
         </div>
         <div className="content">
           <div className="title">
-            <h2>{book.title} </h2>
-            <FavoriteIcon book={book} />
+            <h2>{openBook.title} </h2>
+            <FavoriteIcon book={openBook} />
           </div>
           <div className="author">
-            <h5>{book.author}</h5>
+            <h5>{openBook.author}</h5>
           </div>
           <div className="description">
-            <p>{book.description}</p>
+            <p>{openBook.description}</p>
           </div>
           <div className="price">
-            <h4>Price: {book.price} Є</h4>
+            <h4>Price: {openBook.price} Є</h4>
           </div>
         </div>
         <div className="rest-info">
           <div className="isbn">
-            <p>ISBN: {book.ISBN}</p>
+            <p>ISBN: {openBook.ISBN}</p>
           </div>
           <div className="publicationDate">
-            <p>Public: {book.puplication.split("T22:00:00.000=00:00")}</p>
+            <p>Public: {openBook.puplication.split("T22:00:00.000=00:00")}</p>
           </div>
           <div className="category">
-            <p>Genre: {book.category.join(", ")}</p>
+            <p>Genre: {openBook.category.join(", ")}</p>
           </div>
           <div className="age">
-            <p>Ab {book.age} Jahren</p>
+            <p>Ab {openBook.age} Jahren</p>
           </div>
           <div className="pages">
-            <p>Pages: {book.pages}</p>
+            <p>Pages: {openBook.pages}</p>
           </div>
         </div>
       </div>

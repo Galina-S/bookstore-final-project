@@ -20,6 +20,8 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(anonymousUser);
   // const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
   // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
+  //Single book page
+  const [openBook, setOpenBook] = useState([]);
 
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -57,6 +59,11 @@ export const AppProvider = ({ children }) => {
     } catch (e) {
       console.error(`ERROR: ${e}`);
     }
+  };
+
+  //Single book page
+  const openSingleBook = (book) => {
+    setOpenBook(book);
   };
 
   //Edit book
@@ -254,6 +261,8 @@ export const AppProvider = ({ children }) => {
         navigate,
         handleAddBookForm,
         sendNewBook,
+        openSingleBook,
+        openBook,
       }}
     >
       {children}
