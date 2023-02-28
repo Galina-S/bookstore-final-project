@@ -7,6 +7,7 @@ import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
 import { PageLogout } from "./PageLogout";
 import { NewBooksPage } from "./NewBooksPage";
+
 import { Bestsellers } from "./BestsellersPage";
 import { WishListPage } from "./WishListPage";
 
@@ -18,6 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
+import { PageSingleBook } from "./PageSingleBook";
 
 export const NavbarPage = () => {
   const {
@@ -122,6 +124,7 @@ export const NavbarPage = () => {
         <Route path="/register" element={<PageRegister />} />
         <Route path="/login" element={<PageLogin />} />
         <Route path="logout" element={<PageLogout />} />
+        <Route path="/book/:id" element={<PageSingleBook />} />
       </Routes>
     </div>
   );
