@@ -4,7 +4,7 @@ import FavoriteIcon from "../components/FavoriteIcon";
 import { NavLink } from "react-router-dom";
 
 export const DisplayBook = (props) => {
-  const { handleDeleteBook, onOpenEditForm, openSingleBook } =
+  const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
     useContext(AppContext);
   const { book } = props;
 
@@ -12,7 +12,7 @@ export const DisplayBook = (props) => {
     <div className="info">
       <div className="book" key={props.book._id}>
         <div className="book-cover">
-          <img src={book.img} alt="" />
+          <img src={book.img || placeholderImage} alt="" />
         </div>
         <div className="content">
           <div className="title">

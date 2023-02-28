@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../AppContext";
 
 export const CreateBookPage = () => {
-  const { handleAddBookForm, sendNewBook, formData } = useContext(AppContext);
+  const { handleAddBookForm, sendNewBook, formData, placeholderImage } = useContext(AppContext);
 
   return (
     <form className="editForm" onSubmit={(e) => sendNewBook(e)}>
@@ -44,9 +44,9 @@ export const CreateBookPage = () => {
           <label>Book Image</label>
           <div>
             <input
-              required
+              
               name="img"
-              defaultValue={formData.img}
+              defaultValue={formData.img || placeholderImage}
               type="text"
               onChange={(e) => {
                 handleAddBookForm(e, "img");

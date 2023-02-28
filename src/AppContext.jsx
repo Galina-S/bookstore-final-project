@@ -23,6 +23,8 @@ export const AppProvider = ({ children }) => {
   //Single book page
   const [openBook, setOpenBook] = useState([]);
 
+  const placeholderImage = "../src/assets/keinBild.jpeg";
+
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
@@ -263,6 +265,7 @@ export const AppProvider = ({ children }) => {
         sendNewBook,
         openSingleBook,
         openBook,
+        placeholderImage,
       }}
     >
       {children}
