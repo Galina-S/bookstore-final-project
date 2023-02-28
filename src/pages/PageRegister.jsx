@@ -1,196 +1,231 @@
-import React, {useState, useRef, useEffect, useContext} from 'react';
+import axios from '../../components/axios.jsx';
 import { AppContext } from '../AppContext';
-import { faInfoCircle, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink} from 'react-router-dom';
-
-
-
-//import axios from 'axios'
+import { faInfoCircle, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import bcrypt from 'bcryptjs';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PageRegister = () => {
-    const { setDropdownOpen, dropdownOpen, submitLoginFormWrapper, navigate } = useContext(AppContext);
-	const userRef = useRef();
+  const userRef = useRef();
 	const errRef = useRef();
+  const {navigate } = useContext(AppContext);
+        const [formData, setFormData] = useState({
+          username: '',
+          email: '',
+          password: '',
+          matchPassword: ''
+        });
+      
+        const [validMatch, setValidMatch] = useState(false);
+        const [validName, setValidName] = useState(false);
+        const [validPwd, setValidPwd] = useState(false);
+        const [matchFocus, setMatchFocus] = useState(false);
+        const [pwdFocus, setPwdFocus] = useState(false);
+        const [errMsg, setErrMsg] = useState('');
+        const [success, setSuccess] = useState(false);
+        const [userFocus, setUserFocus] = useState(false);
 
-   // const navigation = useNavigation();
+      //   useEffect(() => {
+      //     userRef.current.focus();
+      // }, [])
 
-	const [user, setUser] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
+      useEffect (() => {
+        const result = USER_REGEX.test(formData.username);
+        console.log(result);
+        console.log(formData);
+        setValidName(result);
+        }, [formData.username])
 
-    const [pwd, setPwd] = useState('');
-    const [validPwd, setValidPwd] = useState(false);
-    const [pwdFocus, setPwdFocus] = useState(false);
+      useEffect (() => {
+       const result2 = PWD_REGEX.test(formData.password);
+       setValidPwd(PWD_REGEX.test(formData.password));
+       //if matched password and password are the same
+       setValidMatch(formData.password === formData.matchPassword);
+      }, [formData.password, formData.matchPassword])
+      
+      useEffect (() => {
+        setErrMsg('');
+      }, [formData.username, formData.password, formData.matchPassword])
 
-    const [matchPwd, setMatchPwd] = useState('');
-    const [validMatch, setValidMatch] = useState(false);
-    const [matchFocus, setMatchFocus] = useState(false);
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+          setFormData({
+            ...formData,
+            [name]:value
+          });
+        };
+      
+      const handleSubmit = async (event) => {
+        event.preventDefault(); 
+        const { username, email, password, matchPassword} = formData;
 
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
-
-   	useEffect(() => {
-        userRef.current.focus();
-    }, [])
-
-	useEffect (() => {
-		const result = USER_REGEX.test(user);
-		console.log(result);
-		console.log(user);
-		setValidName(result);
-	}, [user])
-
-	useEffect (() => {
-		console.log(pwd);
-		setValidPwd(PWD_REGEX.test(pwd));
-		//if matched password and password are the same
-		setValidMatch(pwd === matchPwd);
-	}, [pwd, matchPwd])
-
-	useEffect (() => {
-		setErrMsg('');
-	}, [user, pwd, matchPwd])
-
-	const handleSubmit = async (e) => {
-        e.preventDefault();
-        // if button enabled with JS hack
-        const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(pwd);
+        const v1 = USER_REGEX.test(username);
+        const v2 = PWD_REGEX.test(password);
         if (!v1 || !v2) {
             setErrMsg("Invalid Entry");
             return;
         }
+        //console.log(username, password);
+        setSuccess(true);
 
-		 console.log(user, pwd);
-		// setSuccess(true);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        console.log(hashedPassword)
+        const user = {username, hash: hashedPassword, email};
 
         try {
-            const response = await axios.post(
-				'/register',
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
-            setSuccess(true);
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
-            setUser('');
-            setPwd('');
-            setMatchPwd('');
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
-            } else {
-                setErrMsg('Registration Failed')
-            }
-            errRef.current.focus();
-        }
-    }
+          const response = await axios.post('/register', user);
+          console.log("success:", response.data);
+          console.log(response.data)
+          // handle success response
 
-
-	return (
-		<div className='container'>
-
-
-{success ? (
-                <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <a href="#">Sign In</a>
-                    </p>
-                </section>
-            ) : (
-		<div className='auth-form-container'>
-	
-		<p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-		<h2>Registrieren</h2>
-		<form className='register-form' onSubmit = {handleSubmit}>
-			<label htmlFor="username">
-				Username:
-				<FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
-			</label>
-
-			<input 
-				type="text" 
-				id="username"
-				ref={userRef} 
-				autoComplete='off'
-				onChange={(e)=> setUser(e.target.value)}  
-				required
-				aria-invalid={validName ? 'false' : 'true'}
-				aria-describedby='uidnote'
-				onFocus={() => setUserFocus(true)}
-				onBlur={() => setUserFocus(false)} />
-
-			<p id='uidnote' className={userFocus && user &&
-				!validName ? 'instructions' : 'offscreen' }>
-				<FontAwesomeIcon icon={faInfoCircle} />
-				4 to 24 characters. <br />
-				Must begin with a letter.<br />
-				Letters, numbers, underscores, hypens allowed.
-			</p>
+          setSuccess(true);
+          setFormData({
+            username: '',
+            email: '',
+            password: '',
+            matchPassword: ''
+            })
             
+        } catch (error) {
+          if (!err?.response) {
+            setErrMsg('No Server Response');
+          } else if (err.response?.status === 409) {
+              setErrMsg('Username Taken');
+          } else {
+              setErrMsg('Registration Failed')
+          }
+          errRef.current.focus();
+          // handle error response
+          }
+        };
+      
+        return (
+          <div className='container'>
+          {success ? (
+            <section>
+                <h1>Die Registrierung war erfolgreich!</h1>
+                <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}> Hier geht es zur Anmeldung</button>
+            </section>
 
+          ) : (
+       
+          <div className='auth-form-container'>
+            <h2>Willkommen bei BookShopify</h2>
+            <p>Legen Sie sich hier unkompliziert ein Kundenkonto bei BookShopify an.</p>
+            <br/>
 
-
-			<label htmlFor="password">
-                            Password:
-                            <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+          
+          <form className='register-form' onSubmit = {handleSubmit}>
+            <label htmlFor="username">
+              Username:
+              <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+              <FontAwesomeIcon icon={faTimes} className={validName || !formData.username ? "hide" : "invalid"} />
             </label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}submitLoginFormWrapper
-                        />
+            <input
+              required
+              id="username"
+              defaultValue={formData.username}
+              type="text"
+              name="username"
+              aria-invalid={validName ? 'false' : 'true'}
+              onChange={handleInputChange} 
+              onFocus={() => setUserFocus(true)}
+				      onBlur={() => setUserFocus(false)}
+            />
 
-			<p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                            8 to 24 characters.<br />
-                            Must include uppercase and lowercase letters, a number and a special character.<br />
-                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+            <p id='uidnote' 
+            className={userFocus && formData.username &&
+            !validName ? 'instructions' : 'offscreen' }>
+            <FontAwesomeIcon icon={faInfoCircle} />
+            {/* 4 to 24 characters. <br />
+            Must begin with a letter.<br />
+            Letters, numbers, underscores, hypens allowed. */}
+            4 bis 24 Zeichen.<br />
+            Muss mit einem Buchstaben beginnen.<br />
+            Buchstaben, Zahlen, Unterstriche, Bindestriche erlaubt.
+            </p>
+     
+   
+            <label htmlFor="email">
+            Email:
+            </label>
+            <input
+              required
+              defaultValue={formData.email}
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleInputChange} 
+              />
+  
+            <label htmlFor="password">
+            Password:
+            <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+            <FontAwesomeIcon icon={faTimes} className={validPwd || !formData.password ? "hide" : "invalid"} />
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              defaultValue={formData.password}
+              onChange={handleInputChange}  
+              aria-invalid={validPwd ? "false" : "true"}
+              aria-describedby="pwdnote"
+              onFocus={() => setPwdFocus(true)}
+              onBlur={() => setPwdFocus(false)}
+              />
+            <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+              <FontAwesomeIcon icon={faInfoCircle} />
+              {/* 8 to 24 characters.<br />
+              Must include uppercase and lowercase letters, <br />
+              a number and a special character.<br />
+              Allowed special characters:  */}
+              8 bis 24 Zeichen.<br />
+              Muss Groß- und Kleinbuchstaben enthalten, <br />
+              eine Zahl und ein Sonderzeichen.<br />
+              Erlaubte Sonderzeichen:
+                <span aria-label="exclamation mark">!</span> 
+                <span aria-label="at symbol">@</span> 
+                <span aria-label="hashtag">#</span> 
+                <span aria-label="dollar sign">$</span> 
+                <span aria-label="percent">%</span>
             </p>
 
-			<label htmlFor="confirm_pwd">
-                            Confirm Password:
-                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
-                        </label>
-                        <input
-                            type="password"
-                            id="confirm_pwd"
-                            onChange={(e) => setMatchPwd(e.target.value)}
-                            value={matchPwd}
-                            required
-                            aria-invalid={validMatch ? "false" : "true"}
-                            aria-describedby="confirmnote"
-                            onFocus={() => setMatchFocus(true)}
-                            onBlur={() => setMatchFocus(false)}
-                        />
-                        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                            Must match the first password input field.
-                        </p>
-						<button className ="btn-register" disabled={!validName || !validPwd || !validMatch ? true : false}>Registrieren</button>
-                    </form>
-                    <p>Haben Sie bereits ein Kundenkonto?</p>
-                    <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}>Hier anmelden.</button>
+            <label htmlFor="password">
+            Confirm Password:
+            </label>
+            <input
+              required
+              type="password"
+              name="matchPassword"
+              id="confirm_pwd"
+              defaultValue={formData.matchPassword}
+              onChange={handleInputChange}
+              aria-invalid={validMatch ? "false" : "true"}
+              aria-describedby="confirmnote"
+              onFocus={() => setMatchFocus(true)}
+              onBlur={() => setMatchFocus(false)}
+            />
 
-        </div>)}
-		</div>
-	)
+            <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+              <FontAwesomeIcon icon={faInfoCircle} />
+              {/* Must match the first password input field. */}
+              Muss mit dem ersten Passwort-Eingabefeld übereinstimmen.
+              </p>
+
+            <button type="submit" className ="btn-register" disabled={!validName || !validPwd || !validMatch ? true : false}>Register</button>
+          </form>
+          <div className="login-link">
+          <p>Haben Sie bereits ein Kundenkonto?</p>
+          <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}>Hier anmelden.</button>
+          </div>
+          </div> )
+          }
+        </div>
+        );
 }
-
