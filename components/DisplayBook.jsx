@@ -39,8 +39,8 @@ export const DisplayBook = (props) => {
           <div className="category">
             <p>Genre: {book.category.join(", ")}</p>
           </div>
-          <div className="age">
-            <p>Ab {book.age} Jahren</p>
+          <div className="publisher">
+            <p>Verlag: {book.publisher}</p>
           </div>
           <div className="pages">
             <p>Pages: {book.pages}</p>
@@ -50,13 +50,7 @@ export const DisplayBook = (props) => {
 
       <div className="managePanel">
         <div>
-          <button
-            className="deleteButton"
-            onClick={() => handleDeleteBook(book)}
-          >
-            {" "}
-            Delete{" "}
-          </button>
+
           <button className="editButton" onClick={() => onOpenEditForm(book)}>
             {" "}
             Edit{" "}
@@ -68,6 +62,14 @@ export const DisplayBook = (props) => {
           >
             <button>Go to book page</button>
           </NavLink>
+
+          <button
+            className="deleteButton"
+            onClick={() => handleDeleteBook(book)}
+          >
+            {" "}
+            Delete{" "}
+          </button>
         </div>
       </div>
     </div>

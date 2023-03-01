@@ -94,14 +94,14 @@ export const EditBook = ({ book }) => {
         </div>
 
         <div className="row">
-          <label>Age</label>
+          <label>Verlag</label>
           <div>
             <input
-              name="age"
-              defaultValue={book.age}
-              type="number"
+              name="publisher"
+              defaultValue={book.publisher}
+              type="string"
               onChange={(e) => {
-                handleChangeFormField(e, "age");
+                handleChangeFormField(e, "publisher");
               }}
             />
           </div>
