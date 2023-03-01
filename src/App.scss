@@ -16,6 +16,8 @@
   --color-main-gray: #e6e0e0d8;
   --color-opasity-white: rgba(0, 0, 0, 0.177);
   --box-shadow-mai-brown: 2px 5px 10px rgba(65, 44, 25, 0.394);
+  --color-main-light: #F2F4F8;
+  --color-main-grey: #e6e0e0d8;
 }
 
 * {
@@ -24,6 +26,7 @@
   margin: 0;
   font-family: sans-serif;
 }
+
 .App {
   margin: 0 8%;
   min-height: 100vh;
@@ -53,18 +56,22 @@
   justify-content: center;
   background-image: linear-gradient(79deg, #e8c7fd, #e9b6e0 48%, #c3f8ff);
 }
-.auth-form-container, .login-form, .register-form {
+
+.auth-form-container,
+.login-form,
+.register-form {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
+
 @media screen and (min-width: 600px) {
   .auth-form-container {
     padding: 5rem;
     border: 1px solid white;
     border-radius: 10px;
     margin: 0.5rem;
-  } 
+  }
 }
 
 label {
@@ -79,7 +86,9 @@ input {
   border-radius: 10px;
 }
 
-.btn-login, .btn-register, .link-btn {
+.btn-login,
+.btn-register,
+.link-btn {
   border: none;
   background-color: white;
   padding: 20px;
@@ -92,7 +101,12 @@ input {
   background: none;
   color: white;
   text-decoration: underline;
-  
+
+}
+
+.classicBtn {
+  padding: 0.5rem 1.2rem;
+  margin: 0.5rem;
 }
 
 .instructions {
@@ -106,7 +120,7 @@ input {
 }
 
 
-.instructions > svg {
+.instructions>svg {
   margin-right: 0.25rem;
 }
 
