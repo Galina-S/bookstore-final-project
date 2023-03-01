@@ -36,29 +36,51 @@ export const Corousel = () => {
             <div className="container-corousel slide2">
                                 
                 <div className="content content-slide2">
-                    <p>Finden Sie jetzt Ihre Frühlingsstimmung</p>
+                    <p>Finden Sie jetzt Ihre</p>
+                    <p className="p2">Frühlingsstimmung</p>
                     <button className="btn">Mehr...</button>
                 </div>
                {rawBooks.map(book => {
                     return (
                         <div key={book._id} className="spring-books">                                 
-                           <div className="box">
+                           <div className="box box1">
                                 {book.title === "Berühre mich. Nicht." && 
-                                    <div className= "spring-book1">
+                                    <div className = "spring-books-all spring-book1">
                                         <img src={book.img} alt="" />
                                     </div>
                                 }
                            </div>
-                           <div className="box">
+                           <div className="box box2">
+                                {book.title === "Mein Leben in deinem" && 
+                                    <div className="spring-books-all spring-book2">
+                                        <img src={book.img} alt="" />
+                                    </div>
+                                }
+                           </div>
+                           <div className="box box3">
                                 {book.title === "Wer wir sind" && 
-                                    <div className="spring-book2">
+                                    <div className="spring-books-all spring-book2">
                                         <img src={book.img} alt="" />
                                     </div>
                                 }
                            </div>
-                           <div className="box">
+                           <div className="box box4">
+                                {book.title === "Gewitterleuchten" && 
+                                    <div className="spring-books-all spring-book4">
+                                        <img src={book.img} alt="" />
+                                    </div>
+                                }
+                           </div>
+                           <div className="box box5">
                                 {book.title === "Das Liebespaar des Jahrhunderts" && 
-                                    <div className="spring-book2">
+                                    <div className="spring-books-all spring-book5">
+                                        <img src={book.img} alt="" />
+                                    </div>
+                                }
+                           </div>
+                           <div className="box box6">
+                                {book.title === "Where the Hummingbirds Sing" && 
+                                    <div className="spring-books-all spring-book6">
                                         <img src={book.img} alt="" />
                                     </div>
                                 }
@@ -66,8 +88,6 @@ export const Corousel = () => {
                         </div>
                     )       
                 })}
-
-
             </div>
             <div className="container-corousel slide3">
                 <h3>Slide3</h3>
