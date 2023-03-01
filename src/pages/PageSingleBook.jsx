@@ -1,9 +1,11 @@
 import { AppContext } from "../AppContext";
+//import { useParams } from "react-router";
 import { useContext } from "react";
 import FavoriteIcon from "../../components/FavoriteIcon";
 
 export const PageSingleBook = () => {
   const { openBook } = useContext(AppContext);
+  //const { id } = useParams();
 
   return (
     <div className="single-book">
