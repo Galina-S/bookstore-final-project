@@ -131,15 +131,15 @@ export const CreateBookPage = () => {
         </div>
 
         <div className="row">
-          <label>Age</label>
+          <label>Verlag</label>
           <div>
             <input
               required
-              name="age"
-              defaultValue={formData.age}
-              type="number"
+              name="publisher"
+              defaultValue={formData.publisher}
+              type="string"
               onChange={(e) => {
-                handleAddBookForm(e, "age");
+                handleAddBookForm(e, "publisher");
               }}
             />
           </div>

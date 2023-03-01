@@ -1,0 +1,93 @@
+.carousel {
+  margin-top: 1.2rem;
+}
+.carousel .container-corousel {
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 40%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "col1 col2";
+}
+.carousel .container-corousel .content {
+  display: flex;
+  flex-direction: column;
+}
+.carousel .slide1 {
+  height: 500px;
+  background: url("https://cdn.pixabay.com/photo/2020/06/29/06/03/woman-5351572_1280.png") no-repeat top;
+  background-size: cover;
+  background-position-y: 3%;
+}
+@media screen and (max-width: 600px) {
+  .carousel .slide1 .container-corousel {
+    background-position: center;
+    background-size: cover;
+  }
+}
+.carousel .slide1 .content-slide1 {
+  margin-right: 4rem;
+  grid-area: col2;
+  justify-content: center;
+  align-items: flex-end;
+}
+.carousel .slide2 {
+  background: url("https://i.ibb.co/WHS2Xdw/flower-4985011-1920.png") no-repeat center;
+  background-size: cover;
+}
+.carousel .slide2 .spring-books {
+  margin: 0 3rem;
+  grid-area: col1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "col1 col2 col3" "col4 col5 col6";
+}
+.carousel .slide2 .spring-books .spring-book1, .carousel .slide2 .spring-books .spring-book2, .carousel .slide2 .spring-books .spring-book3 {
+  overflow: hidden;
+  width: 150px;
+  height: 225px;
+  border-radius: 7px;
+  box-shadow: var(--box-shadow-mai-brown);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.carousel .slide2 .spring-books .box {
+  display: flex;
+  justify-content: center;
+}
+.carousel .slide2 .spring-books .spring-book1 {
+  grid-area: col1;
+}
+.carousel .slide2 .spring-books .spring-book2 {
+  grid-area: col2;
+}
+.carousel .slide2 .spring-books .book-cover3 {
+  grid-area: col3;
+}
+.carousel .slide2 .content-slide2 {
+  grid-area: col2;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-main-light);
+}
+.carousel .slide2 .content-slide2 p {
+  text-shadow: 3px 2px 4px rgba(175, 175, 175, 0.615);
+  font-size: 1.2rem;
+  width: 20rem;
+  letter-spacing: 0.2rem;
+  color: rgba(255, 255, 255, 0.904);
+}
+@media screen and (max-width: 600px) {
+  .carousel .slide2 .content-slide2 .carousel .container-corousel {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "col1";
+  }
+  .carousel .slide2 .content-slide2 .carousel .container-corousel .content-slide2 {
+    grid-area: col1;
+  }
+  .carousel .slide2 .content-slide2 .carousel .container-corousel .content-slide2 p {
+    color: tomato;
+  }
+}/*# sourceMappingURL=corousel.css.map */
