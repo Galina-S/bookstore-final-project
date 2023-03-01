@@ -2,11 +2,6 @@
   margin-top: 0.5rem;
 
   .container-corousel {
-    height: 550px;
-    display: grid;
-    grid-template-columns: 1fr 40%;
-    grid-template-rows: 1fr;
-    grid-template-areas: "col1 col2";
     .content {
       display: flex;
       flex-direction: column;
@@ -36,6 +31,12 @@
 
   // Corousel2
   .slide2 {
+    height: 550px;
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    grid-template-rows: 1fr;
+    grid-template-areas: "col1 col2";
+
     background: url("https://i.ibb.co/WHS2Xdw/flower-4985011-1920.png")
       no-repeat center;
     background-size: cover;
@@ -106,140 +107,192 @@
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    .carousel {
-      .container-corousel {
-        height: 400px;
-        grid-template-columns: 1fr 35%;
-        grid-template-rows: 1fr;
-        grid-template-areas:
-          "col1 col2";
+    @media screen and (max-width: 1200px) {
+        .slide2 {
+            grid-template-columns: 1fr 35%;
+            grid-template-rows: 1fr;
+            grid-template-areas: "col1 col2";
+            height: 400px;
         }
 
-      .spring-books {
-        grid-area: col1;
-        margin: 1rem 3rem;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: 
-        "col1 col2"
-        "col3 col4";
+        .spring-books {
+            grid-area: col1;
+            margin: 1rem 3rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+            "col1 col2"
+            "col3 col4";
 
-        .spring-books-all {
-          height: 140px;
-          width: 120px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          img {
-            height: 125px;
-            width: auto;
-          }
-        }
-        .box {
-          display: flex;
-          justify-content: center;
-        }
+            .box {
+                .spring-books-all {
+                    height: 150px;
+                    width: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 1rem 2.5rem;
+                }
+        
+                img {
+                    height: 125px;
+                    width: auto;
 
-      }
-      .slide2 {
+                }
+            }
+            
+
+        }       
         .content-slide2 {
-            padding-right: 3.5rem;
-          grid-area: col2;
-          text-align: center;
-          align-items: center;
-          margin-top: 1rem;
+        padding-right: 3.5rem;
+        grid-area: col2;
+        text-align: center;
+        align-items: center;
+        margin-top: 1rem;
         }
 
         p, .p2 {
-            font-size: 0.7rem;
+        font-size: 0.7rem;
         }
-      }
     }
-  }
 
+    @media screen and (max-width: 1000px) {
 
+        .slide2 {
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "row1"
+            "row2"
+            ;
 
-  @media screen and (max-width: 850px) {
-    .carousel {
-      .container-corousel {
-        height: 270px;
-        text-align: center;
-        grid-template-columns: 1fr;
-        grid-template-rows: 100px 1fr;
-        grid-template-areas:
-          "row1"
-          "row2";
-      }
-      .spring-books {
-        grid-area: row1;
-        margin: 1rem 1rem;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
+            .content-slide2{
+                grid-area: row2;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                padding-bottom: 2.5rem;
+                p{
+                    font-size: 1rem;
+                }
+            }
+            .spring-books {
+                margin-top: 1.5rem;
+                grid-area: row1;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr;
 
-        .spring-books-all {
-          height: 80px;
-          width: 60px;
-          img {
-            height: 65px;
-            width: auto;
-          }
-        }
-
-      }
-      .slide2 {
-        .content-slide2 {
-            padding: 0;
-          grid-area: row2;
-
-          p{
-            margin-top: 0.5rem;
-          }
-        }
-      }
+                .box6{
+                    display: none;
+                }
+            }
+        }      
     }
-  }
 
+    @media screen and (max-width: 900px) {
 
-  @media screen and (max-width: 480px) {
-    .carousel {
-      .container-corousel {
-        height: 220px;
-        grid-template-columns: 1fr;
-        grid-template-rows: 100px 1fr;
-        grid-template-areas:
-          "row1"
-          "row2";
-      }
-      .spring-books {
-        grid-area: row1;
-        margin: 0 1.2rem;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
-        .spring-books-all {
-          height: 80px;
-          width: 60px;
-          img {
-            height: 65px;
-            width: auto;
-          }
-        }
-        .box2,
-        .box3 {
-          display: none;
-        }
-      }
-      
-      .slide2 {
-        .content-slide2 { 
-            margin: 0;
-            padding-bottom: 1.5rem;
-            grid-area: row2;
-          p {
-            margin-top: 0;
-          }
-        }
-      }
+        .slide2 {
+            height: 300px;
+
+            .content-slide2{
+                padding-bottom: 1rem;
+                button{
+                    padding:  0.4rem 2rem;
+                    font-size: 0.7rem;
+                }
+            }
+            .spring-books {
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+                .box {
+                    .spring-books-all {
+                        height: 120px;
+                        width: auto;
+                        margin: 0.6rem 2rem;
+                        padding: 2rem 0.6rem;
+                    }
+            
+                    img {
+                        height: 110px;
+                        width: auto;
+                        padding: 0.4rem 0;
+    
+                    }
+                }
+            }
+        }      
     }
-  }
+
+    @media screen and (max-width: 700px) {
+       .slide2{
+            .spring-books {
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+                .box {
+                    .spring-books-all {
+                        height: 90px;
+                        width: auto;
+                        margin: 0.6rem 0;
+                    }
+            
+                    img {
+                        height: 90px;
+                        width: auto;
+                    }
+                }
+            }
+       }
+    }
+    @media screen and (max-width: 550px) {
+        .slide2{
+            height: 250px;
+            .content-slide2{
+                p{
+                    font-size: 0.7rem;
+                }
+                .btn{
+                    padding:  0.3rem 1.5rem;
+                    font-size: 0.7rem;
+                }
+            }
+             .spring-books {
+                 grid-template-columns: 1fr 1fr 1fr 1fr;
+                 .box5 {
+                    display: none;
+                 }
+             }
+        }
+     }
+
+     @media screen and (max-width: 455px) {
+        .slide2{
+            .content-slide2{
+                padding-bottom: 2.5rem;
+            }
+             .spring-books {
+                 grid-template-columns: 1fr 1fr 1fr;
+                 .box4 {
+                    display: none;
+                 }
+             }
+        }
+     } 
 }
+
+@media screen and (max-width: 1200px) {
+.carousel {
+    height: 400px;
+}
+}
+
+@media screen and (max-width: 900px) {
+.carousel{
+    height: 300px;
+}
+}
+@media screen and (max-width: 550px) {
+    .carousel{
+        height: 250px;
+    }
+    }
+
