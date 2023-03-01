@@ -7,10 +7,6 @@ export const DisplayBook = (props) => {
   const { handleDeleteBook, onOpenEditForm } = useContext(AppContext);
   const { book } = props;
 
- 
-
-
-
   return (
     <div className="info">
       <div className="book" key={props.book._id}>
@@ -37,7 +33,7 @@ export const DisplayBook = (props) => {
             <p>ISBN: {book.ISBN}</p>
           </div>
           <div className="publicationDate">
-            <p>Public: {book.puplication.split("T22:00:00.000=00:00")}</p>
+            <p>Public: {book.puplication.split("T22:00:00.000Z")}</p>
           </div>
           <div className="category">
             <p>Genre: {book.category.join(", ")}</p>

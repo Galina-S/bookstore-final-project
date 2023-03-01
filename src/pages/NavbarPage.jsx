@@ -28,7 +28,7 @@ export const NavbarPage = () => {
             <div className="dropdown" ref = {dropdownRef}>
               <div className="dropdown-trigger" onClick={() => {setDropdownOpen(!dropdownOpen)}}>
                   <FontAwesomeIcon className="account_icon" icon={faUser}/>
-                  {currentUser ?
+                  {currentUser.username !== "anonymousUser" ?
                    <span className = {`${windowSize < 600 ? 'none': null}`}>{currentUser.username}</span> 
                    :
                    <span className = {`${windowSize < 600 ? 'none': null}`}>Mein Konto</span>
