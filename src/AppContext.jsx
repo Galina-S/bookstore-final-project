@@ -7,7 +7,6 @@ import { cloneDeep } from "lodash-es";
 import axios from "axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {

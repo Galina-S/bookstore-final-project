@@ -12,10 +12,7 @@ function App() {
  const { currentUser } = useContext(AppContext);
 
   return (
-    <div className="App">
-      <div className= "userArea">
-        Hezlich willkommen, {currentUser.username}
-      </div> 
+    <div className="App"> 
       <NavbarPage/>
     </div>
   )

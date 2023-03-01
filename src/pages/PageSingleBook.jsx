@@ -38,8 +38,8 @@ export const PageSingleBook = () => {
           <div className="category">
             <p>Genre: {openBook.category.join(", ")}</p>
           </div>
-          <div className="age">
-            <p>Ab {openBook.age} Jahren</p>
+          <div className="publisher">
+            <p>Verlag: {openBook.publisher}</p>
           </div>
           <div className="pages">
             <p>Pages: {openBook.pages}</p>

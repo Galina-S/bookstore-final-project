@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useEffect} from 'react';
 import { AppContext } from '../AppContext';
-//import { PageRegister } from "../pages/PageRegister";
 
 export const PageLogin = () => {
   const {
@@ -80,24 +79,10 @@ export const PageLogin = () => {
               setDropdownOpen(!dropdownOpen) 
               :setDropdownOpen(false) }
               }>Hier registrieren.</button>
-              {/* <NavLink
-                to="/register"
-                className="link-btn"
-                onClick={() => {
-                  setDropdownOpen(!dropdownOpen), null;
-                }}
-              >
-                {" "}
-                Hier Konto anlegen.
-              </NavLink> */}
+           
             </div>
           </div>
         </form>
-        {/**<div>
-          <button type="button" className="link-btn" onClick={() => null}>
-            Noch kein Konto? Hier Konto anlegen.
-          </button>
-        </div>*/}
       </div>
     </div>
   );
