@@ -80,16 +80,7 @@ export const PageLogin = () => {
               setDropdownOpen(!dropdownOpen) 
               :setDropdownOpen(false) }
               }>Hier registrieren.</button>
-              {/* <NavLink
-                to="/register"
-                className="link-btn"
-                onClick={() => {
-                  setDropdownOpen(!dropdownOpen), null;
-                }}
-              >
-                {" "}
-                Hier Konto anlegen.
-              </NavLink> */}
+           
             </div>
           </div>
         </form>

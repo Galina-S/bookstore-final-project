@@ -46,7 +46,7 @@ export const NavbarPage = () => {
               }}
             >
               <FontAwesomeIcon className="account_icon" icon={faUser} />
-              {currentUser ? (
+              {currentUser.username !== "anonymousUser" ? (
                 <span className={`${windowSize < 600 ? "none" : null}`}>
                   {currentUser.username}
                 </span>
