@@ -5,10 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import bcrypt from 'bcryptjs';
 
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PageRegister = () => {
+
   const userRef = useRef();
 	const errRef = useRef();
   const {navigate } = useContext(AppContext);
@@ -32,6 +34,7 @@ export const PageRegister = () => {
       //     userRef.current.focus();
       // }, [])
 
+      
       useEffect (() => {
         const result = USER_REGEX.test(formData.username);
         console.log(result);
@@ -62,7 +65,8 @@ export const PageRegister = () => {
       //   event.preventDefault(); 
       //   const { username, email, password, matchPassword} = formData;
 
-	const handleSubmit = async (e) => { 
+
+const handleSubmit = async (e) => { 
         e.preventDefault();
         const { username, email, password, matchPassword} = formData;
         // if button enabled with JS hack
@@ -107,11 +111,17 @@ export const PageRegister = () => {
           }
         };
       
+
+       
+        
+            
         return (
           <div className='container'>
           {success ? (
             <section>
                 <h1>Die Registrierung war erfolgreich!</h1>
+                <p>Sie werden jetzt weitergeleiten auf die Homepage.</p>
+                {setTimeout(() => { navigate('/home')}, 5000)}
                 <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}> Hier geht es zur Anmeldung</button>
             </section>
 
