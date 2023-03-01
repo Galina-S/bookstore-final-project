@@ -118,12 +118,12 @@ const handleSubmit = async (e) => {
         return (
           <div className='container'>
           {success ? (
-            <section>
+            <div>
                 <h1>Die Registrierung war erfolgreich!</h1>
-                <p>Sie werden jetzt weitergeleiten auf die Homepage.</p>
-                {setTimeout(() => { navigate('/home')}, 5000)}
+                <p>Sie werden jetzt auf die Homepage weitergeleitet.</p>
+                {setTimeout(() => { navigate('/home')}, 4000)}
                 <button type= "button" className='link-btn' onClick ={() => {navigate('/login')}}> Hier geht es zur Anmeldung</button>
-            </section>
+            </div>
 
           ) : (
        
