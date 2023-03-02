@@ -1,5 +1,6 @@
 .carousel {
   margin-top: 0.5rem;
+  height: 550px;
 
   .container-corousel {
     .content {
@@ -11,9 +12,8 @@
   .slide1 {
     height: 550px;
     background: url("https://cdn.pixabay.com/photo/2020/06/29/06/03/woman-5351572_1280.png")
-      no-repeat top;
+      no-repeat center;
     background-size: cover;
-    background-position-y: 3%;
 
     .content-slide1 {
       margin-right: 4rem;
@@ -87,8 +87,8 @@
 
       p {
         text-shadow: 3px 2px 4px rgba(175, 175, 175, 0.825);
-        font-size: 1.5rem;
-        width: 20rem;
+        font-size: 1.9rem;
+        width: 25rem;
         letter-spacing: 0.2rem;
         color: rgba(255, 255, 255, 0.904);
       }
@@ -98,57 +98,108 @@
     }
   }
 
+  //Carousel3
+
+  .slide3{
+    display: flex;
+    height: 550px;
+    background: url("https://i.ibb.co/C5BJJFT/teenager.png") no-repeat center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 6rem;
+
+    .slide3-container {
+      background-color: var(--color-main-light-opacity);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 2rem;
+      height:max-content;
+
+      .slide3-content1 p{
+        font-family: 'Gloria Hallelujah', cursive;
+        font-size: 1.5rem;
+        letter-spacing: 0.3rem;
+        color: var(--color-main-blue-medium);
+      }
+      .slide3-content2 p, .btn{
+        font-family: 'Gloria Hallelujah', cursive;
+  
+      }
+      p{
+        color: #91acbb;
+      }
+
+    }
+
+  }
     @media screen and (max-width: 1200px) {
+        .slide1, .slide2, .slide3{
+            height: 400px;
+        }
         .slide2 {
             grid-template-columns: 1fr 35%;
             grid-template-rows: 1fr;
             grid-template-areas: "col1 col2";
-            height: 400px;
-        }
 
-        .spring-books {
-            grid-area: col1;
-            margin: 1rem 3rem;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas:
-            "col1 col2"
-            "col3 col4";
-
-            .box {
-                .spring-books-all {
-                    height: 150px;
-                    width: auto;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 1rem 2.5rem;
-                }
+            .spring-books {
+              grid-area: col1;
+              margin: 1rem 3rem;
+              grid-template-columns: 1fr 1fr 1fr;
+              grid-template-rows: 1fr 1fr;
+              grid-template-areas:
+              "col1 col2"
+              "col3 col4";
+  
+              .box {
+                  .spring-books-all {
+                      height: 150px;
+                      width: auto;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      margin: 1rem 2.9rem;
+                  }
+          
+                  img {
+                      height: 125px;
+                      width: auto;
+  
+                  }
+              }
+          }
+          
+          .content-slide2 {
+            padding-right: 5rem;
+            grid-area: col2;
+            text-align: center;
+            align-items: center;
+            margin-top: 1rem;
+  
+            p, .p2 {
+              font-size: 1.5rem;
+              }
+          }
+        } 
         
-                img {
-                    height: 125px;
-                    width: auto;
-
-                }
+        .slide3{
+          padding: 1.8rem;
+          .slide3-container{
+            .slide3-content1 p {
+              font-size: 1.5rem;
+              letter-spacing: 0.2rem;
             }
-            
-
-        }       
-        .content-slide2 {
-        padding-right: 3.5rem;
-        grid-area: col2;
-        text-align: center;
-        align-items: center;
-        margin-top: 1rem;
-        }
-
-        p, .p2 {
-        font-size: 0.7rem;
-        }
-    }
+            .slide3-content2 .btn {
+              letter-spacing: 0.1rem;
+            }
+          }
+        } 
+      }
 
     @media screen and (max-width: 1000px) {
-
         .slide2 {
             grid-template-rows: 1fr 1fr;
             grid-template-columns: 1fr;
@@ -162,10 +213,7 @@
                 text-align: center;
                 margin: 0;
                 padding: 0;
-                padding-bottom: 2.5rem;
-                p{
-                    font-size: 1rem;
-                }
+                padding-bottom: 5rem;
             }
             .spring-books {
                 margin-top: 1.5rem;
@@ -177,24 +225,29 @@
                     display: none;
                 }
             }
-        }      
+        }  
+        .slide3{
+          padding: 1rem;
+        }    
     }
 
     @media screen and (max-width: 900px) {
-
+        .slide1, .slide2, .slide3{
+          height: 300px;
+        }
         .slide2 {
-            height: 300px;
-
             .content-slide2{
-                padding-bottom: 1rem;
-                button{
+                padding-bottom: 2.5rem;
+                .btn{
                     padding:  0.4rem 2rem;
                     font-size: 0.7rem;
+                }
+                p,.p2{
+                  font-size: 1.3rem;
                 }
             }
             .spring-books {
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
                 .box {
                     .spring-books-all {
                         height: 120px;
@@ -211,49 +264,96 @@
                     }
                 }
             }
-        }      
+        } 
+        .slide3{
+          padding: 0.5rem;
+          .slide3-container{
+            .slide3-content1 p {
+              font-size: 1.3rem;
+              letter-spacing: 0.06rem;
+            }
+            
+          }
+        } 
+    
     }
 
     @media screen and (max-width: 700px) {
-       .slide2{
-            .spring-books {
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+       .slide2{  
+        .content-slide2{
+          padding-bottom: 4.5rem;
+        }  
+        .spring-books {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
-                .box {
-                    .spring-books-all {
-                        height: 90px;
-                        width: auto;
-                        margin: 0.6rem 0;
-                    }
+            .box {
+                .spring-books-all {
+                    height: 90px;
+                    width: auto;
+                    margin: 0.6rem 0;
+                }
             
-                    img {
-                        height: 90px;
-                        width: auto;
-                    }
+                img {
+                    height: 90px;
+                    width: auto;
                 }
             }
+        }
        }
+       .slide3{
+        .slide3-container{
+          .slide3-content1 p {
+            font-size: 1rem;
+            letter-spacing: 0.06rem;
+          }
+        }
+      } 
     }
     @media screen and (max-width: 550px) {
+        .slide1, .slide2, .slide3{
+          height: 250px;
+        }
         .slide2{
-            height: 250px;
             .content-slide2{
-                p{
-                    font-size: 0.7rem;
+                p, .p2{
+                    font-size: 0.9rem;
+                    padding-right: 2rem;
                 }
                 .btn{
                     padding:  0.3rem 1.5rem;
                     font-size: 0.7rem;
+                    margin-right: 2rem;
+                    
                 }
             }
              .spring-books {
+                padding-right: 2rem;
                  grid-template-columns: 1fr 1fr 1fr 1fr;
                  .box5 {
                     display: none;
                  }
              }
         }
-     }
+        .slide3 {
+          background-position-x: 23%;
+          padding: 1.3rem;
+            .slide3-container{
+              .slide3-content1 p {
+                font-size: 0.9rem;
+                letter-spacing: 0.03rem;
+              }
+              .slide3-content2 p {
+                font-size: 0.5rem;
+              }
+              .slide3-content2  .btn{
+                padding: 0.3rem 0.7rem;
+                font-size: 0.6rem;
+              }
+ 
+            }
+  
+          } 
+    }
 
      @media screen and (max-width: 455px) {
         .slide2{
@@ -267,23 +367,31 @@
                  }
              }
         }
+        .slide3{
+          padding: 1rem;
+          .slide3-container{
+            .slide3-content1 p {
+              font-size: 0.7rem;
+            }
+          }
+        }
      } 
 }
 
-@media screen and (max-width: 1200px) {
-.carousel {
-    height: 400px;
-}
-}
 
-@media screen and (max-width: 900px) {
-.carousel{
-    height: 300px;
+@media screen and (max-width: 1200px) {
+  .carousel {
+      height: 400px;
+  }
 }
+@media screen and (max-width: 900px) {
+  .carousel{
+      height: 300px;
+  }
 }
 @media screen and (max-width: 550px) {
     .carousel{
         height: 250px;
-    }
-    }
+  }
+}
 

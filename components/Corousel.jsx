@@ -26,13 +26,14 @@ export const Corousel = () => {
      */
     return (
        <Carousel className="carousel" showThumbs={false}>
+            {/**Slide1 */}
             <div className="container-corousel slide1">
                <div className="content content-slide1">
                 <h3>Slide1</h3>
                 <button className="btn" >Show more</button>
                 </div>
             </div>
-
+            {/**Slide2 */}
             <div className="container-corousel slide2">
                                 
                 <div className="content content-slide2">
@@ -89,8 +90,18 @@ export const Corousel = () => {
                     )       
                 })}
             </div>
+            {/**Slide3 */}
             <div className="container-corousel slide3">
-                <h3>Slide3</h3>
+                <div className="slide3-container">
+                    <div className="slide3-content1">
+                        <p>Spannende Geschichten für</p>
+                        <p>Teenager</p>
+                    </div>
+                    <div className="slide3-content2">
+                        <p>Findet gleich euer nächstes Must-Read:</p>
+                        <button className="btn">Zu den Büchern</button>
+                    </div>
+                </div>
             </div>
         
 
