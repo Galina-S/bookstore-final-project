@@ -8,10 +8,12 @@
 
 
 :root {
-  --color-main-blue: #2F3754;
-  --color-main-blue-medium: #2f3754d8;
+ // --color-main-blue: #2f3754;
+  --color-main-blue: #59558a;
+
+  --color-main-blue-medium: #484287;
   --color-main-blue-light: #9eacdd;
-  --color-main-green: #B9CC4C;
+  --color-main-green: #b9cc4cce;
   --color-main-light: #f2f4f8; 
   --color-main-gray: #e6e0e0d8;
   --color-opasity-white: rgba(0, 0, 0, 0.177);
@@ -25,7 +27,13 @@
   padding: 0;
   margin: 0;
   font-family: sans-serif;
+
+  @media screen and (max-width: 1200px){
+    font-size: 0.9rem;  
+   }
 }
+
+
 
 .App {
   margin: 0 8%;
@@ -46,6 +54,7 @@
     border-radius: 2rem; 
     color: rgb(108, 108, 108);
 }
+
 }
 
 .container {

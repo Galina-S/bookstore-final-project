@@ -9,23 +9,14 @@
   }
   //Corousel 1
   .slide1 {
-    height: 500px;
+    height: 550px;
     background: url("https://cdn.pixabay.com/photo/2020/06/29/06/03/woman-5351572_1280.png")
       no-repeat top;
     background-size: cover;
     background-position-y: 3%;
 
-    @media screen and (max-width: 600px) {
-      .container-corousel {
-        background-position: center;
-        background-size: cover;
-      }
-    }
     .content-slide1 {
       margin-right: 4rem;
-      grid-area: col2;
-      justify-content: center;
-      align-items: flex-end;
     }
   }
 
@@ -95,8 +86,8 @@
       color: var(--color-main-light);
 
       p {
-        text-shadow: 3px 2px 4px rgba(175, 175, 175, 0.615);
-        font-size: 1.2rem;
+        text-shadow: 3px 2px 4px rgba(175, 175, 175, 0.825);
+        font-size: 1.5rem;
         width: 20rem;
         letter-spacing: 0.2rem;
         color: rgba(255, 255, 255, 0.904);

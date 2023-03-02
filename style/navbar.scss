@@ -1,14 +1,13 @@
 .header-content {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-main-blue);
   .logo {
     a {
       line-height: 4rem;
-      margin: 0 2rem;
+      margin: 0 1rem;
       text-decoration: none;
       font-size: 1.5rem;
-      color: var(--color-main-light);
+      color: var(--color-main-blue);
     }
   }
   .header-customer {
@@ -25,11 +24,11 @@
       text-decoration: none;
       display: flex;
       flex-direction: column;
-      color: var(--color-main-light);
+      color: var(--color-main-blue);
       font-size: 0.8rem;
       padding-bottom: 0.7rem;
       padding-left: 0.8rem;
-      background-color: var(--color-main-blue);
+
     }
     .account_icon,
     .shopping-cart-icon,
@@ -85,12 +84,13 @@
   
   a {
     font-size: 1rem;
-    color: var(--color-main-blue-medium);
+    color: var(--color-main-blue);
     line-height: 2rem;
     padding-right: 1.5rem;
     text-decoration: none;
   }
   a:hover {
-    color: var(--color-main-blue);
+    color: var(--color-main-blue-medium);
+    font-size: 1.1rem;
   }
 }
