@@ -21,6 +21,9 @@ export const AppProvider = ({ children }) => {
   // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
   //Single book page
   const [openBook, setOpenBook] = useState([]);
+  //Search input
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dropdownValue, setDropdownValue] = useState("title");
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
 
@@ -119,10 +122,27 @@ export const AppProvider = ({ children }) => {
     setFormData([]);
     window.location.href = "/books";
   };
+
   //Clean form data
   const cleanFormData = () => {
     setFormData([]);
   };
+
+  //Search input field
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const sendSearchData = (event) => {
+    //query backend data
+    console.log(searchTerm);
+    setSearchTerm("");
+  };
+
+  const sendDropdownValue = (e) => {
+    setDropdownValue(e.target.value);
+  };
+  console.log(dropdownValue);
 
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
@@ -265,6 +285,11 @@ export const AppProvider = ({ children }) => {
         openSingleBook,
         openBook,
         placeholderImage,
+        handleSearch,
+        searchTerm,
+        setSearchTerm,
+        sendSearchData,
+        sendDropdownValue,
       }}
     >
       {children}

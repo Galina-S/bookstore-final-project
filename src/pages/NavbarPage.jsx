@@ -20,6 +20,7 @@ import {
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
 import { PageSingleBook } from "./PageSingleBook";
+import { SearchField } from "../../components/SearchField";
 
 export const NavbarPage = () => {
   const {
@@ -37,6 +38,7 @@ export const NavbarPage = () => {
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
         </div>
+
         <div className="header-customer">
           <div className="dropdown" ref={dropdownRef}>
             <div
@@ -55,7 +57,6 @@ export const NavbarPage = () => {
                   Mein Konto
                 </span>
               )}
-
             </div>
 
             <div className={`auth  ${dropdownOpen ? "active" : "inactiv"}`}>
@@ -109,6 +110,9 @@ export const NavbarPage = () => {
           (  null
           )
           :( <NavLink to="/logout">Logout </NavLink>)*/}
+          <div className="search">
+            <SearchField />
+          </div>
         </div>
       </nav>
 

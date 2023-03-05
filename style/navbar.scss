@@ -1,6 +1,7 @@
 .header-content {
   display: flex;
   justify-content: space-between;
+
   .logo {
     a {
       line-height: 4rem;
@@ -10,14 +11,17 @@
       color: var(--color-main-blue);
     }
   }
+
   .header-customer {
     display: flex;
     align-items: flex-end;
     margin-right: 0.5rem;
+
     button {
       border: none;
       align-items: center;
     }
+
     .dropdown-trigger,
     .shopping-cart,
     .wish-list {
@@ -30,20 +34,27 @@
       padding-left: 0.8rem;
 
     }
+
     .account_icon,
     .shopping-cart-icon,
     .wish-list-icon {
       font-size: 1.3rem;
       padding-bottom: 0.3rem;
     }
+
     @media screen and (max-width: 600px) {
-      .account_icon, .wish-list-icon, .shopping-cart-icon{
+
+      .account_icon,
+      .wish-list-icon,
+      .shopping-cart-icon {
         padding-bottom: 0.7rem;
       }
     }
+
     .dropdown {
       position: relative;
       cursor: pointer;
+
       .auth {
         position: absolute;
         top: 110%;
@@ -51,18 +62,21 @@
         border-radius: 25px;
         z-index: 100;
       }
+
       .auth.active {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
         transition: 500ms ease;
       }
+
       .auth.inactiv {
         opacity: 0;
         visibility: hidden;
         transform: translateY(-20px);
         transition: 500ms ease;
       }
+
       .logout-btn {
         text-decoration: none;
         color: var(--color-main-blue);
@@ -74,14 +88,16 @@
 
     }
   }
-  .none{
+
+  .none {
     display: none;
   }
 }
+
 .navbar {
   border-bottom: 1.5px solid rgb(186, 186, 186);
   display: flex;
-  
+
   a {
     font-size: 1rem;
     color: var(--color-main-blue);
@@ -89,8 +105,32 @@
     padding-right: 1.5rem;
     text-decoration: none;
   }
+
   a:hover {
     color: var(--color-main-blue-medium);
     font-size: 1.1rem;
   }
+}
+
+.search-field {
+  padding: 0.3rem;
+
+
+  &:focus {
+    padding: 0.3rem;
+    border-color: var(--color-main-blue);
+    outline: 1px solid var(--color-main-blue);
+    border-radius: 2px;
+  }
+}
+
+.search-btn {
+  margin-left: 0.5rem;
+  padding: 0.3rem 1rem;
+}
+
+.search-dropdown {
+  width: max-content;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.5rem;
 }
