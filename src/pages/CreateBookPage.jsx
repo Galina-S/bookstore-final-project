@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../AppContext";
 
 export const CreateBookPage = () => {
-  const { handleAddBookForm, sendNewBook, formData, placeholderImage } = useContext(AppContext);
+  const { handleAddBookForm, sendNewBook, formData, placeholderImage } =
+    useContext(AppContext);
 
   return (
     <form className="editForm" onSubmit={(e) => sendNewBook(e)}>
@@ -18,6 +19,7 @@ export const CreateBookPage = () => {
               name="title"
               defaultValue={formData.title}
               type="text"
+              maxLength={30}
               onChange={(e) => {
                 handleAddBookForm(e, "title");
               }}
@@ -33,6 +35,7 @@ export const CreateBookPage = () => {
               defaultValue={formData.author}
               name="author"
               type="text"
+              maxLength={30}
               onChange={(e) => {
                 handleAddBookForm(e, "author");
               }}
@@ -44,10 +47,10 @@ export const CreateBookPage = () => {
           <label>Book Image</label>
           <div>
             <input
-              
               name="img"
               defaultValue={formData.img || placeholderImage}
               type="text"
+              maxLength={100}
               onChange={(e) => {
                 handleAddBookForm(e, "img");
               }}
@@ -62,7 +65,10 @@ export const CreateBookPage = () => {
               required
               name="price"
               defaultValue={formData.price}
-              type="number"
+              type="text"
+              min={0}
+              max={200}
+              pattern="^\d*(\.\d{0,2})?$"
               onChange={(e) => {
                 handleAddBookForm(e, "price");
               }}
@@ -77,7 +83,9 @@ export const CreateBookPage = () => {
               required
               name="ISBN"
               defaultValue={formData.ISBN}
-              type="number"
+              type="string"
+              min={10}
+              max={25}
               onChange={(e) => {
                 handleAddBookForm(e, "ISBN");
               }}
@@ -93,6 +101,7 @@ export const CreateBookPage = () => {
               name="puplication"
               defaultValue={formData.puplication}
               type="date"
+              max={new Date().toISOString().split("T")[0]}
               onChange={(e) => {
                 handleAddBookForm(e, "puplication");
               }}
@@ -108,6 +117,7 @@ export const CreateBookPage = () => {
               name="description"
               defaultValue={formData.description}
               type="text"
+              maxLength={1000}
               onChange={(e) => {
                 handleAddBookForm(e, "description");
               }}
@@ -123,6 +133,7 @@ export const CreateBookPage = () => {
               name="category"
               defaultValue={formData.category}
               type="text"
+              maxLength={30}
               onChange={(e) => {
                 handleAddBookForm(e, "category");
               }}
@@ -138,6 +149,7 @@ export const CreateBookPage = () => {
               name="publisher"
               defaultValue={formData.publisher}
               type="string"
+              maxLength={15}
               onChange={(e) => {
                 handleAddBookForm(e, "publisher");
               }}
@@ -153,6 +165,8 @@ export const CreateBookPage = () => {
               name="pages"
               defaultValue={formData.pages}
               type="number"
+              min={0}
+              max={2000}
               onChange={(e) => {
                 handleAddBookForm(e, "pages");
               }}

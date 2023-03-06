@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import instance from "../components/axios";
 import { useNavigate } from "react-router-dom";
 import { anonymousUser, blankLoginForm } from "./pages/Interfaces";
-import { cloneDeep } from "lodash-es";
+import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -105,7 +105,10 @@ export const AppProvider = ({ children }) => {
   //Create a new book
   const handleAddBookForm = (e) => {
     e.preventDefault();
-    const value = e.target.value;
+    let value = e.target.value;
+    if (e.target.name === "ISBN") {
+      value = value.match(/\d+/g).join([]);
+    }
     setFormData({ ...formData, [e.target.name]: value });
   };
 
