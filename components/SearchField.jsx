@@ -2,18 +2,23 @@ import React, { useContext } from "react";
 import { AppContext } from "../src/AppContext";
 
 export const SearchField = () => {
-  const { searchTerm, handleSearch, sendSearchData, sendDropdownValue } =
-    useContext(AppContext);
+  const {
+    searchTerm,
+    handleSearch,
+    sendSearchData,
+    sendDropdownValue,
+    loadBooks,
+  } = useContext(AppContext);
 
   return (
     <div>
       <select
         className="search-dropdown"
-        onChange={(e) => sendDropdownValue(e)}
+        onChange={(event) => sendDropdownValue(event)}
       >
         <option value="title">Title</option>
         <option value="author">Author</option>
-        <option value="genre">Genre</option>
+        <option value="category">Genre</option>
       </select>
       <input
         className="search-field"
@@ -21,6 +26,7 @@ export const SearchField = () => {
         placeholder="Search"
         value={searchTerm}
         onChange={handleSearch}
+        onFocus={loadBooks}
       />
       <button
         type="submit"

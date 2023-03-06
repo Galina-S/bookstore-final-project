@@ -134,15 +134,23 @@ export const AppProvider = ({ children }) => {
   };
 
   const sendSearchData = (event) => {
-    //query backend data
-    console.log(searchTerm);
+    setRawBooks(
+      rawBooks.filter((book) =>
+        typeof book[dropdownValue] == "string"
+          ? book[dropdownValue]
+              .toLowerCase()
+              .includes(`${searchTerm.toLowerCase()}`)
+          : book[dropdownValue]
+              .map((ele) => ele.toLowerCase())
+              .includes(`${searchTerm.toLowerCase()}`)
+      )
+    );
     setSearchTerm("");
   };
 
   const sendDropdownValue = (e) => {
     setDropdownValue(e.target.value);
   };
-  console.log(dropdownValue);
 
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
