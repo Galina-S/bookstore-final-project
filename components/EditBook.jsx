@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { AppContext } from "../src/AppContext";
 
 export const EditBook = ({ book }) => {
-  const { handleChangeFormField, sendEditBook, placeholderImage } = useContext(AppContext);
+  const { handleChangeFormField, sendEditBook, placeholderImage } =
+    useContext(AppContext);
 
   return (
     <form className="editForm" onSubmit={(e) => sendEditBook(e)}>
@@ -13,9 +14,11 @@ export const EditBook = ({ book }) => {
           <label>Title</label>
           <div>
             <input
+              required
               name="title"
               defaultValue={book.title}
               type="text"
+              maxLength={30}
               onChange={(e) => {
                 handleChangeFormField(e, "title");
               }}
@@ -27,9 +30,11 @@ export const EditBook = ({ book }) => {
           <label>Author</label>
           <div>
             <input
+              required
               defaultValue={book.author}
               name="author"
               type="text"
+              maxLength={30}
               onChange={(e) => {
                 handleChangeFormField(e, "author");
               }}
@@ -55,9 +60,14 @@ export const EditBook = ({ book }) => {
           <label>Price</label>
           <div>
             <input
+              required
               name="price"
               defaultValue={book.price}
-              type="number"
+              type="text"
+              min={0}
+              max={200}
+              pattern="^\d*(\.\d{0,2})?$"
+              title="Only numbers to 2 decimal points are allowed"
               onChange={(e) => {
                 handleChangeFormField(e, "price");
               }}
@@ -69,9 +79,12 @@ export const EditBook = ({ book }) => {
           <label>ISBN</label>
           <div>
             <input
+              required
               name="ISBN"
               defaultValue={book.ISBN}
-              type="number"
+              type="string"
+              min={10}
+              max={25}
               onChange={(e) => {
                 handleChangeFormField(e, "ISBN");
               }}
@@ -83,9 +96,11 @@ export const EditBook = ({ book }) => {
           <label>Genre</label>
           <div>
             <input
+              required
               name="category"
               defaultValue={book.category}
               type="text"
+              maxLength={30}
               onChange={(e) => {
                 handleChangeFormField(e, "category");
               }}
@@ -97,9 +112,11 @@ export const EditBook = ({ book }) => {
           <label>Verlag</label>
           <div>
             <input
+              required
               name="publisher"
               defaultValue={book.publisher}
               type="string"
+              maxLength={30}
               onChange={(e) => {
                 handleChangeFormField(e, "publisher");
               }}
@@ -114,6 +131,8 @@ export const EditBook = ({ book }) => {
               name="pages"
               defaultValue={book.pages}
               type="number"
+              min={0}
+              max={2000}
               onChange={(e) => {
                 handleChangeFormField(e, "pages");
               }}

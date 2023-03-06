@@ -85,7 +85,10 @@ export const AppProvider = ({ children }) => {
 
   const handleChangeFormField = (e) => {
     e.preventDefault();
-    const value = e.target.value;
+    let value = e.target.value;
+    if (e.target.name === "ISBN") {
+      value = value.match(/\d+/g).join([]);
+    }
     setFormData({ ...formData, [e.target.name]: value });
   };
 

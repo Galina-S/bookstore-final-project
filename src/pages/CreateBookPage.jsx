@@ -69,6 +69,7 @@ export const CreateBookPage = () => {
               min={0}
               max={200}
               pattern="^\d*(\.\d{0,2})?$"
+              title="Only numbers to 2 decimal points are allowed"
               onChange={(e) => {
                 handleAddBookForm(e, "price");
               }}
