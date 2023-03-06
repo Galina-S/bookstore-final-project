@@ -135,15 +135,19 @@ export const AppProvider = ({ children }) => {
 
   const sendSearchData = (event) => {
     setRawBooks(
-      rawBooks.filter((book) =>
-        typeof book[dropdownValue] == "string"
-          ? book[dropdownValue]
-              .toLowerCase()
-              .includes(`${searchTerm.toLowerCase()}`)
-          : book[dropdownValue]
-              .map((ele) => ele.toLowerCase())
-              .includes(`${searchTerm.toLowerCase()}`)
-      )
+      rawBooks.filter((book) => {
+        if (Array.isArray(book[dropdownValue])) {
+          return book[dropdownValue]
+            .map((ele) => ele.toLowerCase())
+            .includes(`${searchTerm.toLowerCase()}`);
+        } else if (typeof book[dropdownValue] == "string") {
+          return book[dropdownValue]
+            .toLowerCase()
+            .includes(`${searchTerm.toLowerCase()}`);
+        } else {
+          return book[dropdownValue] == searchTerm;
+        }
+      })
     );
     setSearchTerm("");
   };

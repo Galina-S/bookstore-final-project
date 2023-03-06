@@ -19,6 +19,7 @@ export const SearchField = () => {
         <option value="title">Title</option>
         <option value="author">Author</option>
         <option value="category">Genre</option>
+        <option value="ISBN">ISBN</option>
       </select>
       <input
         className="search-field"

@@ -30,6 +30,7 @@ export const NavbarPage = () => {
     setDropdownOpen,
     dropdownRef,
     cleanFormData,
+    loadBooks,
   } = useContext(AppContext);
 
   return (
@@ -103,7 +104,9 @@ export const NavbarPage = () => {
 
       <nav className="navbar">
         <div className="navigation">
-          <NavLink to="/books">Bücher</NavLink>
+          <NavLink to="/books" onClick={loadBooks}>
+            Bücher
+          </NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
           {/*currentUser.username==="anonymousUser" ? 
