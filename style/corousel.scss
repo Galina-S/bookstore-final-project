@@ -56,6 +56,10 @@
         display: flex;
         justify-content: center;
       }
+      .box1, .box2, .box3, .box4, .box5, .box6 {
+        cursor: pointer;
+
+      }
 
       .spring-book1 {
         grid-area: col1;
