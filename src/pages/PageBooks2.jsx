@@ -15,7 +15,7 @@ export const PageBooks2 = () => {
         fetchHadler().then(data => setBooks(data))
     }, []);
     console.log(books);
-  return <div className="pageBooks">
+  return <div className="pageBooks2">
       <ul>
         {books &&
             books.map((book, i)=>(
