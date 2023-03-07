@@ -1,10 +1,11 @@
 import { AppContext } from "../AppContext";
 import { useContext, useState, useEffect } from "react";
 import FavoriteIcon from "../../components/FavoriteIcon";
-import { AiFillEye } from 'react-icons/ai';
+import { AiFillEye, AiOutlineShoppingCart } from 'react-icons/ai';
 import axios from 'axios';
 import {baseURL} from '../../components/axios'
 import {useParams} from 'react-router-dom'
+
 
 export const PageSingleBook = ()  => {
   const { openBook } = useContext(AppContext);
@@ -57,7 +58,8 @@ export const PageSingleBook = ()  => {
         (async () => {
             axios
            .get(`${baseURL}/books/${id}`)
-           .then(res => {
+           .then(res => {  <img src={data.book?.img} alt={data.book?.title} height="150px"/>
+           {/* <FavoriteIcon book={openBook} /> */}
             setData(res.data)
           })
           .catch((err)=>{
@@ -69,48 +71,69 @@ export const PageSingleBook = ()  => {
   
  return (
       <div className="content">
-         <div className="title">
-            <img src={data.book?.img} alt={data.book?.title} height="150px"/>
+        <div className="content-wrapper">
+         <div className="medien-shadow-box">
+            <img src={data.book?.img} alt={data.book?.title} height="200px"/>
             {/* <FavoriteIcon book={openBook} /> */}
           </div>
-          <div className="title">
-         <h2>Titel:{data.book?.title} </h2>
-         </div>
-
-          <div className="views">
-            <p><AiFillEye />Views: {data.book?.viewsCount}</p>
-            <p></p>
-          </div>          
-
-          <div className="author">
-            <h5>Author:{data.book?.author}</h5>
-          </div>
-
-          <div className="description">
-            <p>Beschreibung: {data.book?.description}</p>
-          </div>
-
-          <div className="price">
-            <h4>Price: {data.book?.price} €</h4>
-          </div>
-
-        <div className="rest-info">
-            <div className="isbn">
-              <p>ISBN: {data.book?.ISBN}</p>
+        
+          
+        <div className="artikel-informationen">
+            <div className="title">
+              <h1>{data.book?.title} </h1>
             </div>
-            <div className="publicationDate">
-              <p>Public: {data.book?.puplication}</p>
+            <div className="author">
+               <p>{data.book?.author}</p>
             </div>
-            <div className="category">
-              <p>Genre: {data.book?.category}</p>
+            
+            <div className="price">
+            <p>{data.book?.price} € <span className="span">inkl. gesetzl. MwSt.</span></p> 
+             
             </div>
-            <div className="publisher">
-              <p>Verlag: {data.book?.publisher}</p>
-            </div>
-            <div className="pages">
-              <p>Pages: {data.book?.pages}</p>
-            </div>
+            <div className="lieferbarkeit-versandkosten">
+              <a className="element-link-standard versandkosten-link" href="#">Versandkostenfrei</a></div>
+            <button className="element-button-primary">
+              <span><AiOutlineShoppingCart /></span>
+                In den Warenkorb</button>
         </div>
+        </div>
+         
+        <div className="content-below-the-fold">
+            <div className="inhalt-beschreibung">
+            <h2>Beschreibung</h2>
+                    <div className="description">
+                        <p> {data.book?.description}</p>
+                    </div>
+            </div> 
+            <div className="details-default">
+                  <div className="isbn">
+                    <h2>Details</h2>
+                    <p>ISBN: {data.book?.ISBN}</p>
+                  </div>
+                  <div className="publicationDate">
+                    <p>Public: {data.book?.puplication}</p>
+                  </div>
+                  <div className="category">
+                    <p>Genre: {data.book?.category}</p>
+                  </div>
+                  <div className="publisher">
+                    <p>Verlag: {data.book?.publisher}</p>
+                  </div>
+                  <div className="pages">
+                    <p>Pages: {data.book?.pages}</p>
+                  </div>
+                <br />
+                  <div className="views">
+                  <p><AiFillEye />Views: {data.book?.viewsCount}</p>
+                  </div>
+
+        </div>
+        
+        </div>
+
+     
+            
+     
            
     </div>
   );

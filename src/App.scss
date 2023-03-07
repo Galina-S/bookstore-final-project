@@ -239,5 +239,105 @@ div.message {
   color: rgb(255, 27, 27);
 }
 
+.content {
+ 
+
+  .content-wrapper {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  }
+  .medien-shadow-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:600px;
+    height:350px;
+    border-bottom-right-radius: 120px;
+    box-shadow: 5px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 1px 10px 0px;
+    padding: 10px;
+    margin:10px;  
+  }
+  
+  .medien-shadow-box > img {
+    width: 200px;
+    height: 319px;
+  }
+  
+  .artikel-informationen {
+    display: block;
+    max-width: 1150px;
+
+    .title {
+    display: block;
+    font-size: 1em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    font-weight: bold;
+    }
+    .author {
+      text-decoration: underline;
+      font-weight: normal;
+      font-size: 1em;
+    }
+    .price{
+      margin-top: 10px;
+      p{
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      span {
+        font-size: 0.5em;
+        font-weight: 100;
+      }
+      display: flex;
+      flex-direction: row;      
+    }
+
+    .lieferbarkeit-versandkosten {
+      font-size: 0.5em;
+      text-decoration: underline;
+      color: black;
+    }
+  }
 
 
+
+  .element-button-primary {
+    cursor: pointer;
+    background-color: #1a1aaa;
+    border: 0;
+    border-radius: 23px;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 17px;
+    line-height: 30px;
+    outline: none;
+    padding: 8px 30px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s ease;
+    margin-top: 20px;
+  }
+
+  .content-below-the-fold {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 20px;
+    
+    .inhalt-beschreibung{
+      width: 45%;
+    }
+
+    .details-default{
+       width: 35%;
+    }
+  }
+}

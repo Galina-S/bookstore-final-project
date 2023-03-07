@@ -69,6 +69,21 @@
         width: 140px;
       }
 
+      .content {
+        .medien-shadow-box {
+            display: flex;
+            flex-direction: column;
+            width:660px;
+            height:500px;
+            border-bottom-right-radius: 120px;
+            box-shadow: 5px;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px
+          }
+        
+      }
+
+     
+    
 
 
 
