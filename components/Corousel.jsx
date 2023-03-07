@@ -45,7 +45,7 @@ export const Corousel = () => {
                     return (
                         <div key={book._id} className="spring-books">                                 
                            <div className="box box1">
-                                {book.title === "Berühre mich. Nicht." && 
+                                {book.title === "Lean on Me" && 
                                     <div className = "spring-books-all spring-book1">
                                         <img src={book.img} alt="" />
                                     </div>
