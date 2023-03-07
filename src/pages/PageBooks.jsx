@@ -1,4 +1,3 @@
-//import _books from '../data/books.json';
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { EditBook } from "../../components/EditBook";

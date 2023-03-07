@@ -27,6 +27,9 @@ export const AppProvider = ({ children }) => {
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
 
+  const BOOK_DETAILS_URL = 'http://localhost:5173/books'
+
+
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
@@ -309,6 +312,9 @@ export const AppProvider = ({ children }) => {
         setSearchTerm,
         sendSearchData,
         sendDropdownValue,
+
+        BOOK_DETAILS_URL
+       
       }}
     >
       {children}
