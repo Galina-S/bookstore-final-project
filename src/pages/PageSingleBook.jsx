@@ -9,6 +9,8 @@ import {useParams} from 'react-router-dom'
 
 export const PageSingleBook = ()  => {
   const { openBook } = useContext(AppContext);
+
+  
   // const [title, setTitle] = useState('');
   // const [img, setImg] = useState('');
   // const [author, setAuthor] = useState('');

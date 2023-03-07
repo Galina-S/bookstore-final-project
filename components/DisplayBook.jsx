@@ -68,7 +68,7 @@ export const DisplayBook = (props) => {
             to={`/books/${book._id}`}
             onClick={() => openSingleBook(book)}
           >
-            <button>Go to book page</button>
+            <button className ="delete-button">Go to book page</button>
           </NavLink>
 
           <button
