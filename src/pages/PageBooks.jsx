@@ -7,7 +7,6 @@ import { DisplayBook } from "../../components/DisplayBook";
 
 //const books = _books;
 
-
 export const PageBooks = () => {
   const {
     rawBooks,
@@ -15,12 +14,15 @@ export const PageBooks = () => {
     loadBooks,
     cleanFormData,
     setEditingElementId,
+    searchTerm,
   } = useContext(AppContext);
 
   useEffect(() => {
-    (async () => {
-      loadBooks();
-    })();
+    if (searchTerm !== "") {
+      (async () => {
+        loadBooks();
+      })();
+    }
   }, []);
 
   const componentWillUnmount = useRef(false);

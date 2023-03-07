@@ -34,7 +34,7 @@ export const DisplayBook = (props) => {
             <p>ISBN: {book.ISBN}</p>
           </div>
           <div className="publicationDate">
-            <p>Public: {book.puplication.split("T22:00:00.000Z")}</p>
+            <p>Public: {book.puplication.split("").splice(0, 10).join("")}</p>
           </div>
           <div className="category">
             <p>Genre: {book.category.join(", ")}</p>
@@ -50,7 +50,6 @@ export const DisplayBook = (props) => {
 
       <div className="managePanel">
         <div>
-
           <button className="editButton" onClick={() => onOpenEditForm(book)}>
             {" "}
             Edit{" "}

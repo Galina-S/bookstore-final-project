@@ -42,6 +42,7 @@ export const AppProvider = ({ children }) => {
 
   const navigate = useNavigate();
   const loadBooks = async () => {
+    setEditingElementId(null);
     const books = (await instance.get("/books")).data;
     const _books = [];
     books.forEach((rawBook) => {
@@ -126,7 +127,6 @@ export const AppProvider = ({ children }) => {
       console.error(`ERROR: ${e}`);
     }
     setFormData([]);
-    window.location.href = "/books";
   };
 
   //Clean form data
@@ -140,6 +140,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const sendSearchData = (event) => {
+    navigate(`/books/`);
     setRawBooks(
       rawBooks.filter((book) => {
         if (Array.isArray(book[dropdownValue])) {
