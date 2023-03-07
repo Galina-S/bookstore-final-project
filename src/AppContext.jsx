@@ -27,8 +27,7 @@ export const AppProvider = ({ children }) => {
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
 
-  const BOOK_DETAILS_URL = 'http://localhost:5173/books'
-
+  const BOOK_DETAILS_URL = "http://localhost:5173/books";
 
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -143,7 +142,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const sendSearchData = (event) => {
-    navigate(`/books/`);
+    navigate(`/books2/`);
     setRawBooks(
       rawBooks.filter((book) => {
         if (Array.isArray(book[dropdownValue])) {
@@ -313,8 +312,7 @@ export const AppProvider = ({ children }) => {
         sendSearchData,
         sendDropdownValue,
 
-        BOOK_DETAILS_URL
-       
+        BOOK_DETAILS_URL,
       }}
     >
       {children}
