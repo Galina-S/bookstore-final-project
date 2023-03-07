@@ -105,13 +105,7 @@ export const NavbarPage = () => {
 
       <nav className="navbar">
         <div className="navigation">
-<<<<<<< HEAD
-          <NavLink to="/books" onClick={loadBooks}>
-            Bücher
-          </NavLink>
-=======
           <NavLink to="/books2">Bücher</NavLink>
->>>>>>> eee14f1 (PageSingleBook edited)
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
           <NavLink to="/books">Books</NavLink>
