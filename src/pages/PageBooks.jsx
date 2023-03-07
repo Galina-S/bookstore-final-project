@@ -18,7 +18,7 @@ export const PageBooks = () => {
   } = useContext(AppContext);
 
   useEffect(() => {
-    if (searchTerm !== "") {
+    if (searchTerm == "") {
       (async () => {
         loadBooks();
       })();
