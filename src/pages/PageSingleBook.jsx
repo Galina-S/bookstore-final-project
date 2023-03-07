@@ -8,7 +8,7 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom'
 
 export const PageSingleBook = ()  => {
-
+  const { openBook } = useContext(AppContext);
   const [title, setTitle] = useState('');
   const [img, setImg] = useState('');
   const [author, setAuthor] = useState('');
@@ -57,7 +57,7 @@ export const PageSingleBook = ()  => {
       <div className="content">
          <div className="title">
             <img src={img} alt={title} height="150px"/>
-            {/* <FavoriteIcon book={openBook} /> */}
+            <FavoriteIcon book={openBook} />
           </div>
           <div className="title">
             <h2>{title} </h2>
