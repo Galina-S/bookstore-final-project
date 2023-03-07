@@ -22,7 +22,7 @@ export const AppProvider = ({ children }) => {
   //Single book page
   const [openBook, setOpenBook] = useState([]);
   //Search input
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(" ");
   const [dropdownValue, setDropdownValue] = useState("title");
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
@@ -136,7 +136,7 @@ export const AppProvider = ({ children }) => {
 
   //Search input field
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value.trim());
   };
 
   const sendSearchData = (event) => {

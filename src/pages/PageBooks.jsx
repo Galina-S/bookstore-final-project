@@ -16,9 +16,9 @@ export const PageBooks = () => {
     setEditingElementId,
     searchTerm,
   } = useContext(AppContext);
-
+  console.log(searchTerm);
   useEffect(() => {
-    if (searchTerm == "") {
+    if (searchTerm !== "") {
       (async () => {
         loadBooks();
       })();
