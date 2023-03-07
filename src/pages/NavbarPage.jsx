@@ -2,6 +2,7 @@ import { useContext, useRef } from "react";
 import { AppContext } from "../AppContext";
 import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import { PageBooks } from "../pages/PageBooks";
+import { PageBooks2 } from "../pages/PageBooks2";
 import { PageHome } from "../pages/PageHome";
 import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
@@ -104,11 +105,17 @@ export const NavbarPage = () => {
 
       <nav className="navbar">
         <div className="navigation">
+<<<<<<< HEAD
           <NavLink to="/books" onClick={loadBooks}>
             Bücher
           </NavLink>
+=======
+          <NavLink to="/books2">Bücher</NavLink>
+>>>>>>> eee14f1 (PageSingleBook edited)
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
+          <NavLink to="/books">Books</NavLink>
+          
           {/*currentUser.username==="anonymousUser" ? 
           (  null
           )
@@ -120,9 +127,9 @@ export const NavbarPage = () => {
       </nav>
 
       <Routes>
-        <Route path="/books" element={<PageBooks />} />
+        <Route path="/books" element={<PageBooks2 />} />
+        <Route path="/books2" element={<PageBooks />} />
         <Route path="/home" element={<PageHome />} />
-        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/new-books" element={<NewBooksPage />} />
         <Route path="/bestsellers" element={<Bestsellers />} />
@@ -130,8 +137,8 @@ export const NavbarPage = () => {
         <Route path="/create-book" element={<CreateBookPage />} />
         <Route path="/register" element={<PageRegister />} />
         <Route path="/login" element={<PageLogin />} />
-        <Route path="logout" element={<PageLogout />} />
-        <Route path="/book/:id" element={<PageSingleBook />} />
+        <Route path="/logout" element={<PageLogout />} />
+        <Route path="/books/:id" element={<PageSingleBook />} exact/>
       </Routes>
     </div>
   );

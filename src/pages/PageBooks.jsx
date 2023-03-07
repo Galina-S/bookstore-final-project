@@ -1,12 +1,8 @@
-//import _books from '../data/books.json';
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { EditBook } from "../../components/EditBook";
 import { useEffect, useRef } from "react";
 import { DisplayBook } from "../../components/DisplayBook";
-
-//const books = _books;
-
 
 export const PageBooks = () => {
   const {

@@ -1,51 +1,103 @@
 import { AppContext } from "../AppContext";
-//import { useParams } from "react-router";
-import { useContext } from "react";
+
+import { useContext, useState, useEffect } from "react";
 import FavoriteIcon from "../../components/FavoriteIcon";
+import { AiFillEye } from 'react-icons/ai';
+import axios from 'axios';
 
-export const PageSingleBook = () => {
-  const { openBook } = useContext(AppContext);
-  //const { id } = useParams();
+import {useParams} from 'react-router-dom'
 
-  return (
-    <div className="single-book">
-      <div className="book" key={openBook._id}>
-        <div className="book-cover">
-          <img src={openBook.img} alt="" />
-        </div>
-        <div className="content">
+export const PageSingleBook = ()  => {
+
+  const [title, setTitle] = useState('');
+  const [img, setImg] = useState('');
+  const [author, setAuthor] = useState('');
+  const [description, setDescription] = useState('');
+  const [viewsCount, setViewsCount] = useState('');
+  const [price, setPrice] = useState('');
+  const [ISBN, setISBN] = useState('');
+  const [puplication, setPuplication] = useState('');
+  const [category, setCategory] = useState('');
+  const [publisher, setPublisher] = useState('');
+  const [pages, setPages] = useState('');
+
+
+  const id = useParams().id;
+  console.log(id);
+
+  useEffect (()=> {
+    const fetchHandler = async() => {
+     
+      await axios
+      .get(`http://localhost:3005/books/${id}`)
+      .then((res)=> res.data)
+      .then(data=>{
+        setTitle(data.book.title);
+        setImg(data.book.img);
+        setAuthor(data.book.author);
+        setDescription(data.book.description);
+        setViewsCount(data.book.viewsCount);
+        setPrice(data.book.price);
+        setISBN(data.book.ISBN);
+        setPuplication(data.book.puplication);
+        setCategory(data.book.category);
+        setPublisher(data.book.publisher);
+        setPages(data.book.pages);
+      })
+      // .then((res)=> console.log(res.data));
+         // setBook(res.data) 
+         
+  
+    };
+     fetchHandler();
+    },[id]) 
+
+
+ return (
+      <div className="content">
+         <div className="title">
+            <img src={img} alt={title} height="150px"/>
+            {/* <FavoriteIcon book={openBook} /> */}
+          </div>
           <div className="title">
-            <h2>{openBook.title} </h2>
-            <FavoriteIcon book={openBook} />
+            <h2>{title} </h2>
           </div>
+
+          <div className="views">
+            <p><AiFillEye />Views: {viewsCount}</p>
+            <p></p>
+          </div>          
+
           <div className="author">
-            <h5>{openBook.author}</h5>
+            <h5>{author}</h5>
           </div>
+
           <div className="description">
-            <p>{openBook.description}</p>
+            <p>{description}</p>
           </div>
+
           <div className="price">
-            <h4>Price: {openBook.price} Є</h4>
+            <h4>Price: {price} €</h4>
           </div>
-        </div>
+
         <div className="rest-info">
-          <div className="isbn">
-            <p>ISBN: {openBook.ISBN}</p>
-          </div>
-          <div className="publicationDate">
-            <p>Public: {openBook.puplication.split("T22:00:00.000=00:00")}</p>
-          </div>
-          <div className="category">
-            <p>Genre: {openBook.category.join(", ")}</p>
-          </div>
-          <div className="publisher">
-            <p>Verlag: {openBook.publisher}</p>
-          </div>
-          <div className="pages">
-            <p>Pages: {openBook.pages}</p>
-          </div>
+            <div className="isbn">
+              <p>ISBN: {ISBN}</p>
+            </div>
+            <div className="publicationDate">
+              <p>Public: {puplication}</p>
+            </div>
+            <div className="category">
+              <p>Genre: {category}</p>
+            </div>
+            <div className="publisher">
+              <p>Verlag: {publisher}</p>
+            </div>
+            <div className="pages">
+              <p>Pages: {pages}</p>
+            </div>
         </div>
-      </div>
+           
     </div>
   );
 };
