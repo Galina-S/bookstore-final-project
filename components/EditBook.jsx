@@ -93,6 +93,22 @@ export const EditBook = ({ book }) => {
         </div>
 
         <div className="row">
+          <label>Beschreibung</label>
+          <div>
+            <input
+              required
+              name="description"
+              defaultValue={book.description}
+              type="text"
+              maxLength={3000}
+              onChange={(e) => {
+                handleChangeFormField(e, "description");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
           <label>Genre</label>
           <div>
             <input

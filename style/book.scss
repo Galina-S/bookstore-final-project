@@ -19,6 +19,10 @@
         flex-direction: column;
         align-items: center;
         justify-content: left;
+
+        button {
+            margin-top: 7px
+        }
         .card {
             padding: 0.5rem;
            width: 100%;
@@ -28,13 +32,12 @@
            display: flex;
            flex-direction: column;
            justify-content: center;
-           
-         
          }
 
          .card > img {
             width: 80%;
-            height: 80%;
+            height: 70%;
+            max-height:250px;
           }
           .card h5 {  
             margin: 0;

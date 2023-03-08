@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 
 
+
 export const Book = (props) => {
     const {_id, author, img, title, description, price, ISBN, 
         puplication, category, publisher, pages, viewsCount} = props.book;
@@ -36,6 +37,8 @@ export const Book = (props) => {
             </div>
         </NavLink>
         <button  className="deleteButton" onClick={() => handleDeleteBook(book)} >DELETE</button>
+
+        <button className="editButton" onClick={() => onOpenEditForm(book)}> EDIT  </button>
         </div>
        
 

@@ -8,6 +8,7 @@ import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
 import { PageLogout } from "./PageLogout";
 import { NewBooksPage } from "./NewBooksPage";
+import { EditBook } from "../../components/EditBook";
 
 import { Bestsellers } from "./BestsellersPage";
 import { WishListPage } from "./WishListPage";
@@ -132,7 +133,8 @@ export const NavbarPage = () => {
         <Route path="/register" element={<PageRegister />} />
         <Route path="/login" element={<PageLogin />} />
         <Route path="/logout" element={<PageLogout />} />
-        <Route path="/books/:id" element={<PageSingleBook />} exact/>
+        <Route path="/books/:id" element={<PageSingleBook />} />
+       
       </Routes>
     </div>
   );

@@ -342,6 +342,13 @@ div.message {
     }
   }
  
-
+  .image-zoom {
+    transition: transform 0.4s;
+  }
+  
+  .image-zoom:hover {
+    transform: scale(1.5);
+  }
+  
 
 }

@@ -6,6 +6,7 @@ import axios from 'axios';
 import {baseURL} from '../../components/axios'
 import {useParams} from 'react-router-dom'
 
+import ImageZoom from '../pages/ImageZoom';
 
 export const PageSingleBook = ()  => {
   const { openBook } = useContext(AppContext);
@@ -75,11 +76,14 @@ export const PageSingleBook = ()  => {
       <div className="content">
         <div className="content-wrapper">
          <div className="medien-shadow-box">
-            <img src={data.book?.img} alt={data.book?.title} height="200px"/>
+            <ImageZoom src={data.book?.img}  alt={data.book?.title} height="200px" />
+            {/* <img src={data.book?.img} alt={data.book?.title} height="200px"/> */}
             {/* <FavoriteIcon book={openBook} /> */}
           </div>
         
-          
+         
+
+
         <div className="artikel-informationen">
             <div className="title">
               <h1>{data.book?.title} </h1>

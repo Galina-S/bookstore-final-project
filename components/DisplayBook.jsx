@@ -39,7 +39,7 @@ export const DisplayBook = (props) => {
             <p>ISBN: {book.ISBN}</p>
           </div>
           <div className="publicationDate">
-            <p>Public: {book.puplication.split("").splice(0, 10).join("")}</p>
+            <p>Public: {book.puplication}</p>
           </div>
           <div className="category">
             <p>Genre: {book.category.join(", ")}</p>
