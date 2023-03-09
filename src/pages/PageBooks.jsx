@@ -4,8 +4,6 @@ import { EditBook } from "../../components/EditBook";
 import { useEffect, useRef } from "react";
 import { DisplayBook } from "../../components/DisplayBook";
 
-//const books = _books;
-
 export const PageBooks = () => {
   const {
     rawBooks,
@@ -13,15 +11,12 @@ export const PageBooks = () => {
     loadBooks,
     cleanFormData,
     setEditingElementId,
-    searchTerm,
   } = useContext(AppContext);
-  console.log(searchTerm);
+
   useEffect(() => {
-    if (searchTerm !== "") {
-      (async () => {
-        loadBooks();
-      })();
-    }
+    (async () => {
+      loadBooks();
+    })();
   }, []);
 
   const componentWillUnmount = useRef(false);

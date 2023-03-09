@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaHeart } from 'react-icons/fa';
+import {  BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 
 const Favorite = ({ book }) => {
     const [isFavorite, setIsFavorite] = useState(false);
@@ -20,11 +20,20 @@ const Favorite = ({ book }) => {
     };
     
     return (
-      <div>
-        <FaHeart size="30px"
+      <div className='favorite-heart'>
+        {isFavorite ? (
+        <BsSuitHeartFill
+          className="favorite-icon"
           onClick={handleFavoriteClick}
-          style={{ color: isFavorite ? 'red' : 'grey' }}
+          style={{ color: 'green' }}
         />
+      ) : (
+        <BsSuitHeart
+          className="favorite-icon"
+          onClick={handleFavoriteClick}
+          style={{ color: 'grey' }}
+        />
+      )}
       </div>
     );
   };

@@ -1,29 +1,64 @@
-
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
+import { EditBook } from "../../components/EditBook";
+import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Book } from "../pages/Book";
+import {Book} from '../pages/Book';
 
-
-const URL = 'http://localhost:3005/books';
-const fetchHadler = async() => {
-    return await axios.get(URL).then((res)=>res.data)
-}
 export const PageBooks2 = () => {
-  const [books, setBooks] = useState()
-    useEffect(()=> {
-        fetchHadler().then(data => setBooks(data))
-    }, []);
-    console.log(books);
+
+  const {
+    rawBooks,
+    editingElementId,
+    loadBooks,
+    cleanFormData,
+    setEditingElementId,
+  } = useContext(AppContext);
+
+  useEffect(() => {
+    (async () => {
+      loadBooks();
+    })();
+  }, []);
+
+  const componentWillUnmount = useRef(false);
+
+  // This is componentWillUnmount
+  useEffect(() => {
+    return () => {
+      componentWillUnmount.current = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      // This line only evaluates to true after the componentWillUnmount happens
+      if (componentWillUnmount.current) {
+        cleanFormData();
+        setEditingElementId(null);
+      }
+    };
+  }, []);
+   
   return <div className="pageBooks2">
+    < h2>There are {rawBooks.length} books</h2>
       <ul>
-        {books &&
-            books.map((book, i)=>(
-            <li className= "book" key={i}>
-            <Book book={book} /> 
+        {rawBooks &&
+            rawBooks.map((_book, _id)=>(
+              
+            <li className= "book" key={_book._id}>
+            {/* <Book book={book} />  */}
+            {_book._id === editingElementId ? (
+                <EditBook book={_book} />
+              ) : (
+                <Book book={_book} />
+                  )}
             </li>
+            
         )) }
       </ul>
     </div>
   
 };
+
+
