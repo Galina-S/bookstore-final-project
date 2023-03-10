@@ -145,7 +145,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const sendSearchData = (event) => {
-    navigate(`/books2/`);
+    navigate(`/books/`);
     setRawBooks(
       rawBooks.filter((book) => {
         if (Array.isArray(book[dropdownValue])) {
