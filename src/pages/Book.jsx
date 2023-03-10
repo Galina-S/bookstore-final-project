@@ -35,7 +35,7 @@ export const Book = (props) => {
             </div>
         
         <div className='edit-delete-buttons'>
-            <button  className="deleteButton" onClick={() => handleDeleteBook(book)} >Delete</button>
+            <button  className="deleteButton" onClick={() => { if (window.confirm("Sind Sie sicher, dass Sie dieses Buch löschen möchten?")) {handleDeleteBook(book)}}} >Delete</button>
             <button className="editButton" onClick={() => onOpenEditForm(book)}>Edit</button>
         </div>
         

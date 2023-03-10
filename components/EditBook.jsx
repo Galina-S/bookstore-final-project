@@ -76,23 +76,6 @@ export const EditBook = ({ book }) => {
         </div>
 
         <div className="row">
-          <label>ISBN</label>
-          <div>
-            <input
-              required
-              name="ISBN"
-              defaultValue={book.ISBN}
-              type="string"
-              min={10}
-              max={25}
-              onChange={(e) => {
-                handleChangeFormField(e, "ISBN");
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="row">
           <label>Beschreibung</label>
           <div>
             <input
@@ -155,7 +138,24 @@ export const EditBook = ({ book }) => {
             />
           </div>
         </div>
-
+        
+        <div className="row">
+          <label>ISBN</label>
+          <div>
+            <input
+              required
+              name="ISBN"
+              defaultValue={book.ISBN}
+              type="string"
+              min={10}
+              max={25}
+              onChange={(e) => {
+                handleChangeFormField(e, "ISBN");
+              }}
+            />
+          </div>
+        </div>
+        
         <div className="buttonRow">
           <button>Cancel</button>
           <button type="submit">Save</button>

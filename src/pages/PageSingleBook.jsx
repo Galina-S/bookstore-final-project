@@ -117,7 +117,7 @@ export const PageSingleBook = ()  => {
                     <p>ISBN: {data.book?.ISBN}</p>
                   </div>
                   <div className="publicationDate">
-                    <p>Public: {data.book?.puplication}</p>
+                    <p>Erscheinungsdatum: {data.book?.puplication}</p>
                   </div>
                   <div className="category">
                     <p>Genre: {data.book?.category}</p>
@@ -126,11 +126,11 @@ export const PageSingleBook = ()  => {
                     <p>Verlag: {data.book?.publisher}</p>
                   </div>
                   <div className="pages">
-                    <p>Pages: {data.book?.pages}</p>
+                    <p>Seitenzahl: {data.book?.pages}</p>
                   </div>
                 <br />
                   <div className="views">
-                  <p><AiFillEye />Views: {data.book?.viewsCount}</p>
+                  <p><AiFillEye />Ansichten: {data.book?.viewsCount}</p>
                   </div>
 
         </div>

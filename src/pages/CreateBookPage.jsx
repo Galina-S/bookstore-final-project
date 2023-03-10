@@ -19,7 +19,7 @@ export const CreateBookPage = () => {
               name="title"
               defaultValue={formData.title}
               type="text"
-              maxLength={30}
+              maxLength={50}
               onChange={(e) => {
                 handleAddBookForm(e, "title");
               }}
@@ -78,23 +78,6 @@ export const CreateBookPage = () => {
         </div>
 
         <div className="row">
-          <label>ISBN</label>
-          <div>
-            <input
-              required
-              name="ISBN"
-              defaultValue={formData.ISBN}
-              type="string"
-              min={10}
-              max={25}
-              onChange={(e) => {
-                handleAddBookForm(e, "ISBN");
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="row">
           <label>Publication Date</label>
           <div>
             <input
@@ -118,7 +101,7 @@ export const CreateBookPage = () => {
               name="description"
               defaultValue={formData.description}
               type="text"
-              maxLength={1000}
+              maxLength={2000}
               onChange={(e) => {
                 handleAddBookForm(e, "description");
               }}
@@ -134,7 +117,7 @@ export const CreateBookPage = () => {
               name="category"
               defaultValue={formData.category}
               type="text"
-              maxLength={30}
+              maxLength={50}
               onChange={(e) => {
                 handleAddBookForm(e, "category");
               }}
@@ -150,7 +133,7 @@ export const CreateBookPage = () => {
               name="publisher"
               defaultValue={formData.publisher}
               type="string"
-              maxLength={15}
+              maxLength={30}
               onChange={(e) => {
                 handleAddBookForm(e, "publisher");
               }}
@@ -170,6 +153,23 @@ export const CreateBookPage = () => {
               max={2000}
               onChange={(e) => {
                 handleAddBookForm(e, "pages");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>ISBN</label>
+          <div>
+            <input
+              required
+              name="ISBN"
+              defaultValue={formData.ISBN}
+              type="string"
+              min={10}
+              max={25}
+              onChange={(e) => {
+                handleAddBookForm(e, "ISBN");
               }}
             />
           </div>
