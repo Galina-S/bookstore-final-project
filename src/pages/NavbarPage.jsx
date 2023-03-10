@@ -8,21 +8,17 @@ import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
 import { PageLogout } from "./PageLogout";
 import { NewBooksPage } from "./NewBooksPage";
-import { EditBook } from "../../components/EditBook";
-
 import { Bestsellers } from "./BestsellersPage";
 import { WishListPage } from "./WishListPage";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import {
-  faCartShopping,
-  faFileCirclePlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
 import { PageSingleBook } from "./PageSingleBook";
 import { SearchField } from "../../components/SearchField";
+import ImageZoom from '../pages/ImageZoom';
 
 export const NavbarPage = () => {
   const {
@@ -40,6 +36,7 @@ export const NavbarPage = () => {
       <nav className="header-content">
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
+          
         </div>
 
         <div className="header-customer">
@@ -50,15 +47,21 @@ export const NavbarPage = () => {
                 setDropdownOpen(!dropdownOpen);
               }}
             >
-              <FontAwesomeIcon className="account_icon" icon={faUser} />
+
+                  
+             
               {currentUser.username !== "anonymousUser" ? (
+                <>
+                <img src= {currentUser.img} alt="avatar" className="avatar"/>
                 <span className={`${windowSize < 600 ? "none" : null}`}>
                   {currentUser.username}
                 </span>
+                </>
               ) : (
+                <><FontAwesomeIcon className="account_icon" icon={faUser} />
                 <span className={`${windowSize < 600 ? "none" : null}`}>
                   Mein Konto
-                </span>
+                </span></>
               )}
             </div>
 

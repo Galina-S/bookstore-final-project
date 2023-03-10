@@ -12,6 +12,11 @@
     }
   }
 
+  .avatar {
+    max-width: 45px;
+    border-radius: 50%;
+  }
+
   .header-customer {
     display: flex;
     align-items: flex-end;
@@ -35,6 +40,10 @@
 
     }
 
+    .dropdown-trigger >span {
+      text-align: center;
+    }
+
     .account_icon,
     .shopping-cart-icon,
     .wish-list-icon {
@@ -42,6 +51,14 @@
       padding-bottom: 0.3rem;
     }
 
+
+    .image-zoom {
+      transition: transform 0.4s;
+    }
+    
+    .image-zoom:hover {
+      transform: scale(1.2);
+    }
     @media screen and (max-width: 600px) {
 
       .account_icon,

@@ -47,7 +47,6 @@ export const PageBooks2 = () => {
             rawBooks.map((_book, _id)=>(
               
             <li className= "book" key={_book._id}>
-            {/* <Book book={book} />  */}
             {_book._id === editingElementId ? (
                 <EditBook book={_book} />
               ) : (

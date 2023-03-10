@@ -15,10 +15,13 @@ export const Book = (props) => {
         return <div className="card-container">
             <div className="card">
             <NavLink to={`/books/${_id}`} onClick={() => openSingleBook()}>
-            <img src={img} alt={title} height="150px"/>
+            <div className="image"><img src={img} alt={title} height="150px"/></div>
+            </NavLink>
+            <div className="artikel-details">
             <h6>{author}</h6>
             <h5>{title}</h5>
             <h4>{price} € </h4>
+            </div>
             {/* <p>{description}</p> 
             <p>{ISBN}</p>
             <p>{puplication}</p>
@@ -27,7 +30,7 @@ export const Book = (props) => {
             <p>{pages}</p>
             <p>{viewsCount}</p> */} 
         {/* <Button LinkComponent = {Link}  to={`/books/${_id}`} sx= {{mt:"auto", padding:0, margin:0}}>Details</Button> */}
-        </NavLink>
+      
         <FavoriteIcon book={book} className="favorite-icon"/>
             </div>
         
