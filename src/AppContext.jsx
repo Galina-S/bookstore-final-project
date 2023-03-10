@@ -60,7 +60,7 @@ export const AppProvider = ({ children }) => {
   const handleDeleteBook = async (_book) => {
     try {
       const res = await instance.delete(`/books/${_book._id}`);
-     
+
       if ((res.status = 200)) {
         await loadBooks();
         console.log(_book._id);
@@ -68,9 +68,6 @@ export const AppProvider = ({ children }) => {
     } catch (e) {
       console.error(`ERROR: ${e}`);
     }
-
-    
-   
   };
 
   //Single book page
@@ -134,6 +131,7 @@ export const AppProvider = ({ children }) => {
       console.error(`ERROR: ${e}`);
     }
     setFormData([]);
+    navigate("/books");
   };
 
   //Clean form data
