@@ -8,7 +8,7 @@ import { AppContext } from "../AppContext";
 export const PageNovels = () => {
   const [novels, setNovels] = useState([]);
 
-  const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
+  const {openSingleBook} =
     useContext(AppContext);
 
   useEffect(() => {
@@ -18,12 +18,16 @@ export const PageNovels = () => {
     };
     fetchNovels();
   }, []);
+
+  console.log(`${novels.length} Books`, novels);
   return (
     <div>
       <h1>Novels</h1>
-      <ul className="novels-page">
+      <h1>There are {novels.length} Books</h1>
+
+      <div className="novels-page ul">
         {novels.map((book) => (
-          <li key={book._id}>
+          <div className="li" key={book._id}>
             <div className="card-container" >
               <div className="card">
                 <NavLink
@@ -42,9 +46,9 @@ export const PageNovels = () => {
                 <FavoriteIcon book={book} className="favorite-icon" />
               </div>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
