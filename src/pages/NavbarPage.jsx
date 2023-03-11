@@ -1,22 +1,15 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { AppContext } from "../AppContext";
-import { NavLink, Routes, Route, Navigate } from "react-router-dom";
-import { PageBooks } from "../pages/PageBooks";
-import { PageBooks2 } from "../pages/PageBooks2";
-import { PageHome } from "../pages/PageHome";
 import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
-import { PageLogout } from "./PageLogout";
-import { NewBooksPage } from "./NewBooksPage";
-import { Bestsellers } from "./BestsellersPage";
-import { WishListPage } from "./WishListPage";
+import { NavLink} from "react-router-dom";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
-import { PageSingleBook } from "./PageSingleBook";
 import { SearchField } from "../../components/SearchField";
 import ImageZoom from '../pages/ImageZoom';
 
@@ -124,21 +117,6 @@ export const NavbarPage = () => {
         </div>
       </nav>
 
-      <Routes>
-        <Route path="/books" element={<PageBooks2 />} />
-        <Route path="/books2" element={<PageBooks />} />
-        <Route path="/home" element={<PageHome />} />
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/new-books" element={<NewBooksPage />} />
-        <Route path="/bestsellers" element={<Bestsellers />} />
-        <Route path="/wish-list" element={<WishListPage />} />
-        <Route path="/create-book" element={<CreateBookPage />} />
-        <Route path="/register" element={<PageRegister />} />
-        <Route path="/login" element={<PageLogin />} />
-        <Route path="/logout" element={<PageLogout />} />
-        <Route path="/books/:id" element={<PageSingleBook />} />
-       
-      </Routes>
     </div>
   );
 };

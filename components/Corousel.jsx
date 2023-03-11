@@ -1,8 +1,12 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AppContext } from "../src/AppContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router";
+
+
+
 
 export const Corousel = () => {
   const { rawBooks, loadBooks } = useContext(AppContext);
@@ -14,6 +18,20 @@ export const Corousel = () => {
     book5: useRef({}),
     book6: useRef({}),
   };
+  
+  const navigate = useNavigate();
+
+  /** useEffect(() => {
+    const fetchNovels = async () => {
+      const response = await instance.get('/novels');
+      setNovels(response.data);
+    };
+    fetchNovels();
+  }, []); */
+
+  const HandleOpenNovelsBooks = () => {
+    navigate('/novels')
+  };
 
   useEffect(() => {
     (async () => {
@@ -21,34 +39,11 @@ export const Corousel = () => {
     })();
   }, []);
 
-  const handleClick2 = (e) => {
-    const clickedElement = e.target;
-    const parentElement = clickedElement.closest(".box");
-    const id = childRefs[parentElement.classList[1]];
-    console.log(id);
-    //window.location.href = `/books/${id}`;
-  };
-  const handleClick3 = (event) => {
-    const clickedElement = event.target;
-    const parentElement = clickedElement.closest(".spring-books-all");
-    const id = childRefs[parentElement];
-    if (parentElement) {
-      const id = parentElement.id;
-      //window.location.href = `/books/${id}`;
-    }
-  };
 
   const handleClick = (id) => {
     window.location.href = `/books/${id}`;
-    /**  if (childRefs.book1 && childRefs.book1.current) {
-        const id = childRefs.book1
-        console.log(id);
-    }
-    if (childRefs.book2 && childRefs.book2.current) {
-        const id = childRefs.book2.current.id
-        console.log(id);
-    }*/
   };
+
 
   /**    const [index, setIndex] = useState(0);
     const length = 4;
@@ -76,7 +71,7 @@ export const Corousel = () => {
         <div className="content content-slide2">
           <p>Finden Sie jetzt Ihre</p>
           <p className="p2">Frühlingsstimmung</p>
-          <button className="btn">Mehr...</button>
+          <button  className="btn" onClick={HandleOpenNovelsBooks} >Mehr...</button>
         </div>
         {rawBooks.map((book) => {
           return (
@@ -201,6 +196,7 @@ export const Corousel = () => {
                 <button className="next" onClick={handleNext}>Next</button>
                 <p>{index}</p>
         </div>*/}
+
     </Carousel>
   );
 };
