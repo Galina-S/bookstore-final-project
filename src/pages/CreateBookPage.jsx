@@ -50,7 +50,7 @@ export const CreateBookPage = () => {
               name="img"
               defaultValue={formData.img || placeholderImage}
               type="text"
-              maxLength={100}
+              maxLength={200}
               onChange={(e) => {
                 handleAddBookForm(e, "img");
               }}

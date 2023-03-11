@@ -117,15 +117,18 @@ export const AppProvider = ({ children }) => {
     if (e.target.name === "ISBN") {
       value = value.match(/\d+/g).join([]);
     }
+
     setFormData({ ...formData, [e.target.name]: value });
   };
 
   const sendNewBook = async (e) => {
     e.preventDefault();
+    //setFormData({ ...formData, category: "bla" });
     try {
       const res = await instance.post(`/books/`, formData);
       if ((res.status = 200)) {
         await loadBooks();
+        console.log(formData);
       }
     } catch (e) {
       console.error(`ERROR: ${e}`);
