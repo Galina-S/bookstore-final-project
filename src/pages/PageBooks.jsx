@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
-import { EditBook } from "../../components/EditBook";
+import { EditBook } from "../../src/pages/EditBook";
 import { useEffect, useRef } from "react";
 import { DisplayBook } from "../../components/DisplayBook";
 

@@ -99,14 +99,20 @@ export const AppProvider = ({ children }) => {
 
   const sendEditBook = async (e) => {
     e.preventDefault();
+    //let _category = formData.category.split(",").trim();
+    console.log(formData.category);
     try {
-      const res = await instance.put(`/books/${editingElementId}`, formData);
+      const res = await instance.put(`/books/${editingElementId}`, {
+        ...formData,
+        //category: _category,
+      });
       if ((res.status = 200)) {
         await loadBooks();
       }
     } catch (e) {
       console.error(`ERROR: ${e}`);
     }
+    navigate(`/books/`);
     setEditingElementId(null);
   };
 
@@ -123,7 +129,7 @@ export const AppProvider = ({ children }) => {
 
   const sendNewBook = async (e) => {
     e.preventDefault();
-    let _category = formData.category.split(", ");
+    let _category = formData.category.split(",");
 
     try {
       const res = await instance.post(`/books/`, {

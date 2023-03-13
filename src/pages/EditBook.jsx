@@ -1,9 +1,12 @@
-import { useContext, useState } from "react";
-import { AppContext } from "../src/AppContext";
+import { useContext } from "react";
+import { useLocation, useParams } from "react-router";
+import { AppContext } from "../AppContext";
 
-export const EditBook = ({ book }) => {
-  const { handleChangeFormField, sendEditBook, placeholderImage } =
+export const EditBook = () => {
+  const { handleChangeFormField, sendEditBook, placeholderImage, formData } =
     useContext(AppContext);
+
+  const book = formData;
 
   return (
     <form className="editForm" onSubmit={(e) => sendEditBook(e)}>
@@ -99,7 +102,7 @@ export const EditBook = ({ book }) => {
               name="category"
               defaultValue={book.category}
               type="text"
-              maxLength={30}
+              maxLength={100}
               onChange={(e) => {
                 handleChangeFormField(e, "category");
               }}
@@ -138,7 +141,7 @@ export const EditBook = ({ book }) => {
             />
           </div>
         </div>
-        
+
         <div className="row">
           <label>ISBN</label>
           <div>
@@ -155,7 +158,7 @@ export const EditBook = ({ book }) => {
             />
           </div>
         </div>
-        
+
         <div className="buttonRow">
           <button>Cancel</button>
           <button type="submit">Save</button>

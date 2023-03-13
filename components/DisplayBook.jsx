@@ -12,15 +12,15 @@ export const DisplayBook = (props) => {
     <div className="info">
       <div className="book" key={props.book._id}>
         <div className="book-cover">
-        <NavLink
+          <NavLink
             to={`/books/${book._id}`}
             onClick={() => openSingleBook(book)}
           >
-          <img src={book.img || placeholderImage} alt="" />
+            <img src={book.img || placeholderImage} alt="" />
           </NavLink>
         </div>
         <div className="content">
-        <div className="title">
+          <div className="title">
             <h2>{book.title} </h2>
             <FavoriteIcon book={book} />
           </div>
@@ -52,7 +52,6 @@ export const DisplayBook = (props) => {
           </div>
           <div className="viewsCount">
             <p>ViewsCount: {book.viewsCount} </p>
-          
           </div>
         </div>
       </div>
@@ -68,7 +67,7 @@ export const DisplayBook = (props) => {
             to={`/books/${book._id}`}
             onClick={() => openSingleBook(book)}
           >
-            <button className ="delete-button">Go to book page</button>
+            <button className="delete-button">Go to book page</button>
           </NavLink>
 
           <button
