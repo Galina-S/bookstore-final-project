@@ -123,12 +123,15 @@ export const AppProvider = ({ children }) => {
 
   const sendNewBook = async (e) => {
     e.preventDefault();
-    //setFormData({ ...formData, category: "bla" });
+    let _category = formData.category.split(", ");
+
     try {
-      const res = await instance.post(`/books/`, formData);
+      const res = await instance.post(`/books/`, {
+        ...formData,
+        category: _category,
+      });
       if ((res.status = 200)) {
         await loadBooks();
-        console.log(formData);
       }
     } catch (e) {
       console.error(`ERROR: ${e}`);
