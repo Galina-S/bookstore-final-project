@@ -24,6 +24,8 @@ export const AppProvider = ({ children }) => {
   //Search input
   const [searchTerm, setSearchTerm] = useState(" ");
   const [dropdownValue, setDropdownValue] = useState("title");
+  //Shopping cart
+  const [cart, setCart] = useState([]);
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
 
@@ -100,7 +102,7 @@ export const AppProvider = ({ children }) => {
   const sendEditBook = async (e) => {
     e.preventDefault();
     //let _category = formData.category.split(",").trim();
-    console.log(formData.category);
+
     try {
       const res = await instance.put(`/books/${editingElementId}`, {
         ...formData,
@@ -179,6 +181,8 @@ export const AppProvider = ({ children }) => {
   const sendDropdownValue = (e) => {
     setDropdownValue(e.target.value);
   };
+
+  //Shopping cart
 
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
