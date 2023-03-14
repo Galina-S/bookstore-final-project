@@ -1,59 +1,18 @@
-import { AppContext } from "../AppContext";
 import { useContext, useState, useEffect } from "react";
 import FavoriteIcon from "../../components/FavoriteIcon";
-import { AiFillEye, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiFillEye, AiOutlineShoppingCart, AiOutlineArrowRight} from 'react-icons/ai';
 import axios from 'axios';
 import {baseURL} from '../../components/axios'
 import {useParams} from 'react-router-dom'
 
+
+import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+
+
 import ImageZoom from '../pages/ImageZoom';
 
 export const PageSingleBook = ()  => {
-  const { openBook } = useContext(AppContext);
-
-  
-  // const [title, setTitle] = useState('');
-  // const [img, setImg] = useState('');
-  // const [author, setAuthor] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [viewsCount, setViewsCount] = useState('');
-  // const [price, setPrice] = useState('');
-  // const [ISBN, setISBN] = useState('');
-  // const [puplication, setPuplication] = useState('');
-  // const [category, setCategory] = useState('');
-  // const [publisher, setPublisher] = useState('');
-  // const [pages, setPages] = useState('');
-
-
-  // const id = useParams().id;
-  // console.log(id);
-
-  // useEffect (()=> {
-  //   const fetchHandler = async() => {
-     
-  //     await axios
-  //     .get(`${baseURL}/books/${id}`)
-  //     .then((res)=> res.data)
-  //     .then(data=>{
-  //       setTitle(data.book.title);
-  //       setImg(data.book.img);
-  //       setAuthor(data.book.author);
-  //       setDescription(data.book.description);
-  //       setViewsCount(data.book.viewsCount);
-  //       setPrice(data.book.price);
-  //       setISBN(data.book.ISBN);
-  //       setPuplication(data.book.puplication);
-  //       setCategory(data.book.category);
-  //       setPublisher(data.book.publisher);
-  //       setPages(data.book.pages);
-  //     })
-  //     // .then((res)=> console.log(res.data));
-  //        // setBook(res.data) 
-         
-  
-  //   };
-  //    fetchHandler();
-  //   },[id]) 
+  const [openDialog, setOpenDialog] = useState(false);
 
     const { id } = useParams();
     const [data, setData] = useState({});
@@ -81,10 +40,7 @@ export const PageSingleBook = ()  => {
             {/* <FavoriteIcon book={openBook} /> */}
           </div>
         
-         
-
-
-        <div className="artikel-informationen">
+          <div className="artikel-informationen">
             <div className="title">
               <h1>{data.book?.title} </h1>
             </div>
@@ -93,7 +49,7 @@ export const PageSingleBook = ()  => {
             </div>
             
             <div className="price">
-            <p>{data.book?.price} € <span className="span">inkl. gesetzl. MwSt.</span></p> 
+            <p>{data.book?.price && data.book.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })} <span className="span">inkl. gesetzl. MwSt.</span></p> 
              
             </div>
             <div className="lieferbarkeit-versandkosten">
@@ -108,25 +64,52 @@ export const PageSingleBook = ()  => {
             <div className="inhalt-beschreibung">
             <h2>Beschreibung</h2>
                     <div className="description">
-                        <p> {data.book?.description}</p>
+                        <p> {data.book?.description.substring(0, 200)+' ...'}</p>
                     </div>
+                    <br/>
+                    {/* <button interaction="zusatztexte-overlay-oeffnen" data-dialog="zusatztexte"> Weiterlesen</button> */}
+
+                    <dialog className="element-overlay-slide-in" data-dialog-name="zusatztexte" open></dialog>
+                    <div>
+                     
+                    <button className = "button-full-description"variant="contained" color="primary" onClick={() => setOpenDialog(true)}>
+                      Weiterlesen <AiOutlineArrowRight />
+                    </button>
+
+                      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+                      <DialogTitle><strong>Beschreibung</strong></DialogTitle>
+                      <DialogContent>
+                      <p style={{ 
+                        fontSize: '12px', 
+                        lineHeight: '1.5', 
+                        textAlign: "justify"
+                      }}>{data.book?.description}</p>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                    
             </div> 
             <div className="details-default">
-                  <div className="isbn">
-                    <h2>Details</h2>
-                    <p>ISBN: {data.book?.ISBN}</p>
+                   <h2>Details</h2>
+                   <div className="publisher">
+                    <p><span className="details-name">Verlag: </span>{data.book?.publisher}</p>
                   </div>
                   <div className="publicationDate">
-                    <p>Erscheinungsdatum: {data.book?.puplication}</p>
+                    <p><span className="details-name">Erscheinungsdatum: </span>
+                      {data.book?.puplication 
+                      && new Date(data.book.puplication).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}
+                    </p>
+                    
                   </div>
                   <div className="category">
-                    <p>Genre: {data.book?.category}</p>
+                    <p><span className="details-name">Genre: </span>{data.book?.category && data.book.category.join(', ')}</p>
                   </div>
-                  <div className="publisher">
-                    <p>Verlag: {data.book?.publisher}</p>
-                  </div>
+                 
                   <div className="pages">
-                    <p>Seitenzahl: {data.book?.pages}</p>
+                    <p><span className="details-name">Seitenzahl: </span>{data.book?.pages}</p>
+                  </div>
+                  <div className="isbn">
+                    <p><span className="details-name">ISBN: </span>{data.book?.ISBN}</p>
                   </div>
                 <br />
                   <div className="views">

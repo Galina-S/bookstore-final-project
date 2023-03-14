@@ -11,7 +11,6 @@ import { faCartShopping, faFileCirclePlus } from "@fortawesome/free-solid-svg-ic
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
 import { SearchField } from "../../components/SearchField";
-import ImageZoom from '../pages/ImageZoom';
 
 export const NavbarPage = () => {
   const {
