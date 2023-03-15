@@ -175,7 +175,7 @@ export const AppProvider = ({ children }) => {
         }
       })
     );
-    setSearchTerm("");
+    setSearchTerm(" ");
   };
 
   const sendDropdownValue = (e) => {
