@@ -33,7 +33,11 @@ function App() {
         <Route path="/books" element={<PageBooks2 />} />
         <Route path="/books2" element={<PageBooks />} />
         <Route path="/home/*" element={<PageHome />} />
+
         <Route path="novels" element={<PageNovels />} />
+          <Route path="novels" element={<PageNovels />} />
+          <Route path="/books/category=:category">
+        </Route>
 
         <Route path="/" element={<Navigate to="/home/*" />} />
         <Route path="/new-books" element={<NewBooksPage />} />

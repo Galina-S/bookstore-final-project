@@ -4,12 +4,13 @@ import { AppContext } from "../src/AppContext";
 import { useContext, useEffect, useState } from "react";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router";
+import { Link } from 'react-router-dom';
 
 
 
 
 export const Corousel = () => {
-  const { rawBooks, loadBooks } = useContext(AppContext);
+  const { rawBooks, loadBooks, setFilteredJugendBooks } = useContext(AppContext);
   const childRefs = {
     book1: useRef({}),
     book2: useRef({}),
@@ -20,14 +21,6 @@ export const Corousel = () => {
   };
   
   const navigate = useNavigate();
-
-  /** useEffect(() => {
-    const fetchNovels = async () => {
-      const response = await instance.get('/novels');
-      setNovels(response.data);
-    };
-    fetchNovels();
-  }, []); */
 
   const HandleOpenNovelsBooks = () => {
     navigate('/novels')
@@ -44,6 +37,15 @@ export const Corousel = () => {
     window.location.href = `/books/${id}`;
   };
 
+
+  const handleCategoryJugendBooks = () => {
+    const filter = rawBooks.filter((book) =>
+      book.category.includes("Jugend")
+    );
+    setFilteredJugendBooks(filter);
+    navigate('/books');
+  
+  };
 
   /**    const [index, setIndex] = useState(0);
     const length = 4;
@@ -185,7 +187,7 @@ export const Corousel = () => {
           </div>
           <div className="slide3-content2">
             <p>Findet gleich euer nächstes Must-Read:</p>
-            <button className="btn">Zu den Büchern</button>
+            <button className="btn" onClick={handleCategoryJugendBooks}>Zu den Büchern</button>
           </div>
         </div>
       </div>

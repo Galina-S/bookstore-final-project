@@ -11,7 +11,6 @@ import { faCartShopping, faFileCirclePlus } from "@fortawesome/free-solid-svg-ic
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
 import { SearchField } from "../../components/SearchField";
-import ImageZoom from '../pages/ImageZoom';
 
 export const NavbarPage = () => {
   const {
@@ -105,7 +104,7 @@ export const NavbarPage = () => {
           <NavLink to="/books2">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-          <NavLink to="/books">Books</NavLink>
+          <NavLink to="/books" onClick={() => setFilteredJugendBooks([])}>Books</NavLink>
           
           {/*currentUser.username==="anonymousUser" ? 
           (  null

@@ -19,7 +19,7 @@ export const CreateBookPage = () => {
               name="title"
               defaultValue={formData.title}
               type="text"
-              maxLength={50}
+              maxLength={60}
               onChange={(e) => {
                 handleAddBookForm(e, "title");
               }}

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { EditBook } from "../../src/pages/EditBook";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import { Book } from "../pages/Book";
 
 export const PageBooks2 = () => {
@@ -13,7 +12,12 @@ export const PageBooks2 = () => {
     cleanFormData,
     setEditingElementId,
     searchTerm,
+    filteredJugendBooks
   } = useContext(AppContext);
+
+
+  
+  
 
   useEffect(() => {
     if (searchTerm !== "") {
@@ -42,12 +46,23 @@ export const PageBooks2 = () => {
   //  };
   //}, []);
 
+  
+
+
   return (
     <div className="pageBooks2">
-      <h2>There are {rawBooks.length} books</h2>
       <ul>
-        {rawBooks &&
-          rawBooks.map((_book, _id) => (
+      {filteredJugendBooks.length > 0 ? (
+        filteredJugendBooks.map((_book) => {
+          return (
+            <li className="book" key={_book._id}>
+              <Book book={_book} />
+            </li>
+          );
+        })
+      ) : (
+        rawBooks.map((_book) => {
+          return (
             <li className="book" key={_book._id}>
               {_book._id === editingElementId ? (
                 <EditBook book={_book} />
@@ -55,8 +70,10 @@ export const PageBooks2 = () => {
                 <Book book={_book} />
               )}
             </li>
-          ))}
-      </ul>
+          );
+        })
+      )}
+    </ul>
     </div>
   );
 };

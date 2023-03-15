@@ -31,6 +31,10 @@ export const AppProvider = ({ children }) => {
 
   const BOOK_DETAILS_URL = "http://localhost:5173/books";
 
+  //FilteredBooks by Category
+  const [filteredJugendBooks, setFilteredJugendBooks] = useState([]);
+
+
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
@@ -57,6 +61,7 @@ export const AppProvider = ({ children }) => {
       _books.push(_book);
     });
     setRawBooks(_books);
+
   };
 
   const handleDeleteBook = async (_book) => {
@@ -332,6 +337,8 @@ export const AppProvider = ({ children }) => {
         sendDropdownValue,
 
         BOOK_DETAILS_URL,
+        filteredJugendBooks,
+        setFilteredJugendBooks
       }}
     >
       {children}
