@@ -104,7 +104,7 @@ export const NavbarPage = () => {
           <NavLink to="/books2">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-          <NavLink to="/books">Books</NavLink>
+          <NavLink to="/books" onClick={() => setFilteredJugendBooks([])}>Books</NavLink>
           
           {/*currentUser.username==="anonymousUser" ? 
           (  null
