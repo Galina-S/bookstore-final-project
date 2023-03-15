@@ -91,13 +91,13 @@ export const NavbarPage = () => {
             <FontAwesomeIcon className="wish-list-icon" icon={faHeart} />
             <span className={windowSize < 600 ? "none" : null}>Merkzettel</span>
           </NavLink>
-          <div to="/home" className="shopping-cart">
+          <NavLink to="/cart" className="shopping-cart">
             <FontAwesomeIcon
               className="shopping-cart-icon"
               icon={faCartShopping}
             />
             <span className={windowSize < 600 ? "none" : null}>Warenkorb</span>
-          </div>
+          </NavLink>
         </div>
       </nav>
 

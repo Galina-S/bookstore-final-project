@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useLocation, useParams } from "react-router";
 import { AppContext } from "../AppContext";
 
 export const EditBook = () => {
