@@ -12,15 +12,11 @@ export const PageBooks2 = () => {
     cleanFormData,
     setEditingElementId,
     searchTerm,
-    filteredJugendBooks
+    filteredJugendBooks,
   } = useContext(AppContext);
 
-
-  
-  
-
   useEffect(() => {
-    if (searchTerm !== "") {
+    if (searchTerm !== " ") {
       (async () => {
         loadBooks();
       })();
@@ -46,34 +42,29 @@ export const PageBooks2 = () => {
   //  };
   //}, []);
 
-  
-
-
   return (
     <div className="pageBooks2">
       <ul>
-      {filteredJugendBooks.length > 0 ? (
-        filteredJugendBooks.map((_book) => {
-          return (
-            <li className="book" key={_book._id}>
-              <Book book={_book} />
-            </li>
-          );
-        })
-      ) : (
-        rawBooks.map((_book) => {
-          return (
-            <li className="book" key={_book._id}>
-              {_book._id === editingElementId ? (
-                <EditBook book={_book} />
-              ) : (
-                <Book book={_book} />
-              )}
-            </li>
-          );
-        })
-      )}
-    </ul>
+        {filteredJugendBooks.length > 0
+          ? filteredJugendBooks.map((_book) => {
+              return (
+                <li className="book" key={_book._id}>
+                  <Book book={_book} />
+                </li>
+              );
+            })
+          : rawBooks.map((_book) => {
+              return (
+                <li className="book" key={_book._id}>
+                  {_book._id === editingElementId ? (
+                    <EditBook book={_book} />
+                  ) : (
+                    <Book book={_book} />
+                  )}
+                </li>
+              );
+            })}
+      </ul>
     </div>
   );
 };

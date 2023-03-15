@@ -34,7 +34,6 @@ export const AppProvider = ({ children }) => {
   //FilteredBooks by Category
   const [filteredJugendBooks, setFilteredJugendBooks] = useState([]);
 
-
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   let dropdownRef = useRef();
@@ -61,7 +60,6 @@ export const AppProvider = ({ children }) => {
       _books.push(_book);
     });
     setRawBooks(_books);
-
   };
 
   const handleDeleteBook = async (_book) => {
@@ -187,6 +185,11 @@ export const AppProvider = ({ children }) => {
     setDropdownValue(e.target.value);
   };
 
+  //Reset books page
+  const resetBooksPage = () => {
+    setFilteredJugendBooks([]);
+    loadBooks();
+  };
   //Shopping cart
 
   //Log in form
@@ -338,7 +341,8 @@ export const AppProvider = ({ children }) => {
 
         BOOK_DETAILS_URL,
         filteredJugendBooks,
-        setFilteredJugendBooks
+        setFilteredJugendBooks,
+        resetBooksPage,
       }}
     >
       {children}

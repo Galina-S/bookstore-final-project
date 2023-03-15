@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
-import { NavLink} from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faCartShopping, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faFileCirclePlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { CreateBookPage } from "./CreateBookPage";
 import { SearchField } from "../../components/SearchField";
@@ -21,6 +23,8 @@ export const NavbarPage = () => {
     dropdownRef,
     cleanFormData,
     loadBooks,
+    setFilteredJugendBooks,
+    resetBooksPage,
   } = useContext(AppContext);
 
   return (
@@ -28,7 +32,6 @@ export const NavbarPage = () => {
       <nav className="header-content">
         <div className="logo">
           <NavLink to="/home">LOGO</NavLink>
-          
         </div>
 
         <div className="header-customer">
@@ -39,21 +42,20 @@ export const NavbarPage = () => {
                 setDropdownOpen(!dropdownOpen);
               }}
             >
-
-                  
-             
               {currentUser.username !== "anonymousUser" ? (
                 <>
-                <img src= {currentUser.img} alt="avatar" className="avatar"/>
-                <span className={`${windowSize < 600 ? "none" : null}`}>
-                  {currentUser.username}
-                </span>
+                  <img src={currentUser.img} alt="avatar" className="avatar" />
+                  <span className={`${windowSize < 600 ? "none" : null}`}>
+                    {currentUser.username}
+                  </span>
                 </>
               ) : (
-                <><FontAwesomeIcon className="account_icon" icon={faUser} />
-                <span className={`${windowSize < 600 ? "none" : null}`}>
-                  Mein Konto
-                </span></>
+                <>
+                  <FontAwesomeIcon className="account_icon" icon={faUser} />
+                  <span className={`${windowSize < 600 ? "none" : null}`}>
+                    Mein Konto
+                  </span>
+                </>
               )}
             </div>
 
@@ -104,8 +106,10 @@ export const NavbarPage = () => {
           <NavLink to="/books2">Bücher</NavLink>
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
-          <NavLink to="/books" onClick={() => setFilteredJugendBooks([])}>Books</NavLink>
-          
+          <NavLink to="/books" onClick={resetBooksPage}>
+            Books
+          </NavLink>
+
           {/*currentUser.username==="anonymousUser" ? 
           (  null
           )
@@ -115,7 +119,6 @@ export const NavbarPage = () => {
           </div>
         </div>
       </nav>
-
     </div>
   );
 };
