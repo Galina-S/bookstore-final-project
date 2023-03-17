@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import FavoriteIcon from "../../components/FavoriteIcon";
 
+
 export const Book = (props) => {
   const {
     _id,
@@ -18,6 +19,17 @@ export const Book = (props) => {
     pages,
     viewsCount,
   } = props.book;
+
+//   const [viewsCount, setViewsCount] = useState(0);
+//   useEffect(() => {
+//     axios.get('/api/book/viewsCount')
+//       .then(res => {
+//         setViewsCount(res.data.viewsCount);
+//       })
+//       .catch(err => console.log(err));
+//   }, []);
+
+
 
   const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
     useContext(AppContext);
@@ -37,15 +49,6 @@ export const Book = (props) => {
           <h5>{title}</h5>
           <h4>{price} € </h4>
         </div>
-        {/* <p>{description}</p> 
-            <p>{ISBN}</p>
-            <p>{puplication}</p>
-            <p>{category}</p>
-            <p>{publisher}</p>
-            <p>{pages}</p>
-            <p>{viewsCount}</p> */}
-        {/* <Button LinkComponent = {Link}  to={`/books/${_id}`} sx= {{mt:"auto", padding:0, margin:0}}>Details</Button> */}
-
         <FavoriteIcon book={book} className="favorite-icon" />
       </div>
 

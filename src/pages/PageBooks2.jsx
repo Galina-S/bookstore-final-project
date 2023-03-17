@@ -46,9 +46,6 @@ export const PageBooks2 = () => {
   //  };
   //}, []);
 
-  
-
-
   return (
     <div className="pageBooks2">
       <ul>

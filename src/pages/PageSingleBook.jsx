@@ -4,7 +4,7 @@ import { AiFillEye, AiOutlineShoppingCart, AiOutlineArrowRight} from 'react-icon
 import axios from 'axios';
 import {baseURL} from '../../components/axios'
 import {useParams} from 'react-router-dom'
-
+import { AppContext } from "../AppContext";
 
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 
@@ -14,8 +14,8 @@ import ImageZoom from '../pages/ImageZoom';
 export const PageSingleBook = ()  => {
   const [openDialog, setOpenDialog] = useState(false);
 
-    const { id } = useParams();
-    const [data, setData] = useState({});
+  const { id } = useParams();
+  const [data, setData] = useState({});
       useEffect(() => {
         (async () => {
             axios
@@ -30,14 +30,16 @@ export const PageSingleBook = ()  => {
         })()
     }, [id]);
     console.log(data);
-  
+
+
+    
  return (
       <div className="content">
         <div className="content-wrapper">
          <div className="medien-shadow-box">
             <ImageZoom src={data.book?.img}  alt={data.book?.title} height="200px" />
             {/* <img src={data.book?.img} alt={data.book?.title} height="200px"/> */}
-            {/* <FavoriteIcon book={openBook} /> */}
+            {/* <FavoriteIcon book={data.book} /> */}
           </div>
         
           <div className="artikel-informationen">
@@ -114,16 +116,9 @@ export const PageSingleBook = ()  => {
                 <br />
                   <div className="views">
                   <p><AiFillEye />Ansichten: {data.book?.viewsCount}</p>
-                  </div>
-
-        </div>
-        
-        </div>
-
-     
-            
-     
-           
+                  </div>                  
+        </div>        
+        </div>           
     </div>
   );
 };
