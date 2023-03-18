@@ -64,7 +64,7 @@ export const Corousel = () => {
       {/**Slide1*/} 
             <div className="container-corousel slide1">
                <div className="content content-slide1">
-                <h3>Slide1</h3>
+                {/* <h3>Slide1</h3> */}
                 <button className="btn" >Show more</button>
                 </div>
             </div>

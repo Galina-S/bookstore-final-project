@@ -39,7 +39,8 @@ export const DisplayBook = (props) => {
             <p>ISBN: {book.ISBN}</p>
           </div>
           <div className="publicationDate">
-            <p>Public: {book.puplication}</p>
+          <p>Public: {book?.puplication
+           && new Date(book.puplication).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
           </div>
           <div className="category">
             <p>Genre: {book.category.join(", ")}</p>
@@ -67,13 +68,22 @@ export const DisplayBook = (props) => {
             to={`/books/${book._id}`}
             onClick={() => openSingleBook(book)}
           >
-            <button className="delete-button">Go to book page</button>
+            <button className="delete-button" >Go to book page</button>
           </NavLink>
 
           <button
             className="deleteButton"
-            onClick={() => handleDeleteBook(book)}
-          >
+
+            onClick={() => {
+              if (
+                window.confirm(
+                  "Sind Sie sicher, dass Sie dieses Buch löschen möchten?"
+                )
+              ) {
+                handleDeleteBook(book);
+              }
+            }}
+            >
             {" "}
             Delete{" "}
           </button>

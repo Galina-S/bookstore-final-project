@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {  BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 
-const Favorite = ({ book }) => {
+const FavoriteIcon = ({ book }) => {
     const [isFavorite, setIsFavorite] = useState(false);
   
     useEffect(() => {
-      const favorite = localStorage.getItem(book.title);
+      const favorite = localStorage.getItem(book?.title);
       if (favorite !== null) {
         setIsFavorite(favorite === 'true');
       }
-    }, [book.title]);
+    }, [book?.title]);
 
     useEffect(() => {
-      localStorage.setItem(book.title, isFavorite);
-    }, [book.title, isFavorite]);
+      localStorage.setItem(book?.title, isFavorite);
+    }, [book?.title, isFavorite]);
 
     const handleFavoriteClick = () => {
       setIsFavorite(!isFavorite);
@@ -38,5 +38,5 @@ const Favorite = ({ book }) => {
     );
   };
   
-  export default Favorite;
+  export default FavoriteIcon;
   

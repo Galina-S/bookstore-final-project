@@ -20,17 +20,6 @@ export const Book = (props) => {
     viewsCount,
   } = props.book;
 
-//   const [viewsCount, setViewsCount] = useState(0);
-//   useEffect(() => {
-//     axios.get('/api/book/viewsCount')
-//       .then(res => {
-//         setViewsCount(res.data.viewsCount);
-//       })
-//       .catch(err => console.log(err));
-//   }, []);
-
-
-
   const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
     useContext(AppContext);
 

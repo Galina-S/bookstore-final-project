@@ -109,18 +109,33 @@
       
     }
 
-    .content {
-      .medien-shadow-box {
-          display: flex;
-          flex-direction: column;
-          width:660px;
-          height:500px;
-          border-bottom-right-radius: 120px;
-          box-shadow: 5px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px
-        }
+
+
+
+    // .content {
+    //   .medien-shadow-box {
+    //       position: relative;
+    //       display: flex;
+    //       flex-direction: column;
+    //       justify-content: center;
+    // align-items: center;
+    //       width:600px;
+    //       height:350px;
+    //       border-bottom-right-radius: 120px;
+    //       box-shadow: 5px;
+    //       box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+
+    //       .favorite-icon-single-book {
+    //         position: absolute;
+    //         top: 20px;
+    //         right: 15px;
+    //         cursor: pointer;
+            
+    //       }
+    //     }
+        
       
-    }
+    // }
 
 } 
 

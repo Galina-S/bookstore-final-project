@@ -16,12 +16,12 @@ export const PageSingleBook = ()  => {
 
   const { id } = useParams();
   const [data, setData] = useState({});
+
       useEffect(() => {
         (async () => {
             axios
            .get(`${baseURL}/books/${id}`)
-           .then(res => {  <img src={data.book?.img} alt={data.book?.title} height="150px"/>
-           {/* <FavoriteIcon book={openBook} /> */}
+           .then(res => {  <img src={data.book?.img} alt={data.book?.title} height="150px"/>,
             setData(res.data)
           })
           .catch((err)=>{
@@ -37,11 +37,11 @@ export const PageSingleBook = ()  => {
       <div className="content">
         <div className="content-wrapper">
          <div className="medien-shadow-box">
+          <div className="image-container">
             <ImageZoom src={data.book?.img}  alt={data.book?.title} height="200px" />
-            {/* <img src={data.book?.img} alt={data.book?.title} height="200px"/> */}
-            {/* <FavoriteIcon book={data.book} /> */}
+            <FavoriteIcon book={data.book} className="favorite-icon-single-book" />
           </div>
-        
+          </div>
           <div className="artikel-informationen">
             <div className="title">
               <h1>{data.book?.title} </h1>
@@ -57,8 +57,8 @@ export const PageSingleBook = ()  => {
             <div className="lieferbarkeit-versandkosten">
               <a className="element-link-standard versandkosten-link" href="#">Versandkostenfrei</a></div>
             <button className="element-button-primary">
-              <span><AiOutlineShoppingCart /></span>
-                In den Warenkorb</button>
+              <span><AiOutlineShoppingCart /> </span>
+              In den Warenkorb</button>
         </div>
         </div>
          
@@ -75,7 +75,7 @@ export const PageSingleBook = ()  => {
                     <div>
                      
                     <button className = "button-full-description"variant="contained" color="primary" onClick={() => setOpenDialog(true)}>
-                      Weiterlesen <AiOutlineArrowRight />
+                      Weiterlesen<AiOutlineArrowRight />
                     </button>
 
                       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
@@ -97,25 +97,25 @@ export const PageSingleBook = ()  => {
                     <p><span className="details-name">Verlag: </span>{data.book?.publisher}</p>
                   </div>
                   <div className="publicationDate">
-                    <p><span className="details-name">Erscheinungsdatum: </span>
+                    <p><span className="details-name">Erscheinungsdatum:  </span>
                       {data.book?.puplication 
                       && new Date(data.book.puplication).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}
                     </p>
                     
                   </div>
                   <div className="category">
-                    <p><span className="details-name">Genre: </span>{data.book?.category && data.book.category.join(', ')}</p>
+                    <p><span className="details-name">Genre:  </span>{data.book?.category && data.book.category.join(', ')}</p>
                   </div>
                  
                   <div className="pages">
-                    <p><span className="details-name">Seitenzahl: </span>{data.book?.pages}</p>
+                    <p><span className="details-name">Seitenzahl:  </span>{data.book?.pages}</p>
                   </div>
                   <div className="isbn">
-                    <p><span className="details-name">ISBN: </span>{data.book?.ISBN}</p>
+                    <p><span className="details-name">ISBN:  </span>{data.book?.ISBN}</p>
                   </div>
                 <br />
                   <div className="views">
-                  <p><AiFillEye />Ansichten: {data.book?.viewsCount}</p>
+                  <p><AiFillEye /> Ansichten:  {data.book?.viewsCount}</p>
                   </div>                  
         </div>        
         </div>           

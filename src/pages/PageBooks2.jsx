@@ -48,7 +48,8 @@ export const PageBooks2 = () => {
 
   return (
     <div className="pageBooks2">
-      <ul>
+      {/* <h2>There are {rawBooks.length} books</h2> */}
+      <ul> 
       {filteredJugendBooks.length > 0 ? (
         filteredJugendBooks.map((_book) => {
           return (
