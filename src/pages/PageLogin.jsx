@@ -1,5 +1,6 @@
 import React, { useRef, useContext, useEffect} from 'react';
 import { AppContext } from '../AppContext';
+import { AiOutlineExclamationCircle } from  'react-icons/ai';
 
 export const PageLogin = () => {
   const {
@@ -57,10 +58,14 @@ export const PageLogin = () => {
             onKeyDown={(e) => handleKeyDown(e)}
             type="password"
           />
-          <div>
-            <div className="message">{loginForm.message}</div>
+          <div className='signin-container'>
+            <div className="message">
+              
+              <p className={loginForm.message ? "message" : "offscreen"} aria-live="assertive">
+              <AiOutlineExclamationCircle size={15} /> {loginForm.message}</p></div>
             <button
               className="btn-login"
+              disabled={!loginForm.fields.username || !loginForm.fields.password  ? true : false}
               type="button"
               onClick={() => {submitLoginFormWrapper()
               currentUser ? setDropdownOpen(!dropdownOpen)

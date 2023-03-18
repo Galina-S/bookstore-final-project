@@ -35,16 +35,9 @@
    }
 }
 
-
-
 .App {
   margin: 0 8%;
   min-height: 100vh;
-
-  body {
-    background-color: rgb(245, 245, 245);
-    color: rgb(50, 50, 50);
-  }
 
   .btn {
     padding: 0.5rem 2.5rem;
@@ -70,13 +63,6 @@
 //   background-image: linear-gradient(79deg, #e8c7fd, #e9b6e0 48%, #c3f8ff);
 // }
 
-.auth-form-container,
-.login-form,
-.register-form {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
 
 @media screen and (min-width: 600px) {
   .auth-form-container {

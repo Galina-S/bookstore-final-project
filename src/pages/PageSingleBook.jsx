@@ -4,7 +4,6 @@ import { AiFillEye, AiOutlineShoppingCart, AiOutlineArrowRight} from 'react-icon
 import axios from 'axios';
 import {baseURL} from '../../components/axios'
 import {useParams} from 'react-router-dom'
-import { AppContext } from "../AppContext";
 
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 
