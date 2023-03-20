@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 export const Corousel = () => {
-  const { rawBooks, loadBooks, setFilteredJugendBooks } = useContext(AppContext);
+  const { rawBooks, loadBooks, setFilteredJugendBooks, carouselRef } = useContext(AppContext);
   const childRefs = {
     book1: useRef({}),
     book2: useRef({}),
@@ -19,7 +19,8 @@ export const Corousel = () => {
     book5: useRef({}),
     book6: useRef({}),
   };
-  
+
+
   const navigate = useNavigate();
 
   const HandleOpenNovelsBooks = () => {
@@ -68,7 +69,7 @@ export const Corousel = () => {
     }
      */
   return (
-    <Carousel className="carousel" showThumbs={false} autoPlay interval={4000} infiniteLoop={true}>
+    <Carousel className="carousel" showThumbs={false} autoPlay interval={4000} infiniteLoop={true}  ref={carouselRef}>
       {/**Slide1*/} 
             <div className="container-corousel slide1">
               <div className="content-slide1">

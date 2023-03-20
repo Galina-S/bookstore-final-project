@@ -16,6 +16,7 @@ import { SearchField } from "../../components/SearchField";
 
 export const NavbarPage = () => {
   const {
+    goToFirstSlide,
     currentUser,
     windowSize,
     dropdownOpen,
@@ -31,7 +32,7 @@ export const NavbarPage = () => {
     <div>
       <nav className="header-content">
         <div className="logo">
-          <NavLink to="/home">LOGO</NavLink>
+          <NavLink to="/home" onClick={goToFirstSlide}>LOGO</NavLink>
         </div>
 
         <div className="header-customer">

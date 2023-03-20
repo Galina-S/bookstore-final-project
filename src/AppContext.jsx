@@ -301,9 +301,19 @@ export const AppProvider = ({ children }) => {
 
   //console.log(windowSize);
 
+  
+  //Carousel go to First Slide
+  const carouselRef = useRef(null); 
+
+  const goToFirstSlide = () => {
+    carouselRef.current?.goToSlide(0); 
+  };
+
   return (
     <AppContext.Provider
       value={{
+        carouselRef,
+        goToFirstSlide,
         rawBooks,
         handleDeleteBook,
         handleEditBook,
