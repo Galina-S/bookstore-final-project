@@ -35,16 +35,9 @@
    }
 }
 
-
-
 .App {
   margin: 0 8%;
   min-height: 100vh;
-
-  body {
-    background-color: rgb(245, 245, 245);
-    color: rgb(50, 50, 50);
-  }
 
   .btn {
     padding: 0.5rem 2.5rem;
@@ -60,23 +53,16 @@
 
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  color: white;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(79deg, #e8c7fd, #e9b6e0 48%, #c3f8ff);
-}
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100vh;
+//   color: white;
+//   align-items: center;
+//   justify-content: center;
+//   background-image: linear-gradient(79deg, #e8c7fd, #e9b6e0 48%, #c3f8ff);
+// }
 
-.auth-form-container,
-.login-form,
-.register-form {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
 
 @media screen and (min-width: 600px) {
   .auth-form-container {
@@ -263,7 +249,7 @@ div.message {
   }
 
   .medien-shadow-box {
-    
+    // position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -276,8 +262,20 @@ div.message {
     padding: 10px;
     margin:10px;  
   }
-  
-  .medien-shadow-box > img {
+
+  .image-container {
+   display: flex;
+   
+  }
+  .favorite-heart {
+    position: absolut;
+    top: 0;
+    cursor: pointer;
+    padding-left: 30px;
+    font-size: 1.8rem;
+    
+  }
+  .image-container > img {
     width: 200px;
     height: 319px;
   }
@@ -286,6 +284,7 @@ div.message {
     display: block;
     max-width: 1150px;
     padding-left: 20px;
+    
 
     .title {
     display: block;
@@ -324,7 +323,7 @@ div.message {
   }
 
   .description {
-    font-size: 0.8rem;
+    font-size: .8rem;
     line-height: 1.3, 
   }
 
@@ -360,6 +359,10 @@ div.message {
     border: none;
     outline: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
   }
 
   .button-full-description::after svg {
@@ -384,14 +387,15 @@ div.message {
     justify-content: center;
     gap: 20px;
     padding-top: 20px;
-    
+    padding-bottom: 30px;
+  
     .inhalt-beschreibung{
       width: 45%;
       
     }
 
     .inhalt-beschreibung > h2 {
-      font-size: 1rem;
+      font-size: 1.2rem;
       padding-bottom: 10px;
     }
 
@@ -403,7 +407,7 @@ div.message {
     }
 
     .details-default > h2 {
-      font-size: 1rem;
+      font-size: 1.2rem;
       padding-bottom: 10px;
     }
 
@@ -414,6 +418,7 @@ div.message {
  
   .image-zoom {
     transition: transform 0.4s;
+
   }
   
   .image-zoom:hover {

@@ -3,14 +3,12 @@ import axios from 'axios';
 import { AppContext } from "../AppContext";
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AiOutlineExclamationCircle } from  'react-icons/ai';
 import {
   faInfoCircle,
   faCheck,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-
-import { baseURL } from '../../components/axios';
+import bcrypt from "bcryptjs";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -35,9 +33,9 @@ export const PageRegister = () => {
   const [success, setSuccess] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
 
-    useEffect(() => {
-      userRef.current.focus();
-  }, [])
+  //   useEffect(() => {
+  //     userRef.current.focus();
+  // }, [])
 
   useEffect(() => {
     if (success) {
@@ -76,39 +74,56 @@ export const PageRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-   // if button enabled with JS hack
+    const { username, email, password } = formData;
+    // if button enabled with JS hack
     const v1 = USER_REGEX.test(formData.username);
     const v2 = PWD_REGEX.test(formData.password);
     if (!v1 || !v2) {
       setErrMsg("Invalid Entry");
       return;
     }
-    
+    // //console.log(username, password);
+    setSuccess(true);
+
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
+    // console.log(hashedPassword);
+    // const user = { username, hash: hashedPassword, email };
+
     try {
-      const res = await axios.post(`${baseURL}/register`,  {
-        ...formData,
-      });
-      console.log(res.data);
-      setSuccess(true);
-      setFormData( {username: "",
-      email: "",
-      password: "",
-      matchPassword: ""})
- // handle error response
+      const response = await axios.post(`${baseURL}/register`, JSON.stringify(user), 
+      {
+        headers: {'Content-Type': 'application/json'},
+        withCredentials: true
+      }).
+      then((res)=> {
+        console.log(res.data);})
+        
+      // console.log(JSON.stringify(response));
+      // // handle success response
+
+      //  setSuccess(true);
+
+      // setFormData({
+      //   username: "",
+      //   email: "",
+      //   password: "",
+      //   matchPassword: "",
+      // });
     } catch (err) {
-      console.error(err);
+      console.log(err);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 409) {
-        setErrMsg("Die E-Mail-Adresse bzw. Username ist leider schon vergeben. Bitte geben Sie eine andere E-Mail-Adresse oder Username an.");
+        setErrMsg("Username Taken");
       } else {
         setErrMsg("Registration Failed");
       }
+     
+        // errRef.current.focus();
+      
+      // handle error response
     }
-  
-   
-    
-        // errRef.current.focus();    
   };
 
   return (
@@ -132,16 +147,21 @@ export const PageRegister = () => {
         </div>
       ) : (
         <div className="auth-form-container">
-          <div className='errMsg-container'>
-           <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
-              <AiOutlineExclamationCircle size={15} /> {errMsg}</p>
-          </div>
+           <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
           <h2>Willkommen bei BookShopify</h2>
           <p>
             Legen Sie sich hier unkompliziert ein Kundenkonto bei BookShopify
             an.
           </p>
           <br />
+
+          <p
+            ref={errRef}
+            className={errMsg ? "errmsg" : "offscreen"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
 
           <form className="register-form" onSubmit={handleSubmit}>
             <label htmlFor="username">
