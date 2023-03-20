@@ -159,9 +159,12 @@ export const AppProvider = ({ children }) => {
   //Search input field
   const handleSearch = (event) => {
     setSearchTerm(event.target.value.trim());
+    //setRawBooks();
   };
-
+  const searchRef = useRef(null);
   const sendSearchData = (event) => {
+    event.preventDefault();
+    searchRef.current.blur();
     navigate(`/books/`);
     setRawBooks(
       rawBooks.filter((book) => {
@@ -178,6 +181,7 @@ export const AppProvider = ({ children }) => {
         }
       })
     );
+
     setSearchTerm(" ");
   };
 
@@ -343,6 +347,7 @@ export const AppProvider = ({ children }) => {
         filteredJugendBooks,
         setFilteredJugendBooks,
         resetBooksPage,
+        searchRef,
       }}
     >
       {children}

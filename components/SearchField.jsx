@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { AppContext } from "../src/AppContext";
 
 export const SearchField = () => {
@@ -8,10 +8,11 @@ export const SearchField = () => {
     sendSearchData,
     sendDropdownValue,
     loadBooks,
+    searchRef,
   } = useContext(AppContext);
 
   return (
-    <div>
+    <form onSubmit={(event) => sendSearchData(event)}>
       <select
         className="search-dropdown"
         onChange={(event) => sendDropdownValue(event)}
@@ -28,14 +29,15 @@ export const SearchField = () => {
         value={searchTerm}
         onChange={handleSearch}
         onFocus={loadBooks}
+        ref={searchRef}
       />
       <button
         type="submit"
+        onClick={(e) => e.target.blur()}
         className="search-btn"
-        onClick={(event) => sendSearchData(event)}
       >
         Suchen
       </button>
-    </div>
+    </form>
   );
 };
