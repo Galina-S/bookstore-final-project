@@ -6,7 +6,7 @@ import { anonymousUser, blankLoginForm } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -201,7 +201,7 @@ export const AppProvider = ({ children }) => {
   const submitLoginForm = async (onBadLogin) => {
     try {
       const response = await axios.post(
-        `${backendUrl}/login`,
+        `${process.env.REACT_APP_API_URL}/login`,
         {
           username: loginForm.fields.username,
           password: loginForm.fields.password,
@@ -235,7 +235,7 @@ export const AppProvider = ({ children }) => {
     setCurrentUser({ ...anonymousUser });
     (async () => {
       try {
-        await axios.get(`${backendUrl}/logout`, {
+        await axios.get(`${process.env.REACT_APP_API_URL}/logout`, {
           withCredentials: true,
         });
         getCurrentUser();
@@ -253,7 +253,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${backendUrl}/get-current-user`, {
+          await axios.get(`${process.env.REACT_APP_API_URL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
@@ -272,7 +272,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${backendUrl}/get-current-user`, {
+          await axios.get(`${process.env.REACT_APP_API_URL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
