@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
-import instance from "../components/axios";
+import instance, { baseURL } from "../components/axios";
 import { useNavigate } from "react-router-dom";
 import { anonymousUser, blankLoginForm } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
@@ -29,7 +29,7 @@ export const AppProvider = ({ children }) => {
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
 
-  //const BOOK_DETAILS_URL = "http://localhost:5173/books";
+  const BOOK_DETAILS_URL = "http://localhost:5173/books";
 
   //FilteredBooks by Category
   const [filteredJugendBooks, setFilteredJugendBooks] = useState([]);
@@ -137,7 +137,7 @@ export const AppProvider = ({ children }) => {
     let _category = formData.category.split(",");
 
     try {
-      const res = await instance.post(`/books/`, {
+      const res = await baseURL.post(`/books/`, {
         ...formData,
         category: _category,
       });
@@ -201,7 +201,7 @@ export const AppProvider = ({ children }) => {
   const submitLoginForm = async (onBadLogin) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/login`,
+        `${baseURL}/login`,
         {
           username: loginForm.fields.username,
           password: loginForm.fields.password,
@@ -235,7 +235,7 @@ export const AppProvider = ({ children }) => {
     setCurrentUser({ ...anonymousUser });
     (async () => {
       try {
-        await axios.get(`${process.env.REACT_APP_API_URL}/logout`, {
+        await axios.get(`${baseURL}/logout`, {
           withCredentials: true,
         });
         getCurrentUser();
@@ -253,7 +253,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${process.env.REACT_APP_API_URL}/get-current-user`, {
+          await axios.get(`${baseURL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
@@ -272,7 +272,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${process.env.REACT_APP_API_URL}/get-current-user`, {
+          await axios.get(`${baseURL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;

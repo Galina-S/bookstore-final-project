@@ -8,7 +8,7 @@ import {
   faCheck,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import bcrypt from "bcryptjs";
+import { baseURL } from '../components/axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -91,7 +91,7 @@ export const PageRegister = () => {
     // const user = { username, hash: hashedPassword, email };
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/register`, JSON.stringify(user), 
+      const response = await axios.post(`${baseURL}/register`, JSON.stringify(user), 
       {
         headers: {'Content-Type': 'application/json'},
         withCredentials: true

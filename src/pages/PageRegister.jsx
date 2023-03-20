@@ -85,7 +85,7 @@ export const PageRegister = () => {
     }
     
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/register`,  {
+      const res = await axios.post(`${baseURL}/register`,  {
         ...formData,
       });
       console.log(res.data);

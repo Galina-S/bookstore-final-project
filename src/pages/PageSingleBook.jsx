@@ -19,7 +19,7 @@ export const PageSingleBook = ()  => {
       useEffect(() => {
         (async () => {
             axios
-           .get(`${process.env.REACT_APP_API_URL}/books/${id}`)
+           .get(`${baseURL}/books/${id}`)
            .then(res => {  <img src={data.book?.img} alt={data.book?.title} height="150px"/>,
             setData(res.data)
           })
