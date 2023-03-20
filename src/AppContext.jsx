@@ -137,7 +137,7 @@ export const AppProvider = ({ children }) => {
     let _category = formData.category.split(",");
 
     try {
-      const res = await baseURL.post(`/books/`, {
+      const res = await instance.post(`/books/`, {
         ...formData,
         category: _category,
       });
