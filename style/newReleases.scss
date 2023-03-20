@@ -1,0 +1,40 @@
+.new-releases {
+    padding: 1.5rem 0;
+    .title{
+        border-top: 2px solid var(--color-main-gray);
+        padding-top: 1.3rem;
+        text-align: center;
+        .link-new-books{
+            color: var(--color-main-blue-medium);
+            font-size: 1.5rem;
+
+        }
+    }
+    margin-top: 2rem;
+    .carousel-slider{
+        height: 250px;
+
+    }
+    .carousel-new-releases{
+        .control-dots{
+            display: none;
+        }
+        .slider-wrapper{
+            margin-top: 2rem;
+        }
+
+        height: 250px;
+        .container-new-releases{
+            .slide{
+                height: 210px;
+                overflow: hidden;
+                margin-left: 10px;
+                img{
+                    height: 180px;
+                    width: auto;
+                }
+            }
+        }
+    }
+    
+}

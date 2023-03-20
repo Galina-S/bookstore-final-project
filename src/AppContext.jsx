@@ -32,7 +32,7 @@ export const AppProvider = ({ children }) => {
   const BOOK_DETAILS_URL = "http://localhost:5173/books";
 
   //FilteredBooks by Category
-  const [filteredJugendBooks, setFilteredJugendBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
 
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -187,7 +187,7 @@ export const AppProvider = ({ children }) => {
 
   //Reset books page
   const resetBooksPage = () => {
-    setFilteredJugendBooks([]);
+    setFilteredBooks([]);
     loadBooks();
   };
   //Shopping cart
@@ -350,8 +350,8 @@ export const AppProvider = ({ children }) => {
         sendDropdownValue,
 
         BOOK_DETAILS_URL,
-        filteredJugendBooks,
-        setFilteredJugendBooks,
+        filteredBooks,
+        setFilteredBooks,
         resetBooksPage,
       }}
     >

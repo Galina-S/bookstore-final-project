@@ -1,16 +1,15 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AppContext } from "../src/AppContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router";
-import { Link } from 'react-router-dom';
 
 
 
 
 export const Corousel = () => {
-  const { rawBooks, loadBooks, setFilteredJugendBooks, carouselRef } = useContext(AppContext);
+  const { rawBooks, loadBooks, setFilteredBooks, carouselRef } = useContext(AppContext);
   const childRefs = {
     book1: useRef({}),
     book2: useRef({}),
@@ -52,7 +51,7 @@ export const Corousel = () => {
    const filter = rawBooks.filter((book) =>
       book.category.includes("Jugendbuch")
     );
-    setFilteredJugendBooks(filter);
+    setFilteredBooks(filter);
     navigate('/books');
   };
 

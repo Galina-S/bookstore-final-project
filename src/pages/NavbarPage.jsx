@@ -24,7 +24,6 @@ export const NavbarPage = () => {
     dropdownRef,
     cleanFormData,
     loadBooks,
-    setFilteredJugendBooks,
     resetBooksPage,
   } = useContext(AppContext);
 
