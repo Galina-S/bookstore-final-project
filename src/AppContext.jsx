@@ -29,7 +29,7 @@ export const AppProvider = ({ children }) => {
 
   const placeholderImage = "../src/assets/keinBild.jpeg";
 
-  const BOOK_DETAILS_URL = "http://localhost:5173/books";
+  //const BOOK_DETAILS_URL = "http://localhost:5173/books";
 
   //FilteredBooks by Category
   const [filteredJugendBooks, setFilteredJugendBooks] = useState([]);
