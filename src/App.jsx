@@ -21,8 +21,6 @@ import { PageNovels } from "./pages/PageNovels";
 import { EditBook } from "./pages/EditBook";
 import { Cart } from "./pages/Cart";
 
-//const baseUrl = import.meta.env.VITE_BACKEND_URL;
-
 function App() {
   const { currentUser } = useContext(AppContext);
 
