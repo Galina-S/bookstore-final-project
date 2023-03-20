@@ -32,19 +32,27 @@ export const Corousel = () => {
     })();
   }, []);
 
-
+//Slide2 open book
   const handleClick = (id) => {
     window.location.href = `/books/${id}`;
   };
 
+  const handelBookkMarcElsberg = () => {
+    rawBooks.map (book => {
+      if (book.title == "°C - Celsius") {
+        window.location.href = `/books/${book._id}`;
+      }
+    })
 
+  }
+
+//filter Books for Jungs
   const handleCategoryJugendBooks = () => {
-    const filter = rawBooks.filter((book) =>
-      book.category.includes("Jugend")
+   const filter = rawBooks.filter((book) =>
+      book.category.includes("Jugendbuch")
     );
     setFilteredJugendBooks(filter);
     navigate('/books');
-  
   };
 
   /**    const [index, setIndex] = useState(0);
@@ -60,14 +68,34 @@ export const Corousel = () => {
     }
      */
   return (
-    <Carousel className="carousel" showThumbs={false}>
+    <Carousel className="carousel" showThumbs={false} autoPlay interval={4000} infiniteLoop={true}>
       {/**Slide1*/} 
             <div className="container-corousel slide1">
-               <div className="content content-slide1">
-                {/* <h3>Slide1</h3> */}
-                <button className="btn" >Show more</button>
+              <div className="content-slide1">
+                <div>
+                  <p>Das neue faszinierende </p>
+                  <p>Zukunftsszenario von</p>
+                  <p> Marc Elsberg</p>
+                   <button className="btn" onClick={handelBookkMarcElsberg}>Zum Buch</button>
+
                 </div>
-            </div>
+               </div>
+
+               <div className="book-container-slide1">
+                  {rawBooks.map((book) => {
+                    return (
+                     <div key={book._id} className='book-slide1' >
+                       {book.title === "°C - Celsius" &&
+                        <img src={book.img} alt="" />
+                       }
+                     </div>
+                    )
+                  }
+
+                  )}
+
+                </div>
+          </div>
       {/**Slide2 */}
       <div className="container-corousel slide2">
         <div className="content content-slide2">
