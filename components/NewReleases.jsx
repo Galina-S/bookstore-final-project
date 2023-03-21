@@ -9,26 +9,16 @@ import { NavLink } from "react-router-dom";
 
 
 export const NewReleases = () => {
+
   const { rawBooks} = useContext(AppContext);
-  const [newReleasesBooks, setNewReleasesBook] = useState([]);
 
+  const filteredBooks = rawBooks.filter(book => new Date(book.puplication) > new Date('2023-01-01'));
 
+  const handleClick = (id) => {
+    window.location.href = `/books/${id}`;
 
-  /** useEffect(() => {
-    (async () => {
-       rawBooks.map(book => {
-        const publicationTimestamp = new Date(book.puplication).getTime();// convert publication date to Unix timestamp 
-        const cutoffTimestamp = new Date('01/12/2021').getTime();
-        console.log(publicationTimestamp, cutoffTimestamp );
-        if (publicationTimestamp >= cutoffTimestamp) {
-           setNewReleasesBook(book)        
-        }
-       })
-    })();
-  }, []); */
-
-  console.log(newReleasesBooks);
-
+  };
+  
 
   return (
     <div className="new-releases">
@@ -42,10 +32,10 @@ export const NewReleases = () => {
             centerSlidePercentage={15} 
             swipeable={true} 
             className="carousel-new-releases">
-        {rawBooks.map(book => {
+        {filteredBooks.map(book => {
           return (
             <div className="container-new-releases" key={book._id}>
-                <div className="slide">
+                <div className="slide" onClick={()=>{ handleClick(book._id)}} >
                      <img src={book.img} alt=""/>
                 </div>
             </div>
