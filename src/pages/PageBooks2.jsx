@@ -61,11 +61,12 @@ export const PageBooks2 = () => {
               return (
                 <li className="book" key={_book._id}>
                  
-                  { (_book._id === editingElementId   ? (
-                    <EditBook book={_book} />
-                  ) : (
-                    <Book book={_book} />
-                  ))}
+                  { 
+                  
+                  
+                  (_book._id === editingElementId   ? (<EditBook book={_book} />) : (<Book book={_book} />)
+                  )
+                  }
 
                 </li>
               );

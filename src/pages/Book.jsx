@@ -20,7 +20,7 @@ export const Book = (props) => {
     viewsCount,
   } = props.book;
 
-  const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
+  const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage,  currentUserIsAdmin} =
     useContext(AppContext);
 
   const { book } = props;
@@ -43,7 +43,7 @@ export const Book = (props) => {
         <FavoriteIcon book={book} className="favorite-icon" />
       </div>
 
-      <div className="edit-delete-buttons">
+      {currentUserIsAdmin() && (<div className="edit-delete-buttons">
         <button
           className="deleteButton"
           onClick={() => {
@@ -58,13 +58,14 @@ export const Book = (props) => {
         >
           Delete
         </button>
+       
         <NavLink to={`/edit/${_id}`}>
           <button className="editButton" onClick={() => onOpenEditForm(book)}>
             Edit
           </button>
         </NavLink>
       </div>
-      <div></div>
+      )}
     </div>
   );
 };

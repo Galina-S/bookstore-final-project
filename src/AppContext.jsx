@@ -68,7 +68,7 @@ export const AppProvider = ({ children }) => {
     setRawBooks(_books);
   };
 
-  const getCurrentUser = () => {
+const getCurrentUser = () => {
     (async () => {
       try {
         const user = (
@@ -84,33 +84,10 @@ export const AppProvider = ({ children }) => {
     })();
   };
 
+
   useEffect(() => {
     getCurrentUser();
   }, []);
-
-  const loadAccessGroupData = () => {
-		if (currentUserIsInAccessGroup('members')) {
-			(async () => {
-				const memberInfo = (
-					await axios.get(`${baseURL}/get-member-info`, {
-						withCredentials: true,
-					})
-				).data;
-				setMemberInfo(cloneDeep(memberInfo));
-			})();
-		}
-		if (currentUserIsInAccessGroup('admins')) {
-			(async () => {
-				const adminInfo = (
-					await axios.get(`${baseURL}/get-admin-info`, {
-						withCredentials: true,
-					})
-				).data;
-				setAdminInfo(cloneDeep(adminInfo));
-			})();
-		}
-	};
-
 
 
 // this loads data when a currentUser has been defined
@@ -125,9 +102,20 @@ export const AppProvider = ({ children }) => {
 		loadBooks();
 	}, []);
 
-	useEffect(() => {
-		getCurrentUser();
-	}, []);
+useEffect(() => {
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${baseURL}/get-current-user`, {
+            withCredentials: true,
+          })
+        ).data;
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("General error");
+      }
+    })();
+  }, []);
 
 
 
@@ -304,6 +292,31 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+
+  const loadAccessGroupData = () => {
+		if (currentUserIsInAccessGroup('members')) {
+			(async () => {
+				const memberInfo = (
+					await axios.get(`${baseURL}/get-member-info`, {
+						withCredentials: true,
+					})
+				).data;
+				setMemberInfo(cloneDeep(memberInfo));
+			})();
+		}
+		if (currentUserIsInAccessGroup('admins')) {
+			(async () => {
+				const adminInfo = (
+					await axios.get(`${baseURL}/get-admin-info`, {
+						withCredentials: true,
+					})
+				).data;
+				setAdminInfo(cloneDeep(adminInfo));
+			})();
+		}
+	};
+
+
   const logUserOut = () => {
     setCurrentUser({ ...anonymousUser });
     (async () => {
@@ -327,6 +340,8 @@ export const AppProvider = ({ children }) => {
     setLoginForm(cloneDeep(blankLoginForm));
   };
 
+
+
   const currentUserIsAdmin = () => {
 		return currentUserIsInAccessGroup('admins');
 	};
@@ -341,24 +356,8 @@ export const AppProvider = ({ children }) => {
 	};
 
 
-  // useEffect(() => {
-  //   getCurrentUser();
-  // }, []);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const user = (
-  //         await axios.get(`${baseURL}/get-current-user`, {
-  //           withCredentials: true,
-  //         })
-  //       ).data;
-  //       setCurrentUser({ ...user });
-  //     } catch (e) {
-  //       console.log("General error");
-  //     }
-  //   })();
-  // }, []);
+  
+  
 
   //Tracking The Window Size
   const getWindowSize = () => {
