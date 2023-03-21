@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from "react";
 import { AppContext } from "../src/AppContext";
-import { TfiSearch} from 'react-icons/tfi';
+import { TfiSearch } from "react-icons/tfi";
 
 export const SearchField = () => {
   const {
@@ -10,6 +10,7 @@ export const SearchField = () => {
     sendDropdownValue,
     loadBooks,
     searchRef,
+    rawBooks,
   } = useContext(AppContext);
 
   return (
@@ -39,6 +40,11 @@ export const SearchField = () => {
       >
         <TfiSearch />
       </button>
+      {rawBooks.length < 1 ? (
+        <h3>No matching books found! Try another search term.</h3>
+      ) : (
+        <></>
+      )}
     </form>
   );
 };
