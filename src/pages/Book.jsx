@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import FavoriteIcon from "../../components/FavoriteIcon";
 
-
 export const Book = (props) => {
   const {
     _id,
@@ -20,11 +19,25 @@ export const Book = (props) => {
     viewsCount,
   } = props.book;
 
-  const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
-    useContext(AppContext);
+  const {
+    handleDeleteBook,
+    onOpenEditForm,
+    openSingleBook,
+    placeholderImage,
+    increaseQty,
+    decreaseQty,
+    removeFromCart,
+    addToCart,
+    cart,
+  } = useContext(AppContext);
 
   const { book } = props;
+  function getItemQuantity(id) {
+    return cart.find((item) => item._id === id)?.quantity || 0;
+  }
 
+  const quantity = getItemQuantity(book._id);
+  console.log(cart, quantity);
   return (
     <div className="card-container">
       <div className="card">
@@ -34,15 +47,16 @@ export const Book = (props) => {
           </div>
         </NavLink>
         <div className="artikel-details">
-        <Link to={`/authors/${author}`}>
-             <h6>{author}</h6></Link>
-             {/* <h6>{author}</h6> */}
+          <Link to={`/authors/${author}`}>
+            <h6>{author}</h6>
+          </Link>
+          {/* <h6>{author}</h6> */}
           <h5>{title}</h5>
           <h4>{price} € </h4>
         </div>
         <FavoriteIcon book={book} className="favorite-icon" />
       </div>
-
+      {/*Edit and delete buttons */}
       <div className="edit-delete-buttons">
         <button
           className="deleteButton"
@@ -64,7 +78,23 @@ export const Book = (props) => {
           </button>
         </NavLink>
       </div>
-      <div></div>
+      {/*Add to cart buttons */}
+      <div>
+        {cart.some((p) => p._id === book._id) ? (
+          <div>
+            <div>
+              <button onClick={() => decreaseQty(book)}>-</button>
+              <div>
+                <span>{quantity}</span> in cart
+              </div>
+              <button onClick={() => increaseQty(book)}>+</button>
+            </div>
+            <button onClick={() => removeFromCart(book)}>Remove</button>
+          </div>
+        ) : (
+          <button onClick={() => addToCart(book)}>Add to Cart</button>
+        )}
+      </div>
     </div>
   );
 };

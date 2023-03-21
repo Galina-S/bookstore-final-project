@@ -2,7 +2,12 @@ import { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
 import instance, { baseURL } from "../components/axios";
 import { useNavigate } from "react-router-dom";
-import { anonymousUser, blankLoginForm,blankMemberInfo, blankAdminInfo } from "./pages/Interfaces";
+import {
+  anonymousUser,
+  blankLoginForm,
+  blankMemberInfo,
+  blankAdminInfo,
+} from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
 
@@ -22,7 +27,6 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(anonymousUser);
   const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
   const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
-
 
   //Single book page
   const [openBook, setOpenBook] = useState([]);
@@ -76,7 +80,7 @@ export const AppProvider = ({ children }) => {
             withCredentials: true,
           })
         ).data;
-        console.log(data)
+        console.log(data);
         setCurrentUser({ ...user });
       } catch (e) {
         console.log("GENERAL ERROR");
@@ -89,47 +93,43 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   const loadAccessGroupData = () => {
-		if (currentUserIsInAccessGroup('members')) {
-			(async () => {
-				const memberInfo = (
-					await axios.get(`${baseURL}/get-member-info`, {
-						withCredentials: true,
-					})
-				).data;
-				setMemberInfo(cloneDeep(memberInfo));
-			})();
-		}
-		if (currentUserIsInAccessGroup('admins')) {
-			(async () => {
-				const adminInfo = (
-					await axios.get(`${baseURL}/get-admin-info`, {
-						withCredentials: true,
-					})
-				).data;
-				setAdminInfo(cloneDeep(adminInfo));
-			})();
-		}
-	};
+    if (currentUserIsInAccessGroup("members")) {
+      (async () => {
+        const memberInfo = (
+          await axios.get(`${baseURL}/get-member-info`, {
+            withCredentials: true,
+          })
+        ).data;
+        setMemberInfo(cloneDeep(memberInfo));
+      })();
+    }
+    if (currentUserIsInAccessGroup("admins")) {
+      (async () => {
+        const adminInfo = (
+          await axios.get(`${baseURL}/get-admin-info`, {
+            withCredentials: true,
+          })
+        ).data;
+        setAdminInfo(cloneDeep(adminInfo));
+      })();
+    }
+  };
 
+  // this loads data when a currentUser has been defined
+  // on page reload, currentUser is anonymous for short time
+  // then any user that is logged in is loaded into currentUser
 
-
-// this loads data when a currentUser has been defined
-	// on page reload, currentUser is anonymous for short time
-	// then any user that is logged in is loaded into currentUser
-
-	// useEffect(() => {
-	// 	loadAccessGroupData();
-	// }, [currentUser]);
+  // useEffect(() => {
+  // 	loadAccessGroupData();
+  // }, [currentUser]);
 
   useEffect(() => {
-		loadBooks();
-	}, []);
+    loadBooks();
+  }, []);
 
-	useEffect(() => {
-		getCurrentUser();
-	}, []);
-
-
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   const handleDeleteBook = async (_book) => {
     try {
@@ -263,7 +263,36 @@ export const AppProvider = ({ children }) => {
     setFilteredBooks([]);
     loadBooks();
   };
+
   //Shopping cart
+  const increaseQty = (book) => {
+    setCart(
+      cart.filter((ele) =>
+        ele._id === book._id ? ele.quantity++ : ele.quantity
+      )
+    );
+  };
+  const decreaseQty = (book) => {
+    setCart(
+      cart.filter((ele) => {
+        if (ele._id === book._id) {
+          if (ele.quantity > 1) {
+            return ele.quantity--;
+          } else {
+            return ele._id !== book._id;
+          }
+        } else {
+          return ele.quantity;
+        }
+      })
+    );
+  };
+  const removeFromCart = (book) => {
+    setCart([cart.filter((ele) => ele._id !== book._id)]);
+  };
+  const addToCart = (book) => {
+    setCart([...cart, { ...book, quantity: 1 }]);
+  };
 
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
@@ -319,27 +348,24 @@ export const AppProvider = ({ children }) => {
   };
 
   const currentUserIsInAccessGroup = (accessGroup) => {
-		return currentUser.accessGroups.includes(accessGroup);
-	};
-
+    return currentUser.accessGroups.includes(accessGroup);
+  };
 
   const clearLoginForm = () => {
     setLoginForm(cloneDeep(blankLoginForm));
   };
 
   const currentUserIsAdmin = () => {
-		return currentUserIsInAccessGroup('admins');
-	};
+    return currentUserIsInAccessGroup("admins");
+  };
 
-
-	const getNoAccessMessage = () => {
-		if (currentUserIsInAccessGroup('loggedOutUsers')) {
-			return 'Your session has ended, please log in again.';
-		} else {
-			return 'You do not have access to this page.';
-		}
-	};
-
+  const getNoAccessMessage = () => {
+    if (currentUserIsInAccessGroup("loggedOutUsers")) {
+      return "Your session has ended, please log in again.";
+    } else {
+      return "You do not have access to this page.";
+    }
+  };
 
   // useEffect(() => {
   //   getCurrentUser();
@@ -378,23 +404,12 @@ export const AppProvider = ({ children }) => {
 
   //console.log(windowSize);
 
-  
   //Carousel go to First Slide
-  const carouselRef = useRef(null); 
+  const carouselRef = useRef(null);
 
   const goToFirstSlide = () => {
-    carouselRef.current?.goToSlide(0); 
+    carouselRef.current?.goToSlide(0);
   };
-
-
-
-
-
-  
-
-  
-
-	
 
   return (
     <AppContext.Provider
@@ -445,9 +460,14 @@ export const AppProvider = ({ children }) => {
         currentUserIsAdmin,
         memberInfo,
         getNoAccessMessage,
-				adminInfo,
+        adminInfo,
         currentUserIsInAccessGroup,
-        loadAccessGroupData
+        loadAccessGroupData,
+        increaseQty,
+        decreaseQty,
+        removeFromCart,
+        addToCart,
+        cart,
       }}
     >
       {children}
