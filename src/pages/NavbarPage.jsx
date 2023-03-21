@@ -25,6 +25,7 @@ export const NavbarPage = () => {
     cleanFormData,
     loadBooks,
     resetBooksPage,
+    currentUserIsAdmin
   } = useContext(AppContext);
 
   return (
@@ -74,7 +75,8 @@ export const NavbarPage = () => {
               )}
             </div>
           </div>
-
+          
+          {currentUserIsAdmin() && (
           <NavLink
             to="/create-book"
             className="wish-list"
@@ -85,7 +87,7 @@ export const NavbarPage = () => {
               icon={faFileCirclePlus}
             />
             <span className={windowSize < 600 ? "none" : null}>Neues Buch</span>
-          </NavLink>
+          </NavLink>)}
 
           <NavLink to="/wish-list" className="wish-list">
             <FontAwesomeIcon className="wish-list-icon" icon={faHeart} />
@@ -103,7 +105,7 @@ export const NavbarPage = () => {
 
       <nav className="navbar">
         <div className="navigation">
-          <NavLink to="/books2">Bücher</NavLink>
+        {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
           <NavLink to="/new-books">Neuheiten</NavLink>
           <NavLink to="/bestsellers">Bestseller</NavLink>
           <NavLink to="/books" onClick={resetBooksPage}>

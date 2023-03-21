@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from "react";
 import { AppContext } from "../src/AppContext";
+import { TfiSearch} from 'react-icons/tfi';
 
 export const SearchField = () => {
   const {
@@ -36,9 +37,7 @@ export const SearchField = () => {
         onClick={(e) => e.target.blur()}
         className="search-btn"
       >
-
-
-        Suchen
+        <TfiSearch />
       </button>
     </form>
   );

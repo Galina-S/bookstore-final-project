@@ -11,6 +11,10 @@ export const PageBooks = () => {
     loadBooks,
     cleanFormData,
     setEditingElementId,
+    currentUserIsAdmin,
+    currentUser,
+    currentUserIsInAccessGroup,
+    loadAccessGroupData
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -40,8 +44,13 @@ export const PageBooks = () => {
 
   return (
     <div className="pageBooks">
+         
+     {currentUserIsAdmin() && (
+      <>
       <div className="books">
-        <h2>There are {rawBooks.length} books</h2>
+        <h2 style={{textAlign: "center"}}>Hi admin!</h2>
+        <br></br>
+        <h3 style={{textAlign: "center"}}>Es gibt {rawBooks.length} Bücher in umserem BookStore</h3>
         {rawBooks.map((_book) => {
           return (
             <div key={_book._id}>
@@ -54,6 +63,10 @@ export const PageBooks = () => {
           );
         })}
       </div>
+      </>
+    )     
+    }
+      
     </div>
   );
 };

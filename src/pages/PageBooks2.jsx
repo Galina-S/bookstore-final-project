@@ -13,15 +13,19 @@ export const PageBooks2 = () => {
     setEditingElementId,
     searchTerm,
     filteredBooks,
+    currentUserIsAdmin,
+    currentUser,
+    currentUserIsInAccessGroup,
+    loadAccessGroupData
   } = useContext(AppContext);
 
-  useEffect(() => {
-    if (searchTerm !== " ") {
-      (async () => {
-        loadBooks();
-      })();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (searchTerm !== " ") {
+  //     (async () => {
+  //       loadBooks();
+  //     })();
+  //   }
+  // }, []);
 
   const componentWillUnmount = useRef(false);
 
@@ -44,9 +48,8 @@ export const PageBooks2 = () => {
 
   return (
     <div className="pageBooks2">
-      {/* <h2>There are {rawBooks.length} books</h2> */}
       <ul>
-        {filteredBooks.length > 0
+        {(filteredBooks.length > 0)
           ? filteredBooks.map((_book) => {
               return (
                 <li className="book" key={_book._id}>
@@ -57,11 +60,13 @@ export const PageBooks2 = () => {
           : rawBooks.map((_book) => {
               return (
                 <li className="book" key={_book._id}>
-                  {_book._id === editingElementId ? (
+                 
+                  { (_book._id === editingElementId   ? (
                     <EditBook book={_book} />
                   ) : (
                     <Book book={_book} />
-                  )}
+                  ))}
+
                 </li>
               );
             })}

@@ -2,23 +2,28 @@ import { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
 import instance, { baseURL } from "../components/axios";
 import { useNavigate } from "react-router-dom";
-import { anonymousUser, blankLoginForm } from "./pages/Interfaces";
+import { anonymousUser, blankLoginForm,blankMemberInfo, blankAdminInfo } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
 
-// const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  //const [books, setBooks] = useState([]);
   const [rawBooks, setRawBooks] = useState([]);
   //Edit book data
   const [editingElementId, setEditingElementId] = useState(null);
   const [formData, setFormData] = useState([]);
   //Log in
   const [loginForm, setLoginForm] = useState(cloneDeep(blankLoginForm));
+
   const [currentUser, setCurrentUser] = useState(anonymousUser);
-  // const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
-  // const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
+  const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
+  const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
+
+
   //Single book page
   const [openBook, setOpenBook] = useState([]);
   //Search input
@@ -36,11 +41,12 @@ export const AppProvider = ({ children }) => {
 
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
   let dropdownRef = useRef();
 
   useEffect(() => {
     let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setDropdownOpen(false);
       }
     };
@@ -61,6 +67,69 @@ export const AppProvider = ({ children }) => {
     });
     setRawBooks(_books);
   };
+
+  const getCurrentUser = () => {
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${baseURL}/get-current-user`, {
+            withCredentials: true,
+          })
+        ).data;
+        console.log(data)
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("GENERAL ERROR");
+      }
+    })();
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
+  const loadAccessGroupData = () => {
+		if (currentUserIsInAccessGroup('members')) {
+			(async () => {
+				const memberInfo = (
+					await axios.get(`${baseURL}/get-member-info`, {
+						withCredentials: true,
+					})
+				).data;
+				setMemberInfo(cloneDeep(memberInfo));
+			})();
+		}
+		if (currentUserIsInAccessGroup('admins')) {
+			(async () => {
+				const adminInfo = (
+					await axios.get(`${baseURL}/get-admin-info`, {
+						withCredentials: true,
+					})
+				).data;
+				setAdminInfo(cloneDeep(adminInfo));
+			})();
+		}
+	};
+
+
+
+// this loads data when a currentUser has been defined
+	// on page reload, currentUser is anonymous for short time
+	// then any user that is logged in is loaded into currentUser
+
+	// useEffect(() => {
+	// 	loadAccessGroupData();
+	// }, [currentUser]);
+
+  useEffect(() => {
+		loadBooks();
+	}, []);
+
+	useEffect(() => {
+		getCurrentUser();
+	}, []);
+
+
 
   const handleDeleteBook = async (_book) => {
     try {
@@ -249,43 +318,47 @@ export const AppProvider = ({ children }) => {
     })();
   };
 
+  const currentUserIsInAccessGroup = (accessGroup) => {
+		return currentUser.accessGroups.includes(accessGroup);
+	};
+
+
   const clearLoginForm = () => {
     setLoginForm(cloneDeep(blankLoginForm));
   };
 
-  const getCurrentUser = () => {
-    (async () => {
-      try {
-        const user = (
-          await axios.get(`${baseURL}/get-current-user`, {
-            withCredentials: true,
-          })
-        ).data;
-        setCurrentUser({ ...user });
-      } catch (e) {
-        console.log("GENERAL ERROR");
-      }
-    })();
-  };
+  const currentUserIsAdmin = () => {
+		return currentUserIsInAccessGroup('admins');
+	};
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const user = (
-          await axios.get(`${baseURL}/get-current-user`, {
-            withCredentials: true,
-          })
-        ).data;
-        setCurrentUser({ ...user });
-      } catch (e) {
-        console.log("General error");
-      }
-    })();
-  }, []);
+	const getNoAccessMessage = () => {
+		if (currentUserIsInAccessGroup('loggedOutUsers')) {
+			return 'Your session has ended, please log in again.';
+		} else {
+			return 'You do not have access to this page.';
+		}
+	};
+
+
+  // useEffect(() => {
+  //   getCurrentUser();
+  // }, []);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const user = (
+  //         await axios.get(`${baseURL}/get-current-user`, {
+  //           withCredentials: true,
+  //         })
+  //       ).data;
+  //       setCurrentUser({ ...user });
+  //     } catch (e) {
+  //       console.log("General error");
+  //     }
+  //   })();
+  // }, []);
 
   //Tracking The Window Size
   const getWindowSize = () => {
@@ -312,6 +385,16 @@ export const AppProvider = ({ children }) => {
   const goToFirstSlide = () => {
     carouselRef.current?.goToSlide(0); 
   };
+
+
+
+
+
+  
+
+  
+
+	
 
   return (
     <AppContext.Provider
@@ -358,6 +441,13 @@ export const AppProvider = ({ children }) => {
         setFilteredBooks,
         resetBooksPage,
         searchRef,
+
+        currentUserIsAdmin,
+        memberInfo,
+        getNoAccessMessage,
+				adminInfo,
+        currentUserIsInAccessGroup,
+        loadAccessGroupData
       }}
     >
       {children}

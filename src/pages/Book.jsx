@@ -34,7 +34,9 @@ export const Book = (props) => {
           </div>
         </NavLink>
         <div className="artikel-details">
-          <h6>{author}</h6>
+        <Link to={`/authors/${author}`}>
+             <h6>{author}</h6></Link>
+             {/* <h6>{author}</h6> */}
           <h5>{title}</h5>
           <h4>{price} € </h4>
         </div>
