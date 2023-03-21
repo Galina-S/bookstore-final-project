@@ -1,12 +1,12 @@
 import { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
-import instance from "../components/axios";
+import instance, { baseURL } from "../components/axios";
 import { useNavigate } from "react-router-dom";
 import { anonymousUser, blankLoginForm } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -32,7 +32,7 @@ export const AppProvider = ({ children }) => {
   const BOOK_DETAILS_URL = "http://localhost:5173/books";
 
   //FilteredBooks by Category
-  const [filteredJugendBooks, setFilteredJugendBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
 
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -191,7 +191,7 @@ export const AppProvider = ({ children }) => {
 
   //Reset books page
   const resetBooksPage = () => {
-    setFilteredJugendBooks([]);
+    setFilteredBooks([]);
     loadBooks();
   };
   //Shopping cart
@@ -205,7 +205,7 @@ export const AppProvider = ({ children }) => {
   const submitLoginForm = async (onBadLogin) => {
     try {
       const response = await axios.post(
-        `${backendUrl}/login`,
+        `${baseURL}/login`,
         {
           username: loginForm.fields.username,
           password: loginForm.fields.password,
@@ -239,7 +239,7 @@ export const AppProvider = ({ children }) => {
     setCurrentUser({ ...anonymousUser });
     (async () => {
       try {
-        await axios.get(`${backendUrl}/logout`, {
+        await axios.get(`${baseURL}/logout`, {
           withCredentials: true,
         });
         getCurrentUser();
@@ -257,7 +257,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${backendUrl}/get-current-user`, {
+          await axios.get(`${baseURL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
@@ -276,7 +276,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${backendUrl}/get-current-user`, {
+          await axios.get(`${baseURL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
@@ -305,9 +305,19 @@ export const AppProvider = ({ children }) => {
 
   //console.log(windowSize);
 
+  
+  //Carousel go to First Slide
+  const carouselRef = useRef(null); 
+
+  const goToFirstSlide = () => {
+    carouselRef.current?.goToSlide(0); 
+  };
+
   return (
     <AppContext.Provider
       value={{
+        carouselRef,
+        goToFirstSlide,
         rawBooks,
         handleDeleteBook,
         handleEditBook,
@@ -344,8 +354,8 @@ export const AppProvider = ({ children }) => {
         sendDropdownValue,
 
         BOOK_DETAILS_URL,
-        filteredJugendBooks,
-        setFilteredJugendBooks,
+        filteredBooks,
+        setFilteredBooks,
         resetBooksPage,
         searchRef,
       }}

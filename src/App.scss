@@ -4,8 +4,10 @@
 @import '../style/login-register.scss';
 @import '../style/corousel.scss';
 @import '../style/book.scss';
+@import '../style/newReleases.scss';
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 
 
@@ -20,6 +22,8 @@
   --color-main-gray: #e6e0e0d8;
   --color-opasity-white: rgba(0, 0, 0, 0.177);
   --box-shadow-mai-brown: 2px 5px 10px rgba(65, 44, 25, 0.394);
+  --box-shadow-main-brown-dark: 5px 7px 8px rgba(28, 21, 16, 0.901);
+
   --color-main-gray: #e6e0e0d8;
   --color-main-light-opacity: #f2f4f883;
 }

@@ -12,7 +12,7 @@ export const PageBooks2 = () => {
     cleanFormData,
     setEditingElementId,
     searchTerm,
-    filteredJugendBooks,
+    filteredBooks,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -46,8 +46,8 @@ export const PageBooks2 = () => {
     <div className="pageBooks2">
       {/* <h2>There are {rawBooks.length} books</h2> */}
       <ul>
-        {filteredJugendBooks.length > 0
-          ? filteredJugendBooks.map((_book) => {
+        {filteredBooks.length > 0
+          ? filteredBooks.map((_book) => {
               return (
                 <li className="book" key={_book._id}>
                   <Book book={_book} />
