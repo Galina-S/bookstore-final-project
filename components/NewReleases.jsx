@@ -23,7 +23,12 @@ export const NewReleases = () => {
   return (
     <div className="new-releases">
       <div className="title">
-      <NavLink to="/new-books" className='link-new-books'>Bücher Neuheiten</NavLink>
+        <span>
+             Neucheiten <br />
+        </span>
+      </div>
+      <div className="link-to-books">
+         <NavLink to="/new-books" className='link-new-books'>See All</NavLink> 
       </div>
 
       <Carousel showThumbs={false} showArrows={true} 
