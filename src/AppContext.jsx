@@ -288,7 +288,7 @@ export const AppProvider = ({ children }) => {
     );
   };
   const removeFromCart = (book) => {
-    setCart([cart.filter((ele) => ele._id !== book._id)]);
+    setCart(cart.filter((ele) => ele._id !== book._id));
   };
   const addToCart = (book) => {
     setCart([...cart, { ...book, quantity: 1 }]);
