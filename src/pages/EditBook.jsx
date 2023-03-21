@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { AppContext } from "../AppContext";
 
 export const EditBook = () => {
@@ -159,7 +160,10 @@ export const EditBook = () => {
         </div>
 
         <div className="buttonRow">
-          <button>Cancel</button>
+          <NavLink to="/books">
+            <button>Cancel</button>
+          </NavLink>
+
           <button type="submit">Save</button>
         </div>
       </fieldset>
