@@ -8,10 +8,16 @@ export const EditBook = () => {
   const book = formData;
 
   return (
+    <div className="editBook">
+
+    
     <form className="editForm" onSubmit={(e) => sendEditBook(e)}>
       <fieldset>
         <legend>Edit Book</legend>
 
+
+
+<div className="container">
         <div className="row">
           <label>Title</label>
           <div>
@@ -159,10 +165,13 @@ export const EditBook = () => {
         </div>
 
         <div className="buttonRow">
-          <button>Cancel</button>
-          <button type="submit">Save</button>
+          <button className="classicBtn">Cancel</button>
+          <button className="classicBtn" type="submit">Save</button>
         </div>
+
+  </div>
       </fieldset>
     </form>
+    </div>
   );
 };

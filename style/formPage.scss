@@ -1,5 +1,7 @@
 .editForm {
     padding: 10px;
+    display: flex;
+    justify-content: center;
 
     fieldset {
         padding: 1.7rem;
@@ -7,7 +9,7 @@
     }
 
     legend {
-        color: green;
+        color: rgb(69, 104, 69);
     }
 
     label {
