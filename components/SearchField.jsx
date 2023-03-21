@@ -36,6 +36,8 @@ export const SearchField = () => {
         onClick={(e) => e.target.blur()}
         className="search-btn"
       >
+
+
         Suchen
       </button>
     </form>

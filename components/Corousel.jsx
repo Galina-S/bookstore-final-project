@@ -4,9 +4,12 @@ import { AppContext } from "../src/AppContext";
 import { useContext, useEffect } from "react";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router";
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> e9f18fa (PageSingleAuthor)
 
 export const Corousel = () => {
   const { rawBooks, loadBooks, setFilteredBooks, carouselRef } = useContext(AppContext);

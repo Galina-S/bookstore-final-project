@@ -1,9 +1,10 @@
-import { useContext, useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import FavoriteIcon from "../../components/FavoriteIcon";
 import { AiFillEye, AiOutlineShoppingCart, AiOutlineArrowRight} from 'react-icons/ai';
 import axios from 'axios';
 import {baseURL} from '../../components/axios'
 import {useParams} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 
@@ -46,7 +47,11 @@ export const PageSingleBook = ()  => {
               <h1>{data.book?.title} </h1>
             </div>
             <div className="author">
-               <p>{data.book?.author}</p>
+
+            
+            <Link to={`/authors/${data.book?.author}`}>
+             <p>{data.book?.author}</p></Link>
+              
             </div>
             
             <div className="price">
