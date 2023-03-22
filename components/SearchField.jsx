@@ -44,18 +44,15 @@ export const SearchField = () => {
         onFocus={loadBooks}
         ref={searchRef}
       />
-      <button
-        type="submit"
-        onClick={(e) => e.target.blur()}
-        className="search-btn"
-      >
-        <TfiSearch />
-      </button>
-      {rawBooks.length === 0 ? (
-        <h3>No matching books found! Try another search</h3>
-      ) : (
-        <></>
-      )}
+      <div className="btn-container">
+        <button
+          type="submit"
+          onClick={(e) => e.target.blur()}
+          className="search-btn"
+        >
+          <TfiSearch />
+        </button>
+      </div>
     </form>
   );
 };

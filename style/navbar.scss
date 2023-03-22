@@ -113,12 +113,15 @@
 
 .navbar {
   border-bottom: 1.5px solid rgb(186, 186, 186);
-  display: flex;
-
+  margin-bottom: 0.6rem;
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+  }
   a {
     font-size: 1rem;
     color: var(--color-main-blue);
-    line-height: 2rem;
+    line-height: 2.4rem;
     padding-right: 1.5rem;
     text-decoration: none;
   }
@@ -129,25 +132,91 @@
   }
 }
 
-.search-field {
-  padding: 0.3rem;
+.search {
+  padding-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  height: max-content;
+  form{
+    border: 1px solid var(--color-main-gray);
+    display: flex;
+    width: max-content;
+    height: 40px;
 
+    .search-field {
+      padding: 0.3rem;
+      width: 20rem;
 
-  &:focus {
-    padding: 0.3rem;
-    border-color: var(--color-main-blue);
-    outline: 1px solid var(--color-main-blue);
-    border-radius: 2px;
+      &:focus {
+        padding: 0.3rem;
+        outline: none;
+        border-radius: 2px;
+      }
+    }
+    .btn-container{
+      background-color: var(--color-main-blue-medium);
+      
+    }
+    .search-btn {
+      margin: 0.8rem;
+      padding: 0 0.7rem;
+      color: var(--color-main-blue);
+      border: none;
+      background-color: var(--color-main-blue-medium);
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+    
+    .search-dropdown {
+      width: max-content;
+      padding: 0.5rem 0.5rem;
+      color: var(--color-main-blue);
+      background-color: #FFFF;
+      border: none;
+      cursor: pointer;
+      outline: none;
+
+    }
+
+  }
+
+}
+
+//Responsive
+
+@media screen and (max-width: 950px){
+
+  .navigation{
+    flex-direction: column;
+    align-items: flex-start;
+
+    .search{
+      text-align: center;
+      form {
+        width: 80vw;
+        height: 30px;
+        .search-field {
+          padding: 0.3rem;
+          width: 100%;
+        }
+        .search-btn {
+          margin: 0.5rem 0.3rem;
+          height: 10px;
+        }
+      }
+    }
+
   }
 }
+@media screen and (max-width: 550px){
+  .navigation{
+      .box-navigation{
+    a{
+      font-size: 0.9rem;
+      padding-right: 1rem;
 
-.search-btn {
-  margin-left: 0.5rem;
-  padding: 0.3rem 1rem;
-}
+    }
+  }
+  }
 
-.search-dropdown {
-  width: max-content;
-  padding: 0.3rem 0.5rem;
-  margin-right: 0.5rem;
 }

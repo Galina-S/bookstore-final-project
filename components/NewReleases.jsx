@@ -19,7 +19,7 @@ export const NewReleases = () => {
     <div className="new-releases">
       <div className="title">
         <span>
-             Neucheiten
+             Neuheiten
         </span>
       </div>
       <div className="link-to-books">

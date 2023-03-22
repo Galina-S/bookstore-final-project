@@ -105,21 +105,20 @@ export const NavbarPage = () => {
 
       <nav className="navbar">
         <div className="navigation">
-        {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
-          <NavLink to="/new-books">Neuheiten</NavLink>
-          <NavLink to="/bestsellers">Bestseller</NavLink>
-          <NavLink to="/books" onClick={resetBooksPage}>
-            Books
-          </NavLink>
-
-          {/*currentUser.username==="anonymousUser" ? 
-          (  null
-          )
-          :( <NavLink to="/logout">Logout </NavLink>)*/}
+          <div className="box-navigation">
+              {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
+            <NavLink to="/new-books">Neuheiten</NavLink>
+            <NavLink to="/bestsellers">Bestseller</NavLink>
+            <NavLink to="/books" onClick={resetBooksPage}>
+              Books
+            </NavLink>
+          </div>
           <div className="search">
-            <SearchField />
+              <SearchField />
           </div>
         </div>
+
+
       </nav>
     </div>
   );
