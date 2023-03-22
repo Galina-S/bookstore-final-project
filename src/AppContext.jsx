@@ -33,6 +33,7 @@ export const AppProvider = ({ children }) => {
   //Search input
   const [searchTerm, setSearchTerm] = useState(" ");
   const [dropdownValue, setDropdownValue] = useState("title");
+
   //Shopping cart
   const [cart, setCart] = useState([]);
 

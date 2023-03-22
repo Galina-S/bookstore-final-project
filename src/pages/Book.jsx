@@ -37,7 +37,7 @@ export const Book = (props) => {
   }
 
   const quantity = getItemQuantity(book._id);
-  console.log(cart, quantity);
+
   return (
     <div className="card-container">
       <div className="card">
