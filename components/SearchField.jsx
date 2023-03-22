@@ -13,18 +13,17 @@ export const SearchField = () => {
     rawBooks,
   } = useContext(AppContext);
 
-  const [noBooks, setNoBooks] = useState(false);
-  useEffect(() => {
-    if (rawBooks.length === 0) {
-      setTimeout(() => {
-        setNoBooks(true);
-      }, 2000);
-    } else {
-      setNoBooks(false);
-    }
-  }, [rawBooks]);
+  //const [noBooks, setNoBooks] = useState(false);
+  //useEffect(() => {
+  //  if (rawBooks.length === 0) {
+  //    setTimeout(() => {
+  //      setNoBooks(true);
+  //    }, 2000);
+  //  } else {
+  //    setNoBooks(false);
+  //  }
+  //}, [rawBooks]);
 
-  console.log(rawBooks.length, noBooks);
   return (
     <form onSubmit={(event) => sendSearchData(event)}>
       <select
@@ -52,7 +51,7 @@ export const SearchField = () => {
       >
         <TfiSearch />
       </button>
-      {noBooks === true ? (
+      {rawBooks.length === 0 ? (
         <h3>No matching books found! Try another search</h3>
       ) : (
         <></>
