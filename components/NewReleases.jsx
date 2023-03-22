@@ -1,7 +1,7 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AppContext } from "../src/AppContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { NavLink } from "react-router-dom";
 
 
@@ -10,21 +10,16 @@ import { NavLink } from "react-router-dom";
 
 export const NewReleases = () => {
 
-  const { rawBooks} = useContext(AppContext);
+  const { rawBooks, handleClick } = useContext(AppContext);
 
   const filteredBooks = rawBooks.filter(book => new Date(book.puplication) > new Date('2023-01-01'));
 
-  const handleClick = (id) => {
-    window.location.href = `/books/${id}`;
-
-  };
-  
 
   return (
     <div className="new-releases">
       <div className="title">
         <span>
-             Neucheiten <br />
+             Neucheiten
         </span>
       </div>
       <div className="link-to-books">

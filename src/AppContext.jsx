@@ -386,18 +386,17 @@ useEffect(() => {
   };
 
 
+  //open Single Book
 
+  const handleClick = (id) => {
+    window.location.href = `/books/${id}`;
+  };
 
-
-  
-
-  
-
-	
 
   return (
     <AppContext.Provider
       value={{
+        handleClick,
         carouselRef,
         goToFirstSlide,
         rawBooks,
