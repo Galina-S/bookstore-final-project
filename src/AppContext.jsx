@@ -10,11 +10,8 @@ import {
 } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
-
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
 export const AppContext = createContext();
-
 export const AppProvider = ({ children }) => {
   //const [books, setBooks] = useState([]);
   const [rawBooks, setRawBooks] = useState([]);
@@ -23,32 +20,23 @@ export const AppProvider = ({ children }) => {
   const [formData, setFormData] = useState([]);
   //Log in
   const [loginForm, setLoginForm] = useState(cloneDeep(blankLoginForm));
-
   const [currentUser, setCurrentUser] = useState(anonymousUser);
   const [memberInfo, setMemberInfo] = useState(blankMemberInfo);
   const [adminInfo, setAdminInfo] = useState(blankAdminInfo);
-
   //Single book page
   const [openBook, setOpenBook] = useState([]);
   //Search input
   const [searchTerm, setSearchTerm] = useState(" ");
   const [dropdownValue, setDropdownValue] = useState("title");
-
   //Shopping cart
   const [cart, setCart] = useState([]);
-
   const placeholderImage = "../src/assets/keinBild.jpeg";
-
   const BOOK_DETAILS_URL = "http://localhost:5173/books";
-
   //FilteredBooks by Category
   const [filteredBooks, setFilteredBooks] = useState([]);
-
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   let dropdownRef = useRef();
-
   useEffect(() => {
     let handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -57,9 +45,7 @@ export const AppProvider = ({ children }) => {
     };
     document.addEventListener("mousedown", handler);
   });
-
   const navigate = useNavigate();
-
   const loadBooks = async () => {
     setEditingElementId(null);
     const books = (await instance.get("/books")).data;
@@ -72,7 +58,6 @@ export const AppProvider = ({ children }) => {
     });
     setRawBooks(_books);
   };
-
   const getCurrentUser = () => {
     (async () => {
       try {
@@ -88,54 +73,35 @@ export const AppProvider = ({ children }) => {
       }
     })();
   };
-
   useEffect(() => {
     getCurrentUser();
   }, []);
-
-  const loadAccessGroupData = () => {
-    if (currentUserIsInAccessGroup("members")) {
-      (async () => {
-        const memberInfo = (
-          await axios.get(`${baseURL}/get-member-info`, {
-            withCredentials: true,
-          })
-        ).data;
-        setMemberInfo(cloneDeep(memberInfo));
-      })();
-    }
-    if (currentUserIsInAccessGroup("admins")) {
-      (async () => {
-        const adminInfo = (
-          await axios.get(`${baseURL}/get-admin-info`, {
-            withCredentials: true,
-          })
-        ).data;
-        setAdminInfo(cloneDeep(adminInfo));
-      })();
-    }
-  };
-
   // this loads data when a currentUser has been defined
   // on page reload, currentUser is anonymous for short time
   // then any user that is logged in is loaded into currentUser
-
   // useEffect(() => {
-  // 	loadAccessGroupData();
+  //  loadAccessGroupData();
   // }, [currentUser]);
-
   useEffect(() => {
     loadBooks();
   }, []);
-
   useEffect(() => {
-    getCurrentUser();
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${baseURL}/get-current-user`, {
+            withCredentials: true,
+          })
+        ).data;
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("General error");
+      }
+    })();
   }, []);
-
   const handleDeleteBook = async (_book) => {
     try {
       const res = await instance.delete(`/books/${_book._id}`);
-
       if ((res.status = 200)) {
         await loadBooks();
         console.log(_book._id);
@@ -144,12 +110,10 @@ export const AppProvider = ({ children }) => {
       console.error(`ERROR: ${e}`);
     }
   };
-
   //Single book page
   const openSingleBook = (book) => {
     setOpenBook(book);
   };
-
   //Edit book
   const handleEditBook = (id, _book) => {
     setRawBooks(
@@ -157,12 +121,10 @@ export const AppProvider = ({ children }) => {
     );
     setEditingElementId(null);
   };
-
   const onOpenEditForm = (book) => {
     setEditingElementId(book._id);
     setFormData(book);
   };
-
   const handleChangeFormField = (e) => {
     e.preventDefault();
     let value = e.target.value;
@@ -171,11 +133,9 @@ export const AppProvider = ({ children }) => {
     }
     setFormData({ ...formData, [e.target.name]: value });
   };
-
   const sendEditBook = async (e) => {
     e.preventDefault();
     //let _category = formData.category.split(",").trim();
-
     try {
       const res = await instance.put(`/books/${editingElementId}`, {
         ...formData,
@@ -190,7 +150,6 @@ export const AppProvider = ({ children }) => {
     navigate(`/books/`);
     setEditingElementId(null);
   };
-
   //Create a new book
   const handleAddBookForm = (e) => {
     e.preventDefault();
@@ -198,14 +157,11 @@ export const AppProvider = ({ children }) => {
     if (e.target.name === "ISBN") {
       value = value.match(/\d+/g).join([]);
     }
-
     setFormData({ ...formData, [e.target.name]: value });
   };
-
   const sendNewBook = async (e) => {
     e.preventDefault();
     let _category = formData.category.split(",");
-
     try {
       const res = await instance.post(`/books/`, {
         ...formData,
@@ -220,12 +176,10 @@ export const AppProvider = ({ children }) => {
     setFormData([]);
     navigate("/books");
   };
-
   //Clean form data
   const cleanFormData = () => {
     setFormData([]);
   };
-
   //Search input field
   const handleSearch = (event) => {
     setSearchTerm(event.target.value.trim());
@@ -251,20 +205,16 @@ export const AppProvider = ({ children }) => {
         }
       })
     );
-
     setSearchTerm(" ");
   };
-
   const sendDropdownValue = (e) => {
     setDropdownValue(e.target.value);
   };
-
   //Reset books page
   const resetBooksPage = () => {
     setFilteredBooks([]);
     loadBooks();
   };
-
   //Shopping cart
   const increaseQty = (book) => {
     setCart(
@@ -300,7 +250,6 @@ export const AppProvider = ({ children }) => {
     loginForm.fields[fieldIdCode] = value;
     setLoginForm({ ...loginForm });
   };
-
   const submitLoginForm = async (onBadLogin) => {
     try {
       const response = await axios.post(
@@ -318,10 +267,8 @@ export const AppProvider = ({ children }) => {
       );
       console.log(response.data);
       const user = response.data;
-
       setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
-
       setDropdownOpen(!dropdownOpen);
       navigate("/books");
     } catch (e) {
@@ -333,7 +280,28 @@ export const AppProvider = ({ children }) => {
       }
     }
   };
-
+  const loadAccessGroupData = () => {
+    if (currentUserIsInAccessGroup("members")) {
+      (async () => {
+        const memberInfo = (
+          await axios.get(`${baseURL}/get-member-info`, {
+            withCredentials: true,
+          })
+        ).data;
+        setMemberInfo(cloneDeep(memberInfo));
+      })();
+    }
+    if (currentUserIsInAccessGroup("admins")) {
+      (async () => {
+        const adminInfo = (
+          await axios.get(`${baseURL}/get-admin-info`, {
+            withCredentials: true,
+          })
+        ).data;
+        setAdminInfo(cloneDeep(adminInfo));
+      })();
+    }
+  };
   const logUserOut = () => {
     setCurrentUser({ ...anonymousUser });
     (async () => {
@@ -347,19 +315,15 @@ export const AppProvider = ({ children }) => {
       }
     })();
   };
-
   const currentUserIsInAccessGroup = (accessGroup) => {
     return currentUser.accessGroups.includes(accessGroup);
   };
-
   const clearLoginForm = () => {
     setLoginForm(cloneDeep(blankLoginForm));
   };
-
   const currentUserIsAdmin = () => {
     return currentUserIsInAccessGroup("admins");
   };
-
   const getNoAccessMessage = () => {
     if (currentUserIsInAccessGroup("loggedOutUsers")) {
       return "Your session has ended, please log in again.";
@@ -367,26 +331,6 @@ export const AppProvider = ({ children }) => {
       return "You do not have access to this page.";
     }
   };
-
-  // useEffect(() => {
-  //   getCurrentUser();
-  // }, []);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const user = (
-  //         await axios.get(`${baseURL}/get-current-user`, {
-  //           withCredentials: true,
-  //         })
-  //       ).data;
-  //       setCurrentUser({ ...user });
-  //     } catch (e) {
-  //       console.log("General error");
-  //     }
-  //   })();
-  // }, []);
-
   //Tracking The Window Size
   const getWindowSize = () => {
     const innerWidth = window.innerWidth;
@@ -402,22 +346,19 @@ export const AppProvider = ({ children }) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-
   //console.log(windowSize);
-
   //Carousel go to First Slide
   const carouselRef = useRef(null);
-
   const goToFirstSlide = () => {
     carouselRef.current?.goToSlide(0);
   };
-
   return (
     <AppContext.Provider
       value={{
         carouselRef,
         goToFirstSlide,
         rawBooks,
+        setRawBooks,
         handleDeleteBook,
         handleEditBook,
         onOpenEditForm,
@@ -451,23 +392,21 @@ export const AppProvider = ({ children }) => {
         setSearchTerm,
         sendSearchData,
         sendDropdownValue,
-
         BOOK_DETAILS_URL,
         filteredBooks,
         setFilteredBooks,
         resetBooksPage,
         searchRef,
-
         currentUserIsAdmin,
         memberInfo,
         getNoAccessMessage,
         adminInfo,
         currentUserIsInAccessGroup,
         loadAccessGroupData,
+        addToCart,
+        removeFromCart,
         increaseQty,
         decreaseQty,
-        removeFromCart,
-        addToCart,
         cart,
       }}
     >

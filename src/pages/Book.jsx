@@ -29,6 +29,7 @@ export const Book = (props) => {
     removeFromCart,
     addToCart,
     cart,
+    currentUserIsAdmin,
   } = useContext(AppContext);
 
   const { book } = props;
@@ -56,28 +57,31 @@ export const Book = (props) => {
         </div>
         <FavoriteIcon book={book} className="favorite-icon" />
       </div>
-      {/*Edit and delete buttons */}
-      <div className="edit-delete-buttons">
-        <button
-          className="deleteButton"
-          onClick={() => {
-            if (
-              window.confirm(
-                "Sind Sie sicher, dass Sie dieses Buch löschen möchten?"
-              )
-            ) {
-              handleDeleteBook(book);
-            }
-          }}
-        >
-          Delete
-        </button>
-        <NavLink to={`/edit/${_id}`}>
-          <button className="editButton" onClick={() => onOpenEditForm(book)}>
-            Edit
+
+      {currentUserIsAdmin() && (
+        <div className="edit-delete-buttons">
+          <button
+            className="deleteButton"
+            onClick={() => {
+              if (
+                window.confirm(
+                  "Sind Sie sicher, dass Sie dieses Buch löschen möchten?"
+                )
+              ) {
+                handleDeleteBook(book);
+              }
+            }}
+          >
+            Delete
           </button>
-        </NavLink>
-      </div>
+
+          <NavLink to={`/edit/${_id}`}>
+            <button className="editButton" onClick={() => onOpenEditForm(book)}>
+              Edit
+            </button>
+          </NavLink>
+        </div>
+      )}
       {/*Add to cart buttons */}
       <div>
         {cart.some((p) => p._id === book._id) ? (

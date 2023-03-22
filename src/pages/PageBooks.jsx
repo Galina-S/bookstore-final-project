@@ -48,9 +48,9 @@ export const PageBooks = () => {
      {currentUserIsAdmin() && (
       <>
       <div className="books">
-        <h2 style={{textAlign: "center"}}>Hi admin!</h2>
+        <h2 style={{textAlign: "center"}}>Hi Admin!</h2>
         <br></br>
-        <h3 style={{textAlign: "center"}}>Es gibt {rawBooks.length} Bücher in umserem BookStore</h3>
+        <h3 style={{textAlign: "center"}}>Es gibt {rawBooks.length} Bücher in unserem BookStore</h3>
         {rawBooks.map((_book) => {
           return (
             <div key={_book._id}>

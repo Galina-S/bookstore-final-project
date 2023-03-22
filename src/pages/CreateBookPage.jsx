@@ -7,10 +7,13 @@ export const CreateBookPage = () => {
     useContext(AppContext);
 
   return (
+    <div className="createBookPage">
     <form className="editForm" onSubmit={(e) => sendNewBook(e)}>
       <fieldset>
         <legend>Neues Buch Hinzufügen</legend>
 
+<div className="container">
+<div>
         <div className="row">
           <label>Title</label>
           <div>
@@ -78,22 +81,6 @@ export const CreateBookPage = () => {
         </div>
 
         <div className="row">
-          <label>Publication Date</label>
-          <div>
-            <input
-              required
-              name="puplication"
-              defaultValue={formData.puplication}
-              type="date"
-              max={new Date().toISOString().split("T")[0]}
-              onChange={(e) => {
-                handleAddBookForm(e, "puplication");
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="row">
           <label>Description</label>
           <div>
             <input
@@ -104,6 +91,25 @@ export const CreateBookPage = () => {
               maxLength={2000}
               onChange={(e) => {
                 handleAddBookForm(e, "description");
+              }}
+            />
+          </div>
+        </div>
+
+        </div>
+
+        <div>
+        <div className="row">
+          <label>Publication Date</label>
+          <div>
+            <input
+              required
+              name="puplication"
+              defaultValue={formData.puplication}
+              type="date"
+              max={new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 60).toISOString().split("T")[0]}
+              onChange={(e) => {
+                handleAddBookForm(e, "puplication");
               }}
             />
           </div>
@@ -183,8 +189,10 @@ export const CreateBookPage = () => {
           <button type="submit" className="classicBtn">
             Save
           </button>
-        </div>
+          </div>
+        </div></div>
       </fieldset>
     </form>
+    </div>
   );
 };

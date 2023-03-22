@@ -6,7 +6,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router";
 
 export const Corousel = () => {
-  const { rawBooks, loadBooks, setFilteredBooks, carouselRef } = useContext(AppContext);
+  const { rawBooks, loadBooks, setFilteredBooks, carouselRef, handleClick  } = useContext(AppContext);
   const childRefs = {
     book1: useRef({}),
     book2: useRef({}),
@@ -30,9 +30,7 @@ export const Corousel = () => {
   }, []);
 
 //Slide2 open book
-  const handleClick = (id) => {
-    window.location.href = `/books/${id}`;
-  };
+
 
   const handelBookkMarcElsberg = () => {
     rawBooks.map (book => {
