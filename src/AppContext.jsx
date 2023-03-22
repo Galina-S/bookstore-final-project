@@ -347,14 +347,22 @@ export const AppProvider = ({ children }) => {
     };
   }, []);
   //console.log(windowSize);
+
   //Carousel go to First Slide
   const carouselRef = useRef(null);
   const goToFirstSlide = () => {
     carouselRef.current?.goToSlide(0);
   };
+
+  //go to book
+
+  const handleClick = (id) => {
+    window.location.href = `/books/${id}`;
+  };
   return (
     <AppContext.Provider
       value={{
+        handleClick,
         carouselRef,
         goToFirstSlide,
         rawBooks,
