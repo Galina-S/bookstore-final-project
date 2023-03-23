@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { PageRegister } from "../pages/PageRegister";
 import { PageLogin } from "../pages/PageLogin";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
@@ -25,7 +25,9 @@ export const NavbarPage = () => {
     cleanFormData,
     loadBooks,
     resetBooksPage,
-    currentUserIsAdmin
+    currentUserIsAdmin,
+    favorites
+
   } = useContext(AppContext);
 
   return (
@@ -77,22 +79,20 @@ export const NavbarPage = () => {
           </div>
           
           {currentUserIsAdmin() && (
-          <NavLink
-            to="/create-book"
-            className="wish-list"
-            onClick={cleanFormData}
-          >
-            <FontAwesomeIcon
-              className="wish-list-icon"
-              icon={faFileCirclePlus}
-            />
+          <NavLink to="/create-book" className="wish-list" onClick={cleanFormData}>
+            <FontAwesomeIcon className="wish-list-icon" icon={faFileCirclePlus} />
             <span className={windowSize < 600 ? "none" : null}>Neues Buch</span>
           </NavLink>)}
 
-          <NavLink to="/wish-list" className="wish-list">
-            <FontAwesomeIcon className="wish-list-icon" icon={faHeart} />
-            <span className={windowSize < 600 ? "none" : null}>Merkzettel</span>
-          </NavLink>
+          <Link to={`/users/${currentUser._id}/favorites`} className="wish-list">
+           <div className="heart-icon-container"> 
+              <FontAwesomeIcon className="wish-list-icon-heart" icon={faHeart} />
+              {favorites.length >0 && 
+              <div className="favorite-count">{favorites.length}</div>}
+              <span className={windowSize < 600 ? "none" : null}>Merkzettel</span>
+           </div>
+          </Link>
+
           <NavLink to="/cart" className="shopping-cart">
             <FontAwesomeIcon
               className="shopping-cart-icon"

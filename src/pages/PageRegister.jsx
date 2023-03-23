@@ -49,8 +49,8 @@ export const PageRegister = () => {
 
   useEffect(() => {
     const result = USER_REGEX.test(formData.username);
-    console.log(result);
-    console.log(formData);
+    // console.log(result);
+    // console.log(formData);
     setValidName(result);
   }, [formData.username]);
 
@@ -88,7 +88,7 @@ export const PageRegister = () => {
       const res = await axios.post(`${baseURL}/register`,  {
         ...formData,
       });
-      console.log(res.data);
+      // console.log(res.data);
       setSuccess(true);
       setFormData( {username: "",
       email: "",

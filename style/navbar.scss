@@ -21,11 +21,58 @@
     display: flex;
     align-items: flex-end;
     margin-right: 0.5rem;
-
+    color: var(--color-main-blue);
+    
     button {
       border: none;
       align-items: center;
     }
+
+
+    .heart-icon-container {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      color: var(--color-main-blue);
+      font-size: 0.8rem;
+     
+
+      .favorite-count {
+        position: absolute;
+        top: 0.7em;
+        right: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        background-color:green;
+        color: white;
+        font-size: 0.8rem;
+        
+      }
+  
+      .heart-icon-list {
+        position: relative;
+        display: inline-block;
+    }
+      .wish-list-icon-heart{
+        font-size: 1.5rem;
+        padding-bottom: 0.3rem;}
+      
+    }
+
+    
+      
+      
+    
+   
+
+    
+
 
     .dropdown-trigger,
     .shopping-cart,
@@ -46,7 +93,8 @@
 
     .account_icon,
     .shopping-cart-icon,
-    .wish-list-icon {
+    .wish-list-icon-heart,
+    .wish-list-icon{
       font-size: 1.3rem;
       padding-bottom: 0.3rem;
     }
