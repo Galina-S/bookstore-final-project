@@ -1,6 +1,18 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
+import ShoppingCartBook from "../../components/ShoppingCartBook";
 
 export const Cart = () => {
-  return <div>Welcome to the shopping cart</div>;
+  const { cart } = useContext(AppContext);
+  return (
+    <div>
+      {cart.map((_book) => {
+        return (
+          <div className="book" key={_book._id}>
+            <ShoppingCartBook book={_book} />
+          </div>
+        );
+      })}
+    </div>
+  );
 };

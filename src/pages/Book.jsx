@@ -33,11 +33,6 @@ export const Book = (props) => {
   } = useContext(AppContext);
 
   const { book } = props;
-  function getItemQuantity(id) {
-    return cart.find((item) => item._id === id)?.quantity || 0;
-  }
-
-  const quantity = getItemQuantity(book._id);
 
   return (
     <div className="card-container">
@@ -82,23 +77,6 @@ export const Book = (props) => {
           </NavLink>
         </div>
       )}
-      {/*Add to cart buttons */}
-      <div>
-        {cart.some((p) => p._id === book._id) ? (
-          <div>
-            <div>
-              <button onClick={() => decreaseQty(book)}>-</button>
-              <div>
-                <span>{quantity}</span> in cart
-              </div>
-              <button onClick={() => increaseQty(book)}>+</button>
-            </div>
-            <button onClick={() => removeFromCart(book)}>Remove</button>
-          </div>
-        ) : (
-          <button onClick={() => addToCart(book)}>Add to Cart</button>
-        )}
-      </div>
     </div>
   );
 };
