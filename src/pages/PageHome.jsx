@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Corousel } from "../../components/Corousel";
 import { NewReleases } from "../../components/NewReleases";
-import { BooksWeLove } from "../../components/BooksWeLove"
-import { NavLink } from "react-router-dom";
+import { BooksWeLove } from "../../components/BooksWeLove";
+import { Footer } from "../../components/Footer";
+
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 
@@ -33,7 +33,7 @@ export const PageHome = () => {
 
                   <div className="book-description">
                     <h2>{book.title}</h2>
-                    <p className="description-author">by {book.author}</p>
+                    <p className="description-author">von {book.author}</p>
                     <p className="description-text">{book.description}</p>
                     <div className="btn-container">
                      <button className="btn" onClick={()=>{handleClick(book._id)}}>zum Buch</button>
@@ -52,6 +52,9 @@ export const PageHome = () => {
           </div>
 
           <BooksWeLove/>
+        </div>
+        <div className="footer">
+          <Footer/>
         </div>
     </div>
   );

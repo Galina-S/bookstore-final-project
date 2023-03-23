@@ -29,7 +29,7 @@ export const NewReleases = () => {
       <Carousel showThumbs={false} showArrows={true} 
             showIndicators={true}
             showStatus={false} centerMode={true} 
-            centerSlidePercentage={15} 
+            centerSlidePercentage={10} 
             swipeable={true} 
             className="carousel-new-releases">
         {filteredBooks.map(book => {

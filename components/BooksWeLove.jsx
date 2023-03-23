@@ -23,9 +23,9 @@ export const BooksWeLove = () => {
       <div className="box2">
         {rawBooks.map((book) => {
           return (
-            <div className="box box2-container">
+            <div className="box box2-container" key={book._id}>
               {book.title === "Über den Sinn des Lebens" && (
-                <div className=" box2-content" onClick={() => handleClick(book._id)}>
+                <div  className=" box2-content" onClick={() => handleClick(book._id)}>
                   <img src={book.img} alt="" />
                   <h3>{book.title}</h3>
                   <p>{book.author}</p>

@@ -6,7 +6,7 @@ import { Book } from "../pages/Book";
 export const PageBooks2 = () => {
 
   const [sortOrder, setSortOrder] = useState('none');
-  const { rawBooks, setRawBooks} = useContext(AppContext);
+  const { rawBooks, setRawBooks, loadBooks} = useContext(AppContext);
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
   }
@@ -18,6 +18,13 @@ export const PageBooks2 = () => {
     return () => {
       componentWillUnmount.current = true;
     };
+  }, []);
+
+// damit die Bücher geladen sind, wenn man zurückgeht
+  useEffect(() => {
+    (async () => {
+      loadBooks();
+    })();
   }, []);
 
   // useEffect(() => {

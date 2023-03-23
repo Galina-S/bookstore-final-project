@@ -7,7 +7,7 @@
       display: inline-block;
       vertical-align: middle;
       background-color: #ffffff;
-      width: 230px;
+      width: 250px;
       font-size: 1.2rem;
       font-weight: lighter;
       letter-spacing: 0.2rem;
@@ -75,6 +75,8 @@
         }
         .description-author {
           font-size: 0.8rem;
+          font-family: cursive;
+          color: var(--color-main-blue-medium);
         }
       }
     }
@@ -208,6 +210,7 @@
                 .box1-content {
                 padding: 1rem 4rem;
                 text-align: center;
+                cursor: pointer;
                 h2{
                     font-weight: 500;
                     
@@ -226,6 +229,7 @@
                 width: 50rem;
                 .box2-container {
                     .box2-content {
+                    cursor: pointer;
                     width: 130px;
                     margin: 1rem 1rem;
                     text-align: center;

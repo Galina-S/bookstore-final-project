@@ -7,6 +7,9 @@
 @import '../style/book.scss';
 @import '../style/newReleases.scss';
 @import '../style/cart.scss';
+@import '../style/newBooksPage.scss';
+@import '../style/footer.scss';
+
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
@@ -52,7 +55,7 @@
     margin-top: 1rem;
     background-color: var(--color-main-green);
     border: none;
-    border-radius: 2rem;
+    border-radius: 0.5rem; 
     color: rgb(108, 108, 108);
     cursor: pointer;
   }

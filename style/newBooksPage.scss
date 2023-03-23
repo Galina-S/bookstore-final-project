@@ -1,0 +1,118 @@
+.new-releases {
+  .all-releases {
+    text-align: center;
+    font-weight: lighter;
+    h1 {
+      font-weight: lighter;
+      text-align: center;
+      padding: 0.7rem;
+      color: var(--color-main-blue-medium);
+    }
+    .btn-releases{
+        margin: 0;
+        cursor: pointer;
+        text-decoration: underline;
+        background-color: #FFFFFF;
+        color: var(--color-main-blue-medium);
+        letter-spacing: 0.2rem;
+    }
+    .btn-back{
+        color: var(--color-main-green);
+        text-decoration: underline;
+        letter-spacing: 0.3rem;
+        cursor: pointer;
+    }
+  }
+  .releases-sort-category{
+    .title {
+        padding: 1rem;
+        margin-top: 1rem;
+        .title-span {
+          font-size: 1rem;
+        }
+      }
+      .content {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 10%;
+    
+        .releases {
+          width: 130px;
+          margin-bottom: 1.7rem;
+          margin: 0 0.7rem;
+    
+          .book {
+            text-align: center;
+            cursor: pointer;
+            img {
+              height: 170px;
+              box-shadow: var(--box-shadow-mai-brown);
+              transition: height 0.2s ease;
+            }
+            img:hover {
+              height: 175px;
+            }
+            .book-text {
+              margin-top: 0.5rem;
+              font-weight: lighter;
+              font-size: 0.9rem;
+    
+              .author {
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+  }
+
+  .all-releases-books{
+    .books-container{
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .all-books-releases{
+            width: 350px;
+            display: flex;
+            margin: 1rem 1rem;
+            border: 1px solid var(--color-main-gray);
+            padding: 0.7rem;
+            border-radius: 0.5rem;
+            img{
+                width: 100px;
+            box-shadow: var(--box-shadow-mai-brown);
+
+            }
+            .content-book{
+                width: inherit;
+                margin-left: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                font-weight: lighter;
+
+                .prise-btn{
+                    text-align: end;
+                    p{
+                        font-size: 1.3rem;
+                        span{
+                            font-size: 0.5rem;
+                        }
+                    }
+                    .btn-card{
+                        margin-top: 0.3rem;
+                        padding: 0.7rem 1rem;
+                    }
+                }
+            }
+        }
+
+    }
+  }
+}
