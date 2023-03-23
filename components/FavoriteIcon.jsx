@@ -1,22 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {  BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
+import { AppContext } from "../src/AppContext";
 
 const FavoriteIcon = ({ book }) => {
     const [isFavorite, setIsFavorite] = useState(false);
+      const { currentUser, favorites, setFavorites } = useContext(AppContext);
   
-    useEffect(() => {
-      const favorite = localStorage.getItem(book?.title);
-      if (favorite !== null) {
-        setIsFavorite(favorite === 'true');
-      }
-    }, [book?.title]);
+      console.log(favorites)
+    // useEffect(() => {
+    //   const favorite = localStorage.getItem(book?.title);
+    //   console.log("favorite", favorite)
+    //   if ((favorite !== null)) {
+    //     setIsFavorite(favorite === 'true');
+    //   }
+    // }, [book?.title]);
 
-    useEffect(() => {
-      localStorage.setItem(book?.title, isFavorite);
-    }, [book?.title, isFavorite]);
+    // useEffect(() => {
+    //   localStorage.setItem(book?.title, isFavorite);
+    // }, [book?.title, isFavorite]);
 
+    // const handleFavoriteClick = () => {
+    //   setIsFavorite(!isFavorite);
+    // };
+
+
+        useEffect(() => {
+      setIsFavorite(favorites.includes(book?._id));
+    }, [favorites, book?._id]);
+  
     const handleFavoriteClick = () => {
-      setIsFavorite(!isFavorite);
+      if (isFavorite) {
+        setFavorites(favorites.filter((id) => id !== book?._id));
+      } else {
+        setFavorites([...favorites, book?._id]);
+      }
     };
     
     return (

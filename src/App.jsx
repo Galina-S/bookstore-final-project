@@ -42,7 +42,9 @@ function App() {
         <Route path="/" element={<Navigate to="/home/*" />} />
         <Route path="/new-books" element={<NewBooksPage />} />
         <Route path="/bestsellers" element={<Bestsellers />} />
-        <Route path="/wish-list" element={<WishListPage />} />
+
+        <Route path="/users/:userId/favorites" element={<WishListPage />} />
+        
         <Route path="/create-book" element={<CreateBookPage />} />
         <Route path="/register" element={<PageRegister />} />
         <Route path="/login" element={<PageLogin />} />

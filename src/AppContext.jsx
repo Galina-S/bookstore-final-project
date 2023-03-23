@@ -13,6 +13,12 @@ import axios from "axios";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
+
+
+  const [favorites, setFavorites] = useState([]);
+
+
+
   //const [books, setBooks] = useState([]);
   const [rawBooks, setRawBooks] = useState([]);
   //Edit book data
@@ -66,7 +72,7 @@ export const AppProvider = ({ children }) => {
             withCredentials: true,
           })
         ).data;
-        console.log(data);
+        //console.log(data);
         setCurrentUser({ ...user });
       } catch (e) {
         console.log("GENERAL ERROR");
@@ -104,7 +110,7 @@ export const AppProvider = ({ children }) => {
       const res = await instance.delete(`/books/${_book._id}`);
       if ((res.status = 200)) {
         await loadBooks();
-        console.log(_book._id);
+        //console.log(_book._id);
       }
     } catch (e) {
       console.error(`ERROR: ${e}`);
@@ -267,6 +273,10 @@ export const AppProvider = ({ children }) => {
       );
       console.log(response.data);
       const user = response.data;
+    
+      const userId = response.data._id;
+      // console.log(userId)
+    
       setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
       setDropdownOpen(!dropdownOpen);
@@ -416,6 +426,9 @@ export const AppProvider = ({ children }) => {
         increaseQty,
         decreaseQty,
         cart,
+
+        favorites, setFavorites
+        
       }}
     >
       {children}

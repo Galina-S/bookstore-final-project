@@ -47,8 +47,8 @@ export const PageRegister = () => {
 
   useEffect(() => {
     const result = USER_REGEX.test(formData.username);
-    console.log(result);
-    console.log(formData);
+    // console.log(result);
+    // console.log(formData);
     setValidName(result);
   }, [formData.username]);
 

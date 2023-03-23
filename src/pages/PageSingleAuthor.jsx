@@ -4,6 +4,9 @@ import {useParams} from 'react-router-dom'
 import { Book } from "../pages/Book";
 import { NavLink, Link } from "react-router-dom";
 import FavoriteIcon from "../../components/FavoriteIcon";
+import { baseURL } from '../../components/axios';
+
+
 
 export const  PageSingleAuthor = () => {
   const [books, setBooks] = useState([]);
@@ -11,14 +14,14 @@ export const  PageSingleAuthor = () => {
   const { authorID } = useParams();
 
   // Set up state to hold the book data for the corresponding author
-  console.log(authorID);
+  //console.log(authorID);
   
   const formattedAuthorID = authorID.replaceAll(' ', '+'); // replace spaces with underscore
-  console.log(formattedAuthorID);
+  //console.log(formattedAuthorID);
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`http://localhost:3005/authors/${formattedAuthorID}`);
+        const response = await axios.get(`${baseURL}/authors/${formattedAuthorID}`);
         setBooks(response.data.books);
       } catch (err) {
         console.error(err);
@@ -51,6 +54,8 @@ export const  PageSingleAuthor = () => {
                   <h5>{book.price} € </h5>
             </div>
             <FavoriteIcon book={book} className="favorite-icon" />
+
+           
            </div>
         ))}
      

@@ -1,7 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
-import FavoriteIcon from "../../components/FavoriteIcon";
+// import FavoriteIcon from "../../components/FavoriteIcon";
+import FavoriteIcon from "../../components/UserFavorites";
 
 export const Book = (props) => {
   const {
@@ -30,18 +31,26 @@ export const Book = (props) => {
     addToCart,
     cart,
     currentUserIsAdmin,
+    currentUser
   } = useContext(AppContext);
 
+  
   const { book } = props;
+  function getItemQuantity(id) {
+    return cart.find((item) => item._id === id)?.quantity || 0;
+  }
+ // const isLiked = currentUser.favorites.includes(book._id);
+  const quantity = getItemQuantity(book._id);
 
   return (
     <div className="card-container">
       <div className="card">
-        <NavLink to={`/books/${_id}`} onClick={() => openSingleBook()}>
+     
+        <Link to={`/books/${_id}`} onClick={() => openSingleBook()}>
           <div className="image">
             <img src={img} alt={title} height="150px" />
           </div>
-        </NavLink>
+        </Link>
         <div className="artikel-details">
           <Link to={`/authors/${author}`}>
             <h6>{author}</h6>

@@ -1,6 +1,8 @@
-import React, { useRef, useContext, useEffect} from 'react';
+import React, { useRef, useContext, useEffect, useState} from 'react';
 import { AppContext } from '../AppContext';
 import { AiOutlineExclamationCircle } from  'react-icons/ai';
+import axios from 'axios';
+import { baseURL } from '../../components/axios';
 
 export const PageLogin = () => {
   const {
@@ -11,9 +13,14 @@ export const PageLogin = () => {
     dropdownOpen,
     setDropdownOpen,
     currentUser, navigate,
+    setFavorites,
   } = useContext(AppContext);
   const passwordRef = useRef();
 
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const userId  = currentUser._id;
   const onBadLogin = () => {
     if (passwordRef.current !== null) {
       passwordRef.current.focus();
@@ -34,6 +41,20 @@ export const PageLogin = () => {
   useEffect(() => {
     clearLoginForm();
   }, []);
+
+  useEffect(() => {
+    async function fetchFavorites() {
+      try {
+        const response = await axios.get(`${baseURL}/users/${userId}/favorites`);
+        setFavorites(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    // Fetch favorites when the component mounts
+    fetchFavorites();
+  }, [userId]);
 
   return (
     <div className="container">
