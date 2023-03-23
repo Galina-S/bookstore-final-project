@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Corousel } from "../../components/Corousel";
 import { NewReleases } from "../../components/NewReleases";
+import { BooksWeLove } from "../../components/BooksWeLove"
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
@@ -44,6 +45,14 @@ export const PageHome = () => {
           )
         })}
       </div>
+
+      <div className="container4">
+        <div className="title">
+            <span>Books We Love</span>
+          </div>
+
+          <BooksWeLove/>
+        </div>
     </div>
   );
 };
