@@ -107,11 +107,12 @@ export const NavbarPage = () => {
         <div className="navigation">
           <div className="box-navigation">
               {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
-            <NavLink to="/new-books">Neuheiten</NavLink>
-            <NavLink to="/bestsellers">Bestseller</NavLink>
             <NavLink to="/books" onClick={resetBooksPage}>
               Books
             </NavLink>
+            <NavLink to="/new-books">Neuheiten</NavLink>
+            <NavLink to="/bestsellers">Bestseller</NavLink>
+
           </div>
           <div className="search">
               <SearchField />
