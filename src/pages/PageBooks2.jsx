@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { useEffect, useRef, useState } from "react";
 import { Book } from "../pages/Book";
+import { BsSliders } from 'react-icons/bs';
 
 export const PageBooks2 = () => {
 
@@ -53,7 +54,8 @@ export const PageBooks2 = () => {
 
   return (
     <div className="pageBooks2">
-      <label>Sortieren:</label>
+      {/* <label>Sortieren:</label> */}
+      <span style={{margin: '10px'}}><BsSliders/></span>
       <select value={sortOrder} onChange={handleSortChange}>
         <option value="none">keine Sortierung</option>
         <option value="asc">Preis: aufsteigend</option>

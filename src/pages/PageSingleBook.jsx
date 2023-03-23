@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FavoriteIcon from "../../components/FavoriteIcon";
+import FavoriteIcon from "../../components/UserFavorites";
 import {
   AiFillEye,
   AiOutlineShoppingCart,

@@ -11,9 +11,9 @@ const FavoriteIcon = ({ book }) => {
   const userId = currentUser._id;
 
   useEffect(() => {
-    const favorite = favorites.includes(book._id);
+    const favorite = favorites.includes(book?._id);
     setIsFavorite(favorite);
-  }, [book._id, favorites]);
+  }, [book?._id, favorites]);
 
 
   const handleFavoriteClick = async () => {

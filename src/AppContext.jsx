@@ -79,9 +79,43 @@ export const AppProvider = ({ children }) => {
       }
     })();
   };
+
   useEffect(() => {
     getCurrentUser();
   }, []);
+
+
+  useEffect(() => {
+    async function fetchCurrentUser() {
+      try {
+        const response = await axios.get(`${baseURL}/users/me`, { withCredentials: true });
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+// Fetch current user when the component mounts
+fetchCurrentUser();
+}, []);
+
+    
+  useEffect(() => {
+    async function fetchFavorites() {
+        try {
+        const response = await axios.get(`${baseURL}/users/${currentUser?._id}/favorites`);
+        setFavorites(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+    }
+     // Fetch favorites when the component mounts
+     if (currentUser) {
+      fetchFavorites();
+    }
+  }, [currentUser]);
+
+
   // this loads data when a currentUser has been defined
   // on page reload, currentUser is anonymous for short time
   // then any user that is logged in is loaded into currentUser
