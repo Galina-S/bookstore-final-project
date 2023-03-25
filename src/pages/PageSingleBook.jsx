@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 import ImageZoom from "../pages/ImageZoom";
+import { PageVersand } from "./PageVersand";
 import { AppContext } from "../AppContext";
 
 export const PageSingleBook = () => {
@@ -82,9 +83,9 @@ export const PageSingleBook = () => {
             </p>
           </div>
           <div className="lieferbarkeit-versandkosten">
-            <a className="element-link-standard versandkosten-link" href="#">
-              Versandkostenfrei
-            </a>
+            <Link className="element-link-standard versandkosten-link" to='/shop/hilfe-versand'>
+                Versandkostenfrei
+            </Link>
           </div>
           <div>
             {cart.some((p) => p._id === data.book?._id) ? (

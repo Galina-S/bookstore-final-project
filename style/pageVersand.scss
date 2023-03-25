@@ -1,0 +1,68 @@
+.page-versand {
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+    .first-section {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        line-height: 1.6;
+
+        @media (max-width: 700px) {
+            div.crop {
+             display: none;
+            }
+          }
+    
+        @media (min-width: 769px) {
+            img {
+              display: flex;
+              
+            }
+            
+        }
+    
+    }
+
+    p{
+        font-size: 0.8em;
+        padding-bottom: 15px;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    h4 {
+        padding-bottom: 15px;
+    }
+
+    strong {
+        margin-bottom:10px;
+    }
+
+    .crop {
+        width: 220px;
+        height: 150px;
+        overflow: hidden;
+    }
+
+    .crop img {
+        width: 400px;
+        height: 300px;
+        margin: 0px 0 0 00px;
+        object-fit: cover;
+    }
+
+
+    .versand-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

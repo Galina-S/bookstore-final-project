@@ -22,7 +22,7 @@ export const DisplayBook = (props) => {
         <div className="content">
           <div className="title">
             <h2>{book.title} </h2>
-            <FavoriteIcon book={book} />
+            
           </div>
           <div className="author">
             <h5>{book.author}</h5>

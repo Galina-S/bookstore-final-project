@@ -69,7 +69,7 @@ export const NavbarPage = () => {
                 <NavLink
                   to="/logout"
                   className="logout-btn"
-                  onClick={() => (className = "inactiv")}
+                   onClick={() => (className = "inactiv")}
                 >
                   {" "}
                   Logout{" "}
@@ -84,14 +84,14 @@ export const NavbarPage = () => {
             <span className={windowSize < 600 ? "none" : null}>Neues Buch</span>
           </NavLink>)}
 
-          <Link to={`/users/${currentUser._id}/favorites`} className="wish-list">
+          {currentUser.username !== "anonymousUser" && <Link to={`/users/${currentUser._id}/favorites`} className="wish-list">
            <div className="heart-icon-container"> 
               <FontAwesomeIcon className="wish-list-icon-heart" icon={faHeart} />
               {favorites.length >0 && 
               <div className="favorite-count">{favorites.length}</div>}
               <span className={windowSize < 600 ? "none" : null}>Merkzettel</span>
            </div>
-          </Link>
+          </Link>}
 
           <NavLink to="/cart" className="shopping-cart">
             <FontAwesomeIcon
@@ -100,13 +100,15 @@ export const NavbarPage = () => {
             />
             <span className={windowSize < 600 ? "none" : null}>Warenkorb</span>
           </NavLink>
+
+
         </div>
       </nav>
 
       <nav className="navbar">
         <div className="navigation">
           <div className="box-navigation">
-              {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
+            {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
             <NavLink to="/books" onClick={resetBooksPage}>
               Books
             </NavLink>

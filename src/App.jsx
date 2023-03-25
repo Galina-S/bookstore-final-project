@@ -21,6 +21,7 @@ import { PageNovels } from "./pages/PageNovels";
 import { EditBook } from "./pages/EditBook";
 import { Cart } from "./pages/Cart";
 import { PageSingleAuthor } from "./pages/PageSingleAuthor";
+import { PageVersand } from "./pages/PageVersand";
 
 //const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -39,10 +40,11 @@ function App() {
         <Route path="novels" element={<PageNovels />} />
         <Route path="/books/category=:category"></Route>
 
+
         <Route path="/" element={<Navigate to="/home/*" />} />
         <Route path="/new-books" element={<NewBooksPage />} />
         <Route path="/bestsellers" element={<Bestsellers />} />
-
+        <Route path="/shop/hilfe-versand" element={<PageVersand />} />
         <Route path="/users/:userId/favorites" element={<WishListPage />} />
         
         <Route path="/create-book" element={<CreateBookPage />} />

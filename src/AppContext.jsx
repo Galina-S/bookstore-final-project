@@ -13,13 +13,7 @@ import axios from "axios";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
-
-
   const [favorites, setFavorites] = useState([]);
-
-
-
-  //const [books, setBooks] = useState([]);
   const [rawBooks, setRawBooks] = useState([]);
   //Edit book data
   const [editingElementId, setEditingElementId] = useState(null);
@@ -85,19 +79,19 @@ export const AppProvider = ({ children }) => {
   }, []);
 
 
-  useEffect(() => {
-    async function fetchCurrentUser() {
-      try {
-        const response = await axios.get(`${baseURL}/users/me`, { withCredentials: true });
-        setCurrentUser(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+//   useEffect(() => {
+//     async function fetchCurrentUser() {
+//       try {
+//         const response = await axios.get(`${baseURL}/users/me`, { withCredentials: true });
+//         setCurrentUser(response.data);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     }
 
-// Fetch current user when the component mounts
-fetchCurrentUser();
-}, []);
+// // Fetch current user when the component mounts
+// fetchCurrentUser();
+// }, []);
 
     
   useEffect(() => {
@@ -305,7 +299,7 @@ fetchCurrentUser();
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
       const user = response.data;
     
       const userId = response.data._id;

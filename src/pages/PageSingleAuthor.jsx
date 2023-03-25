@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom'
 import { Book } from "../pages/Book";
 import { NavLink, Link } from "react-router-dom";
-import FavoriteIcon from "../../components/FavoriteIcon";
+import FavoriteIcon from "../../components/UserFavorites";
 import { baseURL } from '../../components/axios';
 
 
