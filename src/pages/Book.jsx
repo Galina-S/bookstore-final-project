@@ -1,7 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
-// import FavoriteIcon from "../../components/FavoriteIcon";
 import FavoriteIcon from "../../components/UserFavorites";
 
 export const Book = (props) => {
@@ -45,7 +44,6 @@ export const Book = (props) => {
   return (
     <div className="card-container">
       <div className="card">
-     
         <Link to={`/books/${_id}`} onClick={() => openSingleBook()}>
           <div className="image">
             <img src={img} alt={title} height="150px" />

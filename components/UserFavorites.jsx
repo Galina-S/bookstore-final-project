@@ -4,31 +4,15 @@ import { baseURL } from "./axios";
 import { AppContext } from "../src/AppContext";
 import axios from 'axios';
 
-import { Button, Modal } from "@mui/material";
-
 const FavoriteIcon = ({ book }) => {
-  
   const [isFavorite, setIsFavorite] = useState(false);
-  const { currentUser, favorites, setFavorites } = useContext(AppContext);
+  const { currentUser, favorites, setFavorites} = useContext(AppContext);
   const userId = currentUser._id;
-
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const favorite = favorites.includes(book?._id);
     setIsFavorite(favorite);
   }, [book?._id, favorites]);
-
-
-  const handleOpen = (message) => {
-    setMessage(message);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleFavoriteClick = async () => {
     try {
@@ -53,25 +37,7 @@ const FavoriteIcon = ({ book }) => {
           setFavorites(favorites.filter((id) => id !== book._id));
           setIsFavorite(false);
 
-        } else {
-          // if ((favorites.length < 6) && (currentUser.username === "anonymousUser") ){
-          //   // book was not in favorites, so we want to add it
-          //   setFavorites([...favorites, book._id]);
-          //   setIsFavorite(true);
-                    
-          //           } 
-          //           else { 
-          //                 // <Button onClick={() => handleOpen('You can only save up to 6 favorite books as an anonymous user. Please log in to save more.')}>Show Alert</Button>
-          //                 // <Modal open={open} onClose={handleClose}>
-          //                 // <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: '#f44336', color: '#fff', padding: '10px' }}>
-          //                 //   {message}
-          //                 // </div>
-          //                 // </Modal>
-          //             alert('You can only save up to 6 favorite books as an anonymous user. Please log in to save more.');
-          //           // redirect the user to the login page or show a login modal here
-          //         }
-
-                  if ((currentUser.username!=="anonymousUser") ){
+        } else if ((currentUser.username!=="anonymousUser") ){
                     // book was not in favorites, so we want to add it
                     setFavorites([...favorites, book._id]);
                     setIsFavorite(true);
@@ -83,15 +49,10 @@ const FavoriteIcon = ({ book }) => {
                               setIsFavorite(true);
                             }
                               else { alert('You can only save up to 6 favorite books as an anonymous user. Please log in to save more.'); }
-                            
+             
 
-
-
-                
-                   
-    }
        
-        console.log(data.message);
+        // console.log(data.message);
         
       } else {
         console.log(data.message);
@@ -102,9 +63,8 @@ const FavoriteIcon = ({ book }) => {
   };
 
   return (
-    <>
-  
-  <div className='favorite-heart'>
+    <div>
+      <div className='favorite-heart'>
       {isFavorite ? (
         <BsSuitHeartFill
           className="favorite-icon"
@@ -119,7 +79,8 @@ const FavoriteIcon = ({ book }) => {
         />
       )}
     </div>
-  </>
+  
+  </div>
     
   );
 };

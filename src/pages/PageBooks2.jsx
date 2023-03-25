@@ -3,11 +3,13 @@ import { AppContext } from "../AppContext";
 import { useEffect, useRef, useState } from "react";
 import { Book } from "../pages/Book";
 import { BsSliders } from 'react-icons/bs';
+import { Button, Modal } from "@mui/material";
+import {AiFillCloseCircle} from 'react-icons/ai';
 
 export const PageBooks2 = () => {
 
   const [sortOrder, setSortOrder] = useState('none');
-  const { rawBooks, setRawBooks, loadBooks} = useContext(AppContext);
+  const { rawBooks, setRawBooks, loadBooks, currentUser, favorites, modalIsOpen, setModalIsOpen} = useContext(AppContext);
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
   }
@@ -52,8 +54,31 @@ export const PageBooks2 = () => {
   });
 
 
+  useEffect(() => {
+    // Check if favorite books array length is equal to 6
+    if ((favorites.length === 6) && (currentUser.username === "anonymousUser")) {
+      // Show modal message
+      setModalIsOpen(true);
+    }
+  }, [favorites, currentUser]);
+
+
+  const closeModal = () => {
+    // Close modal message
+    setModalIsOpen(false);
+  };
+
   return (
     <div className="pageBooks2">
+        <Modal className="modal-container" open = {modalIsOpen}>
+        <div className="modal-content">
+          <h2>Merkzettel ist leider zu voll</h2>
+          <p>Um weitere Artikel auf den Merkzettel zu legen und alle Vorteile zu nutzen, loggen Sie sich ein oder legen Sie jetzt ein Konto an. </p>
+          <AiFillCloseCircle onClick={closeModal} className="close-icon" /> 
+          {/* <button onClick={closeModal}>Close</button> */}
+        </div>
+        </Modal>
+
       {/* <label>Sortieren:</label> */}
       <span style={{margin: '10px'}}><BsSliders/></span>
       <select value={sortOrder} onChange={handleSortChange}>
@@ -95,6 +120,8 @@ export const PageBooks2 = () => {
                );
             })}
       </ul>
+     
     </div>
+    
   );
 };

@@ -7,9 +7,11 @@ import { BsCartPlus } from 'react-icons/bs';
 import {RiDeleteBin6Line} from 'react-icons/ri';
 import { useNavigate } from "react-router";
 
+
 export const WishListPage = () => {
     const { rawBooks, openSingleBook, currentUser, favorites, setFavorites} = useContext(AppContext);
-    
+
+
     const userId  = currentUser._id;
     const userName = currentUser.username;
     console.log(userId);
@@ -41,10 +43,18 @@ export const WishListPage = () => {
           console.error(error);
         }
       };
-    
+
+
+      
     return (
         <div className="wishListPage">
         <h1>Merkzettel</h1>
+       {currentUser.username ==="anonymousUser" && favorites.length ==6 && (
+              <><h3>Merkzettel is voll</h3>
+              <p>Um weitere Artikel auf den Merkzettel zu legen und alle Vorteile zu nutzen, loggen Sie sich ein oder legen Sie jetzt ein Konto an. </p>
+              </>)}
+
+
         {favorites.length>=1 && <ul className="container-wishpage">
             {rawBooks.map((_book) => {
                 if (favorites.includes(_book._id)) { return (

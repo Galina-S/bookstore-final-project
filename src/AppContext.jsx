@@ -36,6 +36,8 @@ export const AppProvider = ({ children }) => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   let dropdownRef = useRef();
   useEffect(() => {
     let handler = (e) => {
@@ -455,7 +457,8 @@ export const AppProvider = ({ children }) => {
         decreaseQty,
         cart,
 
-        favorites, setFavorites
+        favorites, setFavorites,
+        modalIsOpen, setModalIsOpen,
         
       }}
     >
