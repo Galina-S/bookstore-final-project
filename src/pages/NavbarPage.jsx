@@ -84,14 +84,23 @@ export const NavbarPage = () => {
             <span className={windowSize < 600 ? "none" : null}>Neues Buch</span>
           </NavLink>)}
 
-          {currentUser.username !== "anonymousUser" && <Link to={`/users/${currentUser._id}/favorites`} className="wish-list">
+           {favorites.length>=6 && currentUser==="anonymousUser"&& (
+            <> <PageLogin />
+            </>
+           ) 
+           }
+
+          <Link to={`/users/${currentUser._id}/favorites`} className="wish-list">
            <div className="heart-icon-container"> 
               <FontAwesomeIcon className="wish-list-icon-heart" icon={faHeart} />
+             
               {favorites.length >0 && 
               <div className="favorite-count">{favorites.length}</div>}
+
+
               <span className={windowSize < 600 ? "none" : null}>Merkzettel</span>
            </div>
-          </Link>}
+          </Link>
 
           <NavLink to="/cart" className="shopping-cart">
             <FontAwesomeIcon
