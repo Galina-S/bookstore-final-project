@@ -79,8 +79,8 @@ export const NewBooksPage = () => {
           <div className="content">
             {newLastWeek.map((book) => {
               return (
-                <div key={book._id} className="releases week-release">
-                  <div
+                <div key={book._id}  className="releases week-release">
+                  <div 
                     className="book"
                     onClick={() => {
                       handleClick(book._id);
@@ -126,7 +126,7 @@ export const NewBooksPage = () => {
           <div className="content">
             {newInNovels.map((book) => {
               return (
-                <div className="releases belletristik-release">
+                <div key={book._id} className="releases belletristik-release">
                   <div
                     className="book"
                     onClick={() => {
@@ -150,7 +150,7 @@ export const NewBooksPage = () => {
           <div className="content">
             {newInFantasy.map((book) => {
               return (
-                <div className="releases belletristik-release">
+                <div key={book._id} className="releases belletristik-release">
                   <div
                     className="book"
                     onClick={() => {
@@ -179,7 +179,7 @@ export const NewBooksPage = () => {
           <div className="books-container">
             {newReleases.map((book) => {
               return (
-                <div className="all-books-releases">
+                <div key={book._id} className="all-books-releases">
                   <img src={book.img} alt="" />
                  <div className="content-book">
                     <div className="authot-title">
