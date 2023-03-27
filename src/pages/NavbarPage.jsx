@@ -26,15 +26,17 @@ export const NavbarPage = () => {
     loadBooks,
     resetBooksPage,
     currentUserIsAdmin,
-    favorites
-
+    favorites,
+    cart,
   } = useContext(AppContext);
 
   return (
     <div>
       <nav className="header-content">
         <div className="logo">
-          <NavLink to="/home" onClick={goToFirstSlide}>LOGO</NavLink>
+          <NavLink to="/home" onClick={goToFirstSlide}>
+            LOGO
+          </NavLink>
         </div>
 
         <div className="header-customer">
@@ -69,7 +71,7 @@ export const NavbarPage = () => {
                 <NavLink
                   to="/logout"
                   className="logout-btn"
-                   onClick={() => (className = "inactiv")}
+                  onClick={() => (className = "inactiv")}
                 >
                   {" "}
                   Logout{" "}
@@ -77,60 +79,87 @@ export const NavbarPage = () => {
               )}
             </div>
           </div>
-          
+
           {currentUserIsAdmin() && (
-          <NavLink to="/create-book" className="wish-list" onClick={cleanFormData}>
-            <FontAwesomeIcon className="wish-list-icon" icon={faFileCirclePlus} />
-            <span className={windowSize < 600 ? "none" : null}>Neues Buch</span>
-          </NavLink>)}
+            <NavLink
+              to="/create-book"
+              className="wish-list"
+              onClick={cleanFormData}
+            >
+              <FontAwesomeIcon
+                className="wish-list-icon"
+                icon={faFileCirclePlus}
+              />
+              <span className={windowSize < 600 ? "none" : null}>
+                Neues Buch
+              </span>
+            </NavLink>
+          )}
 
-           {favorites.length>=6 && currentUser==="anonymousUser"&& (
-            <> <PageLogin />
+          {favorites.length >= 6 && currentUser === "anonymousUser" && (
+            <>
+              {" "}
+              <PageLogin />
             </>
-           ) 
-           }
+          )}
 
-          <Link to={`/users/${currentUser._id}/favorites`} className="wish-list">
-           <div className="heart-icon-container"> 
-              <FontAwesomeIcon className="wish-list-icon-heart" icon={faHeart} />
-             
-              {favorites.length >0 && 
-              <div className="favorite-count">{favorites.length}</div>}
+          <Link
+            to={`/users/${currentUser._id}/favorites`}
+            className="wish-list"
+          >
+            <div className="heart-icon-container">
+              <FontAwesomeIcon
+                className="wish-list-icon-heart"
+                icon={faHeart}
+              />
 
+              {favorites.length > 0 && (
+                <div className="favorite-count">{favorites.length}</div>
+              )}
 
-              <span className={windowSize < 600 ? "none" : null}>Merkzettel</span>
-           </div>
+              <span className={windowSize < 600 ? "none" : null}>
+                Merkzettel
+              </span>
+            </div>
           </Link>
 
           <NavLink to="/cart" className="shopping-cart">
-            <FontAwesomeIcon
-              className="shopping-cart-icon"
-              icon={faCartShopping}
-            />
-            <span className={windowSize < 600 ? "none" : null}>Warenkorb</span>
+            <div className="heart-icon-container">
+              <FontAwesomeIcon
+                className="shopping-cart-icon"
+                icon={faCartShopping}
+              />
+              {cart.length > 0 && (
+                <div className="favorite-count">
+                  {cart.reduce((total, cartItem) => {
+                    return total + cartItem.quantity;
+                  }, 0)}
+                </div>
+              )}
+              <span className={windowSize < 600 ? "none" : null}>
+                Warenkorb
+              </span>
+            </div>
           </NavLink>
-
-
         </div>
       </nav>
 
       <nav className="navbar">
         <div className="navigation">
           <div className="box-navigation">
-            {currentUserIsAdmin() && (<NavLink to="/books2">Admin-Bücher</NavLink>)}
+            {currentUserIsAdmin() && (
+              <NavLink to="/books2">Admin-Bücher</NavLink>
+            )}
             <NavLink to="/books" onClick={resetBooksPage}>
               Books
             </NavLink>
             <NavLink to="/new-books">Neuheiten</NavLink>
             <NavLink to="/bestsellers">Bestseller</NavLink>
-
           </div>
           <div className="search">
-              <SearchField />
+            <SearchField />
           </div>
         </div>
-
-
       </nav>
     </div>
   );
