@@ -104,7 +104,7 @@ export const PageLogin = () => {
                 ?
               setDropdownOpen(!dropdownOpen) 
               :setDropdownOpen(false) }
-              }>Hier registrieren.</button>
+              }>Hier registrieren</button>
            
             </div>
           </div>
