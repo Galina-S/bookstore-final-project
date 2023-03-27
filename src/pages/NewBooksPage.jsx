@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 export const NewBooksPage = () => {
   const [newReleases, setNewReleases] = useState([]);
-  const { handleClick, loadBooks } = useContext(AppContext);
+  const { handleClick, loadBooks, addToCart } = useContext(AppContext);
   const [seeAllReleases, setSeeAllReleases] = useState(false);
 
   useEffect(() => {
@@ -62,8 +62,9 @@ export const NewBooksPage = () => {
           </div>
         )}
         {seeAllReleases && (
-          <div >
-            <button className="btn btn-releases"
+          <div>
+            <button
+              className="btn btn-releases"
               onClick={() => setSeeAllReleases(!seeAllReleases)}
             >
               zurück
@@ -79,8 +80,8 @@ export const NewBooksPage = () => {
           <div className="content">
             {newLastWeek.map((book) => {
               return (
-                <div key={book._id}  className="releases week-release">
-                  <div 
+                <div key={book._id} className="releases week-release">
+                  <div
                     className="book"
                     onClick={() => {
                       handleClick(book._id);
@@ -172,25 +173,30 @@ export const NewBooksPage = () => {
       {seeAllReleases && (
         <div className="all-releases-books">
           <div className="title">
-            <span className="title-span">
-              Alle Neue Bücher 2023
-            </span>
+            <span className="title-span">Alle Neue Bücher 2023</span>
           </div>
           <div className="books-container">
             {newReleases.map((book) => {
               return (
                 <div key={book._id} className="all-books-releases">
                   <img src={book.img} alt="" />
-                 <div className="content-book">
+                  <div className="content-book">
                     <div className="authot-title">
-                        <p>{book.author}</p>
-                        <p>{book.title}</p>
+                      <p>{book.author}</p>
+                      <p>{book.title}</p>
                     </div>
                     <div className="prise-btn">
-                        <p><span>inkl. gesetzl. MwSt.</span> {book.price} €</p>
-                        <button className="btn btn-card">in den Warenkorb</button>
+                      <p>
+                        <span>inkl. gesetzl. MwSt.</span> {book.price} €
+                      </p>
+                      <button
+                        className="btn btn-card"
+                        onClick={() => addToCart(book)}
+                      >
+                        in den Warenkorb
+                      </button>
                     </div>
-                 </div>
+                  </div>
                 </div>
               );
             })}
