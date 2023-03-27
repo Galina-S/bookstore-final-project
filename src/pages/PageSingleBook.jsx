@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import FavoriteIcon from "../../components/UserFavorites";
 import CreateComment from "./CreateComment";
 import { AiFillEye, AiOutlineArrowRight } from "react-icons/ai";
+import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
 import { baseURL } from "../../components/axios";
 import { useParams } from "react-router-dom";
@@ -25,7 +26,7 @@ export const PageSingleBook = (props) => {
   const { id } = useParams();
   const [data, setData] = useState({});
 
-  const { cart, addToCart, removeFromCart, increaseQty, decreaseQty,
+  const { cart, addToCart, removeFromCart, increaseQty, decreaseQty, currentUser
     } =
     useContext(AppContext); 
 
@@ -64,8 +65,21 @@ export const PageSingleBook = (props) => {
   }
 
 
-  
-
+  async function deleteComment(commentId) {
+    const userId = id
+    try {
+      await fetch(`${baseURL}/books/${userId}/comments/${commentId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${currentUser.token}`,
+        },
+      });
+      // Refresh the comments after deleting
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="content">
@@ -231,13 +245,27 @@ export const PageSingleBook = (props) => {
           
           <h4>{comment.title}</h4>
             {/* Vom {comment.username}  */}
-          <p> Bewertet  am: {comment?.dateCreated
-          
-            
-           && new Date(comment.dateCreated).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
-          
+          <div className="delete-comment">
+              <p> Bewertet  am: {comment?.dateCreated                      
+              && new Date(comment.dateCreated).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
+
+              {currentUser && currentUser._id === comment.userId && (
+              <button  onClick={() => {
+                if (
+                  window.confirm(
+                    "Sind Sie sicher, dass Sie dieses Kommentar entfernen möchten?"
+                  )
+                ) {
+                  deleteComment(comment._id);
+                }
+              }} ><BsFillTrashFill /> Kommentar entfernen</button>
+              )}
+          </div>
+
           <p>{comment.content}</p>
+          
           {/* <p>Geändert am: {comment.dateModified}</p> */}
+        
         </div>
       ))}
      

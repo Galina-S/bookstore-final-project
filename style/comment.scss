@@ -17,8 +17,6 @@ input, textarea {
 
 }
 
-
-
 }
 
 .single-comment {
@@ -31,4 +29,20 @@ p {
 }
 h4 {
     margin:6px 0 10px 0;
+}
+
+.delete-comment{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    padding: 0px;
+    margin-bottom: 5px;
+    
+    button {
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;}
 }

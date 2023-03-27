@@ -21,7 +21,7 @@ export const NewBooksPage = () => {
     };
     fetchNewReleases();
   }, []);
-  //NEW LAS WEEK
+  //NEW LAST WEEK
   const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   const newLastWeek = newReleases.filter(
     (book) => new Date(book.puplication) > lastWeek
