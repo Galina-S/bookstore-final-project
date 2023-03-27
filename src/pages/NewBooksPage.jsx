@@ -57,7 +57,8 @@ export const NewBooksPage = () => {
               className="btn btn-releases"
               onClick={() => setSeeAllReleases(!seeAllReleases)}
             >
-              ??? zu den neuen Bücher ????
+              {/* ??? zu den neuen Bücher ???? */}
+              <p>{'>>> hier klicken  <<<'}</p>
             </button>
           </div>
         )}
