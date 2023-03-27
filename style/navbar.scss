@@ -9,6 +9,12 @@
       text-decoration: none;
       font-size: 1.5rem;
       color: var(--color-main-blue);
+      border-bottom: 1px solid var(--color-main-blue);
+      img{
+        width: 40px;
+        font-size: 0.5rem;
+        padding-top: 1rem;
+      }
     }
   }
 
@@ -108,12 +114,18 @@
       transform: scale(1.2);
     }
     @media screen and (max-width: 600px) {
+      .container {
+        padding: 1rem 1.5rem;
+      }
 
       .account_icon,
-      .wish-list-icon,
       .shopping-cart-icon {
         padding-bottom: 0.7rem;
       }
+      .wish-list{
+        padding-bottom: 1rem;
+      }
+
     }
 
     .dropdown {
@@ -123,7 +135,7 @@
       .auth {
         position: absolute;
         top: 110%;
-        right: -50%;
+        right: -100%;
         border-radius: 25px;
         z-index: 100;
       }
@@ -138,8 +150,6 @@
       .auth.inactiv {
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-20px);
-        transition: 500ms ease;
       }
 
       .logout-btn {
@@ -235,6 +245,15 @@
 
 @media screen and (max-width: 950px){
 
+  .header-content{
+    .logo {
+      a {
+        img{
+          width: 30px;  
+        }
+      }
+    }
+  }
   .navigation{
     flex-direction: column;
     align-items: flex-start;
@@ -258,6 +277,13 @@
   }
 }
 @media screen and (max-width: 550px){
+  .header-customer{
+    .dropdown{
+      .auth {
+        left: -570%;
+      }
+  }
+  }
   .navigation{
       .box-navigation{
     a{
