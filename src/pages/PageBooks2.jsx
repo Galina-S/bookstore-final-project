@@ -9,7 +9,7 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 export const PageBooks2 = () => {
 
   const [sortOrder, setSortOrder] = useState('none');
-  const { rawBooks, setRawBooks, loadBooks, currentUser, favorites, modalIsOpen, setModalIsOpen} = useContext(AppContext);
+  const { rawBooks, setRawBooks, loadBooks, currentUser, favorites, modalIsOpen, setModalIsOpen, filteredBooks, editingElementId} = useContext(AppContext);
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
   }
@@ -91,7 +91,7 @@ export const PageBooks2 = () => {
       </select>
 
       <ul>
-        {/* {(filteredBooks.length > 0)
+         {(filteredBooks.length > 0)
           ? filteredBooks.map((_book) => {
               return (
                 <li className="book" key={_book._id}>
@@ -99,7 +99,15 @@ export const PageBooks2 = () => {
                 </li>
               );
             })
-          : rawBooks.map((_book) => {
+          : sortedBooks.map((_book) => {
+            return (
+                <li className="book" key={_book._id}>
+                  <Book book={_book} />
+                </li>
+             );
+          })} 
+
+          {/**rawBooks.map((_book) => {
               return (
                 <li className="book" key={_book._id}>
                   {(_book._id === editingElementId   
@@ -110,15 +118,7 @@ export const PageBooks2 = () => {
 
                 </li>
               );
-            })} */}
-
-            {sortedBooks.map((_book) => {
-              return (
-                  <li className="book" key={_book._id}>
-                    <Book book={_book} />
-                  </li>
-               );
-            })}
+            }) */}
       </ul>
      
     </div>
