@@ -9,6 +9,12 @@
       text-decoration: none;
       font-size: 1.5rem;
       color: var(--color-main-blue);
+      border-bottom: 1px solid var(--color-main-blue);
+      img{
+        width: 40px;
+        font-size: 0.5rem;
+        padding-top: 1rem;
+      }
     }
   }
 
@@ -113,9 +119,11 @@
       }
 
       .account_icon,
-      .wish-list-icon,
       .shopping-cart-icon {
         padding-bottom: 0.7rem;
+      }
+      .wish-list{
+        padding-bottom: 1rem;
       }
 
     }
@@ -237,7 +245,15 @@
 
 @media screen and (max-width: 950px){
 
-
+  .header-content{
+    .logo {
+      a {
+        img{
+          width: 30px;  
+        }
+      }
+    }
+  }
   .navigation{
     flex-direction: column;
     align-items: flex-start;

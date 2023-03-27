@@ -34,7 +34,7 @@ export const NavbarPage = () => {
     <div>
       <nav className="header-content">
         <div className="logo">
-          <NavLink to="/home" onClick={goToFirstSlide}>LOGO</NavLink>
+          <NavLink to="/home" onClick={goToFirstSlide}><img src="https://i.ibb.co/37NJLgx/360-F-408740958-Lv-Kdx0d7p-Ma-X1-JKb-SHz-MCx-Sy-Ns-QHkchw-copy.png" alt="" /></NavLink>
         </div>
 
         <div className="header-customer">
