@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import FavoriteIcon from "../../components/UserFavorites";
-import {
-  AiFillEye,
-  AiOutlineShoppingCart,
-  AiOutlineArrowRight,
-} from "react-icons/ai";
+import CreateComment from "./CreateComment";
+import { AiFillEye, AiOutlineArrowRight } from "react-icons/ai";
 import axios from "axios";
 import { baseURL } from "../../components/axios";
 import { useParams } from "react-router-dom";
@@ -17,35 +14,59 @@ import ImageZoom from "../pages/ImageZoom";
 import { PageVersand } from "./PageVersand";
 import { AppContext } from "../AppContext";
 
-export const PageSingleBook = () => {
+export const PageSingleBook = (props) => {
+  
   const [openDialog, setOpenDialog] = useState(false);
+  const [comments, setComments] = useState([]);
+
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  
 
   const { id } = useParams();
   const [data, setData] = useState({});
 
-  const { cart, addToCart, removeFromCart, increaseQty, decreaseQty } =
-    useContext(AppContext);
+  const { cart, addToCart, removeFromCart, increaseQty, decreaseQty,
+    } =
+    useContext(AppContext); 
 
   useEffect(() => {
-    (async () => {
-      axios
-        .get(`${baseURL}/books/${id}`)
-        .then((res) => {
-          (<img src={data.book?.img} alt={data.book?.title} height="150px" />),
-            setData(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    })();
+    const fetchBook = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/books/${id}`);
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBook();
   }, [id]);
-  console.log(data);
+
+  
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/books/${id}/comments`);
+        setComments(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchComments();
+  }, [id]);
+
+  const quantity = getItemQuantity(data.book?._id);
+  
+  
 
   function getItemQuantity(id) {
     return cart.find((item) => item._id === id)?.quantity || 0;
   }
 
-  const quantity = getItemQuantity(data.book?._id);
+
+  
+
+
   return (
     <div className="content">
       <div className="content-wrapper">
@@ -86,7 +107,7 @@ export const PageSingleBook = () => {
             <Link className="element-link-standard versandkosten-link" to='/shop/hilfe-versand'>
                 Versandkostenfrei
             </Link>
-          </div>
+          </div><br/>
           <div>
             {cart.some((p) => p._id === data.book?._id) ? (
               <div>
@@ -102,8 +123,11 @@ export const PageSingleBook = () => {
                 </button>
               </div>
             ) : (
-              <button onClick={() => addToCart(data.book)}>Add to Cart</button>
+              <button className ="btn" onClick={() => addToCart(data.book)}>Add to Cart</button>
             )}
+          </div>
+          <div>
+
           </div>
         </div>
       </div>
@@ -112,7 +136,7 @@ export const PageSingleBook = () => {
         <div className="inhalt-beschreibung">
           <h2>Beschreibung</h2>
           <div className="description">
-            <p> {data.book?.description.substring(0, 200) + " ..."}</p>
+            <p> {data.book?.description.substring(0, 200) + " setShowCommentForm..."}</p>
           </div>
           <br />
           {/* <button interaction="zusatztexte-overlay-oeffnen" data-dialog="zusatztexte"> Weiterlesen</button> */}
@@ -197,6 +221,33 @@ export const PageSingleBook = () => {
           </div>
         </div>
       </div>
+
+      <div className="comments"><div className="comments-wrapper">
+      <h2>Bewertungen</h2>
+      <p>({comments.length} Bewertungen)</p>
+
+        {comments.map(comment => (
+        <div key={comment.commentId} className="single-comment">
+          
+          <h4>{comment.title}</h4>
+            {/* Vom {comment.username}  */}
+          <p> Bewertet  am: {comment?.dateCreated
+          
+            
+           && new Date(comment.dateCreated).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
+          
+          <p>{comment.content}</p>
+          {/* <p>Geändert am: {comment.dateModified}</p> */}
+        </div>
+      ))}
+     
+      <br/>
+        <button onClick={() => setShowCommentForm(!showCommentForm)} className="btn">Eigene Bewertung verfassen</button>
+
+         {showCommentForm &&  <CreateComment  bookId={id} /> }
+            
+    </div>
+    </div>
     </div>
   );
 };

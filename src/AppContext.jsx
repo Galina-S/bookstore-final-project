@@ -36,8 +36,9 @@ export const AppProvider = ({ children }) => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   //dropdownOpen (true/false)
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  
   let dropdownRef = useRef();
   useEffect(() => {
     let handler = (e) => {
@@ -186,6 +187,15 @@ export const AppProvider = ({ children }) => {
     navigate(`/books/`);
     setEditingElementId(null);
   };
+
+//Create a new comment
+  const handleAddCommentForm = (e) => {
+  e.preventDefault();
+  let value = e.target.value;
+  setFormData({ ...formData, [e.target.name]: value });
+};
+
+
   //Create a new book
   const handleAddBookForm = (e) => {
     e.preventDefault();
@@ -195,6 +205,8 @@ export const AppProvider = ({ children }) => {
     }
     setFormData({ ...formData, [e.target.name]: value });
   };
+
+
   const sendNewBook = async (e) => {
     e.preventDefault();
     let _category = formData.category.split(",");
@@ -459,6 +471,8 @@ export const AppProvider = ({ children }) => {
 
         favorites, setFavorites,
         modalIsOpen, setModalIsOpen,
+        handleAddCommentForm,
+        showCommentForm, setShowCommentForm
         
       }}
     >
