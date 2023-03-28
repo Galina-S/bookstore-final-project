@@ -10,20 +10,26 @@ export const Bestsellers = () => {
   );
 
     return (
-        <div className="bestsellers-container">
+        <div>
+             <div className="title">
+                <span className="title-span">Bestsellers</span>
+            </div>
+            <div className="bestsellers-container">
             {bestsellers.map(book => {
                return (
                 <div className="bestseller-books" key={book._id}>
                     <div className="bestseller-img">
                         <img src={book.img} alt="" />
                     </div>
-                    <div className="bestseller-content">
-                        <p className="bestseller-author">{book.author}</p>
-                        <p className="bestseller-title">{book.title}</p>
-                    </div>
-                    <div className="bestseller-price">
-                        <p className="bestsellers-price"><span>inkl. gesetzl. MwSt.</span>{book.price} €</p>
-                        <button className="btn btn-cart">in den Warenkorb</button>
+                   <div className="bestseller-book-info">
+                        <div className="bestseller-content">
+                                <p className="bestseller-author">{book.author}</p>
+                                <p className="bestseller-title">{book.title}</p>
+                        </div>
+                        <div className="bestseller-price">
+                                <p className="bestsellers-price"><span>inkl. gesetzl. MwSt.</span>{book.price} €</p>
+                                <button className="btn btn-cart">in den Warenkorb</button>
+                        </div>
                     </div>
                 </div>
                )
@@ -32,6 +38,8 @@ export const Bestsellers = () => {
 
             }
         </div>
+        </div>
+        
 
     )
 }

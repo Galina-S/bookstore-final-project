@@ -80,13 +80,13 @@
         .all-books-releases{
             width: 350px;
             display: flex;
-            margin: 1rem 1rem;
+            margin: 0.3rem;
             border: 1px solid var(--color-main-gray);
             padding: 0.7rem;
             border-radius: 0.5rem;
             img{
-                width: 100px;
-            box-shadow: var(--box-shadow-mai-brown);
+              height: 130px;
+              box-shadow: var(--box-shadow-mai-brown);
 
             }
             .content-book{
@@ -96,6 +96,10 @@
                 flex-direction: column;
                 justify-content: space-between;
                 font-weight: lighter;
+                .book-author{
+                  font-size: 0.7rem;
+                  text-decoration: underline;
+                }
 
                 .prise-btn{
                     text-align: end;

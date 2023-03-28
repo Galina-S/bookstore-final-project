@@ -22,7 +22,7 @@ export const NewBooksPage = () => {
     fetchNewReleases();
   }, []);
   //NEW LAST WEEK
-  const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const lastWeek = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
   const newLastWeek = newReleases.filter(
     (book) => new Date(book.puplication) > lastWeek
   );
@@ -181,7 +181,7 @@ export const NewBooksPage = () => {
                   <img src={book.img} alt="" />
                   <div className="content-book">
                     <div className="authot-title">
-                      <p>{book.author}</p>
+                      <p className="book-author">{book.author}</p>
                       <p>{book.title}</p>
                     </div>
                     <div className="prise-btn">
