@@ -1,0 +1,27 @@
+.bestsellers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .bestseller-books {
+        display: flex;
+        width: 250px;
+        margin: 1rem;
+        .bestseller-img {
+            img{
+                height: 100px;
+            }
+        }
+        .bestseller-content{
+            p{
+                font-size: 1rem;
+            }
+        }
+        .bestseller-price{
+            .btn-cart{
+                width: 70px;
+                font-size: 0.7rem;
+                padding: 0.3rem 0.2rem;
+            }
+        }
+    }
+}
