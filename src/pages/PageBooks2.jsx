@@ -69,6 +69,17 @@ export const PageBooks2 = () => {
   };
 
   return (
+    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'  }} >
+     {/* <label>Sortieren:</label> */}
+     <div><span style={{margin: '10px', alignContent: 'center'}}><BsSliders/></span>
+      <select value={sortOrder} onChange={handleSortChange}>
+        <option value="none">keine Sortierung</option>
+        <option value="asc">Preis: aufsteigend</option>
+        <option value="desc">Preis: absteigend</option>
+        <option value="publ-asc">Erscheinungsdatum: aufsteigend</option>
+        <option value="publ-desc">Erscheinungsdatum: absteigend</option>
+      </select>
+      </div>
     <div className="pageBooks2">
         <Modal className="modal-container" open = {modalIsOpen}>
         <div className="modal-content">
@@ -79,17 +90,7 @@ export const PageBooks2 = () => {
         </div>
         </Modal>
 
-      {/* <label>Sortieren:</label> */}
-      <span style={{margin: '10px'}}><BsSliders/></span>
-      <select value={sortOrder} onChange={handleSortChange}>
-        <option value="none">keine Sortierung</option>
-        <option value="asc">Preis: aufsteigend</option>
-        <option value="desc">Preis: absteigend</option>
-        <option value="publ-asc">Erscheinungsdatum: aufsteigend</option>
-        <option value="publ-desc">Erscheinungsdatum: absteigend</option>
-        
-      </select>
-
+     
       <ul>
          {(filteredBooks.length > 0)
           ? filteredBooks.map((_book) => {
@@ -122,6 +123,6 @@ export const PageBooks2 = () => {
       </ul>
      
     </div>
-    
+    </div>
   );
 };
