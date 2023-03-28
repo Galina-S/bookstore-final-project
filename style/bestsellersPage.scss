@@ -61,6 +61,7 @@
             img{
                 height: 130px;
                 box-shadow: var(--box-shadow-mai-brown);
+                cursor: pointer;
             }
         }
 
@@ -75,6 +76,7 @@
                 padding-left: 1rem;
                 p{
                     font-size: 1rem;
+                    cursor: pointer;
                 }
                 .bestseller-author{
                     font-size: 0.7rem;
@@ -99,5 +101,62 @@
             }
         }
         
+    }
+}
+@media screen and (max-width: 900px) {
+    .title{
+       span{
+            font-size: 1rem;
+            width: 130px;
+       }
+    }
+    .bestsellers-container{
+        .bestseller-books{
+            width: 270px;
+            .bestseller-img{
+                img{
+                    height: 90px;
+                }
+            }
+            .bestseller-book-info{
+                .bestseller-price{
+                    .btn-cart{
+                        padding: 0.5rem 0.5rem;
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+            
+        }
+
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .title{
+       span{
+            font-size: 1rem;
+            width: 130px;
+       }
+    }
+    .bestsellers-container{
+        .bestseller-books{
+            width: 270px;
+            .bestseller-img{
+                img{
+                    height: 90px;
+                }
+            }
+            .bestseller-book-info{
+                .bestseller-price{
+                    .btn-cart{
+                        padding: 0.5rem 0.5rem;
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+            
+        }
+
     }
 }

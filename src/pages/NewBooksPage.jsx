@@ -178,7 +178,9 @@ export const NewBooksPage = () => {
             {newReleases.map((book) => {
               return (
                 <div key={book._id} className="all-books-releases">
-                  <img src={book.img} alt="" />
+                  <img src={book.img} alt=""  onClick={() => {
+                      handleClick(book._id);
+                    }}/>
                   <div className="content-book">
                     <div className="authot-title">
                       <p className="book-author">{book.author}</p>
