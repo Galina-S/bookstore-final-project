@@ -48,7 +48,7 @@ export const NewBooksPage = () => {
   );
 
   return (
-    <div className="new-releases">
+    <div className="book-releases">
       <div className="all-releases">
         <h1>Neue Veröffentlichungen</h1>
         {!seeAllReleases && (
