@@ -40,13 +40,12 @@ function App() {
         <Route path="novels" element={<PageNovels />} />
         <Route path="/books/category=:category"></Route>
 
-
         <Route path="/" element={<Navigate to="/home/*" />} />
         <Route path="/new-books" element={<NewBooksPage />} />
         <Route path="/bestsellers" element={<Bestsellers />} />
         <Route path="/shop/hilfe-versand" element={<PageVersand />} />
         <Route path="/users/:userId/favorites" element={<WishListPage />} />
-        
+        <Route path="/users/:userId/cart" element={<Cart />} />
         <Route path="/create-book" element={<CreateBookPage />} />
         <Route path="/register" element={<PageRegister />} />
         <Route path="/login" element={<PageLogin />} />
@@ -55,8 +54,6 @@ function App() {
         <Route path="/edit/:id" element={<EditBook />} />
 
         <Route path="/authors/:authorID" element={<PageSingleAuthor />} />
-
-        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

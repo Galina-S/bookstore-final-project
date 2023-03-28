@@ -30,6 +30,7 @@ export const AppProvider = ({ children }) => {
   const [dropdownValue, setDropdownValue] = useState("title");
   //Shopping cart
   const [cart, setCart] = useState([]);
+  const [isInCart, setIsInCart] = useState(false);
   const placeholderImage = "../src/assets/keinBild.jpeg";
   const BOOK_DETAILS_URL = "http://localhost:5173/books";
   //FilteredBooks by Category
@@ -38,7 +39,7 @@ export const AppProvider = ({ children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
-  
+
   let dropdownRef = useRef();
   useEffect(() => {
     let handler = (e) => {
@@ -81,37 +82,37 @@ export const AppProvider = ({ children }) => {
     getCurrentUser();
   }, []);
 
+  //   useEffect(() => {
+  //     async function fetchCurrentUser() {
+  //       try {
+  //         const response = await axios.get(`${baseURL}/users/me`, { withCredentials: true });
+  //         setCurrentUser(response.data);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
 
-//   useEffect(() => {
-//     async function fetchCurrentUser() {
-//       try {
-//         const response = await axios.get(`${baseURL}/users/me`, { withCredentials: true });
-//         setCurrentUser(response.data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     }
+  // // Fetch current user when the component mounts
+  // fetchCurrentUser();
+  // }, []);
 
-// // Fetch current user when the component mounts
-// fetchCurrentUser();
-// }, []);
-
-    
+  //Favourites
   useEffect(() => {
     async function fetchFavorites() {
-        try {
-        const response = await axios.get(`${baseURL}/users/${currentUser?._id}/favorites`);
+      try {
+        const response = await axios.get(
+          `${baseURL}/users/${currentUser?._id}/favorites`
+        );
         setFavorites(response.data);
-        } catch (error) {
-          console.log(error);
-        }
+      } catch (error) {
+        console.log(error);
+      }
     }
-     // Fetch favorites when the component mounts
-     if (currentUser) {
+    // Fetch favorites when the component mounts
+    if (currentUser) {
       fetchFavorites();
     }
   }, [currentUser]);
-
 
   // this loads data when a currentUser has been defined
   // on page reload, currentUser is anonymous for short time
@@ -188,13 +189,12 @@ export const AppProvider = ({ children }) => {
     setEditingElementId(null);
   };
 
-//Create a new comment
+  //Create a new comment
   const handleAddCommentForm = (e) => {
-  e.preventDefault();
-  let value = e.target.value;
-  setFormData({ ...formData, [e.target.name]: value });
-};
-
+    e.preventDefault();
+    let value = e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
+  };
 
   //Create a new book
   const handleAddBookForm = (e) => {
@@ -205,7 +205,6 @@ export const AppProvider = ({ children }) => {
     }
     setFormData({ ...formData, [e.target.name]: value });
   };
-
 
   const sendNewBook = async (e) => {
     e.preventDefault();
@@ -264,6 +263,23 @@ export const AppProvider = ({ children }) => {
     loadBooks();
   };
   //Shopping cart
+  useEffect(() => {
+    async function fetchCart() {
+      try {
+        const response = await axios.get(
+          `${baseURL}/users/${currentUser?._id}/cart`
+        );
+        setCart(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    // Fetch favorites when the component mounts
+    if (currentUser) {
+      fetchCart();
+    }
+  }, [currentUser]);
+
   const increaseQty = (book) => {
     setCart(
       cart.filter((ele) =>
@@ -286,12 +302,41 @@ export const AppProvider = ({ children }) => {
       })
     );
   };
-  const removeFromCart = (book) => {
-    setCart(cart.filter((ele) => ele._id !== book._id));
+  const removeFromCart = async (bookId) => {
+    try {
+      const response = await axios.delete(
+        `${baseURL}/users/${currentUser._id}/cart/${bookId}`,
+        { withCredentials: true }
+      );
+      console.log(response.data.message);
+
+      // Update the state of favorites to re-render the UI
+      setCart(cart.filter((id) => id !== bookId));
+    } catch (error) {
+      console.error(error);
+    }
   };
-  const addToCart = (book) => {
-    setCart([...cart, { ...book, quantity: 1 }]);
+
+  const addToCart = async (book) => {
+    try {
+      const response = await axios.post(
+        `${baseURL}/users/${currentUser._id}/cart/${book._id}`,
+        { withCredentials: true }
+      );
+      console.log(response.data.message);
+
+      // Update the state of favorites to re-render the UI
+      setCart([...cart, { ...book, quantity: 1 }]);
+    } catch (error) {
+      console.error(error);
+    }
   };
+  //const removeFromCart = (book) => {
+  //  setCart(cart.filter((ele) => ele._id !== book._id));
+  //};
+  //const addToCart = (book) => {
+  //  setCart([...cart, { ...book, quantity: 1 }]);
+  //};
 
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
@@ -315,10 +360,10 @@ export const AppProvider = ({ children }) => {
       );
       //console.log(response.data);
       const user = response.data;
-    
+
       const userId = response.data._id;
       // console.log(userId)
-    
+
       setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
       setDropdownOpen(!dropdownOpen);
@@ -468,12 +513,15 @@ export const AppProvider = ({ children }) => {
         increaseQty,
         decreaseQty,
         cart,
-
-        favorites, setFavorites,
-        modalIsOpen, setModalIsOpen,
+        isInCart,
+        setIsInCart,
+        favorites,
+        setFavorites,
+        modalIsOpen,
+        setModalIsOpen,
         handleAddCommentForm,
-        showCommentForm, setShowCommentForm
-        
+        showCommentForm,
+        setShowCommentForm,
       }}
     >
       {children}

@@ -126,7 +126,10 @@ export const NavbarPage = () => {
             </div>
           </Link>
 
-          <NavLink to="/cart" className="shopping-cart">
+          <NavLink
+            to={`/users/${currentUser._id}/cart`}
+            className="shopping-cart"
+          >
             <div className="heart-icon-container">
               <FontAwesomeIcon
                 className="shopping-cart-icon"

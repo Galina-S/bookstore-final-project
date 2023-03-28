@@ -24,21 +24,16 @@ export const Book = (props) => {
     onOpenEditForm,
     openSingleBook,
     placeholderImage,
-    increaseQty,
-    decreaseQty,
-    removeFromCart,
-    addToCart,
     cart,
     currentUserIsAdmin,
-    currentUser
+    currentUser,
   } = useContext(AppContext);
 
-  
   const { book } = props;
   function getItemQuantity(id) {
     return cart.find((item) => item._id === id)?.quantity || 0;
   }
- // const isLiked = currentUser.favorites.includes(book._id);
+  // const isLiked = currentUser.favorites.includes(book._id);
   const quantity = getItemQuantity(book._id);
 
   return (

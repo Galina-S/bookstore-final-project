@@ -14,6 +14,28 @@ export const Cart = () => {
         <label className="product-removal">Remove</label>
         <label className="product-line-price">Total</label>
       </div>
+      {cart.length == 0 && (
+        <div>
+          <h3>Ihr Warenkorb ist leer.</h3>
+          <p
+            style={{
+              paddingTop: "10px",
+              fontSize: "0.9rem",
+              paddingBottom: "15px",
+            }}
+          >
+            Stöbern Sie in unserem Sortiment.
+          </p>
+          <button
+            onClick={() => {
+              navigate("/books");
+            }}
+            className="button-go-to-books"
+          >
+            Jetzt stöbern
+          </button>
+        </div>
+      )}
       {cart.map((_book) => {
         return (
           <div key={_book._id}>
