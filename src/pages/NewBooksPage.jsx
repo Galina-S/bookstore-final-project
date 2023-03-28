@@ -23,9 +23,9 @@ export const NewBooksPage = () => {
   }, []);
   //NEW LAST WEEK
   const lastWeek = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
-  const newLastWeek = newReleases.filter(
-    (book) => new Date(book.puplication) > lastWeek
-  );
+  const today = new Date()
+  const newLastWeek = newReleases.filter((book) => new Date(book.puplication) > lastWeek && new Date(book.puplication) <= today);  
+
 
   // NEW Belletristik
   const newInBelletristik = newReleases.filter((book) =>

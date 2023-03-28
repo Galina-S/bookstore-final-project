@@ -8,7 +8,7 @@ export const Bestsellers = () => {
   const bestsellers = rawBooks.filter((book) => book.viewsCount > 5);
   bestsellers.sort((a, b) => b.viewsCount - a.viewsCount);
   return (
-    <div>
+    <div className="bestsellersPage">
       <div className="title">
         <span className="title-span">Bestsellers</span>
       </div>
