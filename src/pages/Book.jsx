@@ -2,6 +2,8 @@ import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import FavoriteIcon from "../../components/UserFavorites";
+import { Modal } from "@mui/material";
+import {AiFillCloseCircle} from 'react-icons/ai';
 
 export const Book = (props) => {
   const {
@@ -30,7 +32,9 @@ export const Book = (props) => {
     addToCart,
     cart,
     currentUserIsAdmin,
-    currentUser
+    currentUser,
+    modalIsOpen,
+    closeModal
   } = useContext(AppContext);
 
   
@@ -43,7 +47,7 @@ export const Book = (props) => {
 
   return (
     <div className="card-container">
-      <div className="card">
+        <div className="card">
         <Link to={`/books/${_id}`} onClick={() => openSingleBook()}>
           <div className="image">
             <img src={img} alt={title} height="150px" />

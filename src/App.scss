@@ -276,6 +276,7 @@ div.message {
     padding-bottom: 20px;
   }
 
+  
   .medien-shadow-box {
     // position: relative;
     display: flex;
@@ -296,19 +297,77 @@ div.message {
 
   }
 
-  .favorite-heart {
-    position: absolut;
-    top: 0;
-    cursor: pointer;
-    padding-left: 30px;
-    font-size: 1.8rem;
-
-  }
 
   .image-container>img {
     width: 200px;
     height: 319px;
   }
+  .favorite-heart {
+    position: absolut;
+    margin-top: -100px;
+    cursor: pointer;
+    padding-left: 40px;
+   
+    svg {
+      font-size: 1.8em;
+    }
+
+  }
+  
+  @media screen and (max-width: 600px) {
+    .medien-shadow-box {
+      // position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 75%;
+      height: 250px;
+      padding: 5px;
+      margin: 5px;
+      border: none;
+      box-shadow: none; 
+    }
+
+    .favorite-heart {
+      position: absolut;
+      margin-top: -80px;
+      cursor: pointer;
+      padding-left: 7px;
+     
+      svg {
+        font-size: 1.9em;
+      }
+  
+    }
+
+   .image-container>img {
+      width: 30vw;
+      height: auto;      
+    }
+
+    .image-container {
+      display: flex;
+      flex-direction: row;
+      width: 35vw; 
+    }
+
+    a {
+      font-size: 1.5em;
+    }
+
+    h1 {
+      margin-top:50px
+    }
+
+
+  .description p{
+    font-size: .8rem;
+    line-height: 1.5,
+  }
+  }
+
+
 
   .artikel-informationen {
     display: block;
@@ -454,7 +513,6 @@ div.message {
 
   .image-zoom {
     transition: transform 0.4s;
-
   }
 
   .image-zoom:hover {
@@ -505,6 +563,7 @@ div.message {
   height: 200px;
   display: flex;
   align-items: flex-end;
+  
 }
 
 
@@ -515,6 +574,8 @@ div.message {
   background-color: white;
   padding: 20px;
   box-sizing: border-box;
+  
+  
   
   p {
     font-size: 12px;

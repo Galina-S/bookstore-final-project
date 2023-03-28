@@ -2,9 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { baseURL } from "../../components/axios";
 import { AppContext } from "../AppContext";
 import React from "react";
+import axios from "axios";
 
-export const CreateComment = ({ bookId}) => {
-const  { handleAddCommentForm, currentUser } = useContext(AppContext);
+export const CreateComment = ({ bookId, handleAddCommentForm}) => {
+const  { currentUser, loadComments } = useContext(AppContext);
 
 const [submitted, setSubmitted] = useState(false); // add submitted state
 const [showCommentForm, setShowCommentForm] = useState(true);
@@ -18,6 +19,9 @@ const [formData, setFormData] = useState({
     dateCreated: new Date(),
     dateModified: new Date()
   });
+
+  const [newComment, setNewComment] = useState(null);
+  const [data, setData] = useState({});
   
     async function handleSubmit(event) {
         event.preventDefault();
@@ -31,7 +35,7 @@ const [formData, setFormData] = useState({
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      console.log(data);
+      window.location.reload();
      
 
       setFormData({
@@ -64,14 +68,32 @@ const [formData, setFormData] = useState({
     setFormData({ ...formData, [event.target.name]: event.target.value });
 }
 
-  // const handleChange = (event) => {
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     [event.target.name]: event.target.value,
-  //   }));
-  // };
 
-    return (
+useEffect(() => {
+  const fetchBook = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/books/${bookId}`);
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchBook();
+
+  if (newComment) {
+    setComments([...comments, newComment]);
+  }
+}, [bookId]);
+
+
+
+useEffect(() => {
+  loadComments(bookId);
+}, [bookId]);
+
+
+  return (
         <div className="createComment">
             <br></br>
             
