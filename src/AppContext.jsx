@@ -102,9 +102,9 @@ export const AppProvider = ({ children }) => {
           `${baseURL}/users/${currentUser._id}/favorites`
         );
         setFavorites(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+        } catch (error) {
+          console.log(`ERROR: ${error}`);
+        }
     }
     // Fetch favorites when the component mounts
     if (currentUser) {

@@ -55,7 +55,7 @@ export const PageBooks = () => {
           return (
             <div key={_book._id}>
               {_book._id === editingElementId ? (
-                <EditBook book={_book} />
+                <EditBook book={_book } />
               ) : (
                 <DisplayBook book={_book} />
               )}
