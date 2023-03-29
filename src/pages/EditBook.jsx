@@ -95,7 +95,7 @@ export const EditBook = () => {
               </div>
             </div>
 
-            <div className="row">
+            {/* <div className="row">
               <label>Erscheinungsdatum</label>
               <div>
                 <input
@@ -117,7 +117,7 @@ export const EditBook = () => {
                   }}
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="row">
               <label>Genre</label>

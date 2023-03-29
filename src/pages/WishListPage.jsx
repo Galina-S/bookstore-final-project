@@ -41,6 +41,7 @@ export const WishListPage = () => {
   return (
     <div className="wishListPage">
       <h1>Merkzettel</h1>
+      <p>Sie haben {favorites.length} vorkemerkte Bücher.</p>
       {currentUser.username === "anonymousUser" && favorites.length == 6 && (
         <>
           <h3>Merkzettel is voll</h3>

@@ -31,7 +31,7 @@ export const AppProvider = ({ children }) => {
   //Shopping cart
   const [cart, setCart] = useState([]);
   const [isInCart, setIsInCart] = useState(false);
-  const placeholderImage = "../src/assets/keinBild.jpeg";
+  const placeholderImage = "src/assets/keinBild.jpeg";
   //FilteredBooks by Category
   const [filteredBooks, setFilteredBooks] = useState([]);
   //dropdownOpen (true/false)

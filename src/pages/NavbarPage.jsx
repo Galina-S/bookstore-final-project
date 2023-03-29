@@ -159,7 +159,7 @@ export const NavbarPage = () => {
               <NavLink to="/books2">Admin-Bücher</NavLink>
             )}
             <NavLink to="/books" onClick={resetBooksPage}>
-              Books
+              Bücher
             </NavLink>
             <NavLink to="/new-books">Neuheiten</NavLink>
             <NavLink to="/bestsellers">Bestseller</NavLink>

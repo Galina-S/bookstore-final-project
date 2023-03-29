@@ -161,6 +161,7 @@
 .createBookPage {
   display: flex;
   justify-content: center;
+  flex-direction: row;
       input {
         border: 1px solid rgb(83, 26, 83);
         padding: 5px;
@@ -180,7 +181,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
 
 .createBookPage {
   .container {
@@ -317,7 +318,7 @@
     .button-gruppe {
       display: flex;
       gap: 15px;
-      justify-content: right;
+      justify-content: left;
       padding-top: 30px;
     }
   }

@@ -21,7 +21,7 @@ export const PageSingleBook = (props) => {
 
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [newComment, setNewComment] = useState(null);
-  const [showFullComment, setShowFullComment] = useState(false);
+  const [showFullComment, setShowFullComment] = useState({});
 
   const { id } = useParams();
   const [data, setData] = useState({});
@@ -272,10 +272,14 @@ export const PageSingleBook = (props) => {
               )}
           </div>
 
-          <div>{showFullComment ? (<p>{comment.content}</p>) : (<p>{comment.content.substring(0, 450) + '...'}</p>) }</div>
+          <div>{showFullComment[comment.commentId] ? (<p>{comment.content}</p>) : (<p>{comment.content.substring(0, 450) + '...'}</p>) }</div>
           {comment.content.length > 450 && (
-            <button className="read-further" onClick={() => setShowFullComment(!showFullComment)}>
-              {showFullComment ? "Weniger anzeigen" : "Weiterlesen"}
+            <button className="read-further" onClick={() => setShowFullComment({
+              ...showFullComment,
+              [comment.commentId]: !showFullComment[comment.commentId],
+            })
+          }>
+              {showFullComment[comment.commentId] ? "Weniger anzeigen" : "Weiterlesen"}
                 </button>
             )} 
         
