@@ -90,13 +90,10 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-<<<<<<< HEAD
             {/**
             <div className="row">
-=======
 
             {/* <div className="row">
->>>>>>> 9ecc254e81635c4d5a171049ef2822e15768e173
               <label>Erscheinungsdatum</label>
               <div>
                 <input
@@ -118,13 +115,8 @@ export const EditBook = () => {
                   }}
                 />
               </div>
-<<<<<<< HEAD
             </div>
             */}
-=======
-            </div> */}
-
->>>>>>> 9ecc254e81635c4d5a171049ef2822e15768e173
             <div className="row">
               <label>Genre</label>
               <div>
