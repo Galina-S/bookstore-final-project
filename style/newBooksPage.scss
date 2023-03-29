@@ -1,25 +1,22 @@
 .book-releases {
-
-
-  .title{
+  .title {
     padding-top: 1.3rem;
     text-align: center;
     overflow: hidden;
     color: var(--color-main-gray-medium);
 
-    span{
-        display: inline-block;
-        vertical-align: middle;
-        background-color: #FFFFFF;
-        width: 200px;
-        font-size: 1.4rem;
-        font-weight: lighter;
-        letter-spacing: 0.2rem;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      background-color: #ffffff;
+      width: 200px;
+      font-size: 1.4rem;
+      font-weight: lighter;
+      letter-spacing: 0.2rem;
     }
-
-}
-.title:before,
-.title:after {
+  }
+  .title:before,
+  .title:after {
     content: "";
     display: inline-block;
     vertical-align: middle;
@@ -27,132 +24,163 @@
     height: 2px;
     background-color: var(--color-main-gray);
     position: relative;
-}
+  }
 
-.title:before {
+  .title:before {
     margin-left: -100%;
-}
-.title:after {
+  }
+  .title:after {
     margin-right: -100%;
-}
+  }
   .all-releases {
     text-align: center;
     font-weight: lighter;
-    h1 {
+    .page-title {
+      font-size: 2rem;
       font-weight: lighter;
       text-align: center;
       padding: 0.7rem;
       color: var(--color-main-blue-medium);
     }
-    .btn-releases{
-        margin: 0;
-        cursor: pointer;
-        text-decoration: underline;
-        background-color: #FFFFFF;
-        color: var(--color-main-blue-medium);
-        letter-spacing: 0.2rem;
+    .btn-releases {
+      margin: 0;
+      cursor: pointer;
+      text-decoration: underline;
+      background-color: #ffffff;
+      color: var(--color-main-blue-medium);
+      letter-spacing: 0.2rem;
     }
-    .btn-back{
-        color: var(--color-main-green);
-        text-decoration: underline;
-        letter-spacing: 0.3rem;
-        cursor: pointer;
+    .btn-back {
+      color: var(--color-main-green);
+      text-decoration: underline;
+      letter-spacing: 0.3rem;
+      cursor: pointer;
     }
   }
-  .releases-sort-category{
+  .releases-sort-category {
     .title {
-        padding: 1rem;
-        margin-top: 1rem;
-        .title-span {
-          font-size: 1rem;
-        }
+      padding: 1rem;
+      margin-top: 1rem;
+      .title-span {
+        font-size: 1rem;
       }
-      .content {
-        margin-bottom: 2rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 0 10%;
-    
-        .releases {
-          width: 130px;
-          margin-bottom: 1.7rem;
-          margin: 0 0.7rem;
-    
-          .book {
-            text-align: center;
-            cursor: pointer;
-            img {
-              height: 170px;
-              box-shadow: var(--box-shadow-mai-brown);
-              transition: height 0.2s ease;
-            }
-            img:hover {
-              height: 175px;
-            }
-            .book-text {
-              margin-top: 0.5rem;
-              font-weight: lighter;
-              font-size: 0.9rem;
-    
-              .author {
-                font-size: 0.7rem;
-                margin-bottom: 0.3rem;
-                text-decoration: underline;
-              }
+    }
+    .content {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 10%;
+
+      .releases {
+        width: 130px;
+        margin-bottom: 1.7rem;
+        margin: 0 0.7rem;
+
+        .book {
+          text-align: center;
+          cursor: pointer;
+          img {
+            height: 170px;
+            box-shadow: var(--box-shadow-mai-brown);
+            transition: height 0.2s ease;
+          }
+          img:hover {
+            height: 175px;
+          }
+          .book-text {
+            margin-top: 0.5rem;
+            font-weight: lighter;
+            font-size: 0.9rem;
+
+            .author {
+              font-size: 0.7rem;
+              margin-bottom: 0.3rem;
+              text-decoration: underline;
             }
           }
         }
       }
+    }
   }
 
-  .all-releases-books{
-    .books-container{
-        margin-top: 2rem;
+  .all-releases-books {
+    .books-container {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .all-books-releases {
+        width: 350px;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        .all-books-releases{
-            width: 350px;
-            display: flex;
-            margin: 0.3rem;
-            border: 1px solid var(--color-main-gray);
-            padding: 0.7rem;
-            border-radius: 0.5rem;
-            img{
-              height: 130px;
-              box-shadow: var(--box-shadow-mai-brown);
-              cursor: pointer;
-            }
-            .content-book{
-                width: inherit;
-                margin-left: 1rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                font-weight: lighter;
-                .book-author{
-                  font-size: 0.7rem;
-                  text-decoration: underline;
-                }
-
-                .prise-btn{
-                    text-align: end;
-                    p{
-                        font-size: 1.3rem;
-                        span{
-                            font-size: 0.5rem;
-                        }
-                    }
-                    .btn-card{
-                        margin-top: 0.3rem;
-                        padding: 0.7rem 1rem;
-                    }
-                }
-            }
+        margin: 0.3rem;
+        border: 1px solid var(--color-main-gray);
+        padding: 0.7rem;
+        border-radius: 0.5rem;
+        img {
+          height: 130px;
+          box-shadow: var(--box-shadow-mai-brown);
+          cursor: pointer;
         }
+        .content-book {
+          width: inherit;
+          margin-left: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          font-weight: lighter;
+          .book-author {
+            font-size: 0.7rem;
+            text-decoration: underline;
+          }
 
+          .prise-btn {
+            text-align: end;
+            p {
+              font-size: 1.3rem;
+              span {
+                font-size: 0.5rem;
+              }
+            }
+            .btn-card {
+              margin-top: 0.3rem;
+              padding: 0.7rem 1rem;
+            }
+          }
+        }
+      }
     }
+  }
+
+  @media screen and (max-width:900px) {
+    .all-releases{
+      .page-title{
+        font-size: 1.3rem;
+        margin: 0;
+        padding-bottom: 0.2rem;
+      }
+      .btn-releases{
+        padding: 0;
+        font-size: 0.5rem;
+      }
+    }
+
+    .releases-sort-category{
+      .content{
+        justify-content: space-around;
+        .releases{
+          width: 70px;
+          margin-bottom: 1.3rem;
+          .book{
+            img{
+            height: 120px;
+            }
+          }
+
+        }
+      }
+    }
+
   }
 }
