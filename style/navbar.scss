@@ -104,6 +104,16 @@
       font-size: 1.3rem;
       padding-bottom: 0.3rem;
     }
+    .dropdown{
+      .logout-container{
+              .logout-btn {
+                border: 0.5px solid var(--color-main-gray);
+                border-radius: 0.5rem;
+                background-color:#f3f3f3ba;
+      }
+      }
+
+    }
 
 
     .image-zoom {
@@ -154,10 +164,9 @@
 
       .logout-btn {
         text-decoration: none;
-        color: var(--color-main-blue);
-        border: 2px solid var(--color-main-blue);
         padding: 0.7rem 2rem;
-        background-color: var(--color-main-light);
+        position: absolute;
+        right: 10%;
 
       }
 

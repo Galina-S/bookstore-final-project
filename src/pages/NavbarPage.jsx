@@ -71,7 +71,8 @@ export const NavbarPage = () => {
               {currentUser.username === "anonymousUser" ? (
                 <PageLogin />
               ) : (
-                <NavLink
+                <div className="logout-container">
+                  <NavLink
                   to="/logout"
                   className="logout-btn"
                   onClick={() => (className = "inactiv")}
@@ -79,6 +80,7 @@ export const NavbarPage = () => {
                   {" "}
                   Logout{" "}
                 </NavLink>
+                </div>
               )}
             </div>
           </div>

@@ -32,7 +32,7 @@ export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [isInCart, setIsInCart] = useState(false);
   const placeholderImage = "../src/assets/keinBild.jpeg";
-  const BOOK_DETAILS_URL = "http://localhost:5173/books";
+  //const BOOK_DETAILS_URL = "http://localhost:5173/books";
   //FilteredBooks by Category
   const [filteredBooks, setFilteredBooks] = useState([]);
   //dropdownOpen (true/false)
@@ -480,7 +480,6 @@ export const AppProvider = ({ children }) => {
         setSearchTerm,
         sendSearchData,
         sendDropdownValue,
-        BOOK_DETAILS_URL,
         filteredBooks,
         setFilteredBooks,
         resetBooksPage,
@@ -506,6 +505,8 @@ export const AppProvider = ({ children }) => {
         showCommentForm,
         setShowCommentForm,
         loadComments,
+        getWindowSize,
+        
       }}
     >
       {children}
