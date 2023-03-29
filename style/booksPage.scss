@@ -1,47 +1,83 @@
 .info {
-  margin: 1.7rem;
-  padding: 1.5rem;
-  background-color: rgba(231, 228, 228, 0.871);
-  color:rgb(21, 21, 21);
+  width: max-content;
+  margin: 0.6rem 0;
+  text-align: center;
+  padding: 0.5rem;
+  color:rgb(21, 21, 21);    
+  border: 0.3px solid var(--color-main-gray);
+  display: flex;
+  justify-content: center;
 
   img {
-    height: 170px;
-  }
-
-  .book {
-    display: flex;
-   
+    height: 150px;
   }
   .content {
-    margin-left: 1.3rem;
-    width: 60%;
-  }
-  .title {
-    display: flex;
-    gap:15px
+    width: 300px;
+    position: relative; 
+    .title > p{
+      font-size: 1rem;
+      font-weight: 600;
+    }   
+    .author > p {
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
 
+    }
   }
-  .description {
-    height: 100px;
-    overflow: scroll;
-    margin:  0.7rem 0;
-    padding: 0.7rem;
-    border: 1px solid rgb(21, 121, 21);
+ 
+  .description-and-info {
+    display: flex;
   }
-  .rest-info {
-    margin-left: 1rem;
-    padding-left: 0.7rem;
+  .description, .books-info {
+    .open-text{
+      text-decoration: underline;
+      color: var(--color-main-green);
+      cursor: pointer;
+
+    }
+
+    .all-description > p{
+      width: 220px;
+    }
+    .close-description{
+      text-decoration: underline;
+      color: var(--color-main-blue);
+      cursor: pointer;
+    }
+  }
+
+
+
+
+
+  .managePanel{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-left: 1px solid #ccc;
+
+    .editButton, .deleteButton{
+      padding: 0.5rem 1rem;
+    }
   }
-  button {
-    padding: 0.7rem 1.4rem;
-    margin: 0.5rem 0;
-    margin-right: 2rem;
-  }
-  
  
+}
+@media screen and (max-width:900px) {
+  .info{
+    margin: 1rem 0;
+    .all_books{
+      .book-cover{
+       img{
+        height: 130px;
+       }
+      }
+    }
+    .content{
+    width: 220px;
+    padding: 0 1rem;
+      .title > p{
+        font-size: 0.8rem;
+      }
+    }
+
+  }
 }
 

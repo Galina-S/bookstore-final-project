@@ -1,16 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../src/AppContext";
-import FavoriteIcon from "../components/FavoriteIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+
+
 import { NavLink } from "react-router-dom";
 
 export const DisplayBook = (props) => {
   const { handleDeleteBook, onOpenEditForm, openSingleBook, placeholderImage } =
     useContext(AppContext);
   const { book } = props;
+  const [openDescription, setOpenDescription] = useState(false);
+  const [openBooksInfo, setOpenBooksInfo] = useState(false);
 
   return (
     <div className="info">
-      <div className="book" key={props.book._id}>
+      <div className="all_books" key={props.book._id}>
         <div className="book-cover">
           <NavLink
             to={`/books/${book._id}`}
@@ -21,59 +26,84 @@ export const DisplayBook = (props) => {
         </div>
         <div className="content">
           <div className="title">
-            <h2>{book.title} </h2>
-            
+            <p>{book.title} </p>
           </div>
           <div className="author">
-            <h5>{book.author}</h5>
+            <p>{book.author}</p>
           </div>
           <div className="description">
-            <p>{book.description}</p>
+            <p
+              className="open-text"
+              onClick={() => setOpenDescription(!openDescription)}
+            >
+              Description lesen...
+            </p>
+            {openDescription && (
+              <div className="all-description">
+                <p>{book.description}</p>
+                <p className="close-description" onClick={() => setOpenDescription()}>close</p>
+              </div>
+            )}
           </div>
-          <div className="price">
-            <h4>Price: {book.price} €</h4>
+          <div className="books-info">
+            <p
+              className="open-text"
+              onClick={() => setOpenBooksInfo(!openBooksInfo)}
+            >
+              {" "}
+              Buch Info
+            </p>
+            {openBooksInfo && (
+              <div className="rest-info">
+                <div>
+                  <div className="price">
+                    <p>Price: {book.price} €</p>
+                  </div>
+                  <div className="isbn">
+                    <p>ISBN: {book.ISBN}</p>
+                  </div>
+                  <div className="publicationDate">
+                    <p>
+                      Public:{" "}
+                      {book?.puplication &&
+                        new Date(book.puplication).toLocaleDateString("de-DE", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}
+                    </p>
+                  </div>
+                  <div className="category">
+                    <p>Genre: {book.category.join(", ")}</p>
+                  </div>
+                  <div className="publisher">
+                    <p>Verlag: {book.publisher}</p>
+                  </div>
+                  <div className="pages">
+                    <p>Pages: {book.pages}</p>
+                  </div>
+                  <div className="viewsCount">
+                    <p>ViewsCount: {book.viewsCount} </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        <div className="rest-info">
-          <div className="isbn">
-            <p>ISBN: {book.ISBN}</p>
-          </div>
-          <div className="publicationDate">
-          <p>Public: {book?.puplication
-           && new Date(book.puplication).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric'})}</p>
-          </div>
-          <div className="category">
-            <p>Genre: {book.category.join(", ")}</p>
-          </div>
-          <div className="publisher">
-            <p>Verlag: {book.publisher}</p>
-          </div>
-          <div className="pages">
-            <p>Pages: {book.pages}</p>
-          </div>
-          <div className="viewsCount">
-            <p>ViewsCount: {book.viewsCount} </p>
-          </div>
-        </div>
-      </div>
 
-      <div className="managePanel">
-        <div>
-          <button className="editButton" onClick={() => onOpenEditForm(book)}>
-            {" "}
-            Edit{" "}
+
+
+      
+      </div>
+        <div className="managePanel">
+          <button
+            className="btn editButton"
+            onClick={() => onOpenEditForm(book)}>
+              <FontAwesomeIcon icon={faPenToSquare} className="control-icon"/>
           </button>
 
-          <NavLink
-            to={`/books/${book._id}`}
-            onClick={() => openSingleBook(book)}
-          >
-            <button className="delete-button" >Go to book page</button>
-          </NavLink>
-
           <button
-            className="deleteButton"
-
+            className="btn deleteButton"
             onClick={() => {
               if (
                 window.confirm(
@@ -83,12 +113,11 @@ export const DisplayBook = (props) => {
                 handleDeleteBook(book);
               }
             }}
-            >
-            {" "}
-            Delete{" "}
+          >
+              <FontAwesomeIcon icon={faTrash} className="control-icon"/>
+
           </button>
         </div>
-      </div>
     </div>
   );
 };
