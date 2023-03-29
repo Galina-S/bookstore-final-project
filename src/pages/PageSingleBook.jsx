@@ -160,6 +160,7 @@ export const PageSingleBook = (props) => {
             {cart.some((p) => p._id === data.book?._id) ? (
               <div>
                 <button
+                className="btn"
                   onClick={() => {
                     removeFromCart(data.book._id);
                     handleAddClick();

@@ -33,7 +33,7 @@ function ShoppingCartBook({ book }) {
             <button onClick={() => increaseQty(book)}>+</button>
           </div>
           <button
-            className="remove-product"
+            className="remove-product btn"
             onClick={() => removeFromCart(book)}
           >
             Remove
