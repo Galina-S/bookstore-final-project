@@ -2,6 +2,8 @@ import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import FavoriteIcon from "../../components/UserFavorites";
+import { Modal } from "@mui/material";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 export const Book = (props) => {
   const {
@@ -27,6 +29,8 @@ export const Book = (props) => {
     cart,
     currentUserIsAdmin,
     currentUser,
+    modalIsOpen,
+    closeModal,
   } = useContext(AppContext);
 
   const { book } = props;

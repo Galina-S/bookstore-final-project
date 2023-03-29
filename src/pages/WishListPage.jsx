@@ -23,19 +23,6 @@ export const WishListPage = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //     async function fetchFavorites() {
-  //         try {
-  //         const response = await axios.get(`${baseURL}/users/${userId}/favorites`);
-  //         setFavorites(response.data);
-  //         } catch (error) {
-  //           console.error(error);
-  //         }
-  //     }
-  //      // Fetch favorites when the component mounts
-  //     fetchFavorites();
-  // }, [userId]);
-
   const deleteFavorite = async (bookId) => {
     try {
       const response = await axios.delete(

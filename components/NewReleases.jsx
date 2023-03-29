@@ -14,9 +14,8 @@ export const NewReleases = () => {
 
   const filteredBooks = rawBooks.filter(book => new Date(book.puplication) > new Date('2023-01-01'));
 
-
   return (
-    <div className="new-releases">
+    <div className="new-releases-carousel">
       <div className="title">
         <span>
              Neuheiten

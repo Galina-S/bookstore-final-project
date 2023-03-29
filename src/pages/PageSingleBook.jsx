@@ -12,7 +12,6 @@ import { useContext } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 import ImageZoom from "../pages/ImageZoom";
-import { PageVersand } from "./PageVersand";
 import { AppContext } from "../AppContext";
 
 export const PageSingleBook = (props) => {
@@ -20,17 +19,20 @@ export const PageSingleBook = (props) => {
   const [comments, setComments] = useState([]);
 
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [newComment, setNewComment] = useState(null);
 
   const { id } = useParams();
   const [data, setData] = useState({});
 
   const {
+    loadComments,
     cart,
     addToCart,
     removeFromCart,
     increaseQty,
     decreaseQty,
     currentUser,
+    handleAddCommentForm,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -44,6 +46,14 @@ export const PageSingleBook = (props) => {
     };
 
     fetchBook();
+
+    if (newComment) {
+      setComments([...comments, newComment]);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    loadComments(id);
   }, [id]);
 
   useEffect(() => {
@@ -66,6 +76,7 @@ export const PageSingleBook = (props) => {
 
   async function deleteComment(commentId) {
     const userId = id;
+
     try {
       await fetch(`${baseURL}/books/${userId}/comments/${commentId}`, {
         method: "DELETE",
@@ -316,6 +327,21 @@ export const PageSingleBook = (props) => {
 
           {showCommentForm && <CreateComment bookId={id} />}
         </div>
+
+        <br />
+        <button
+          onClick={() => setShowCommentForm(!showCommentForm)}
+          className="btn"
+        >
+          Eigene Bewertung verfassen
+        </button>
+
+        {showCommentForm && (
+          <CreateComment
+            bookId={id}
+            handleAddCommentForm={handleAddCommentForm}
+          />
+        )}
       </div>
     </div>
   );

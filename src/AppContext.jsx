@@ -39,6 +39,7 @@ export const AppProvider = ({ children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [rawComments, setRawComments] = useState(null);
 
   let dropdownRef = useRef();
   useEffect(() => {
@@ -50,6 +51,7 @@ export const AppProvider = ({ children }) => {
     document.addEventListener("mousedown", handler);
   });
   const navigate = useNavigate();
+
   const loadBooks = async () => {
     setEditingElementId(null);
     const books = (await instance.get("/books")).data;
@@ -62,6 +64,17 @@ export const AppProvider = ({ children }) => {
     });
     setRawBooks(_books);
   };
+
+  const loadComments = async (bookId) => {
+    try {
+      const response = await fetch(`${baseURL}/books/${bookId}/comments`);
+      const commentsData = await response.json();
+      setRawComments(commentsData.comments);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getCurrentUser = () => {
     (async () => {
       try {
@@ -82,26 +95,11 @@ export const AppProvider = ({ children }) => {
     getCurrentUser();
   }, []);
 
-  //   useEffect(() => {
-  //     async function fetchCurrentUser() {
-  //       try {
-  //         const response = await axios.get(`${baseURL}/users/me`, { withCredentials: true });
-  //         setCurrentUser(response.data);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-
-  // // Fetch current user when the component mounts
-  // fetchCurrentUser();
-  // }, []);
-
-  //Favourites
   useEffect(() => {
     async function fetchFavorites() {
       try {
         const response = await axios.get(
-          `${baseURL}/users/${currentUser?._id}/favorites`
+          `${baseURL}/users/${currentUser._id}/favorites`
         );
         setFavorites(response.data);
       } catch (error) {
@@ -123,6 +121,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     loadBooks();
   }, []);
+
   useEffect(() => {
     (async () => {
       try {
@@ -522,6 +521,7 @@ export const AppProvider = ({ children }) => {
         handleAddCommentForm,
         showCommentForm,
         setShowCommentForm,
+        loadComments,
       }}
     >
       {children}

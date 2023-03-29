@@ -1,103 +1,164 @@
-.title{
-    padding-top: 1.3rem;
-    text-align: center;
-    overflow: hidden;
-    color: var(--color-main-gray-medium);
-    span{
-        display: inline-block;
-        vertical-align: middle;
-        background-color: #FFFFFF;
-        width: 200px;
-        font-size: 1.4rem;
-        font-weight: lighter;
-        letter-spacing: 0.2rem;
-    }
-
-}
-.title:before,
-    .title:after {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-main-gray);
-        position: relative;
-    }
-
-    .title:before {
-        margin-left: -100%;
-    }
-    .title:after {
-        margin-right: -100%;
-    }
-
-    .link-to-books{
-        margin-top: 0.4rem;
+.bestsellersPage{
+    .title{
+        padding-top: 1.3rem;
         text-align: center;
-        font-size: 0.7rem;
-        
-        .link-new-books{
-            color: var(--color-main-green);
-
-        }
-    }
-//books-style
-
-.bestsellers-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1rem;
-    
-    .bestseller-books {
-        display: flex;
-        width: 350px;
-        margin: 0.3rem;
-        padding: 0.7rem;
-        border: 1px solid var(--color-main-gray);
-        border-radius: 0.5rem;
-        .bestseller-img {
-            img{
-                height: 130px;
-                box-shadow: var(--box-shadow-mai-brown);
-            }
-        }
-
-        .bestseller-book-info{
-            width: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        overflow: hidden;
+        color: var(--color-main-gray-medium);
+        span{
+            display: inline-block;
+            vertical-align: middle;
+            background-color: #FFFFFF;
+            width: 200px;
+            font-size: 1.4rem;
             font-weight: lighter;
-
-            .bestseller-content{
-                padding-left: 1rem;
-                p{
-                    font-size: 1rem;
-                }
-                .bestseller-author{
-                    font-size: 0.7rem;
-                    text-decoration: underline;
+            letter-spacing: 0.2rem;
+        }
+    
+    }
+    .title:before,
+        .title:after {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-main-gray);
+            position: relative;
+        }
+    
+        .title:before {
+            margin-left: -100%;
+        }
+        .title:after {
+            margin-right: -100%;
+        }
+    
+        .link-to-books{
+            margin-top: 0.4rem;
+            text-align: center;
+            font-size: 0.7rem;
+            
+            .link-new-books{
+                color: var(--color-main-green);
+    
+            }
+        }
+    //books-style
+    
+    .bestsellers-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+        
+        .bestseller-books {
+            display: flex;
+            width: 350px;
+            margin: 0.3rem;
+            padding: 0.7rem;
+            border: 1px solid var(--color-main-gray);
+            border-radius: 0.5rem;
+            .bestseller-img {
+                img{
+                    height: 130px;
+                    box-shadow: var(--box-shadow-mai-brown);
+                    cursor: pointer;
                 }
             }
-            .bestseller-price{
-                text-align: end;
-                p{
-                    font-size: 1.3rem;
-                    margin: 0;
-                    padding: 0;
     
-                    span{
-                        font-size: 0.5rem;
+            .bestseller-book-info{
+                width: inherit;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                font-weight: lighter;
+    
+                .bestseller-content{
+                    padding-left: 1rem;
+                    p{
+                        font-size: 1rem;
+                        cursor: pointer;
+                    }
+                    .bestseller-author{
+                        font-size: 0.7rem;
+                        text-decoration: underline;
                     }
                 }
-                .btn-cart{
-                    margin-top: 0.3rem;
-                    padding: 0.7rem 1rem;
+                .bestseller-price{
+                    text-align: end;
+                    p{
+                        font-size: 1.3rem;
+                        margin: 0;
+                        padding: 0;
+        
+                        span{
+                            font-size: 0.5rem;
+                        }
+                    }
+                    .btn-cart{
+                        margin-top: 0.3rem;
+                        padding: 0.7rem 1rem;
+                    }
                 }
             }
+            
         }
-        
+    }
+    @media screen and (max-width: 900px) {
+        .title{
+           span{
+                font-size: 1rem;
+                width: 130px;
+           }
+        }
+        .bestsellers-container{
+            .bestseller-books{
+                width: 270px;
+                .bestseller-img{
+                    img{
+                        height: 90px;
+                    }
+                }
+                .bestseller-book-info{
+                    .bestseller-price{
+                        .btn-cart{
+                            padding: 0.5rem 0.5rem;
+                            font-size: 0.6rem;
+                        }
+                    }
+                }
+                
+            }
+    
+        }
+    }
+    
+    @media screen and (max-width: 550px) {
+        .title{
+           span{
+                font-size: 1rem;
+                width: 130px;
+           }
+        }
+        .bestsellers-container{
+            .bestseller-books{
+                width: 270px;
+                .bestseller-img{
+                    img{
+                        height: 90px;
+                    }
+                }
+                .bestseller-book-info{
+                    .bestseller-price{
+                        .btn-cart{
+                            padding: 0.5rem 0.5rem;
+                            font-size: 0.6rem;
+                        }
+                    }
+                }
+                
+            }
+    
+        }
     }
 }

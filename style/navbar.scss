@@ -261,7 +261,7 @@
     .search{
       text-align: center;
       form {
-        width: 80vw;
+        width: 78vw;
         height: 30px;
         .search-field {
           padding: 0.3rem;
@@ -289,6 +289,12 @@
     a{
       font-size: 0.9rem;
       padding-right: 1rem;
+
+    }
+  }
+  .search{
+    form{
+      width: 73vw;
 
     }
   }

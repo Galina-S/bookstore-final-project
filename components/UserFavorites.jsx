@@ -3,10 +3,12 @@ import { BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 import { baseURL } from "./axios";
 import { AppContext } from "../src/AppContext";
 import axios from 'axios';
+import { Modal } from "@mui/material";
+import {AiFillCloseCircle} from 'react-icons/ai';
 
 const FavoriteIcon = ({ book }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { currentUser, favorites, setFavorites} = useContext(AppContext);
+  const { currentUser, favorites, setFavorites, setModalIsOpen, modalIsOpen} = useContext(AppContext);
   const userId = currentUser._id;
 
   useEffect(() => {
@@ -23,12 +25,9 @@ const FavoriteIcon = ({ book }) => {
         body: JSON.stringify({ bookId: book._id })
       });
       const data = await response.json();
-
-      console.log('bookId', book._id);
-
+      // console.log('bookId', book._id);
 
       if (response.ok) {
-
 
         if (isFavoriteBefore) {
           // book was already in favorites, so we want to remove it
@@ -41,14 +40,17 @@ const FavoriteIcon = ({ book }) => {
                     // book was not in favorites, so we want to add it
                     setFavorites([...favorites, book._id]);
                     setIsFavorite(true);
-                            
                             } 
 
                             else if ((currentUser.username === "anonymousUser") && (favorites.length < 6)) {
+                              
                               setFavorites([...favorites, book._id]);
                               setIsFavorite(true);
                             }
-                              else { alert('You can only save up to 6 favorite books as an anonymous user. Please log in to save more.'); }
+                              else { 
+                                alert('Du kannst als anonymer Benutzer nur bis zu 6 Lieblingsbücher speichern. Bitte logge dich ein, um mehr zu speichern.');
+                                //setModalIsOpen(true)
+                               }
              
 
        
@@ -62,8 +64,23 @@ const FavoriteIcon = ({ book }) => {
     }
   };
 
+  const closeModal = () => {
+    // Close modal message
+    setModalIsOpen(false);
+  };
+
   return (
-    <div>
+    <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'  }} >
+    <div  className="user-favorites">
+      <Modal className="modal-container"  open = {modalIsOpen} style ={{width: '100%', backgroundColor: 'white', padding: '20px'}}>
+      <div className="modal-content">
+          <h2>Merkzettel ist leider zu voll</h2>
+          <p>Um weitere Artikel auf den Merkzettel zu legen und alle Vorteile zu nutzen, loggen Sie sich ein oder legen Sie jetzt ein Konto an. </p>
+          <AiFillCloseCircle onClick={closeModal} className="close-icon" /> 
+          {/* <button onClick={closeModal}>Close</button> */}
+        </div>
+        </Modal>
+
       <div className='favorite-heart'>
       {isFavorite ? (
         <BsSuitHeartFill
@@ -81,7 +98,7 @@ const FavoriteIcon = ({ book }) => {
     </div>
   
   </div>
-    
+  </div>
   );
 };
 

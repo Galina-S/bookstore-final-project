@@ -23,9 +23,9 @@ export const NewBooksPage = () => {
   }, []);
   //NEW LAST WEEK
   const lastWeek = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
-  const newLastWeek = newReleases.filter(
-    (book) => new Date(book.puplication) > lastWeek
-  );
+  const today = new Date()
+  const newLastWeek = newReleases.filter((book) => new Date(book.puplication) > lastWeek && new Date(book.puplication) <= today);  
+
 
   // NEW Belletristik
   const newInBelletristik = newReleases.filter((book) =>
@@ -48,7 +48,7 @@ export const NewBooksPage = () => {
   );
 
   return (
-    <div className="new-releases">
+    <div className="book-releases">
       <div className="all-releases">
         <h1>Neue Veröffentlichungen</h1>
         {!seeAllReleases && (
@@ -178,7 +178,9 @@ export const NewBooksPage = () => {
             {newReleases.map((book) => {
               return (
                 <div key={book._id} className="all-books-releases">
-                  <img src={book.img} alt="" />
+                  <img src={book.img} alt=""  onClick={() => {
+                      handleClick(book._id);
+                    }}/>
                   <div className="content-book">
                     <div className="authot-title">
                       <p className="book-author">{book.author}</p>

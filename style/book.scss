@@ -19,8 +19,19 @@
       justify-content: left;
       position: relative;
 
+      
       button {
-          margin-top: 7px
+          margin-top: 7px;
+            padding: 0.5rem 0.5rem;
+            width:min-content;
+            text-align: center;
+            margin-top: 1rem;
+            background-color: var(--color-main-green);
+            border: none;
+            border-radius: 0.5rem; 
+            color: rgb(108, 108, 108);
+            cursor: pointer;
+   
       }
       .card {
          padding: 0.5rem;
@@ -133,17 +144,17 @@
     //       box-shadow: 5px;
     //       box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
 
-    //       .favorite-icon-single-book {
-    //         position: absolute;
-    //         top: 20px;
-    //         right: 15px;
-    //         cursor: pointer;
+          .favorite-icon-single-book {
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            cursor: pointer;
             
-    //       }
-    //     }
+          }
+        
         
       
-    // }
+      
 
 } 
 
@@ -169,6 +180,15 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+
+.createBookPage {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }}
+}
+
 .editBook {
   input {
   padding: 5px;
@@ -191,7 +211,7 @@
 
 
 .wishListPage {
-  width: 600px;
+  width: 80%;
     justify-content: center;
     align-items: center;
     margin:0;
@@ -315,6 +335,9 @@
     cursor: pointer;
   }
 }
+
+
+
 
 // .heart-icon-container {
 //   position: relative;
