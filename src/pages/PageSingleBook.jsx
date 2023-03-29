@@ -20,6 +20,7 @@ export const PageSingleBook = (props) => {
 
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [newComment, setNewComment] = useState(null);
+  const [showFullComment, setShowFullComment] = useState({});
 
   const { id } = useParams();
   const [data, setData] = useState({});
@@ -52,7 +53,6 @@ export const PageSingleBook = (props) => {
     }
   }, [id]);
 
-  //Comments
   useEffect(() => {
     loadComments(id);
   }, [id]);
@@ -157,7 +157,7 @@ export const PageSingleBook = (props) => {
           </div>
           <br />
           <div>
-            {!isInCart ? (
+            {cart.some((p) => p._id === data.book?._id) ? (
               <div>
                 <button
                   onClick={() => {
@@ -188,20 +188,14 @@ export const PageSingleBook = (props) => {
         <div className="inhalt-beschreibung">
           <h2>Beschreibung</h2>
           <div className="description">
-            <p>
-              {" "}
-              {data.book?.description.substring(0, 200) +
-                " setShowCommentForm..."}
-            </p>
+            <p> {data.book?.description.substring(0, 180) + "..."}</p>
           </div>
           <br />
-          {/* <button interaction="zusatztexte-overlay-oeffnen" data-dialog="zusatztexte"> Weiterlesen</button> */}
-
-          <dialog
+          {/* <dialog
             className="element-overlay-slide-in"
             data-dialog-name="zusatztexte"
-            open
-          ></dialog>
+            open>
+          </dialog> */}
           <div>
             <button
               className="button-full-description"
@@ -316,7 +310,28 @@ export const PageSingleBook = (props) => {
                 )}
               </div>
 
-              <p>{comment.content}</p>
+              <div>
+                {showFullComment[comment.commentId] ? (
+                  <p>{comment.content}</p>
+                ) : (
+                  <p>{comment.content.substring(0, 450) + "..."}</p>
+                )}
+              </div>
+              {comment.content.length > 450 && (
+                <button
+                  className="read-further"
+                  onClick={() =>
+                    setShowFullComment({
+                      ...showFullComment,
+                      [comment.commentId]: !showFullComment[comment.commentId],
+                    })
+                  }
+                >
+                  {showFullComment[comment.commentId]
+                    ? "Weniger anzeigen"
+                    : "Weiterlesen"}
+                </button>
+              )}
 
               {/* <p>Geändert am: {comment.dateModified}</p> */}
             </div>
@@ -330,23 +345,13 @@ export const PageSingleBook = (props) => {
             Eigene Bewertung verfassen
           </button>
 
-          {showCommentForm && <CreateComment bookId={id} />}
+          {showCommentForm && (
+            <CreateComment
+              bookId={id}
+              handleAddCommentForm={handleAddCommentForm}
+            />
+          )}
         </div>
-
-        <br />
-        <button
-          onClick={() => setShowCommentForm(!showCommentForm)}
-          className="btn"
-        >
-          Eigene Bewertung verfassen
-        </button>
-
-        {showCommentForm && (
-          <CreateComment
-            bookId={id}
-            handleAddCommentForm={handleAddCommentForm}
-          />
-        )}
       </div>
     </div>
   );

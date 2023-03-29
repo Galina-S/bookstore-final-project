@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../AppContext";
 
 export const CreateBookPage = () => {
-  const { handleAddBookForm, sendNewBook, formData, placeholderImage } =
+  const { handleAddBookForm, sendNewBook, formData } =
     useContext(AppContext);
+    const placeholderImage = "https://i.ibb.co/mh9LSfd/keinBild.jpg";
 
   return (
     <div className="createBookPage">
-    <form className="editForm" onSubmit={(e) => sendNewBook(e)}>
+    <form className="new-book" onSubmit={(e) => sendNewBook(e)}>
       <fieldset>
       <legend>Neues Buch Hinzufügen</legend>
       <div className="container">

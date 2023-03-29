@@ -22,8 +22,8 @@ export const PageNovels = () => {
   console.log(`${novels.length} Books`, novels);
   return (
     <div>
-      <h1>Novels</h1>
-      <h1>There are {novels.length} Books</h1>
+      <h1>Romane & Erzählungen</h1>
+      <h4> Wir haben {novels.length} Bücher in dieser Kategorie</h4>
 
       <div className="novels-page ul">
         {novels.map((book) => (

@@ -259,7 +259,7 @@
                 }
             }
         }
-//  container 4 Responsiv
+        //  container 4 Responsiv
 
         @media screen and (max-width: 1200px) {
             .content {
@@ -276,6 +276,10 @@
                         .box2-content{
                             margin: 0.7rem 0.1rem;
                             padding: 0;
+                            h3, p{
+                              font-size: 0.7rem;
+
+                            }
                             img{
                                 height: 120px;
                             }
@@ -299,12 +303,12 @@
         @media screen and (max-width: 650px) {
             .content {
                 .box2{
-                width: 30rem;
+                width: 20rem;
                     .box2-container {
                         .box2-content {
                             width: 6rem;
                             img{
-                                height: 100px;
+                                height: 80px;
                             }
                         }
                     }
@@ -313,5 +317,13 @@
             }
         }
         
+    }
+    @media screen and (max-width: 600px) {
+      .title{
+        span{
+          font-size: 1rem;
+          width: 220px; 
+        }
+      }
     }
 }

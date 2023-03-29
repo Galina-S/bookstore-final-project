@@ -1,58 +1,54 @@
 .new-releases-carousel {
-    padding: 1.5rem 0;
-    margin-top: 1rem;
+  padding: 1.5rem 0;
+  margin-top: 1rem;
 
-    .title{
-        padding-top: 1.3rem;
-        text-align: center;
-        overflow: hidden;
-        span{
-            display: inline-block;
-            vertical-align: middle;
-            background-color: #FFFFFF;
-            width: 200px;
-            font-size: 1.4rem;
-            font-weight: lighter;
-            letter-spacing: 0.2rem;
-        }
-
+  .title {
+    padding-top: 1.3rem;
+    text-align: center;
+    overflow: hidden;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      background-color: #ffffff;
+      width: 200px;
+      font-size: 1.4rem;
+      font-weight: lighter;
+      letter-spacing: 0.2rem;
     }
-    .title:before,
-    .title:after {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-main-gray);
-        position: relative;
+  }
+  .title:before,
+  .title:after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-main-gray);
+    position: relative;
+  }
+
+  .title:before {
+    margin-left: -100%;
+  }
+  .title:after {
+    margin-right: -100%;
+  }
+
+  .link-to-books {
+    margin-top: 0.4rem;
+    text-align: center;
+    font-size: 0.8rem;
+
+    .link-new-books {
+      color: var(--color-main-gray-medium);
     }
+  }
 
-    .title:before {
-        margin-left: -100%;
-    }
-    .title:after {
-        margin-right: -100%;
-    }
-
-    .link-to-books{
-        margin-top: 0.4rem;
-        text-align: center;
-        font-size: 0.7rem;
-        
-        .link-new-books{
-            color: var(--color-main-green);
-
-        }
-    }
-
-
-    .carousel-slider{
-        height: 250px;
-
-    }
-    .carousel-new-releases{
-        .control-dots{
+  .carousel-slider {
+    height: 250px;
+  }
+  .carousel-new-releases {
+    /**.control-dots{
             display: none;
         }
         .slider-wrapper{
@@ -74,7 +70,87 @@
 
                 }
             }
+        }*/
+  }
+  .carousel-new-releases-books {
+    height: 180px;
+    margin: 0 1%;
+
+    .carousel-inner {
+      width: 80vw;
+      margin-top: 1.3rem;
+      display: flex;
+      justify-content: center;
+
+      transition: transform 0.5s ease-in-out;
+      transform: translateX(0);
+      .carousel-item {
+        transition: all 0.9s ease-in-out;
+        img {
+          height: 170px;
+          box-shadow: var(--box-shadow-mai-brown);
+          margin: 0 1rem;
         }
+      }
+
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        .control-icon {
+            color: var(--color-main-gray);
+
+        }
+        .control-icon:hover{
+            color: var(--color-main-gray-medium);
+        }
+      }
+      
+      .carousel-control-prev {
+        left: 0;
+      }
+      
+      .carousel-control-next {
+        right: 0;
+      }
+      
+      .carousel-control-prev svg,
+      .carousel-control-next svg {
+        color: #000;
+        font-size: 1.5rem;
+      }
+
     }
-    
+  }
+  @media screen and (max-width: 1200px) {
+    .carousel-new-releases-books {
+      height: 120px;
+      .carousel-inner {
+        .carousel-item {
+          img {
+            height: 130px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 550px) {
+    .carousel-new-releases-books {
+      height: 100px;
+      .carousel-inner {
+        .carousel-item {
+          img {
+            height: 100px;
+            margin: 0 0.7rem;
+
+          }
+        }
+      }
+    }
+  }
 }

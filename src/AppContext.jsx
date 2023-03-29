@@ -32,8 +32,7 @@ export const AppProvider = ({ children }) => {
   //Shopping cart
   const [cart, setCart] = useState([]);
   const [isInCart, setIsInCart] = useState(false);
-  const placeholderImage = "../src/assets/keinBild.jpeg";
-  const BOOK_DETAILS_URL = "http://localhost:5173/books";
+  const placeholderImage = "src/assets/keinBild.jpeg";
   //FilteredBooks by Category
   const [filteredBooks, setFilteredBooks] = useState([]);
   //dropdownOpen (true/false)
@@ -41,7 +40,6 @@ export const AppProvider = ({ children }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [rawComments, setRawComments] = useState(null);
-
   let dropdownRef = useRef();
   useEffect(() => {
     let handler = (e) => {
@@ -52,7 +50,6 @@ export const AppProvider = ({ children }) => {
     document.addEventListener("mousedown", handler);
   });
   const navigate = useNavigate();
-
   const loadBooks = async () => {
     setEditingElementId(null);
     const books = (await instance.get("/books")).data;
@@ -65,7 +62,6 @@ export const AppProvider = ({ children }) => {
     });
     setRawBooks(_books);
   };
-
   const loadComments = async (bookId) => {
     try {
       const response = await fetch(`${baseURL}/books/${bookId}/comments`);
@@ -103,9 +99,8 @@ export const AppProvider = ({ children }) => {
           `${baseURL}/users/${currentUser._id}/favorites`
         );
         setFavorites(response.data);
-        console.log(response.data);
       } catch (error) {
-        console.log(error);
+        console.log(`ERROR: ${error}`);
       }
     }
 
@@ -190,14 +185,12 @@ export const AppProvider = ({ children }) => {
     navigate(`/books/`);
     setEditingElementId(null);
   };
-
   //Create a new comment
   const handleAddCommentForm = (e) => {
     e.preventDefault();
     let value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
   };
-
   //Create a new book
   const handleAddBookForm = (e) => {
     e.preventDefault();
@@ -207,7 +200,6 @@ export const AppProvider = ({ children }) => {
     }
     setFormData({ ...formData, [e.target.name]: value });
   };
-
   const sendNewBook = async (e) => {
     e.preventDefault();
     let _category = formData.category.split(",");
@@ -292,7 +284,6 @@ export const AppProvider = ({ children }) => {
       fetchCart();
     }
   }, [currentUser]);
-
   const increaseQty = (book) => {
     setCart(
       cart.filter((ele) =>
@@ -322,14 +313,12 @@ export const AppProvider = ({ children }) => {
         { withCredentials: true }
       );
       console.log(response.data.message);
-
       // Update the state of favorites to re-render the UI
       setCart(cart.filter((id) => id !== bookId));
     } catch (error) {
       console.error(error);
     }
   };
-
   const addToCart = async (book) => {
     try {
       const response = await axios.post(
@@ -337,7 +326,6 @@ export const AppProvider = ({ children }) => {
         { withCredentials: true }
       );
       console.log(response.data.message);
-
       // Update the state of favorites to re-render the UI
       setCart([...cart, { ...book, quantity: 1 }]);
     } catch (error) {
@@ -350,7 +338,6 @@ export const AppProvider = ({ children }) => {
   //const addToCart = (book) => {
   //  setCart([...cart, { ...book, quantity: 1 }]);
   //};
-
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
     loginForm.fields[fieldIdCode] = value;
@@ -373,10 +360,8 @@ export const AppProvider = ({ children }) => {
       );
       //console.log(response.data);
       const user = response.data;
-
       const userId = response.data._id;
       // console.log(userId)
-
       setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
       setDropdownOpen(!dropdownOpen);
@@ -457,15 +442,12 @@ export const AppProvider = ({ children }) => {
     };
   }, []);
   //console.log(windowSize);
-
   //Carousel go to First Slide
   const carouselRef = useRef(null);
   const goToFirstSlide = () => {
     carouselRef.current?.goToSlide(0);
   };
-
   //go to book
-
   const handleClick = (id) => {
     window.location.href = `/books/${id}`;
   };
@@ -510,7 +492,6 @@ export const AppProvider = ({ children }) => {
         setSearchTerm,
         sendSearchData,
         sendDropdownValue,
-        BOOK_DETAILS_URL,
         filteredBooks,
         setFilteredBooks,
         resetBooksPage,
@@ -536,6 +517,7 @@ export const AppProvider = ({ children }) => {
         showCommentForm,
         setShowCommentForm,
         loadComments,
+        getWindowSize,
       }}
     >
       {children}

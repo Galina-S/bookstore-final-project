@@ -71,7 +71,8 @@ export const NavbarPage = () => {
               {currentUser.username === "anonymousUser" ? (
                 <PageLogin />
               ) : (
-                <NavLink
+                <div className="logout-container">
+                  <NavLink
                   to="/logout"
                   className="logout-btn"
                   onClick={() => (className = "inactiv")}
@@ -79,6 +80,7 @@ export const NavbarPage = () => {
                   {" "}
                   Logout{" "}
                 </NavLink>
+                </div>
               )}
             </div>
           </div>
@@ -157,7 +159,7 @@ export const NavbarPage = () => {
               <NavLink to="/books2">Admin-Bücher</NavLink>
             )}
             <NavLink to="/books" onClick={resetBooksPage}>
-              Books
+              Bücher
             </NavLink>
             <NavLink to="/new-books">Neuheiten</NavLink>
             <NavLink to="/bestsellers">Bestseller</NavLink>
