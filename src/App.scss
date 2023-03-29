@@ -533,6 +533,8 @@ div.message {
     font-size: 0.7rem;
     font-weight: 100
   }
+ 
+  width: 150px;
 
 }
 
@@ -541,7 +543,7 @@ div.message {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  position: absolute;
+ 
 
 
   .favorite-icon {
