@@ -32,7 +32,6 @@ export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [isInCart, setIsInCart] = useState(false);
   const placeholderImage = "../src/assets/keinBild.jpeg";
-  //const BOOK_DETAILS_URL = "http://localhost:5173/books";
   //FilteredBooks by Category
   const [filteredBooks, setFilteredBooks] = useState([]);
   //dropdownOpen (true/false)
