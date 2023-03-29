@@ -139,7 +139,7 @@
     display: flex;
     height: 550px;
     background: url("https://i.ibb.co/C5BJJFT/teenager.png") no-repeat center;
-    background-size: cover;
+    background-size: center;
     display: flex;
     align-items: center;
     padding: 6rem;
@@ -447,10 +447,11 @@
      @media screen and (max-width: 455px) {
         .slide2{
             .content-slide2{
-                padding-bottom: 2.5rem;
+              padding-bottom: 2.5rem;              
             }
              .spring-books {
                  grid-template-columns: 1fr 1fr 1fr;
+                 margin-right: 6rem;
                  .box4 {
                     display: none;
                  }
