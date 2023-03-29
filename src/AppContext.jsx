@@ -40,7 +40,6 @@ export const AppProvider = ({ children }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [rawComments, setRawComments] = useState(null);
-
   let dropdownRef = useRef();
   useEffect(() => {
     let handler = (e) => {
@@ -51,7 +50,6 @@ export const AppProvider = ({ children }) => {
     document.addEventListener("mousedown", handler);
   });
   const navigate = useNavigate();
-
   const loadBooks = async () => {
     setEditingElementId(null);
     const books = (await instance.get("/books")).data;
@@ -64,7 +62,6 @@ export const AppProvider = ({ children }) => {
     });
     setRawBooks(_books);
   };
-
   const loadComments = async (bookId) => {
     try {
       const response = await fetch(`${baseURL}/books/${bookId}/comments`);
@@ -76,32 +73,31 @@ export const AppProvider = ({ children }) => {
   };
 
   const getCurrentUser = () => {
-    useEffect(() => {
-      const fetchCurrentUser = async () => {
-        try {
-          const response = await axios.get(`${baseURL}/get-current-user`, {
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${baseURL}/get-current-user`, {
             withCredentials: true,
-          });
-          setCurrentUser(response.data);
-        } catch (error) {
-          console.log("General error", error);
-        }
-      };
-      fetchCurrentUser();
-    }, []);
-  
-    return currentUser?._id;
+          })
+        ).data;
+        //console.log(data);
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("GENERAL ERROR");
+      }
+    })();
   };
 
-  const getFavorites = () => {
-  const userId = currentUser?._id
-    useEffect(() => {
-       async function fetchFavorites() {
-        try {
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
+  useEffect(() => {
+    async function fetchFavorites() {
+      try {
         const response = await axios.get(
-          `${baseURL}/users/${userId}/favorites`
+          `${baseURL}/users/${currentUser._id}/favorites`
         );
-        console.log( `${baseURL}/users/${userId}/favorites`)
         setFavorites(response.data);
         } catch (error) {
           console.log(`ERROR: ${error}`);
@@ -111,8 +107,8 @@ export const AppProvider = ({ children }) => {
     if (currentUser) {
       fetchFavorites();
     }
-  }, []);
-};
+  }, [currentUser]);
+
   // this loads data when a currentUser has been defined
   // on page reload, currentUser is anonymous for short time
   // then any user that is logged in is loaded into currentUser
@@ -123,7 +119,20 @@ export const AppProvider = ({ children }) => {
     loadBooks();
   }, []);
 
- 
+  useEffect(() => {
+    (async () => {
+      try {
+        const user = (
+          await axios.get(`${baseURL}/get-current-user`, {
+            withCredentials: true,
+          })
+        ).data;
+        setCurrentUser({ ...user });
+      } catch (e) {
+        console.log("General error");
+      }
+    })();
+  }, []);
   const handleDeleteBook = async (_book) => {
     try {
       const res = await instance.delete(`/books/${_book._id}`);
@@ -175,14 +184,12 @@ export const AppProvider = ({ children }) => {
     navigate(`/books/`);
     setEditingElementId(null);
   };
-
   //Create a new comment
   const handleAddCommentForm = (e) => {
     e.preventDefault();
     let value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
   };
-
   //Create a new book
   const handleAddBookForm = (e) => {
     e.preventDefault();
@@ -192,7 +199,6 @@ export const AppProvider = ({ children }) => {
     }
     setFormData({ ...formData, [e.target.name]: value });
   };
-
   const sendNewBook = async (e) => {
     e.preventDefault();
     let _category = formData.category.split(",");
@@ -249,11 +255,8 @@ export const AppProvider = ({ children }) => {
     setFilteredBooks([]);
     loadBooks();
   };
-
-  
   //Shopping cart
   useEffect(() => {
-    
     async function fetchCart() {
       try {
         const response = await axios.get(
@@ -269,7 +272,6 @@ export const AppProvider = ({ children }) => {
       fetchCart();
     }
   }, [currentUser]);
-
   const increaseQty = (book) => {
     setCart(
       cart.filter((ele) =>
@@ -299,14 +301,12 @@ export const AppProvider = ({ children }) => {
         { withCredentials: true }
       );
       console.log(response.data.message);
-
       // Update the state of favorites to re-render the UI
       setCart(cart.filter((id) => id !== bookId));
     } catch (error) {
       console.error(error);
     }
   };
-
   const addToCart = async (book) => {
     try {
       const response = await axios.post(
@@ -314,7 +314,6 @@ export const AppProvider = ({ children }) => {
         { withCredentials: true }
       );
       console.log(response.data.message);
-
       // Update the state of favorites to re-render the UI
       setCart([...cart, { ...book, quantity: 1 }]);
     } catch (error) {
@@ -327,7 +326,6 @@ export const AppProvider = ({ children }) => {
   //const addToCart = (book) => {
   //  setCart([...cart, { ...book, quantity: 1 }]);
   //};
-
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
     loginForm.fields[fieldIdCode] = value;
@@ -350,10 +348,8 @@ export const AppProvider = ({ children }) => {
       );
       //console.log(response.data);
       const user = response.data;
-
       const userId = response.data._id;
       // console.log(userId)
-
       setCurrentUser({ ...user });
       setLoginForm({ ...blankLoginForm });
       setDropdownOpen(!dropdownOpen);
@@ -434,15 +430,12 @@ export const AppProvider = ({ children }) => {
     };
   }, []);
   //console.log(windowSize);
-
   //Carousel go to First Slide
   const carouselRef = useRef(null);
   const goToFirstSlide = () => {
     carouselRef.current?.goToSlide(0);
   };
-
   //go to book
-
   const handleClick = (id) => {
     window.location.href = `/books/${id}`;
   };
