@@ -76,31 +76,32 @@ export const AppProvider = ({ children }) => {
   };
 
   const getCurrentUser = () => {
-    (async () => {
-      try {
-        const user = (
-          await axios.get(`${baseURL}/get-current-user`, {
+    useEffect(() => {
+      const fetchCurrentUser = async () => {
+        try {
+          const response = await axios.get(`${baseURL}/get-current-user`, {
             withCredentials: true,
-          })
-        ).data;
-        //console.log(data);
-        setCurrentUser({ ...user });
-      } catch (e) {
-        console.log("GENERAL ERROR");
-      }
-    })();
+          });
+          setCurrentUser(response.data);
+        } catch (error) {
+          console.log("General error", error);
+        }
+      };
+      fetchCurrentUser();
+    }, []);
+  
+    return currentUser?._id;
   };
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
-
-  useEffect(() => {
-    async function fetchFavorites() {
-      try {
+  const getFavorites = () => {
+  const userId = currentUser?._id
+    useEffect(() => {
+       async function fetchFavorites() {
+        try {
         const response = await axios.get(
-          `${baseURL}/users/${currentUser._id}/favorites`
+          `${baseURL}/users/${userId}/favorites`
         );
+        console.log( `${baseURL}/users/${userId}/favorites`)
         setFavorites(response.data);
         } catch (error) {
           console.log(`ERROR: ${error}`);
@@ -110,8 +111,8 @@ export const AppProvider = ({ children }) => {
     if (currentUser) {
       fetchFavorites();
     }
-  }, [currentUser]);
-
+  }, []);
+};
   // this loads data when a currentUser has been defined
   // on page reload, currentUser is anonymous for short time
   // then any user that is logged in is loaded into currentUser
@@ -122,20 +123,7 @@ export const AppProvider = ({ children }) => {
     loadBooks();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const user = (
-          await axios.get(`${baseURL}/get-current-user`, {
-            withCredentials: true,
-          })
-        ).data;
-        setCurrentUser({ ...user });
-      } catch (e) {
-        console.log("General error");
-      }
-    })();
-  }, []);
+ 
   const handleDeleteBook = async (_book) => {
     try {
       const res = await instance.delete(`/books/${_book._id}`);
@@ -261,8 +249,11 @@ export const AppProvider = ({ children }) => {
     setFilteredBooks([]);
     loadBooks();
   };
+
+  
   //Shopping cart
   useEffect(() => {
+    
     async function fetchCart() {
       try {
         const response = await axios.get(
