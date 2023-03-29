@@ -10,6 +10,7 @@ import {
 } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
+
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
@@ -102,10 +103,12 @@ export const AppProvider = ({ children }) => {
           `${baseURL}/users/${currentUser._id}/favorites`
         );
         setFavorites(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     }
+
     // Fetch favorites when the component mounts
     if (currentUser) {
       fetchFavorites();
@@ -268,7 +271,18 @@ export const AppProvider = ({ children }) => {
         const response = await axios.get(
           `${baseURL}/users/${currentUser?._id}/cart`
         );
-        setCart(response.data);
+        const _cart = [];
+        rawBooks.map((_book) => {
+          if (response.data.includes(_book._id)) {
+            _book.quantity = 1;
+            _cart.push(_book);
+          }
+        });
+        //_cart.forEach((_book) => {
+        //  _book.quantity = 1;
+        //});
+        setCart(_cart);
+        console.log(_cart);
       } catch (error) {
         console.log(error);
       }

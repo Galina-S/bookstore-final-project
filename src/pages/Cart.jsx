@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import ShoppingCartBook from "../../components/ShoppingCartBook";
+import { useNavigate } from "react-router";
 
 export const Cart = () => {
-  const { cart } = useContext(AppContext);
+  const { cart, rawBooks } = useContext(AppContext);
+  const navigate = useNavigate();
+  console.log(cart);
   return (
     <div className="shopping-cart">
       <div className="column-labels">

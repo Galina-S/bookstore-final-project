@@ -29,7 +29,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>Author</label>
               <div>
@@ -45,7 +44,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>Book Image</label>
               <div>
@@ -59,7 +57,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>Price</label>
               <div>
@@ -78,7 +75,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>Beschreibung</label>
               <div>
@@ -94,7 +90,7 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
+            {/**
             <div className="row">
               <label>Erscheinungsdatum</label>
               <div>
@@ -118,7 +114,7 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
+            */}
             <div className="row">
               <label>Genre</label>
               <div>
@@ -134,7 +130,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>Verlag</label>
               <div>
@@ -150,7 +145,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>Pages</label>
               <div>
@@ -166,7 +160,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="row">
               <label>ISBN</label>
               <div>
@@ -183,7 +176,6 @@ export const EditBook = () => {
                 />
               </div>
             </div>
-
             <div className="buttonRow">
               <NavLink to="/books">
                 <button className="classicBtn">Cancel</button>

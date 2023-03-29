@@ -52,6 +52,7 @@ export const PageSingleBook = (props) => {
     }
   }, [id]);
 
+  //Comments
   useEffect(() => {
     loadComments(id);
   }, [id]);
@@ -96,7 +97,7 @@ export const PageSingleBook = (props) => {
 
   useEffect(() => {
     const favorite = localStorage.getItem(data.book?.title);
-    console.log("in cart?", favorite, isInCart);
+    console.log("local storage", favorite, "is in cart", isInCart);
     if (favorite !== null) {
       setIsInCart(true);
     }
@@ -106,7 +107,7 @@ export const PageSingleBook = (props) => {
     localStorage.setItem(data.book?.title, isInCart);
   }, [data.book?.title, isInCart]);
 
-  const handleFavoriteClick = () => {
+  const handleAddClick = () => {
     setIsInCart(!isInCart);
   };
 
@@ -158,19 +159,23 @@ export const PageSingleBook = (props) => {
           <div>
             {!isInCart ? (
               <div>
-                <div>
-                  <button onClick={() => decreaseQty(data.book)}>-</button>
-                  <div>
-                    <span>{quantity}</span> in cart
-                  </div>
-                  <button onClick={() => increaseQty(data.book)}>+</button>
-                </div>
-                <button onClick={() => removeFromCart(data.book._id)}>
+                <button
+                  onClick={() => {
+                    removeFromCart(data.book._id);
+                    handleAddClick();
+                  }}
+                >
                   Remove
                 </button>
               </div>
             ) : (
-              <button className="btn" onClick={() => addToCart(data.book)}>
+              <button
+                className="btn"
+                onClick={() => {
+                  addToCart(data.book);
+                  handleAddClick();
+                }}
+              >
                 Add to Cart
               </button>
             )}
