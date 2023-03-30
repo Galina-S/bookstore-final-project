@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import instance from "../../components/axios";
 import { NavLink } from "react-router-dom";
-import FavoriteIcon from "../../components/FavoriteIcon";
+import FavoriteIcon from "../../components/UserFavorites";
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 

@@ -42,20 +42,20 @@ export const  PageSingleAuthor = () => {
       {books.map((book) => (
           <div key={book._id} className="author-card">
                   {/* <Book book={book} /> */}
-           
+                  
             <NavLink to={`/books/${book._id}`} onClick={() => openSingleBook()}>
               <div className="image">
                 <img src={book.img} alt={book.title} height="150px" />
+                <FavoriteIcon book={book} className="favorite-icon" />
               </div>
             </NavLink>
+            
             <div className="artikel-details">
                   <h6>{book.author}</h6>
                   <h5>{book.title}</h5>
                   <h5>{book.price} € </h5>
             </div>
-            <FavoriteIcon book={book} className="favorite-icon" />
-
-           
+            
            </div>
         ))}
      

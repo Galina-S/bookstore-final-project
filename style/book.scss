@@ -56,8 +56,18 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          position: relative;
+
+          
         }
         
+        .favorite-icon {
+          position: absolute;
+          top: -90;
+          cursor: pointer;
+          padding-left: 0px;
+          font-size: 1.4rem;
+        }
         .card h5 {  
           margin: 0;
           padding: 0;
