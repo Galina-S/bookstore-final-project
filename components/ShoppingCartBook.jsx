@@ -34,9 +34,9 @@ function ShoppingCartBook({ book }) {
           </div>
           <button
             className="remove-product"
-            onClick={() => removeFromCart(book)}
+            onClick={() => removeFromCart(book._id)}
           >
-            Remove
+            Löschen
           </button>
         </div>
         <div className="product-line-price">{book.price * book.quantity}</div>

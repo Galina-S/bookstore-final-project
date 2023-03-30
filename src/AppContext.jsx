@@ -314,11 +314,12 @@ export const AppProvider = ({ children }) => {
       );
       console.log(response.data.message);
       // Update the state of favorites to re-render the UI
-      setCart(cart.filter((id) => id !== bookId));
+      setCart(cart.filter((book) => book._id !== bookId));
     } catch (error) {
       console.error(error);
     }
   };
+
   const addToCart = async (book) => {
     try {
       const response = await axios.post(

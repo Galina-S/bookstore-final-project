@@ -95,6 +95,10 @@ export const PageSingleBook = (props) => {
   //Cart functions
   const [isInCart, setIsInCart] = useState(false);
 
+  const handleAddClick = () => {
+    setIsInCart(!isInCart);
+  };
+
   useEffect(() => {
     const favorite = localStorage.getItem(data.book?.title);
     console.log("local storage", favorite, "is in cart", isInCart);
@@ -106,10 +110,6 @@ export const PageSingleBook = (props) => {
   useEffect(() => {
     localStorage.setItem(data.book?.title, isInCart);
   }, [data.book?.title, isInCart]);
-
-  const handleAddClick = () => {
-    setIsInCart(!isInCart);
-  };
 
   return (
     <div className="content">

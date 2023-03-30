@@ -15,6 +15,8 @@ export const WishListPage = () => {
     favorites,
     setFavorites,
     addToCart,
+    removeFromCart,
+    cart,
   } = useContext(AppContext);
 
   const userId = currentUser._id;
@@ -36,6 +38,12 @@ export const WishListPage = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const [isInCart, setIsInCart] = useState(false);
+
+  const handleAddClick = () => {
+    setIsInCart(!isInCart);
   };
 
   return (
@@ -87,15 +95,32 @@ export const WishListPage = () => {
                         >
                           <RiDeleteBin6Line />
                         </button>
-                        <button
-                          className="element-button-primary"
-                          onClick={() => addToCart(_book)}
-                        >
-                          <span>
-                            <BsCartPlus />
-                          </span>{" "}
-                          In den Warenkorb
-                        </button>
+                        {cart.some((p) => p._id === _book?._id) ? (
+                          <div>
+                            <button
+                              className="element-button-primary"
+                              onClick={() => {
+                                removeFromCart(_book._id);
+                                handleAddClick();
+                              }}
+                            >
+                              Aus dem Warenkorb löschen
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            className="element-button-primary"
+                            onClick={() => {
+                              addToCart(_book);
+                              handleAddClick();
+                            }}
+                          >
+                            <span>
+                              <BsCartPlus />
+                            </span>{" "}
+                            In den Warenkorb
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
