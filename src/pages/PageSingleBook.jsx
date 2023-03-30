@@ -160,12 +160,13 @@ export const PageSingleBook = (props) => {
             {cart.some((p) => p._id === data.book?._id) ? (
               <div>
                 <button
+                  className="btn"
                   onClick={() => {
                     removeFromCart(data.book._id);
                     handleAddClick();
                   }}
                 >
-                  Remove
+                  Aus dem Warenkorb löschen
                 </button>
               </div>
             ) : (
@@ -176,7 +177,7 @@ export const PageSingleBook = (props) => {
                   handleAddClick();
                 }}
               >
-                Add to Cart
+                In den Warenkorb
               </button>
             )}
           </div>

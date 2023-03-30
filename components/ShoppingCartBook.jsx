@@ -15,14 +15,10 @@ function ShoppingCartBook({ book }) {
           </NavLink>
         </div>
         <div className="product-details">
-          <div className="product-title">
-            <NavLink to={`/books/${book._id}`} onClick={() => openSingleBook()}>
-              {book.title}
-            </NavLink>
+          <div className="artikel-details">
+            <p className="book-author">{book.author}</p>
+            <strong>{book.title}</strong>
           </div>
-          <Link to={`/authors/${book.author}`}>
-            <div className="author">{book.author}</div>
-          </Link>
         </div>
         <div className="product-price">{book.price}</div>
         <div className="product-quantity">{book.quantity}</div>

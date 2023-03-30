@@ -298,7 +298,7 @@ export const AppProvider = ({ children }) => {
           if (ele.quantity > 1) {
             return ele.quantity--;
           } else {
-            return ele._id !== book._id;
+            removeFromCart(ele._id);
           }
         } else {
           return ele.quantity;

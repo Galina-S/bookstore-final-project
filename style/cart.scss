@@ -143,12 +143,12 @@ label {
 
       .remove-product {
             border: 0;
-            padding: 4px 8px;
+            padding: 5px 9px;
             background-color: #c66;
             color: #fff;
             font-family: $font-bold;
             font-size: 12px;
-            border-radius: 3px;
+            border-radius: 7px;
       }
 
       .remove-product:hover {
@@ -161,12 +161,12 @@ label {
 
                   width: 25px;
                   height: 25px;
-                  margin: 3px;
+                  margin: 4px;
                   background-color: rgb(162, 204, 102);
                   color: #fff;
                   font-family: $font-bold;
                   font-size: 12px;
-                  border-radius: 3px;
+                  border-radius: 7px;
 
                   &:hover {
                         background-color: rgb(127, 161, 81);
@@ -214,7 +214,7 @@ label {
       background-color: rgb(162, 204, 102);
       color: #fff;
       font-size: 25px;
-      border-radius: 3px;
+      border-radius: 10px;
 }
 
 .checkout:hover {
