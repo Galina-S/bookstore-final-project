@@ -270,16 +270,13 @@ export const AppProvider = ({ children }) => {
             _cart.push(_book);
           }
         });
-        //_cart.forEach((_book) => {
-        //  _book.quantity = 1;
-        //});
+
         setCart(_cart);
-        console.log(_cart);
       } catch (error) {
         console.log(error);
       }
     }
-    // Fetch favorites when the component mounts
+    // Fetch cart when the component mounts
     if (currentUser) {
       fetchCart();
     }

@@ -3,10 +3,18 @@ import { useContext } from "react";
 import { useState } from "react";
 
 export const Bestsellers = () => {
-  const { handleClick, rawBooks } = useContext(AppContext);
+  const { handleClick, rawBooks, addToCart, removeFromCart, cart } =
+    useContext(AppContext);
 
   const bestsellers = rawBooks.filter((book) => book.viewsCount > 5);
   bestsellers.sort((a, b) => b.viewsCount - a.viewsCount);
+
+  const [isInCart, setIsInCart] = useState(false);
+
+  const handleAddClick = () => {
+    setIsInCart(!isInCart);
+  };
+
   return (
     <div className="bestsellersPage">
       <div className="title">
@@ -42,7 +50,29 @@ export const Bestsellers = () => {
                     <span>inkl. gesetzl. MwSt.</span>
                     {book.price} €
                   </p>
-                  <button className="btn btn-cart">in den Warenkorb</button>
+                  {cart.some((p) => p._id === book?._id) ? (
+                    <div>
+                      <button
+                        className="btn"
+                        onClick={() => {
+                          removeFromCart(book._id);
+                          handleAddClick();
+                        }}
+                      >
+                        Löschen
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        addToCart(book);
+                        handleAddClick();
+                      }}
+                    >
+                      In den Warenkorb
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
