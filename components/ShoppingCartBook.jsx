@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
+import { BsFillTrashFill } from "react-icons/bs";
 
 function ShoppingCartBook({ book }) {
   const { cart, removeFromCart, increaseQty, decreaseQty } =
@@ -32,7 +33,7 @@ function ShoppingCartBook({ book }) {
             className="remove-product"
             onClick={() => removeFromCart(book._id)}
           >
-            Löschen
+            <BsFillTrashFill />  Löschen
           </button>
         </div>
         <div className="product-line-price">{book.price * book.quantity}</div>
