@@ -80,7 +80,6 @@
         }
       }
     }
-
     //RESPONSIVE
     @media screen and (max-width: 900px) {
       .content {
@@ -326,4 +325,34 @@
         }
       }
     }
+
+        // CONTACT CONTAINER
+        .contact-container{
+          padding: 1rem;
+          background-color:#dfdfdfc4;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .contact-box-text>p {
+            margin-top: 0.5rem;
+          }
+          .contact-box{
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem;
+            width: 100%;
+            .contact-box-card{
+              background-color: #ffffff;
+              width: 45%;
+              padding: 0.7rem 2.5rem;
+              p{
+                color: #757575;
+              }
+              .contact-info {
+                color: var(--color-main-green);
+              }
+            }
+          }
+        }
 }

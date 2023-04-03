@@ -1,0 +1,27 @@
+.unternehmen {
+    .company-slogan{
+        height: 150px;
+
+        //background: url("https://i.ibb.co/FXt8NV3/book-794978.jpg") no-repeat center;
+        background-size: cover;
+        background-color: var(--color-main-blue);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .slogan-text{
+            text-align: center;
+            h2{
+                color: var(--color-main-light);
+                font-size: 1.6rem;
+                
+            }
+        }
+    }
+    .about-company-content{
+        margin-top: 2rem;
+        .about-company-content > p{
+            padding-top: 1rem;
+        }
+    }
+
+}
