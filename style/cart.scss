@@ -66,12 +66,12 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 /* Apply dollar signs */
 .product .product-price:before,
 .product .product-line-price:before,
-.totals-value:before {
+
+
+
+/* Body/Header stuff .totals-value:before {
       content: '€';
-}
-
-
-/* Body/Header stuff */
+}*/
 body {
       padding: 0px 30px 30px 20px;
       font-family: $font-default;

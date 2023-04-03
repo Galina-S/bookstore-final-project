@@ -41,6 +41,7 @@ export const AppProvider = ({ children }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [rawComments, setRawComments] = useState(null);
   let dropdownRef = useRef();
+
   useEffect(() => {
     let handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -145,6 +146,17 @@ export const AppProvider = ({ children }) => {
       console.error(`ERROR: ${e}`);
     }
   };
+
+  //Currency formatter
+  const CURRENCY_FORMATTER = new Intl.NumberFormat(undefined, {
+    currency: "EUR",
+    style: "currency",
+  });
+
+  function formatCurrency(number) {
+    return CURRENCY_FORMATTER.format(number);
+  }
+
   //Single book page
   const openSingleBook = (book) => {
     setOpenBook(book);
@@ -333,12 +345,7 @@ export const AppProvider = ({ children }) => {
       console.error(error);
     }
   };
-  //const removeFromCart = (book) => {
-  //  setCart(cart.filter((ele) => ele._id !== book._id));
-  //};
-  //const addToCart = (book) => {
-  //  setCart([...cart, { ...book, quantity: 1 }]);
-  //};
+
   //Log in form
   const changeLoginFormField = (fieldIdCode, value) => {
     loginForm.fields[fieldIdCode] = value;
@@ -520,6 +527,7 @@ export const AppProvider = ({ children }) => {
         setShowCommentForm,
         loadComments,
         getWindowSize,
+        formatCurrency,
       }}
     >
       {children}

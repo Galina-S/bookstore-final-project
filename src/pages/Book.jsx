@@ -31,6 +31,7 @@ export const Book = (props) => {
     currentUser,
     modalIsOpen,
     closeModal,
+    formatCurrency,
   } = useContext(AppContext);
 
   const { book } = props;
@@ -54,7 +55,7 @@ export const Book = (props) => {
           </Link>
           {/* <h6>{author}</h6> */}
           <h5>{title}</h5>
-          <h4>{price} € </h4>
+          <h4>{price.toFixed(2)} € </h4>
         </div>
         <FavoriteIcon book={book} className="favorite-icon" />
       </div>

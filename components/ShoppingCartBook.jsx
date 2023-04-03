@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
 
 function ShoppingCartBook({ book }) {
-  const { cart, removeFromCart, increaseQty, decreaseQty } =
+  const { cart, removeFromCart, increaseQty, decreaseQty, formatCurrency } =
     useContext(AppContext);
 
   return (
@@ -20,7 +20,7 @@ function ShoppingCartBook({ book }) {
             <strong>{book.title}</strong>
           </div>
         </div>
-        <div className="product-price">{book.price}</div>
+        <div className="product-price">{formatCurrency(book.price)}</div>
         <div className="product-quantity">{book.quantity}</div>
         <div className="product-removal">
           <div className="product-qty">
@@ -35,7 +35,9 @@ function ShoppingCartBook({ book }) {
             Löschen
           </button>
         </div>
-        <div className="product-line-price">{book.price * book.quantity}</div>
+        <div className="product-line-price">
+          {formatCurrency(book.price * book.quantity)}
+        </div>
       </div>
     </>
   );

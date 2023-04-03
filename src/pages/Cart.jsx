@@ -6,7 +6,8 @@ import axios from "axios";
 import { baseURL } from "../../components/axios";
 
 export const Cart = () => {
-  const { cart, rawBooks, currentUser, setCart } = useContext(AppContext);
+  const { cart, rawBooks, currentUser, setCart, formatCurrency } =
+    useContext(AppContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -87,9 +88,11 @@ export const Cart = () => {
         <div className="totals-item">
           <label>Total</label>
           <div className="totals-value" id="cart-subtotal">
-            {cart.reduce((total, cartItem) => {
-              return total + (cartItem.price || 0) * cartItem.quantity;
-            }, 0)}
+            {formatCurrency(
+              cart.reduce((total, cartItem) => {
+                return total + (cartItem.price || 0) * cartItem.quantity;
+              }, 0)
+            )}
           </div>
         </div>
       </div>
