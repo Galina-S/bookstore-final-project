@@ -72,10 +72,10 @@ export const Cart = () => {
       <div className="column-labels">
         <label className="product-image">Image</label>
         <label className="product-details">Product</label>
-        <label className="product-price">Price</label>
-        <label className="product-quantity">Quantity</label>
-        <label className="product-removal">Remove</label>
-        <label className="product-line-price">Total</label>
+        <label className="product-price">Preis</label>
+        <label className="product-quantity">Anzahl</label>
+        <label className="product-removal">Löschen</label>
+        <label className="product-line-price">Insgesamt</label>
       </div>
       {cart.map((_book) => {
         return (
