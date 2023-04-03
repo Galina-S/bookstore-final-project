@@ -270,17 +270,20 @@ export const AppProvider = ({ children }) => {
             _cart.push(_book);
           }
         });
-
         setCart(_cart);
+        localStorage.setItem("cart", JSON.stringify(_cart)); // store cart data in localStorage
       } catch (error) {
         console.log(error);
       }
     }
     // Fetch cart when the component mounts
     if (currentUser) {
+      const cartData = JSON.parse(localStorage.getItem("cart")) || []; // retrieve cart data from localStorage
+      setCart(cartData);
       fetchCart();
     }
-  }, [currentUser]);
+  }, [currentUser, rawBooks]);
+
   const increaseQty = (book) => {
     setCart(
       cart.filter((ele) =>
@@ -505,6 +508,7 @@ export const AppProvider = ({ children }) => {
         increaseQty,
         decreaseQty,
         cart,
+        setCart,
         isInCart,
         setIsInCart,
         favorites,

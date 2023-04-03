@@ -1,12 +1,71 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../AppContext";
 import ShoppingCartBook from "../../components/ShoppingCartBook";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { baseURL } from "../../components/axios";
 
 export const Cart = () => {
-  const { cart, rawBooks } = useContext(AppContext);
+  const { cart, rawBooks, currentUser, setCart } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
-  console.log(cart);
+
+  useEffect(() => {
+    async function fetchCart() {
+      try {
+        const response = await axios.get(
+          `${baseURL}/users/${currentUser?._id}/cart`
+        );
+        const _cart = [];
+        rawBooks.map((_book) => {
+          if (response.data.includes(_book._id)) {
+            _book.quantity = 1;
+            _cart.push(_book);
+          }
+        });
+
+        setCart(_cart);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (currentUser) {
+      fetchCart();
+    }
+  }, [currentUser, rawBooks, setCart]);
+
+  if (isLoading) {
+    return <p></p>;
+  }
+
+  if (cart.length === 0) {
+    return (
+      <div>
+        <h3>Ihr Warenkorb ist leer.</h3>
+        <p
+          style={{
+            paddingTop: "10px",
+            fontSize: "0.9rem",
+            paddingBottom: "15px",
+          }}
+        >
+          Stöbern Sie in unserem Sortiment.
+        </p>
+        <button
+          onClick={() => {
+            navigate("/books");
+          }}
+          className="button-go-to-books"
+        >
+          Jetzt stöbern
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="shopping-cart">
       <div className="column-labels">
@@ -17,28 +76,6 @@ export const Cart = () => {
         <label className="product-removal">Remove</label>
         <label className="product-line-price">Total</label>
       </div>
-      {cart.length == 0 && (
-        <div>
-          <h3>Ihr Warenkorb ist leer.</h3>
-          <p
-            style={{
-              paddingTop: "10px",
-              fontSize: "0.9rem",
-              paddingBottom: "15px",
-            }}
-          >
-            Stöbern Sie in unserem Sortiment.
-          </p>
-          <button
-            onClick={() => {
-              navigate("/books");
-            }}
-            className="button-go-to-books"
-          >
-            Jetzt stöbern
-          </button>
-        </div>
-      )}
       {cart.map((_book) => {
         return (
           <div key={_book._id}>
@@ -55,24 +92,6 @@ export const Cart = () => {
             }, 0)}
           </div>
         </div>
-        {/* <div className="totals-item">
-          <label>Tax (5%)</label>
-          <div className="totals-value" id="cart-tax">
-            3.60
-          </div>
-        </div>
-        <div className="totals-item">
-          <label>Shipping</label>
-          <div className="totals-value" id="cart-shipping">
-            15.00
-          </div>
-        </div>
-        <div className="totals-item totals-item-total">
-          <label>Grand Total</label>
-          <div className="totals-value" id="cart-total">
-            90.57
-          </div>
-        </div>*/}
       </div>
       <button className="checkout">Checkout</button>
     </div>
