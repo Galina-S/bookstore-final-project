@@ -83,7 +83,7 @@ export const Book = (props) => {
             </button>
           </NavLink>
         </div>
-      )}
+      )}  
     </div>
   );
 };

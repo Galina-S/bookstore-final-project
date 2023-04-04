@@ -4,6 +4,8 @@ import { AppContext } from "../AppContext";
 import { useContext } from "react";
 
 import { Link } from 'react-router-dom';
+import { Footer } from "../../components/Footer";
+
 
 export const NewBooksPage = () => {
   const [newReleases, setNewReleases] = useState([]);
@@ -219,6 +221,10 @@ export const NewBooksPage = () => {
           </div>
         </div>
       )}
+
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 };

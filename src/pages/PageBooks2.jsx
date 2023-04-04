@@ -5,6 +5,8 @@ import { Book } from "../pages/Book";
 import { BsSliders } from 'react-icons/bs';
 import { Modal } from "@mui/material";
 import {AiFillCloseCircle} from 'react-icons/ai';
+import { Footer } from "../../components/Footer";
+
 
 export const PageBooks2 = () => {
 
@@ -113,7 +115,9 @@ export const PageBooks2 = () => {
               );
             }) */}
       </ul>
-     
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
     </div>
   );

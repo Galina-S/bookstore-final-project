@@ -1,6 +1,8 @@
 import { AppContext } from "../AppContext";
 import { useContext } from "react";
 import { useState } from "react";
+import { Footer } from "../../components/Footer";
+
 
 export const Bestsellers = () => {
   const { handleClick, rawBooks, addToCart, removeFromCart, cart } =
@@ -78,6 +80,10 @@ export const Bestsellers = () => {
             </div>
           );
         })}
+      </div>
+
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );
