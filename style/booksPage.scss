@@ -1,6 +1,11 @@
+
+.books{
+  display: flex;
+  flex-wrap: wrap;
+}
 .info {
   width: max-content;
-  margin: 0.6rem 0;
+  margin: 0.6rem 0.7rem;
   text-align: center;
   padding: 0.5rem;
   color:rgb(21, 21, 21);    
@@ -63,7 +68,7 @@
 }
 @media screen and (max-width:900px) {
   .info{
-    margin: 1rem 0;
+    margin: 1rem 0.3rem;
     .all_books{
       .book-cover{
        img{
