@@ -41,7 +41,7 @@ export const PageRegister = () => {
     if (success) {
       setTimeout(() => {
         navigate("/home");
-      }, 4000);
+      }, 6000);
     }
   }, [success]);
 

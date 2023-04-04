@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import axios from 'axios';
 import {  AiOutlineMail, AiOutlinePicture, AiOutlinePlus, AiOutlineMinus  } from 'react-icons/ai';
-import { borderRadius } from "@mui/system";
+import { baseURL } from "../../components/axios";
 
 export const Account = ({ userId }) => {
     const { currentUser, setCurrentUser, getCurrentUser } =  useContext(AppContext);
@@ -16,6 +16,7 @@ export const Account = ({ userId }) => {
     const [errorMessage, setErrorMessage] = useState("");
     const [editMode, setEditMode] = useState(false);
     const [editImg, setEditImg] = useState(false);
+
 
 
     const handleSubmit = async (e) => {
@@ -69,7 +70,7 @@ export const Account = ({ userId }) => {
         const response = await instance.put(`/users/${currentUser._id}/profile-image`, { imageData: base64Image });
 
             // Update the img field in the currentUser state
-        const updatedUser = { ...currentUser, img: base64Image };
+        const updatedUser = { ...currentUser, img: base64Image};
         setCurrentUser(updatedUser);
 
         console.log(currentUser);
