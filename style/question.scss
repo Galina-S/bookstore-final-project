@@ -1,0 +1,33 @@
+.question{
+    margin: 1rem 0;
+    h2{
+        font-weight: lighter;
+        font-size: 1.7rem;
+        color: var(--color-main-blue-medium);
+        margin-left: 2rem;
+        margin-top: 2rem;
+    }
+
+    .question-container{
+        margin-top: 2rem;
+
+        .question-text{
+            background-color: #eae9e99c;
+            padding: 1rem;
+            box-shadow: var(--box-shadow-mai-brown);
+            border-radius: 0.7rem;
+            cursor: pointer;
+            .arrow-down{
+                margin: 0 1rem;
+                color: rgb(137, 137, 137);
+            }
+        }
+        .answer{
+            margin: 1.5rem;
+            padding: 2rem;
+            width: 90%;
+            border: 1px solid var(--color-main-gray);
+            line-height: 1.2rem;
+        }
+    }
+}

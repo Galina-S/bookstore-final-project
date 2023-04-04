@@ -10,11 +10,12 @@ export const Footer = () => {
                 <NavLink to="/impressum">Impressum</NavLink>
             </div>
             <div className="footer-container">
-                <NavLink>Fragen zu Bestellung</NavLink>
-            </div>
-            <div className="footer-container">
                 <NavLink>Kontakt</NavLink>
             </div>
+            <div className="footer-container">
+                <NavLink to="/questions">Fragen zu Bestellung</NavLink>
+            </div>
+            
             <div className="footer-container">
                 <NavLink to="/shop/hilfe-versand">Versand und Lieferung</NavLink>
             </div>

@@ -75,7 +75,7 @@ export const PageHome = () => {
           </div>
           <div className="contact-box-card">
             <p>Kontakt per E-Mail</p>
-            <p className="contact-info">info@book-muster.de</p>
+            <p className="contact-info"> info@bookshopify.de</p>
           </div>
         </div>
       </div>

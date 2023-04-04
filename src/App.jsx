@@ -24,6 +24,7 @@ import { PageSingleAuthor } from "./pages/PageSingleAuthor";
 import { PageVersand } from "./pages/PageVersand";
 import { Impressum } from "../components/Impressum"
 import { Unternehmen } from "../components/unternehmen"
+import { Question } from "../components/Question";
 
 //const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -55,6 +56,8 @@ function App() {
         <Route path="/edit/:id" element={<EditBook />} />
         <Route path="/impressum" element = {<Impressum/>} />
         <Route path="/unternehmen" element = {<Unternehmen/>} />
+        <Route path="/questions" element = {<Question/>} />
+
 
 
         <Route path="/authors/:authorID" element={<PageSingleAuthor />} />
