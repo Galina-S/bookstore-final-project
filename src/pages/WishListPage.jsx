@@ -8,6 +8,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router";
 
 export const WishListPage = () => {
+  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+  
   const {
     rawBooks,
     openSingleBook,
@@ -28,7 +30,7 @@ export const WishListPage = () => {
   const deleteFavorite = async (bookId) => {
     try {
       const response = await axios.delete(
-        `${baseURL}/users/${userId}/favorites/${bookId}`,
+        `${BACKEND_URL}/users/${userId}/favorites/${bookId}`,
         { withCredentials: true }
       );
       console.log(response.data.message);

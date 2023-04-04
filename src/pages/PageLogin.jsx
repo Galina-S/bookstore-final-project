@@ -5,6 +5,7 @@ import axios from 'axios';
 import { baseURL } from '../../components/axios';
 
 export const PageLogin = () => {
+
   const {
     loginForm,
     changeLoginFormField,
@@ -41,20 +42,6 @@ export const PageLogin = () => {
   useEffect(() => {
     clearLoginForm();
   }, []);
-
-  // useEffect(() => {
-  //   async function fetchFavorites() {
-  //     try {
-  //       const response = await axios.get(`${baseURL}/users/${userId}/favorites`);
-  //       setFavorites(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
-  //   // Fetch favorites when the component mounts
-  //   fetchFavorites();
-  // }, [userId]);
 
   return (
     <div className="container">

@@ -25,6 +25,8 @@ export const PageSingleBook = (props) => {
   const { id } = useParams();
   const [data, setData] = useState({});
 
+  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+
   const {
     loadComments,
     cart,
@@ -39,7 +41,7 @@ export const PageSingleBook = (props) => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`${baseURL}/books/${id}`);
+        const response = await axios.get(`${BACKEND_URL}/books/${id}`);
         setData(response.data);
       } catch (error) {
         console.error(error);
@@ -60,7 +62,7 @@ export const PageSingleBook = (props) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`${baseURL}/books/${id}/comments`);
+        const response = await axios.get(`${BACKEND_URL}/books/${id}/comments`);
         setComments(response.data);
       } catch (error) {
         console.error(error);
@@ -79,7 +81,7 @@ export const PageSingleBook = (props) => {
     const userId = id;
 
     try {
-      await fetch(`${baseURL}/books/${userId}/comments/${commentId}`, {
+      await fetch(`${BACKEND_URL}/books/${userId}/comments/${commentId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${currentUser.token}`,

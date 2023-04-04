@@ -11,6 +11,8 @@ import {
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
 
+const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
@@ -65,7 +67,7 @@ export const AppProvider = ({ children }) => {
   };
   const loadComments = async (bookId) => {
     try {
-      const response = await fetch(`${baseURL}/books/${bookId}/comments`);
+      const response = await fetch(`${BACKEND_URL}/books/${bookId}/comments`);
       const commentsData = await response.json();
       setRawComments(commentsData.comments);
     } catch (error) {
@@ -77,7 +79,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${baseURL}/get-current-user`, {
+          await axios.get(`${BACKEND_URL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
@@ -97,7 +99,7 @@ export const AppProvider = ({ children }) => {
     async function fetchFavorites() {
       try {
         const response = await axios.get(
-          `${baseURL}/users/${currentUser._id}/favorites`
+          `${BACKEND_URL}/users/${currentUser._id}/favorites`
         );
         setFavorites(response.data);
       } catch (error) {
@@ -125,7 +127,7 @@ export const AppProvider = ({ children }) => {
     (async () => {
       try {
         const user = (
-          await axios.get(`${baseURL}/get-current-user`, {
+          await axios.get(`${BACKEND_URL}/get-current-user`, {
             withCredentials: true,
           })
         ).data;
@@ -273,7 +275,7 @@ export const AppProvider = ({ children }) => {
     async function fetchCart() {
       try {
         const response = await axios.get(
-          `${baseURL}/users/${currentUser?._id}/cart`
+          `${BACKEND_URL}/users/${currentUser?._id}/cart`
         );
         const _cart = [];
         rawBooks.map((_book) => {
@@ -321,7 +323,7 @@ export const AppProvider = ({ children }) => {
   const removeFromCart = async (bookId) => {
     try {
       const response = await axios.delete(
-        `${baseURL}/users/${currentUser._id}/cart/${bookId}`,
+        `${BACKEND_URL}/users/${currentUser._id}/cart/${bookId}`,
         { withCredentials: true }
       );
       console.log(response.data.message);
@@ -335,7 +337,7 @@ export const AppProvider = ({ children }) => {
   const addToCart = async (book) => {
     try {
       const response = await axios.post(
-        `${baseURL}/users/${currentUser._id}/cart/${book._id}`,
+        `${BACKEND_URL}/users/${currentUser._id}/cart/${book._id}`,
         { withCredentials: true }
       );
       console.log(response.data.message);
@@ -354,7 +356,7 @@ export const AppProvider = ({ children }) => {
   const submitLoginForm = async (onBadLogin) => {
     try {
       const response = await axios.post(
-        `${baseURL}/login`,
+        `${BACKEND_URL}/login`,
         {
           username: loginForm.fields.username,
           password: loginForm.fields.password,
@@ -387,7 +389,7 @@ export const AppProvider = ({ children }) => {
     if (currentUserIsInAccessGroup("members")) {
       (async () => {
         const memberInfo = (
-          await axios.get(`${baseURL}/get-member-info`, {
+          await axios.get(`${BACKEND_URL}/get-member-info`, {
             withCredentials: true,
           })
         ).data;
@@ -397,7 +399,7 @@ export const AppProvider = ({ children }) => {
     if (currentUserIsInAccessGroup("admins")) {
       (async () => {
         const adminInfo = (
-          await axios.get(`${baseURL}/get-admin-info`, {
+          await axios.get(`${BACKEND_URL}/get-admin-info`, {
             withCredentials: true,
           })
         ).data;
@@ -409,7 +411,7 @@ export const AppProvider = ({ children }) => {
     setCurrentUser({ ...anonymousUser });
     (async () => {
       try {
-        await axios.get(`${baseURL}/logout`, {
+        await axios.get(`${BACKEND_URL}/logout`, {
           withCredentials: true,
         });
         getCurrentUser();

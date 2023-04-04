@@ -10,7 +10,7 @@ import { baseURL } from '../../components/axios';
 
 export const  PageSingleAuthor = () => {
   const [books, setBooks] = useState([]);
-
+  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
   const { authorID } = useParams();
 
   // Set up state to hold the book data for the corresponding author
@@ -21,7 +21,7 @@ export const  PageSingleAuthor = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${baseURL}/authors/${formattedAuthorID}`);
+        const response = await axios.get(`${BACKEND_URL}/authors/${formattedAuthorID}`);
         setBooks(response.data.books);
       } catch (err) {
         console.error(err);

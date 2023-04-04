@@ -16,6 +16,8 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PageRegister = () => {
+  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+  
   const userRef = useRef();
   const errRef = useRef();
   const { navigate } = useContext(AppContext);
@@ -85,7 +87,7 @@ export const PageRegister = () => {
     }
     
     try {
-      const res = await axios.post(`${baseURL}/register`,  {
+      const res = await axios.post(`${BACKEND_URL}/register`,  {
         ...formData,
       });
       // console.log(res.data);

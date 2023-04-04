@@ -4,6 +4,7 @@ import ShoppingCartBook from "../../components/ShoppingCartBook";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { baseURL } from "../../components/axios";
+const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
 export const Cart = () => {
   const { cart, rawBooks, currentUser, setCart, formatCurrency } =
@@ -16,7 +17,7 @@ export const Cart = () => {
     async function fetchCart() {
       try {
         const response = await axios.get(
-          `${baseURL}/users/${currentUser?._id}/cart`
+          `${BACKEND_URL}/users/${currentUser?._id}/cart`
         );
         const _cart = [];
         rawBooks.map((_book) => {

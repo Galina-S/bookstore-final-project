@@ -10,6 +10,8 @@ const  { currentUser, loadComments } = useContext(AppContext);
 const [submitted, setSubmitted] = useState(false); // add submitted state
 const [showCommentForm, setShowCommentForm] = useState(true);
 
+const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+
 const [formData, setFormData] = useState({
     commentId: Date.now().toString(),
     userId: currentUser._id,
@@ -27,7 +29,7 @@ const [formData, setFormData] = useState({
         event.preventDefault();
 
         try {
-        const response = await fetch(`${baseURL}/books/${bookId}`, {
+        const response = await fetch(`${BACKEND_URL}/books/${bookId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +56,7 @@ const [formData, setFormData] = useState({
 
 
       // fetch the updated comment data from the server and display it
-    const commentResponse = await fetch(`${baseURL}/books/${bookId}/comments/${data.commentId}`);
+    const commentResponse = await fetch(`${BACKEND_URL}/books/${bookId}/comments/${data.commentId}`);
     const commentData = await commentResponse.json();
     handleAddCommentForm(commentData);
 
@@ -72,7 +74,7 @@ const [formData, setFormData] = useState({
 useEffect(() => {
   const fetchBook = async () => {
     try {
-      const response = await axios.get(`${baseURL}/books/${bookId}`);
+      const response = await axios.get(`${BACKEND_URL}/books/${bookId}`);
       setData(response.data);
     } catch (error) {
       console.error(error);

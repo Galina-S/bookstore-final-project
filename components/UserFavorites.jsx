@@ -11,6 +11,8 @@ const FavoriteIcon = ({ book }) => {
   const { currentUser, favorites, setFavorites, setModalIsOpen, modalIsOpen} = useContext(AppContext);
   const userId = currentUser._id;
 
+  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+
   useEffect(() => {
     const favorite = favorites.includes(book?._id);
     setIsFavorite(favorite);
@@ -19,7 +21,7 @@ const FavoriteIcon = ({ book }) => {
   const handleFavoriteClick = async () => {
     try {
       const isFavoriteBefore = favorites.includes(book._id); // check if the book is already in favorites
-      const response = await fetch(`${baseURL}/users/${userId}/favorites/${book._id}`, {
+      const response = await fetch(`${BACKEND_URL}/users/${userId}/favorites/${book._id}`, {
         method: 'POST',
         credentials: 'include', // include cookies in the request
         body: JSON.stringify({ bookId: book._id })
@@ -31,7 +33,7 @@ const FavoriteIcon = ({ book }) => {
 
         if (isFavoriteBefore) {
           // book was already in favorites, so we want to remove it
-          const response = await axios.delete(`${baseURL}/users/${userId}/favorites/${book._id}`, { withCredentials: true });
+          const response = await axios.delete(`${BACKEND_URL}/users/${userId}/favorites/${book._id}`, { withCredentials: true });
           
           setFavorites(favorites.filter((id) => id !== book._id));
           setIsFavorite(false);
