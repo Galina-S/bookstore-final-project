@@ -71,15 +71,16 @@ export const NavbarPage = () => {
               {currentUser.username === "anonymousUser" ? (
                 <PageLogin />
               ) : (
-                <div className="logout-container">
-                  <NavLink
-                  to="/logout"
-                  className="logout-btn"
-                  onClick={() => (className = "inactiv")}
-                >
-                  {" "}
-                  Logout{" "}
-                </NavLink>
+                <div>
+                 <div className="logout-container">
+                    <NavLink
+                      to="/logout"
+                      onClick={() => (className = "inactiv")}>
+                      Logout
+                    </NavLink>
+                    <NavLink to="/konto"  onClick={() => (className = "inactiv")}>Kontoübersicht</NavLink>
+                 </div>
+
                 </div>
               )}
             </div>
@@ -163,7 +164,6 @@ export const NavbarPage = () => {
             </NavLink>
             <NavLink to="/new-books">Neuheiten</NavLink>
             <NavLink to="/bestsellers">Bestseller</NavLink>
-            <NavLink to="/konto">Kontoübersicht</NavLink>
           </div>
           <div className="search">
             <SearchField />
