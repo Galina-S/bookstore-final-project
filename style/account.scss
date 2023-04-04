@@ -1,65 +1,99 @@
-.account-overview {
-    h2 {
-        line-height: 1.5em;
-        font-size: 26px;
-        padding-bottom: 10px;
-    }
-
-
-    h3 {
-        line-height: 34px;
-        padding-bottom: 7px;
-    }
-
-    .email, .picture, .plus, .minus {
-        font-size: 30px;
-       
-           }
-          
-           .plus, .minus {
-            margin-left: 50px;
-           }
-    .current-email {
-        color: rgb(117, 117, 117);
-    }
-    .button-plus {
-        background-color: white;
-        border:none;
-        
-    }
-
-    .email-change-form {
-        border: 2px solid rgb(202, 202, 202) ;
-        border-radius: 10px;
-        width: fit-content;
-       input {
-        padding:0;
-        margin-bottom:0;
-       }
-    }
-
-    .editForm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        //border-bottom: 2px solid #ccc;
-        width: fit-content;
-       
-    }
-
-    .button-email-save {
-        width:fit-content
-
-    }
-
+.mainPage {
+    background-color: #eee;
+    padding:20px;
     .account-overview {
+        background-color: white;
         border-bottom: 2px solid #ccc;
-    }
+        max-width: 675px;
+        padding: 50px;
+        margin: 15px auto 30px auto;
+    
+        
+        h2 {
+            line-height: 1.5em;
+            font-size: 1rem;
+        }
+    
+    
+        h3 {padding-top: 20px;
+            line-height: 34px;
+            padding-bottom: 6px;
+        }
+        p {font-size: 0.7em;}
+        .email, .picture, .plus, .minus {
+            font-size: 30px;
+           
+               }
+              
+               .plus, .minus {
+                margin-left: 50px;
+               }
+      
+             
+               
+        .current-email {
+            color: rgb(117, 117, 117);
+        }
+        .button-plus {
+            background-color: white;
+            border:none;
+            
+        }
+    
+        .email-change-form {
+            border: 2px solid rgb(202, 202, 202) ;
+            border-radius: 10px;
+            max-width: 675px;
+           input {
+            padding:0;
+            margin-bottom:0;
+           }
+           input:focus {
+            outline: none;
+          }
+        }
+    
+        .editForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            //border-bottom: 2px solid #ccc;
+            max-width: 675px;
+            border-bottom: 2px solid #ccc;
+        }
+    
+        .button-email-save {
+            width:fit-content
+    
+        }
+        .minus-btn, .plus-btn {
+            margin-left: 300px;
+          }
+          @media screen and (max-width: 768px) {
+            .minus-btn, .plus-btn {
+                margin-left: 50px;
+              }
 
-    .email-part{
-        //border-bottom: 2px solid #ccc;
-        width: fit-content;
-    }
+              input {
+                width:auto;
+              }
+          }
+       
+        .email-part, .avatar-part{
+            //border-bottom: 2px solid #ccc;
+            max-width: 675px;
+            display:flex;
+            padding-bottom: 15px;
+            justify-content: space-between;
 
+            border-bottom: 2px solid lightgray;
+            padding-top: 15px;
+        }
+
+        .form-img-upload {
+            border-bottom: 2px solid #ccc;
+        }
+    
+    }
 }

@@ -265,6 +265,12 @@
           border-radius: 15px;
         }
 
+        @media screen and (max-width: 768px) {
+          .element-button-primary {
+            font-size: 0.8em;
+          }
+        }
+
         .element-button-primary:hover {
           background-color: rgb(179, 179, 179);;
         }

@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import axios from 'axios';
 import {  AiOutlineMail, AiOutlinePicture, AiOutlinePlus, AiOutlineMinus  } from 'react-icons/ai';
+import { borderRadius } from "@mui/system";
 
 export const Account = ({ userId }) => {
     const { currentUser, setCurrentUser, getCurrentUser } =  useContext(AppContext);
@@ -81,31 +82,28 @@ export const Account = ({ userId }) => {
 
      
   return (
-    <>
+    <div className="mainPage">
     {currentUser.username!=="anonymousUser" &&
     <div className="account-overview">
-        <div> 
-            <h2> Hallo {currentUser.username} </h2>
+        <div style= {{padding:'0', margin: '0'}}> 
+            <h2> Mein Konto</h2>
             <p>Kundennummer {currentUser._id}</p>
             <h3>Zugangsdaten</h3>
-            <p>Hier können Sie Ihre E-Mail-Adresse und Profile Image ändern.</p>
-            <br/>
+            <p style={{borderBottom:'2px solid lightgray', paddingBottom: '20px'}}>Hier können Sie Ihre E-Mail-Adresse und Profile Image ändern.</p>
         </div>
    
-    <div className="email-part" style={{display:'flex'}}>
-        <div style= {{padding: '10px'}}><AiOutlineMail className="email"/></div>
-        <div>
+    <div className="email-part" >
+        <div style= {{padding: '10px', backgroundColor: 'lightgray',  marginRight: '10px', borderRadius:'8px'}}><AiOutlineMail className="email"/></div>
+        <div style ={{ lineHeight: '0.9em', alignItems:'left'}}>
             <p>E-Mail-Adresse ändern</p>
             <p className="current-email">{currentUser.email}</p>
         </div>
-        <button onClick={() => setEditMode(!editMode)} className ="button-plus">
+        <button onClick={() => setEditMode(!editMode)} className ="button-plus ">
             
-        {editMode ? <AiOutlineMinus className="minus"/> : <AiOutlinePlus className="plus"/>}
+        {editMode ? <AiOutlineMinus className="minus minus-btn"/> : <AiOutlinePlus className="plus-btn plus"/>}
         </button>
     </div>
         
-    
-
     {editMode && (
     <form className="editForm" onSubmit={handleSubmit} >
        
@@ -129,27 +127,27 @@ export const Account = ({ userId }) => {
 
 
 
-    <div style={{display:'flex'}} >
-        <div style= {{padding: '10px'}}><AiOutlinePicture className="picture" /></div>
+    <div className="avatar-part" >
+        <div style= {{padding: '10px', backgroundColor: 'lightgray', marginRight: '10px', borderRadius:'8px'}}><AiOutlinePicture className="picture" /></div>
         <div style= {{display:'flex', justifyContent:'center', alignItems: 'center'}}>
             <p style= {{justifyContent:'center', alignItems: 'center'}}>Profile Image hochladen</p>
         </div>
         <button onClick={() => setEditImg(!editImg)} className ="button-plus"> 
-         {editImg ? <AiOutlineMinus className="minus"/> : <AiOutlinePlus className="plus"/>}
+         {editImg ? <AiOutlineMinus className="minus minus-btn"/> : <AiOutlinePlus className="plus plus-btn"/>}
         </button>
     </div>
 
     {editImg && (
     <form onSubmit={handleFormSubmit} className="form-img-upload">
       <input className ="" type="file" onChange={handleFileInputChange} />
-      <button type="submit" >Hochladen</button>
+      <button type="submit" className="btn"> Hochladen </button>
     </form>
     )}
 </div>
     }
    
 
-   </>
+   </div>
   );
 
 };
