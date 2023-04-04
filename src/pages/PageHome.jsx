@@ -3,8 +3,12 @@ import { NewReleases } from "../../components/NewReleases";
 import { BooksWeLove } from "../../components/BooksWeLove";
 import { Footer } from "../../components/Footer";
 
+
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
+
+import { Link } from "react-router-dom";
+
 
 export const PageHome = () => {
   const { rawBooks, handleClick } = useContext(AppContext);
@@ -37,7 +41,9 @@ export const PageHome = () => {
 
                 <div className="book-description">
                   <h2>{book.title}</h2>
+                  <Link to={`/authors/${book.author}`}>
                   <p className="description-author">von {book.author}</p>
+                  </Link>
                   <p className="description-text">{book.description}</p>
                   <div className="btn-container">
                     <button

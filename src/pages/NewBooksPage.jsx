@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
 import { useContext } from "react";
 
+import { Link } from 'react-router-dom';
+
 export const NewBooksPage = () => {
   const [newReleases, setNewReleases] = useState([]);
   const { handleClick, loadBooks, addToCart } = useContext(AppContext);
@@ -82,14 +84,14 @@ export const NewBooksPage = () => {
                 <div key={book._id} className="releases week-release">
                   <div
                     className="book"
-                    onClick={() => {
-                      handleClick(book._id);
-                    }}
+                    
                   >
-                    <img src={book.img} alt="" />
+                    <img src={book.img} alt="" onClick={() => {handleClick(book._id)}} />
                     <div className="book-text">
+                    <Link to={`/authors/${book.author}`}>
                       <p className="author">{book.author}</p>
-                      <p>{book.title}</p>
+                    </Link>
+                      <p onClick={() => {handleClick(book._id)}} >{book.title}</p>
                     </div>
                   </div>
                 </div>
@@ -105,14 +107,18 @@ export const NewBooksPage = () => {
                 <div key={book._id} className="releases belletristik-release">
                   <div
                     className="book"
-                    onClick={() => {
-                      handleClick(book._id);
-                    }}
+                    
                   >
-                    <img src={book.img} alt="" />
+                    <img src={book.img} alt="" onClick={() => {
+                      handleClick(book._id);
+                    }} />
                     <div className="book-text">
+                    <Link to={`/authors/${book.author}`}>
                       <p className="author">{book.author}</p>
-                      <p>{book.title}</p>
+                    </Link>
+                      <p onClick={() => {
+                      handleClick(book._id);
+                    }}>{book.title}</p>
                     </div>
                   </div>
                 </div>
@@ -129,14 +135,18 @@ export const NewBooksPage = () => {
                 <div key={book._id} className="releases belletristik-release">
                   <div
                     className="book"
-                    onClick={() => {
-                      handleClick(book._id);
-                    }}
+                    
                   >
-                    <img src={book.img} alt="" />
+                    <img src={book.img} alt="" onClick={() => {
+                      handleClick(book._id);
+                    }}/>
                     <div className="book-text">
+                    <Link to={`/authors/${book.author}`}>
                       <p className="author">{book.author}</p>
-                      <p>{book.title}</p>
+                    </Link>
+                      <p onClick={() => {
+                      handleClick(book._id);
+                    }}>{book.title}</p>
                     </div>
                   </div>
                 </div>
@@ -153,14 +163,17 @@ export const NewBooksPage = () => {
                 <div key={book._id} className="releases belletristik-release">
                   <div
                     className="book"
-                    onClick={() => {
-                      handleClick(book._id);
-                    }}
                   >
-                    <img src={book.img} alt="" />
+                    <img src={book.img} alt="" onClick={() => {
+                      handleClick(book._id);
+                    }}/>
                     <div className="book-text">
+                    <Link to={`/authors/${book.author}`}>
                       <p className="author">{book.author}</p>
-                      <p>{book.title}</p>
+                    </Link>
+                      <p onClick={() => {
+                      handleClick(book._id);
+                    }}>{book.title}</p>
                     </div>
                   </div>
                 </div>
@@ -183,7 +196,9 @@ export const NewBooksPage = () => {
                     }}/>
                   <div className="content-book">
                     <div className="authot-title">
-                      <p className="book-author">{book.author}</p>
+                    <Link to={`/authors/${book.author}`}>
+                      <p className="author">von {book.author}</p>
+                    </Link>
                       <p>{book.title}</p>
                     </div>
                     <div className="prise-btn">

@@ -79,11 +79,13 @@
 
         .book {
           text-align: center;
-          cursor: pointer;
+          margin-top: 0.5rem;
           img {
             height: 170px;
             box-shadow: var(--box-shadow-mai-brown);
             transition: height 0.2s ease;
+          cursor: pointer;
+
           }
           img:hover {
             height: 175px;
@@ -97,6 +99,9 @@
               font-size: 0.7rem;
               margin-bottom: 0.3rem;
               text-decoration: underline;
+              color: var(--color-main-blue-medium);
+              cursor: pointer;
+
             }
           }
         }
