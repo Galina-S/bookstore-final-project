@@ -2,15 +2,14 @@ import axios from 'axios';
 // import dotenv from 'dotenv';
 
 // dotenv.config();
-
+const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
 const instance = axios.create({
-     baseURL: process.env.BACKEND_URL
-    // baseURL: process.env.REACT_APP_API_URL
+     baseURL: BACKEND_URL
 })
 
 export default instance
 
 
 
-export const baseURL = process.env.BACKEND_URL;
+export const baseURL = BACKEND_URL;
