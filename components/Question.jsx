@@ -26,6 +26,15 @@ export const Question = () => {
       question: "Wie gebe ich meine Ware zurück?",
       answer: "Sollten Sie einen Artikel zurücksenden wollen und haben mit Ihrem Kundenkonto gekauft, wählen Sie bitte unter Mein Konto die Option Rücksendungen. Hier können Sie ganz einfach und schnell Ihre Rücksendungen bearbeiten. Wir tragen die Kosten der Rücksendung der Waren, wenn Sie für eine innerhalb Deutschlands veranlasste Rücksendung das von uns zur Verfügung gestellte Retouren-Etikett verwenden. Anderenfalls sind die Rücksendekosten von Ihnen zu tragen. Weiterhin haben Sie die Möglichkeit, die bestellten Artikel - unabhängig davon ob Sie zur Abholung in der Buchhandlung oder zum Versand nach Hause bestellt wurden - in einer Thalia-Buchhandlung Ihrer Wahl zurückzugeben. Wenn Sie als Gast bestellen, nutzen Sie bitte unseren Retourenservice, um ein Retourenetikett auszudrucken. Wichtig: Vergessen Sie nicht, die Auftragsnummer anzugeben, damit wir Ihre Rücksendung zuordnen können. Sie finden die Auftragsnummer beispielsweise in der Versandbestätigungsmail.",
       isOpen: false
+    },
+    {
+        question: "Bestellen als Gast?",
+        answer: "Neben der Bestellung mit Kundenkonto ist es auch möglich, eine Bestellung als Gast zu tätigen. Die Nutzung von Gutscheinen und Geschenkkarten per Post ist ebenso möglich, wie die Abholung der bestellten Artikel in der Buchhandlung.",
+        isOpen: false
+    },
+    {
+      question: "Rücksendeadresse",
+      answer: "Die Rücksendeadresse für Bücher entnehmen Sie bitte Ihrem Lieferschein."
     }
   ]);
 

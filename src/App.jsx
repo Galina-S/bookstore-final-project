@@ -25,6 +25,8 @@ import { PageVersand } from "./pages/PageVersand";
 import { Impressum } from "../components/Impressum"
 import { Unternehmen } from "../components/unternehmen"
 import { Question } from "../components/Question";
+import { Contact } from "../components/Contact";
+
 
 //const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -57,6 +59,8 @@ function App() {
         <Route path="/impressum" element = {<Impressum/>} />
         <Route path="/unternehmen" element = {<Unternehmen/>} />
         <Route path="/questions" element = {<Question/>} />
+        <Route path="/contact" element = {<Contact/>} />
+
 
 
 

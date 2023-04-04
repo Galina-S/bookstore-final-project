@@ -71,7 +71,7 @@ export const PageHome = () => {
         <div className="contact-box">
           <div className="contact-box-card">
             <p>Kontakt per Telefon</p>
-            <p className="contact-info">+49 251 / 5 30 93 33 </p>
+            <p className="contact-info">+49 040 / 123 45 67 </p>
           </div>
           <div className="contact-box-card">
             <p>Kontakt per E-Mail</p>

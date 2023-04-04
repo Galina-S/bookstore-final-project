@@ -1,0 +1,61 @@
+.contact{
+    margin: 2rem;
+    .contact-container {
+        display: flex;
+
+        .contact-picture{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            height: 250px;
+            overflow: hidden;
+            img{
+                max-width: 100%;
+            }
+
+        }
+        .contact-content{
+            width: 60%;
+            margin: 1rem ;
+            p{
+                margin-top: 0.5rem;
+            }
+            .contsct-service{
+                margin-top: 2rem;
+            }
+        }
+    }
+    //RESPONS
+    @media screen and (max-width: 1200px) {
+        .contact-container {
+            flex-direction: column;
+            justify-content: center;  
+            align-items: center;       
+        .contact-picture{
+                width: 100%;
+                height: 200px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        .contact-container {   
+        .contact-picture{
+                width: 100%;
+                height: 170px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .contact-container {   
+        .contact-picture{
+                width: 100%;
+                height: 135px;
+            }
+        }
+    }
+
+    
+}
