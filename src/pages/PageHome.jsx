@@ -69,22 +69,7 @@ export const PageHome = () => {
         <BooksWeLove />
       </div>
 
-      <div className="contact-container">
-        <div className="contact-box-text">
-          <h3>Haben Sie Fragen?</h3>
-          <p>Wir sind 24 Stunden für Sie da.</p>
-        </div>
-        <div className="contact-box">
-          <div className="contact-box-card">
-            <p>Kontakt per Telefon</p>
-            <p className="contact-info">+49 040 / 123 45 67 </p>
-          </div>
-          <div className="contact-box-card">
-            <p>Kontakt per E-Mail</p>
-            <p className="contact-info"> info@bookshopify.de</p>
-          </div>
-        </div>
-      </div>
+
       <div className="footer">
         <Footer />
       </div>
