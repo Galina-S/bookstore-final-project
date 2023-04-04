@@ -528,6 +528,7 @@ export const AppProvider = ({ children }) => {
         loadComments,
         getWindowSize,
         formatCurrency,
+        getCurrentUser
       }}
     >
       {children}

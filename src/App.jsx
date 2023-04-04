@@ -12,6 +12,7 @@ import { PageHome } from "./pages/PageHome";
 import { PageLogout } from "./pages//PageLogout";
 import { NewBooksPage } from "./pages//NewBooksPage";
 import { Bestsellers } from "./pages/BestsellersPage";
+import { Account } from "./pages/Account";
 import { WishListPage } from "./pages/WishListPage";
 import { PageSingleBook } from "./pages/PageSingleBook";
 import { CreateBookPage } from "./pages/CreateBookPage";
@@ -62,6 +63,8 @@ function App() {
         <Route path="/contact" element = {<Contact/>} />
 
 
+
+        <Route path="/konto" element = {<Account/>} />
 
 
         <Route path="/authors/:authorID" element={<PageSingleAuthor />} />

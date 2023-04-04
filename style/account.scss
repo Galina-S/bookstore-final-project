@@ -1,0 +1,65 @@
+.account-overview {
+    h2 {
+        line-height: 1.5em;
+        font-size: 26px;
+        padding-bottom: 10px;
+    }
+
+
+    h3 {
+        line-height: 34px;
+        padding-bottom: 7px;
+    }
+
+    .email, .picture, .plus, .minus {
+        font-size: 30px;
+       
+           }
+          
+           .plus, .minus {
+            margin-left: 50px;
+           }
+    .current-email {
+        color: rgb(117, 117, 117);
+    }
+    .button-plus {
+        background-color: white;
+        border:none;
+        
+    }
+
+    .email-change-form {
+        border: 2px solid rgb(202, 202, 202) ;
+        border-radius: 10px;
+        width: fit-content;
+       input {
+        padding:0;
+        margin-bottom:0;
+       }
+    }
+
+    .editForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        //border-bottom: 2px solid #ccc;
+        width: fit-content;
+       
+    }
+
+    .button-email-save {
+        width:fit-content
+
+    }
+
+    .account-overview {
+        border-bottom: 2px solid #ccc;
+    }
+
+    .email-part{
+        //border-bottom: 2px solid #ccc;
+        width: fit-content;
+    }
+
+}

@@ -52,7 +52,7 @@ export const NavbarPage = () => {
             >
               {currentUser.username !== "anonymousUser" ? (
                 <>
-                  <img src={currentUser.img} alt="avatar" className="avatar" />
+                  <img src={`data:image/png;base64,${currentUser.img}`} alt="avatar" className="avatar" />
                   <span className={`${windowSize < 600 ? "none" : null}`}>
                     {currentUser.username}
                   </span>
@@ -163,12 +163,18 @@ export const NavbarPage = () => {
             </NavLink>
             <NavLink to="/new-books">Neuheiten</NavLink>
             <NavLink to="/bestsellers">Bestseller</NavLink>
+            <NavLink to="/konto">Kontoübersicht</NavLink>
           </div>
           <div className="search">
             <SearchField />
           </div>
         </div>
+
+        
       </nav>
+
+
+      
     </div>
   );
 };
