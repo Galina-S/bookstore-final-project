@@ -43,6 +43,10 @@ const [formData, setFormData] = useState({
         body: JSON.stringify(formData),
       });
       const data = await response.json();
+
+     
+      await loadComments();
+      
       //window.location.reload();
       const updatedUser = { ...currentUser };
       setCurrentUser(updatedUser);

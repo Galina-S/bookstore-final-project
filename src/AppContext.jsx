@@ -16,6 +16,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [rawBooks, setRawBooks] = useState([]);
+
   //Edit book data
   const [editingElementId, setEditingElementId] = useState(null);
   const [formData, setFormData] = useState([]);
@@ -39,7 +40,7 @@ export const AppProvider = ({ children }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
-  const [rawComments, setRawComments] = useState(null);
+  const [rawComments, setRawComments] = useState([]);
   let dropdownRef = useRef();
 
   useEffect(() => {
@@ -51,6 +52,7 @@ export const AppProvider = ({ children }) => {
     document.addEventListener("mousedown", handler);
   });
   const navigate = useNavigate();
+
   const loadBooks = async () => {
     setEditingElementId(null);
     const books = (await instance.get("/books")).data;
@@ -63,14 +65,24 @@ export const AppProvider = ({ children }) => {
     });
     setRawBooks(_books);
   };
+
   const loadComments = async (bookId) => {
-    try {
-      const response = await fetch(`${BACKEND_URL}/books/${bookId}/comments`);
-      const commentsData = await response.json();
-      setRawComments(commentsData.comments);
-    } catch (error) {
-      console.error(error);
-    }
+    setEditingElementId(null);
+      const comments = (await instance.get(`${BACKEND_URL}/books/${bookId}/comments`).data);
+      const _comments = [];
+      comments.forEach((rawComment) => {
+        const _comments = {
+          ...rawComment,
+        };
+        _comments.push(_comments);
+      });
+      setRawComments(_comments);
+      
+    //   const commentsData = await response.json();
+    //   setRawComments(commentsData.comments);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const getCurrentUser = () => {

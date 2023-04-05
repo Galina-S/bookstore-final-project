@@ -18,6 +18,7 @@ export const PageSingleBook = (props) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [comments, setComments] = useState([]);
 
+  
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [newComment, setNewComment] = useState(null);
   const [showFullComment, setShowFullComment] = useState({});
@@ -26,9 +27,9 @@ export const PageSingleBook = (props) => {
   const [data, setData] = useState({});
 
   const {
-    loadComments,
     cart,
     addToCart,
+    loadComments,
     removeFromCart,
     increaseQty,
     decreaseQty,
@@ -83,7 +84,7 @@ export const PageSingleBook = (props) => {
     setComments(data);
   }
 
-  
+
   async function deleteComment(commentId) {
     const userId = id;
 
@@ -95,7 +96,10 @@ export const PageSingleBook = (props) => {
         },
       });
 
-      await fetchComments();
+    
+       await loadComments();
+       
+      // await fetchComments();
       // const updatedUser = { ...currentUser};
       // setCurrentUser(updatedUser);
       // // Refresh the comments after deleting

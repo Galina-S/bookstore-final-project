@@ -70,11 +70,14 @@ export const Account = ({ userId }) => {
         const response = await instance.put(`/users/${currentUser._id}/profile-image`, { imageData: base64Image });
 
         // Update the img field in the currentUser state
+
         const updatedUser = { ...currentUser, img: base64Image};
         setCurrentUser(updatedUser);
 
         // console.log(currentUser);
         // console.log(response.data);
+
+      
       } catch (error) {
         console.log(error);
       }
@@ -90,7 +93,7 @@ export const Account = ({ userId }) => {
             <h2> Mein Konto</h2>
             <p>Kundennummer {currentUser._id}</p>
             <h3>Zugangsdaten</h3>
-            <p style={{borderBottom:'2px solid lightgray', paddingBottom: '20px'}}>Hier können Sie Ihre E-Mail-Adresse und Profile Image ändern.</p>
+            <p style={{borderBottom:'2px solid lightgray', paddingBottom: '20px'}}>Hier können Sie Ihre E-Mail-Adresse und Profilebild ändern.</p>
         </div>
    
     <div className="email-part" >
@@ -131,7 +134,7 @@ export const Account = ({ userId }) => {
     <div className="avatar-part" >
         <div style= {{padding: '10px', backgroundColor: 'lightgray', marginRight: '10px', borderRadius:'8px'}}><AiOutlinePicture className="picture" /></div>
         <div style= {{display:'flex', justifyContent:'center', alignItems: 'center'}}>
-            <p style= {{justifyContent:'center', alignItems: 'center'}}>Profile Image hochladen</p>
+            <p style= {{justifyContent:'center', alignItems: 'center'}}>Profilebild hochladen</p>
         </div>
         <button onClick={() => setEditImg(!editImg)} className ="button-plus"> 
          {editImg ? <AiOutlineMinus className="minus minus-btn"/> : <AiOutlinePlus className="plus plus-btn"/>}
