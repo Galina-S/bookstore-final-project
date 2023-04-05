@@ -43,10 +43,8 @@ const [formData, setFormData] = useState({
         body: JSON.stringify(formData),
       });
 
-      await loadComments();
-
       const data = await response.json();
-      window.location.href = `/books/${bookId}`;
+      window.location.replace("https://bookstore-final-project-git-dev-galina-s.vercel.app/books2");
       //window.location.reload();
       // const updatedUser = { ...currentUser };
       // setCurrentUser(updatedUser);
