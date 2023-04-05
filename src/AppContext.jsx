@@ -66,24 +66,24 @@ export const AppProvider = ({ children }) => {
     setRawBooks(_books);
   };
 
-  const loadComments = async (bookId) => {
-    setEditingElementId(null);
-      const comments = (await instance.get(`${BACKEND_URL}/books/${bookId}/comments`).data);
-      const _comments = [];
-      comments.forEach((rawComment) => {
-        const _comments = {
-          ...rawComment,
-        };
-        _comments.push(_comments);
-      });
-      setRawComments(_comments);
+  // const loadComments = async (bookId) => {
+  //   setEditingElementId(null);
+  //     const comments = (await instance.get(`${BACKEND_URL}/books/${bookId}/comments`).data);
+  //     const _comments = [];
+  //     comments.forEach((rawComment) => {
+  //       const _comments = {
+  //         ...rawComment,
+  //       };
+  //       _comments.push(_comments);
+  //     });
+  //     setRawComments(_comments);
       
-    //   const commentsData = await response.json();
-    //   setRawComments(commentsData.comments);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  };
+  //   //   const commentsData = await response.json();
+  //   //   setRawComments(commentsData.comments);
+  //   // } catch (error) {
+  //   //   console.error(error);
+  //   // }
+  // };
 
   const getCurrentUser = () => {
     (async () => {

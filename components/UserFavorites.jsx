@@ -32,7 +32,7 @@ const FavoriteIcon = ({ book }) => {
 
         if (isFavoriteBefore) {
           // book was already in favorites, so we want to remove it
-          const response = await axios.delete(`${BACKEND_URL}/users/${userId}/favorites/${book._id}`, { withCredentials: true });
+          //const response = await axios.delete(`${BACKEND_URL}/users/${userId}/favorites/${book._id}`, { withCredentials: true });
           
           setFavorites(favorites.filter((id) => id !== book._id));
           setIsFavorite(false);

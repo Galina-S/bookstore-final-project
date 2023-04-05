@@ -80,6 +80,7 @@ export const PageSingleBook = (props) => {
   async function deleteComment(commentId) {
     const userId = id;
     const commentElement = document.getElementById(commentId);
+    console.log(commentElement)
 
     try {
       await fetch(`${BACKEND_URL}/books/${userId}/comments/${commentId}`, {
@@ -89,7 +90,9 @@ export const PageSingleBook = (props) => {
         },
       });
 
-     commentElement.remove();
+      if (commentElement) {
+        commentElement.remove();
+      }
       //  await loadComments();
       // window.location.reload();
     } catch (error) {
