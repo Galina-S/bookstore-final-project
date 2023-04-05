@@ -34,6 +34,7 @@ export const PageSingleBook = (props) => {
     decreaseQty,
     currentUser,
     handleAddCommentForm,
+    setCurrentUser
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -85,8 +86,11 @@ export const PageSingleBook = (props) => {
           Authorization: `Bearer ${currentUser.token}`,
         },
       });
-      // Refresh the comments after deleting
-      window.location.reload();
+
+      const updatedUser = { ...currentUser};
+      setCurrentUser(updatedUser);
+      // // Refresh the comments after deleting
+      // window.location.reload();
     } catch (error) {
       console.error(error);
     }

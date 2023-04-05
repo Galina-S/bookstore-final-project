@@ -69,12 +69,12 @@ export const Account = ({ userId }) => {
       try {
         const response = await instance.put(`/users/${currentUser._id}/profile-image`, { imageData: base64Image });
 
-            // Update the img field in the currentUser state
+        // Update the img field in the currentUser state
         const updatedUser = { ...currentUser, img: base64Image};
         setCurrentUser(updatedUser);
 
-        console.log(currentUser);
-        console.log(response.data);
+        // console.log(currentUser);
+        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }
