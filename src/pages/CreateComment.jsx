@@ -42,14 +42,14 @@ const [formData, setFormData] = useState({
         },
         body: JSON.stringify(formData),
       });
-      const data = await response.json();
 
-     
       await loadComments();
-      
+
+      const data = await response.json();
+        
       //window.location.reload();
-      const updatedUser = { ...currentUser };
-      setCurrentUser(updatedUser);
+      // const updatedUser = { ...currentUser };
+      // setCurrentUser(updatedUser);
 
       setFormData({
         commentId: Date.now().toString(),
@@ -104,8 +104,8 @@ useEffect(() => {
 
 
 useEffect(() => {
-  loadComments(bookId);
-}, [bookId]);
+  loadComments();
+}, []);
 
 
   return (
