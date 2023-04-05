@@ -36,7 +36,7 @@ export const DisplayBook = (props) => {
               className="open-text"
               onClick={() => setOpenDescription(!openDescription)}
             >
-              Description lesen...
+              Beschreibung lesen ...
             </p>
             {openDescription && (
               <div className="all-description">
