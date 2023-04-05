@@ -123,5 +123,16 @@
     
     
     }
+    @media screen and (max-width: 450px) {
+        .editBook{
+            .editForm{
+                .row  {
+                    input{
+                        width: 250px;
+                    }
+                }
+            }
+        }
+    }
     
 }

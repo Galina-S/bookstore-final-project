@@ -44,4 +44,36 @@
             }
         }
     }
+
+    @media screen and (max-width:550px) {
+      .contact-container{
+        padding-bottom: 0.1rem;
+        .contact-box-text{
+          p{
+            font-size: 0.7rem;
+          }
+        }
+        .contact-box{
+          flex-direction: column;
+          .contact-box-card{
+            width: 100%;
+            margin-bottom: 1rem;
+            p{
+              font-size: 0.7rem;
+            }
+          }
+        }
+      }
+      .footer-inner{
+        .footer-container{
+          margin: 0.3rem 0.5rem;
+          .footer-container > a{
+            font-size: 0.7rem;
+    
+          }
+  
+        }
+      }
+
+    }
 }

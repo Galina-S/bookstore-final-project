@@ -180,9 +180,9 @@ export const EditBook = () => {
             </div>
             <div className="buttonRow">
               <NavLink to="/books">
-                <button className="classicBtn">Cancel</button>
+                <button className="classicBtn btn">Cancel</button>
               </NavLink>
-              <button className="classicBtn" type="submit">
+              <button className="classicBtn btn" type="submit">
                 Save
               </button>
             </div>
