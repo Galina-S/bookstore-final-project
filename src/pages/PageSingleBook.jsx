@@ -100,24 +100,9 @@ export const PageSingleBook = (props) => {
           Authorization: `Bearer ${currentUser.token}`,
         },
       });
+      
+    window.location.reload();
 
-    
-
-
-       const commentElement = document.getElementById(commentId);
-    if (commentElement) {
-      commentElement.remove();
-    }
-
-    // Update the comment count by subtracting 1 from the total
-    const commentCount = document.getElementById("comment-count");
-    const totalComments = parseInt(commentCount.textContent);
-    commentCount.textContent = totalComments - 1;
-
-    // Load the comments after deleting one
-    await loadComments();
-      //  await loadComments();
-      // window.location.reload();
     } catch (error) {
       console.error(error);
     }
