@@ -76,6 +76,14 @@ export const PageSingleBook = (props) => {
     return cart.find((item) => item._id === id)?.quantity || 0;
   }
 
+
+  async function fetchComments() {
+    const response = await fetch(`${BACKEND_URL}/books/${bookId}/comments`);
+    const data = await response.json();
+    setComments(data);
+  }
+
+  
   async function deleteComment(commentId) {
     const userId = id;
 
@@ -87,8 +95,9 @@ export const PageSingleBook = (props) => {
         },
       });
 
-      const updatedUser = { ...currentUser};
-      setCurrentUser(updatedUser);
+      await fetchComments();
+      // const updatedUser = { ...currentUser};
+      // setCurrentUser(updatedUser);
       // // Refresh the comments after deleting
       // window.location.reload();
     } catch (error) {

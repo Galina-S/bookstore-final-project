@@ -5,11 +5,11 @@ import React from "react";
 import axios from "axios";
 
 export const CreateComment = ({ bookId, handleAddCommentForm}) => {
-const  { currentUser, loadComments } = useContext(AppContext);
+const  { currentUser, loadComments, setCurrentUser } = useContext(AppContext);
 
 const [submitted, setSubmitted] = useState(false); // add submitted state
 const [showCommentForm, setShowCommentForm] = useState(true);
-
+const [comments, setComments] = useState([]);
 
 const [formData, setFormData] = useState({
     commentId: Date.now().toString(),
@@ -24,6 +24,13 @@ const [formData, setFormData] = useState({
   const [newComment, setNewComment] = useState(null);
   const [data, setData] = useState({});
   
+  async function fetchComments() {
+    const response = await fetch(`${BACKEND_URL}/books/${bookId}/comments`);
+    const data = await response.json();
+    setComments(data);
+  }
+
+
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -36,8 +43,9 @@ const [formData, setFormData] = useState({
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      window.location.reload();
-     
+      //window.location.reload();
+      const updatedUser = { ...currentUser };
+      setCurrentUser(updatedUser);
 
       setFormData({
         commentId: Date.now().toString(),
@@ -53,6 +61,8 @@ const [formData, setFormData] = useState({
       setSubmitted(true); // set submitted to true after submitting the form
       setShowCommentForm(false);
 
+      // Fetch all comments and update the comments list
+await fetchComments();
 
       // fetch the updated comment data from the server and display it
     const commentResponse = await fetch(`${BACKEND_URL}/books/${bookId}/comments/${data.commentId}`);
