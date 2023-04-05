@@ -5,7 +5,7 @@ import axios from 'axios';
 export const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
 const instance = axios.create({
-    BACKEND_URL: BACKEND_URL
+    baseURL: BACKEND_URL
 })
 
 export default instance
