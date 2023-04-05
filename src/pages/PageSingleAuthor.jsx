@@ -4,13 +4,12 @@ import {useParams} from 'react-router-dom'
 import { Book } from "../pages/Book";
 import { NavLink, Link } from "react-router-dom";
 import FavoriteIcon from "../../components/UserFavorites";
-import { baseURL } from '../../components/axios';
+import { BACKEND_URL } from '../../components/axios';
 
 
 
 export const  PageSingleAuthor = () => {
   const [books, setBooks] = useState([]);
-  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
   const { authorID } = useParams();
 
   // Set up state to hold the book data for the corresponding author

@@ -2,10 +2,10 @@ import axios from 'axios';
 // import dotenv from 'dotenv';
 
 // dotenv.config();
-const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+export const BACKEND_URL= 'https://poised-elk-singlet.cyclic.app';
 
 const instance = axios.create({
-     baseURL: BACKEND_URL
+    BACKEND_URL: BACKEND_URL
 })
 
 export default instance

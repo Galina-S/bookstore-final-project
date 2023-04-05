@@ -4,7 +4,7 @@ import CreateComment from "./CreateComment";
 import { AiFillEye, AiOutlineArrowRight } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
-import { baseURL } from "../../components/axios";
+import { BACKEND_URL } from "../../components/axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -24,8 +24,6 @@ export const PageSingleBook = (props) => {
 
   const { id } = useParams();
   const [data, setData] = useState({});
-
-  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
   const {
     loadComments,

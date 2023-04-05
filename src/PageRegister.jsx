@@ -8,8 +8,8 @@ import {
   faCheck,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import { baseURL } from '../components/axios';
-const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
+import { BACKEND_URL } from '../components/axios';
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 

@@ -1,15 +1,13 @@
 import { AppContext } from "/src/AppContext";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { baseURL } from "../../components/axios";
+import { BACKEND_URL } from "../../components/axios";
 import { NavLink, Link } from "react-router-dom";
 import { BsCartPlus } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router";
 
 export const WishListPage = () => {
-  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
-  
   const {
     rawBooks,
     openSingleBook,

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
-import instance, { baseURL } from "../components/axios";
+import instance, { BACKEND_URL } from "../components/axios";
 import { useNavigate } from "react-router-dom";
 import {
   anonymousUser,
@@ -10,8 +10,6 @@ import {
 } from "./pages/Interfaces";
 import { cloneDeep, toNumber } from "lodash-es";
 import axios from "axios";
-
-const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const AppContext = createContext();

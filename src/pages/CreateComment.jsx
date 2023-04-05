@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { baseURL } from "../../components/axios";
+import { BACKEND_URL } from "../../components/axios";
 import { AppContext } from "../AppContext";
 import React from "react";
 import axios from "axios";
@@ -10,7 +10,6 @@ const  { currentUser, loadComments } = useContext(AppContext);
 const [submitted, setSubmitted] = useState(false); // add submitted state
 const [showCommentForm, setShowCommentForm] = useState(true);
 
-const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
 const [formData, setFormData] = useState({
     commentId: Date.now().toString(),

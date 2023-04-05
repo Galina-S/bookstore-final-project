@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
-import { baseURL } from "./axios";
+import { BACKEND_URL } from "./axios";
 import { AppContext } from "../src/AppContext";
 import axios from 'axios';
 import { Modal } from "@mui/material";
@@ -11,7 +11,6 @@ const FavoriteIcon = ({ book }) => {
   const { currentUser, favorites, setFavorites, setModalIsOpen, modalIsOpen} = useContext(AppContext);
   const userId = currentUser._id;
 
-  const BACKEND_URL= 'https://elegant-rose-outerwear.cyclic.app';
 
   useEffect(() => {
     const favorite = favorites.includes(book?._id);

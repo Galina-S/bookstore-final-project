@@ -29,8 +29,6 @@ import { Question } from "../components/Question";
 import { Contact } from "../components/Contact";
 
 
-//const baseUrl = import.meta.env.VITE_BACKEND_URL;
-
 function App() {
   const { currentUser } = useContext(AppContext);
 
