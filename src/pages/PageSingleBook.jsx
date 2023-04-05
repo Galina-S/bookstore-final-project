@@ -303,14 +303,14 @@ export const PageSingleBook = (props) => {
                     onClick={() => {
                       if (
                         window.confirm(
-                          "Sind Sie sicher, dass Sie dieses Kommentar entfernen möchten?"
+                          "Sind Sie sicher, dass Sie diesen Kommentar löschen möchten?"
                         )
                       ) {
                         deleteComment(comment._id);
                       }
                     }}
                   >
-                    <BsFillTrashFill /> Kommentar entfernen
+                    <BsFillTrashFill /> Kommentar löschen
                   </button>
                 )}
               </div>

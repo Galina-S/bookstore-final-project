@@ -60,7 +60,7 @@ export const NewBooksPage = () => {
             <button
               className="btn btn-releases"
               onClick={() => setSeeAllReleases(!seeAllReleases)}>
-              zu alle neuen Büchern
+              zu allen neuen Büchern
             </button>
           </div>
         )}

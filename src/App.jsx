@@ -59,9 +59,6 @@ function App() {
         <Route path="/unternehmen" element = {<Unternehmen/>} />
         <Route path="/questions" element = {<Question/>} />
         <Route path="/contact" element = {<Contact/>} />
-
-
-
         <Route path="/konto" element = {<Account/>} />
 
 

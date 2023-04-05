@@ -45,8 +45,7 @@ const [formData, setFormData] = useState({
 
       const data = await response.json();
       window.location.reload();
-      // const updatedUser = { ...currentUser };
-      // setCurrentUser(updatedUser);
+
 
       setFormData({
         commentId: Date.now().toString(),
