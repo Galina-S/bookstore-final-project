@@ -44,8 +44,7 @@ const [formData, setFormData] = useState({
       });
 
       const data = await response.json();
-      window.location.replace("https://bookstore-final-project-git-dev-galina-s.vercel.app/books2");
-      //window.location.reload();
+      window.location.reload();
       // const updatedUser = { ...currentUser };
       // setCurrentUser(updatedUser);
 
