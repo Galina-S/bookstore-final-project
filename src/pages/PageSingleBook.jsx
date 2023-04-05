@@ -90,8 +90,8 @@ export const PageSingleBook = (props) => {
 
     
        await loadComments();
-
-      // window.location.reload();
+       window.location.href = `/books/${id}`;
+     // window.location.reload();
     } catch (error) {
       console.error(error);
     }

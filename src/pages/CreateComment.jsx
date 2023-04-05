@@ -46,7 +46,7 @@ const [formData, setFormData] = useState({
       await loadComments();
 
       const data = await response.json();
-        
+      window.location.href = `/books/${bookId}`;
       //window.location.reload();
       // const updatedUser = { ...currentUser };
       // setCurrentUser(updatedUser);
