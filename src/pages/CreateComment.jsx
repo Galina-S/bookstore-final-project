@@ -5,7 +5,7 @@ import React from "react";
 import axios from "axios";
 
 export const CreateComment = ({ bookId, handleAddCommentForm}) => {
-const  { currentUser, loadComments, setCurrentUser } = useContext(AppContext);
+const  { currentUser, setCurrentUser } = useContext(AppContext);
 
 const [submitted, setSubmitted] = useState(false); // add submitted state
 const [showCommentForm, setShowCommentForm] = useState(true);
@@ -97,11 +97,6 @@ useEffect(() => {
   }
 }, [bookId]);
 
-
-
-useEffect(() => {
-  loadComments();
-}, []);
 
 
   return (

@@ -29,7 +29,6 @@ export const PageSingleBook = (props) => {
   const {
     cart,
     addToCart,
-    loadComments,
     removeFromCart,
     increaseQty,
     decreaseQty,
@@ -55,9 +54,6 @@ export const PageSingleBook = (props) => {
     }
   }, [id]);
 
-  useEffect(() => {
-    loadComments();
-  }, []);
 
   useEffect(() => {
     const fetchComments = async () => {

@@ -537,7 +537,7 @@ export const AppProvider = ({ children }) => {
         handleAddCommentForm,
         showCommentForm,
         setShowCommentForm,
-        loadComments,
+        
         getWindowSize,
         formatCurrency,
         getCurrentUser
