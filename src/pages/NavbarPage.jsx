@@ -73,7 +73,7 @@ export const NavbarPage = () => {
               ) : (
                 <div>
                  <div className="logout-container">
-                    <NavLink to="/konto"  onClick={() => (className = "inactiv")}>Kontoübersicht</NavLink>
+                    <NavLink to="/konto">Kontoübersicht</NavLink>
                     <NavLink
                       to="/logout"
                       onClick={() => (className = "inactiv")}>
