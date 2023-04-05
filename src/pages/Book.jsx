@@ -5,6 +5,8 @@ import FavoriteIcon from "../../components/UserFavorites";
 import { Modal } from "@mui/material";
 import { AiFillCloseCircle } from "react-icons/ai";
 
+
+
 export const Book = (props) => {
   const {
     _id,
