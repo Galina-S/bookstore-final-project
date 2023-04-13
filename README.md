@@ -1,2 +1,5 @@
 # bookstore_final_project
-FrontendFW
+
+Deployed auf Vercel:
+
+https://bookstore-final-project-git-dev-galina-s.vercel.app/
